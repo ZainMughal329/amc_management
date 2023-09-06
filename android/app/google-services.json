@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "340587680263",
+    "project_id": "wahab-fyp",
+    "storage_bucket": "wahab-fyp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340587680263:android:ea05267079e7e0fd5250a2",
+        "android_client_info": {
+          "package_name": "com.example.amc_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "340587680263-310078jgi328hkn7c6qg3rlu75uba6s5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFtrl5NHpSTN6x9vqKvut6uWard6wLQZw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "340587680263-310078jgi328hkn7c6qg3rlu75uba6s5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
