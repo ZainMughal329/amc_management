@@ -1,8 +1,3 @@
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +31,9 @@ class SignUpView extends GetView<SignupController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: height*.05,),
+              SizedBox(
+                height: height * .05,
+              ),
               Text(
                 'Welcome to App',
                 style: Theme.of(context).textTheme.bodyMedium,
@@ -55,12 +52,12 @@ class SignUpView extends GetView<SignupController> {
               Padding(
                 key: _formkey,
                 padding:
-                EdgeInsets.only(bottom: height * .01, top: height * .06),
+                    EdgeInsets.only(bottom: height * .01, top: height * .06),
                 child: Column(
                   children: [
                     // ..
                     ReuseField(
-                      myController: usernamecontroller,
+                      myController: controller.state.usernamecontroller,
                       focusNode: usernamefocousnode,
                       // onFiledSubmittedValue: (value){
                       //   ReuseableUtils.fieldfocous(context, controller.state.usernamefocousnode, controller.state.Emailfocousnode);
@@ -77,7 +74,7 @@ class SignUpView extends GetView<SignupController> {
                       height: height * .01,
                     ),
                     ReuseField(
-                      myController: emailcontroller,
+                      myController: controller.state.emailcontroller,
                       focusNode: Emailfocousnode,
                       // onFiledSubmittedValue: (value){
                       //   ReuseableUtils.fieldfocous(context,controller.state. Emailfocousnode, controller.state.Passwordfocusnode);
@@ -94,7 +91,7 @@ class SignUpView extends GetView<SignupController> {
                       height: height * .01,
                     ),
                     ReuseField(
-                      myController: passwordcontroller,
+                      myController: controller.state.passwordcontroller,
                       focusNode: Passwordfocusnode,
                       // onFiledSubmittedValue: (value){
                       // },
@@ -114,13 +111,16 @@ class SignUpView extends GetView<SignupController> {
                   onpress: () {
                     print('inside on press');
                     final user = UserModel(
-                        id: SessionController().userid.toString(),
+                        // id: SessionController().userid.toString(),
                         email: controller.state.emailcontroller.text.trim(),
                         username:
                         controller.state.usernamecontroller.text.trim(),
                         password:
                         controller.state.passwordcontroller.text.trim());
-                    controller.storeUser(user);
+                    controller.storeUser(user , context,controller.state.emailcontroller.text.trim(),controller.state.passwordcontroller.text.trim());
+                    // controller.signUpUser(
+                    //     controller.state.emailcontroller.text.trim(),
+                    //     controller.state.passwordcontroller.text.trim());
                     print('Form Validate');
                   }),
               SizedBox(
@@ -144,8 +144,8 @@ class SignUpView extends GetView<SignupController> {
                               .textTheme
                               .headline2!
                               .copyWith(
-                              fontSize: 15,
-                              decoration: TextDecoration.underline),
+                                  fontSize: 15,
+                                  decoration: TextDecoration.underline),
                         )
                       ]),
                 ),

@@ -34,7 +34,7 @@ class ReuseField extends StatelessWidget {
             // onFieldSubmitted: onFiledSubmittedValue,
             validator: onvalidator,
             keyboardType: keyboardType,
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 10),
+            // style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 10),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(15),
               hintText: hint,

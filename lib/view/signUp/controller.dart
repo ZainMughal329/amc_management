@@ -1,87 +1,75 @@
 
 
-
-
-
-
+import 'package:amc_management/utils/routes/routes_name.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../model/services/session_Controller.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../model/userModel/user_model.dart';
 import 'index.dart';
 
-class SignupController extends GetxController {
+class SignupController extends GetxController
+     {
   final state = SignupState();
 
   SignupController();
+
+
+
   final auth = FirebaseAuth.instance;
+  final _dbUser = FirebaseFirestore.instance.collection('users');
 
-  signUpwithemailandpass(UserModel userInfo, String email, password) async {
-    // state.loading(true);
+
+  void registerUserWithEmailAndPassword(
+      UserModel userinfo, String email, password) async {
     try {
-      print('inside try');
-      await auth
+      var user = await auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) async {
-        print('inside then');
-
-        createUser(userInfo);
+          .then((value) {
+            print('inside then');
+        userinfo.id = auth.currentUser!.uid.toString();
+        createUser(userinfo);
       }).onError((error, stackTrace) {
-        // state.loading.value = false;
-        print("Error is : " + error.toString());
+        Get.snackbar('msg', error.toString());
       });
-    } catch (e) {
-      // state.loading(false);
-      Get.snackbar('Error', e.toString());
+    } on FirebaseAuthException catch (e) {
+      Get.snackbar('msg', e.toString());
+    } catch (_) {
     }
   }
 
-  Future<void> storeUser(UserModel user) async {
-    signUpwithemailandpass(user, user.email, user.password);
-    // Get.toNamed(RouteNames.loginview);
+
+
+
+  Future<UserModel> getUserData(String email) async {
+    final snapshot = await _dbUser.where('email', isEqualTo: email).get();
+    final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
+    return userData;
   }
 
   createUser(UserModel user) async {
-    // state.loading.value = true;
-    await state.dbFireStore
-        .doc(SessionController().userid.toString())
+    await _dbUser
+        .doc(auth.currentUser!.uid)
         .set(user.toJson())
         .whenComplete(() {
-      Get.snackbar("success", 'Successfully created account');
+      Get.snackbar('msg', 'Successfully created account');
 
-      // state.loading.value = false;
-      // StorePrefrences sp = StorePrefrences();
-      // sp.setIsFirstOpen(true);
-      // Get.offAllNamed(AppRoutes.Application);
+      Get.offAllNamed(RouteNames.homeview);
     }).catchError((error, stackTrace) {
-      // toastInfo(msg: "Error occurred");
-      // state.loading.value = false;
-      Get.snackbar("Error", 'Error occurred : ${error.toString()}');
+      Get.snackbar('msg', "Error occurred");
     });
   }
 
-// void SignUp(BuildContext context,String username , String email , String password)async{
-//
-//     try{
-//       state.auth.createUserWithEmailAndPassword(email: email, password: password).then((value){
-//
-//         SessionController().userid=value.user!.uid.toString();
-//
-//          state.dbFireStore.contains(value.user!.uid.toString()).set({
-//           'uid':value.user!.uid.toString(),
-//           'email':value.user!.email.toString(),
-//            'username':username
-//         })
-//         ;
-//
-//       }).onError((error, stackTrace){
-//         Get.snackbar('Error',error.toString());
-//       });
-//
-//     }catch(e){
-//       Get.snackbar('Error',e.toString());
-//     }
-//
-// }
+  void storeUser(
+      UserModel user, BuildContext context, String email, String pass) async {
+    registerUserWithEmailAndPassword(user, email, pass);
+  }
+
+
+
+
+
+
 }
