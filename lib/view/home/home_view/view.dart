@@ -18,7 +18,7 @@ class HomeView extends GetView<HomeController> {
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         actions: [
-          IconButton(onPressed: (){
+           IconButton(onPressed: (){
             controller.state.auth.signOut().then((value){
               //here we logout user and clear its ud
               //when they open app again then they have to go on login screen and login again
@@ -55,7 +55,7 @@ class HomeView extends GetView<HomeController> {
                       )),
                   ReuseContainer(
                       onpress: (){
-                        // Get.toNamed(RouteNames.userlistview);
+                        Get.toNamed(RouteNames.userlistview);
                       },
                       child: Center(
                         child: Text(

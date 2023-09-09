@@ -4,6 +4,8 @@ import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../../view/home/home_view/bindings.dart';
 import '../../view/home/home_view/view.dart';
+import '../../view/home/users/bindings.dart';
+import '../../view/home/users/view.dart';
 import '../../view/login/bindings.dart';
 import '../../view/login/view.dart';
 import '../../view/signUp/bindings.dart';
@@ -32,10 +34,10 @@ class AppPages {
     // GetPage(name: RouteNames.profileview, page: ()=>profileView(),
     // binding: profileBindings()
     // ),
-    // GetPage(
-    //     name: RouteNames.userlistview,
-    //     page: () => userListView(),
-    //     binding: userBindings()),
+    GetPage(
+        name: RouteNames.userlistview,
+        page: () => userListView(),
+        binding: userBindings()),
     // GetPage(
     //     name: RouteNames.addfileview,
     //     page: () => addFileView(),
