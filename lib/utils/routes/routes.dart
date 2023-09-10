@@ -1,7 +1,11 @@
 
 
 import 'package:amc_management/utils/routes/routes_name.dart';
+import 'package:amc_management/view/home/addFile/bindings.dart';
+import 'package:amc_management/view/home/dispatchFile/bindings.dart';
+import 'package:amc_management/view/home/dispatchFile/view.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import '../../view/home/addFile/view.dart';
 import '../../view/home/home_view/bindings.dart';
 import '../../view/home/home_view/view.dart';
 import '../../view/home/users/bindings.dart';
@@ -38,9 +42,12 @@ class AppPages {
         name: RouteNames.userlistview,
         page: () => userListView(),
         binding: userBindings()),
-    // GetPage(
-    //     name: RouteNames.addfileview,
-    //     page: () => addFileView(),
-    //     binding: addfileBindings())
+    GetPage(
+        name: RouteNames.addfileview,
+        page: () => addFileView(),
+        binding: addFileBindings()),
+    GetPage(name: RouteNames.dispatchview, page:()=> dispatchView(),
+      binding: dispatchBindings()
+    )
   ];
 }

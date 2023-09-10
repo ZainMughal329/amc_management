@@ -75,7 +75,7 @@ class HomeView extends GetView<HomeController> {
                 children: [
                   ReuseContainer(
                       onpress: (){
-                        // Get.toNamed(RouteNames.addfileview);
+                        Get.toNamed(RouteNames.addfileview);
                       },
                       child: Center(
                         child: Text(
@@ -109,7 +109,7 @@ class HomeView extends GetView<HomeController> {
                 children: [
                   ReuseContainer(
                       onpress: (){
-
+                        Get.toNamed(RouteNames.dispatchview);
                       },
                       child: Center(
                         child: Text(

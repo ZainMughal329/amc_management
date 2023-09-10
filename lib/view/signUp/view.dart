@@ -117,7 +117,8 @@ class SignUpView extends GetView<SignupController> {
                         controller.state.usernamecontroller.text.trim(),
                         password:
                         controller.state.passwordcontroller.text.trim());
-                    controller.storeUser(user , context,controller.state.emailcontroller.text.trim(),controller.state.passwordcontroller.text.trim());
+                    controller.storeUser(user , context,controller.state.emailcontroller.text.trim(),
+                        controller.state.passwordcontroller.text.trim());
                     // controller.signUpUser(
                     //     controller.state.emailcontroller.text.trim(),
                     //     controller.state.passwordcontroller.text.trim());

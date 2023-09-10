@@ -8,4 +8,5 @@ class RouteNames{
   static const profileview = '/profileview';
   static const userlistview ='/userlistview';
   static const addfileview ='/addfileview';
+  static const dispatchview = '/dispatchview';
 }
