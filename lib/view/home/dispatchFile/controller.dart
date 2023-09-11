@@ -2,10 +2,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
 import 'index.dart';
 import 'package:amc_management/model/dispatch_model/dispatch_model.dart';
-
 class dispatchController extends GetxController{
 
   final state = dispatchState();

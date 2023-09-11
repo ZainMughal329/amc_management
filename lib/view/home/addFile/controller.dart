@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:amc_management/view/home/addFile/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -30,7 +26,7 @@ class addFileController extends GetxController{
         'Date':date
       }).then((value) {
         Get.snackbar('Sucess', 'File Added');
-        Get.back();
+        // Get.back();
       }).onError((error, stackTrace) {
         Get.snackbar('Error', error.toString());
       });

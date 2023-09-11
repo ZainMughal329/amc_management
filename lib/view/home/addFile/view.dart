@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:amc_management/res/colors.dart';
 import 'package:amc_management/view/home/addFile/controller.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -19,19 +20,47 @@ class addFileView extends GetView<addFileController> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: 15,),
+              Align(
+                  alignment: Alignment.topLeft,
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.primaryIconColor,
+                    child: IconButton(
+                        onPressed: (){
+                          Get.back();
+                        }, icon: Icon(Icons.arrow_back,
+                    color: Colors.white,
+                    )),
+                  )),
               Obx((){
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Center(
-                      child: CircleAvatar(
-                          radius: 50,
-                          backgroundImage:controller.imagePath.isNotEmpty?
-                          FileImage(File(controller.imagePath.toString())):
-                          null
-                      ),
-                    ),
+
+                    Container(
+                        height: 200,
+                        width: 200,
+
+                        // decoration: BoxDecoration(
+                        //   image: DecorationImage(
+                        //       fit: BoxFit.cover,
+                        //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
+                        // ),
+                        child: controller.imagePath == null
+                            ? Icon(Icons.file_copy)
+                            : Image(
+                            fit: BoxFit.cover,
+                            image: FileImage(
+                                File(controller.imagePath.toString())))),
+                    // Center(
+                    //   child: CircleAvatar(
+                    //       radius: 50,
+                    //       backgroundImage:controller.imagePath.isNotEmpty?
+                    //       FileImage(File(controller.imagePath.toString())):
+                    //       null
+                    //   ),
+                    // ),
                     Center(
                       child: TextButton(onPressed: (){
                         controller.getImage();

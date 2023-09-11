@@ -7,6 +7,7 @@ import 'package:amc_management/model/dispatch_model/dispatch_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../res/colors.dart';
 import '../../../res/components/custom_button.dart';
 import 'index.dart';
 
@@ -28,21 +29,35 @@ class dispatchView extends GetView<dispatchController> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                    height: 200,
-                    width: 200,
-                    // decoration: BoxDecoration(
-                    //   image: DecorationImage(
-                    //       fit: BoxFit.cover,
-                    //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
-                    // ),
-                    child:
-                    // controller.imagePath== null ?
-                    Image(
-                        fit: BoxFit.cover,
-                        image: FileImage(File(controller.imagePath.toString()))
-                    )
-                        // :Icon(Icons.file_copy)
+                SizedBox(height: 15,),
+                Align(
+                    alignment: Alignment.topLeft,
+                    child: CircleAvatar(
+                      backgroundColor: AppColors.primaryIconColor,
+                      child: IconButton(
+                          onPressed: (){
+                            Get.back();
+                          }, icon: Icon(Icons.arrow_back,
+                        color: Colors.white,
+                      )),
+                    )),
+                Obx(() =>
+                  Container(
+                      height: 200,
+                      width: 200,
+                      // decoration: BoxDecoration(
+                      //   image: DecorationImage(
+                      //       fit: BoxFit.cover,
+                      //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
+                      // ),
+                      child:
+                      controller.imagePath== null ?
+                      Icon(Icons.file_copy) :
+                      Image(
+                          fit: BoxFit.cover,
+                          image: FileImage(File(controller.imagePath.toString()))
+                      )
+                  ),
                 ),
                 Center(
                   child: TextButton(onPressed: (){
