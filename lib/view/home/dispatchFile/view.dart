@@ -45,13 +45,22 @@ class dispatchView extends GetView<dispatchController> {
                   Container(
                       height: 200,
                       width: 200,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 1.0,
+                          )
+                        //   image: DecorationImage(
+                        //       fit: BoxFit.cover,
+                        //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
+                      ),
                       // decoration: BoxDecoration(
                       //   image: DecorationImage(
                       //       fit: BoxFit.cover,
                       //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
                       // ),
                       child:
-                      controller.imagePath== null ?
+                      controller.imagePath== '' ?
                       Icon(Icons.file_copy) :
                       Image(
                           fit: BoxFit.cover,
@@ -59,11 +68,11 @@ class dispatchView extends GetView<dispatchController> {
                       )
                   ),
                 ),
-                Center(
+                controller.imagePath== ''? Center(
                   child: TextButton(onPressed: (){
-                    controller.getImage();
+                    controller.pickImage(context);
                   }, child: Text('Pick Image')),
-                )
+                ):Container()
               ],
             ),
                 SizedBox(height: 20,),

@@ -5,6 +5,8 @@ import 'package:amc_management/view/home/addFile/bindings.dart';
 import 'package:amc_management/view/home/dispatchFile/bindings.dart';
 import 'package:amc_management/view/home/dispatchFile/view.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import '../../view/forgot/bindings.dart';
+import '../../view/forgot/view.dart';
 import '../../view/home/addFile/view.dart';
 import '../../view/home/home_view/bindings.dart';
 import '../../view/home/home_view/view.dart';
@@ -26,7 +28,9 @@ class AppPages {
         name: RouteNames.loginview,
         page: () => LoginView(),
         binding: LoginBindings()),
-    // GetPage(name: RouteNames.forgotview, page: () => Forgotview()),
+    GetPage(name: RouteNames.forgotview, page: () => Forgotview(),
+    binding: Forgotbindinsg()
+    ),
     GetPage(
         name: RouteNames.homeview,
         page: () => HomeView(),

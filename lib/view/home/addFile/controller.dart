@@ -1,21 +1,60 @@
 import 'package:amc_management/view/home/addFile/index.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../model/addFile_model/addFile_model.dart';
+import '../../../res/colors.dart';
 
 class addFileController extends GetxController{
   final state = addFileState();
   addFileController();
   RxString imagePath =''.obs;
-  Future getImage()async{
+  Future pickCameraImage(BuildContext context)async{
     final ImagePicker _picker = ImagePicker();
     final image = await _picker.pickImage(source: ImageSource.camera);
     if(image!=null){
       imagePath.value  = image.path.toString();
     }
   }
+  Future pickGalleryImage(BuildContext context)async{
+    final ImagePicker _picker = ImagePicker();
+    final image = await _picker.pickImage(source: ImageSource.gallery);
+    if(image!=null){
+      imagePath.value=image.path.toString();
+    }
+  }
+
+  void pickImage(context){
+
+    Get.dialog(AlertDialog(
+      content: Container(
+        height: 120,
+        child: Column(
+          children: [
+            ListTile(
+              onTap: (){
+                pickCameraImage(context);
+                Get.back();
+              },
+              title: Text('Camera'),
+              leading: Icon(Icons.camera,color: AppColors.primaryIconColor,),
+            ),
+            ListTile(
+              onTap: (){
+                pickGalleryImage(context);
+                Get.back();
+              },
+              title: Text('Gallery'),
+              leading: Icon(Icons.image,color: AppColors.primaryIconColor,),
+            ),
+          ],
+        ),
+      ),
+    ));
+  }
+
   Future<void> addFileOnFirebase(String name,String image,String date,String fileNum,String from)async{
     try{
       await state.ref.add({

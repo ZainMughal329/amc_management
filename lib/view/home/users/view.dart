@@ -23,6 +23,31 @@ class userListView extends GetView<userController> {
                     return ListTile(
                       title: Text(snapshot.data!.docs[index]['UserName'].toString()),
                       subtitle: Text(snapshot.data!.docs[index]['Email'].toString()),
+                      // trailing: PopupMenuButton(
+                      //     icon: Icon(Icons.more_vert),
+                      //     itemBuilder:
+                      //     (context)=>[
+                      //       PopupMenuItem(
+                      //
+                      //
+                      //           child: ListTile(
+                      //             onTap: (){
+                      //
+                      //             },
+                      //         leading: Icon(Icons.delete_forever_outlined),
+                      //         title: Text('delete'),
+                      //       )),
+                      //       PopupMenuItem(child:
+                      //       ListTile(
+                      //         onTap: (){
+                      //           Get.back();
+                      //         }
+                      //         ,
+                      //         leading: Icon(Icons.cancel),
+                      //         title: Text('cancel'),
+                      //       ))
+                      //
+                      // ]),
                       // leading: Container(
                       //   height: 40,
                       //   width: 40,

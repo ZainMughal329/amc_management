@@ -38,21 +38,25 @@ class addFileView extends GetView<addFileController> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
 
-                    Container(
+                    Obx(()=>Container(
                         height: 200,
                         width: 200,
 
-                        // decoration: BoxDecoration(
-                        //   image: DecorationImage(
-                        //       fit: BoxFit.cover,
-                        //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
-                        // ),
-                        child: controller.imagePath == null
-                            ? Icon(Icons.file_copy)
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 1.0,
+                            )
+                          //   image: DecorationImage(
+                          //       fit: BoxFit.cover,
+                          //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
+                        ),
+                        child: controller.imagePath == ''
+                            ? Icon(Icons.image)
                             : Image(
                             fit: BoxFit.cover,
                             image: FileImage(
-                                File(controller.imagePath.toString())))),
+                                File(controller.imagePath.toString())))),),
                     // Center(
                     //   child: CircleAvatar(
                     //       radius: 50,
@@ -61,11 +65,11 @@ class addFileView extends GetView<addFileController> {
                     //       null
                     //   ),
                     // ),
-                    Center(
+                    controller.imagePath == '' ? Center(
                       child: TextButton(onPressed: (){
-                        controller.getImage();
+                        controller.pickImage(context);
                       }, child: Text('Pick Image')),
-                    )
+                    ) : Container(),
                   ],
                 );
               }),
