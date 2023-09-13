@@ -9,4 +9,5 @@ class RouteNames{
   static const userlistview ='/userlistview';
   static const addfileview ='/addfileview';
   static const dispatchview = '/dispatchview';
+  static const scanImage = '/ScamImage';
 }

@@ -1,9 +1,9 @@
-
-
 import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:amc_management/view/home/addFile/bindings.dart';
 import 'package:amc_management/view/home/dispatchFile/bindings.dart';
 import 'package:amc_management/view/home/dispatchFile/view.dart';
+import 'package:amc_management/view/scanimages/bindings.dart';
+import 'package:amc_management/view/scanimages/view.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../../view/forgot/bindings.dart';
 import '../../view/forgot/view.dart';
@@ -18,6 +18,7 @@ import '../../view/signUp/bindings.dart';
 import '../../view/signUp/view.dart';
 import '../../view/splash/bindings.dart';
 import '../../view/splash/view.dart';
+
 class AppPages {
   static final List<GetPage> routes = [
     GetPage(
@@ -28,9 +29,10 @@ class AppPages {
         name: RouteNames.loginview,
         page: () => LoginView(),
         binding: LoginBindings()),
-    GetPage(name: RouteNames.forgotview, page: () => Forgotview(),
-    binding: Forgotbindinsg()
-    ),
+    GetPage(
+        name: RouteNames.forgotview,
+        page: () => Forgotview(),
+        binding: Forgotbindinsg()),
     GetPage(
         name: RouteNames.homeview,
         page: () => HomeView(),
@@ -50,8 +52,13 @@ class AppPages {
         name: RouteNames.addfileview,
         page: () => addFileView(),
         binding: addFileBindings()),
-    GetPage(name: RouteNames.dispatchview, page:()=> dispatchView(),
-      binding: dispatchBindings()
-    )
+    GetPage(
+        name: RouteNames.dispatchview,
+        page: () => dispatchView(),
+        binding: dispatchBindings()),
+    GetPage(
+        name: RouteNames.scanImage,
+        page: () => ScannImageView(),
+        binding: ScanImageBindings(),),
   ];
 }
