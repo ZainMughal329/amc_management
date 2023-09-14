@@ -1,9 +1,9 @@
-import 'package:flutter_document_scanner/flutter_document_scanner.dart';
+// import 'package:flutter_document_scanner/flutter_document_scanner.dart';
 
 class ScanImageState {
 
 
-  final Doccontroller = DocumentScannerController();
+  // final Doccontroller = DocumentScannerController();
 
 
 }

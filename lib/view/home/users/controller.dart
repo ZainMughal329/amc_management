@@ -6,12 +6,8 @@ import 'package:get/get.dart';
 
 class userController extends GetxController with GetSingleTickerProviderStateMixin{
   final state = userState();
-
   late TabController tabController;
-
-
   userController();
-
   @override
   void onInit() {
     // TODO: implement onInit
@@ -19,9 +15,13 @@ class userController extends GetxController with GetSingleTickerProviderStateMix
     tabController = TabController(length: 2, vsync: this);
 
   }
+  Future<void> deleteUsers()async{
+    try{
+      await state.dbref.doc('id').delete();
+    }catch(e){
+      Get.snackbar('Error', e.toString());
 
-  void deleteUsers(){
-    // state.ref.
+    }
 
   }
 }

@@ -47,7 +47,6 @@ class userListView extends GetView<userController> {
                   child: StreamBuilder<QuerySnapshot>(
                       stream: controller.state.ref,
                       builder: ( BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
-
                         if(snapshot.hasData){
                           print('if');
                           return snapshot.data!.docs.length !=0?ListView.builder(
@@ -63,7 +62,7 @@ class userListView extends GetView<userController> {
                                         PopupMenuItem(
                                             child: ListTile(
                                               onTap: (){
-
+                                                 controller.deleteUsers();
                                               },
                                           leading: Icon(Icons.delete_forever_outlined),
                                           title: Text('delete'),
@@ -72,12 +71,10 @@ class userListView extends GetView<userController> {
                                         ListTile(
                                           onTap: (){
                                             Get.back();
-                                          }
-                                          ,
+                                          },
                                           leading: Icon(Icons.cancel),
                                           title: Text('cancel'),
                                         ))
-
                                   ]),
                                   leading: Container(
                                     height: 40,
@@ -107,7 +104,6 @@ class userListView extends GetView<userController> {
                         else{
                           print('else');
                           return Container(); }
-
                       }
                   ),
                 ),
@@ -118,9 +114,6 @@ class userListView extends GetView<userController> {
                     child: Icon(Icons.person),
                   ),
                 )
-
-
-
               ]),
             )
           ],

@@ -35,42 +35,44 @@ class HomeView extends GetView<HomeController> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ReuseContainer(
-                      onpress: (){
-                        // Get.toNamed(RouteNames.profileview);
-                      },
-                      child: Center(
-                        child: Text(
-                          'Profile',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
+              SingleChildScrollView(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ReuseContainer(
+                        onpress: (){
+                          // Get.toNamed(RouteNames.profileview);
+                        },
+                        child: Center(
+                          child: Text(
+                            'Profile',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      )),
-                  ReuseContainer(child: Text("scan image"), onpress: (){
-                    Get.toNamed(RouteNames.scanImage);
-                  }),
-                  ReuseContainer(
-                      onpress: (){
-                        Get.toNamed(RouteNames.userlistview);
-                      },
-                      child: Center(
-                        child: Text(
-                          'Users',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24.0,
-                            fontWeight: FontWeight.bold,
+                        )),
+                    ReuseContainer(child: Text("scan image"), onpress: (){
+                      Get.toNamed(RouteNames.scanImage);
+                    }),
+                    ReuseContainer(
+                        onpress: (){
+                          Get.toNamed(RouteNames.userlistview);
+                        },
+                        child: Center(
+                          child: Text(
+                            'Users',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 24.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      )),
-                ],
+                        )),
+                  ],
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
