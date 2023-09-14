@@ -10,18 +10,17 @@ class LoginController extends GetxController{
     super.dispose();
     state.passwordController.dispose();
     state.emailController.dispose();
-    state.emailfocous.dispose();
+    state.Emailfocousnode.dispose();
     state.passwordfocous.dispose();
   }
   final state =LoginState();
   LoginController();
   void LogIn(BuildContext context , String email,String password)async{
-
     try{
       state.auth.signInWithEmailAndPassword(email: email, password: password).then((value){
 
         SessionController().userid= value.user!.uid.toString();
-        Get.toNamed(RouteNames.homeview);
+        Get.offAllNamed(RouteNames.homeview);
       }).onError((error, stackTrace){
         Get.snackbar('Error',error.toString());
       });

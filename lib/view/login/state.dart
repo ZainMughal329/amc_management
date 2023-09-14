@@ -7,6 +7,8 @@ class LoginState{
   FirebaseAuth auth =FirebaseAuth.instance;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final emailfocous = FocusNode();
   final passwordfocous = FocusNode();
+  final Emailfocousnode = FocusNode();
+  final Passwordfocusnode=FocusNode();
+  final usernamefocousnode=FocusNode();
 }

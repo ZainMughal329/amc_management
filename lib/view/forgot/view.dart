@@ -46,16 +46,13 @@ class Forgotview extends GetView<ForgotController> {
                         ReuseField(
                             myController: controller.state.emailcontroller,
                             focusNode: controller.state.Emailfocousnode,
-                            // onFiledSubmittedValue: (value) {},
+                             onFiledSubmittedValue: (value) {},
                             keyboardType: TextInputType.emailAddress,
                             obsecureText: false,
                             hint: 'email',
-                          onvalidator: (value){
-
-                          },
-                            // onvalidator: (value) {
-                            //   return value.isEmpty ? 'enter email' : null;
-                            // }
+                             onvalidator: (value) {
+                               return value.isEmpty ? 'enter email' : null;
+                             }
                             ),
                         SizedBox(
                           height: height * .01,

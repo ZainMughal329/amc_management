@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../res/components/custom_button.dart';
 import '../../res/components/custom_tetxField.dart';
+import '../../utils/custom_Utils.dart';
 import '../../utils/routes/routes_name.dart';
 import 'controller.dart';
 class LoginView extends GetView<LoginController> {
@@ -32,32 +33,33 @@ class LoginView extends GetView<LoginController> {
                     child: Column(
                       children: [
                         ReuseField(myController: controller.state.emailController,
-                          focusNode:controller.state.emailfocous,
-                          // onFiledSubmittedValue: (value){
-                          // },
+                          focusNode:controller.state.Emailfocousnode,
+                           onFiledSubmittedValue: (value){
+                             ReuseableUtils.fieldfocous(context, controller.state.Emailfocousnode, controller.state.passwordfocous);
+                           },
                           keyboardType: TextInputType.emailAddress,
                           obsecureText: false,
                           hint: 'email',
-                          onvalidator: (value){
-                          },
-                          // onvalidator:(value){
-                          //   return value.isEmpty?'enter email':null;
-                          // }
+                          // onvalidator: (value){
+                          // },
+                          onvalidator:(value){
+                            return value.isEmpty?'enter email':null;
+                          }
                         ),
                         SizedBox(height: height*.01,),
                         ReuseField(myController: controller.state.passwordController,
                           focusNode:controller.state.passwordfocous,
-                          // onFiledSubmittedValue: (value){
-                          // },
+                           onFiledSubmittedValue: (value){
+                           },
                           keyboardType: TextInputType.emailAddress,
                           obsecureText: false,
                           hint: 'password',
-                          onvalidator: (value){
-
-                          },
-                          // onvalidator:(value){
-                          //   return value.isEmpty?'enter password':null;
-                          // }
+                          // onvalidator: (value){
+                          //
+                          // },
+                          onvalidator:(value){
+                            return value.isEmpty?'enter password':null;
+                          }
                         ),
                       ],
                     ),)),

@@ -4,7 +4,7 @@ class ReuseField extends StatelessWidget {
   ReuseField({super.key,
     required this.myController,
     required this.focusNode,
-    // required this.onFiledSubmittedValue,
+    required this.onFiledSubmittedValue,
     required this.keyboardType,
     required this.obsecureText,
     required this.hint,
@@ -14,7 +14,7 @@ class ReuseField extends StatelessWidget {
   });
   final TextEditingController myController;
   final FocusNode focusNode;
-  // final FormFieldSetter onFiledSubmittedValue;
+   final FormFieldSetter onFiledSubmittedValue;
   final FormFieldValidator onvalidator;
   final TextInputType keyboardType;
   final String hint;
@@ -31,10 +31,10 @@ class ReuseField extends StatelessWidget {
             controller:  myController,
             focusNode: focusNode,
             obscureText: obsecureText,
-            // onFieldSubmitted: onFiledSubmittedValue,
+             onFieldSubmitted: onFiledSubmittedValue,
             validator: onvalidator,
             keyboardType: keyboardType,
-            // style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 10),
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 10),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(15),
               hintText: hint,
@@ -60,6 +60,6 @@ class ReuseField extends StatelessWidget {
           ),
         ],
       ),
-    );;
+    );
   }
 }
