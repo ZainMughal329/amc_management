@@ -42,7 +42,7 @@ class HomeView extends GetView<HomeController> {
                   children: [
                     ReuseContainer(
                         onpress: (){
-                          // Get.toNamed(RouteNames.profileview);
+                           Get.toNamed(RouteNames.profileview);
                         },
                         child: Center(
                           child: Text(
@@ -54,9 +54,9 @@ class HomeView extends GetView<HomeController> {
                             ),
                           ),
                         )),
-                    ReuseContainer(child: Text("scan image"), onpress: (){
-                      Get.toNamed(RouteNames.scanImage);
-                    }),
+                    // ReuseContainer(child: Text("scan image"), onpress: (){
+                    //   Get.toNamed(RouteNames.scanImage);
+                    // }),
                     ReuseContainer(
                         onpress: (){
                           Get.toNamed(RouteNames.userlistview);

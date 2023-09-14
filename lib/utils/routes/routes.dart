@@ -10,6 +10,8 @@ import '../../view/forgot/view.dart';
 import '../../view/home/addFile/view.dart';
 import '../../view/home/home_view/bindings.dart';
 import '../../view/home/home_view/view.dart';
+import '../../view/home/profile/bindings.dart';
+import '../../view/home/profile/view.dart';
 import '../../view/home/users/bindings.dart';
 import '../../view/home/users/view.dart';
 import '../../view/login/bindings.dart';
@@ -41,9 +43,9 @@ class AppPages {
         name: RouteNames.signupview,
         page: () => SignUpView(),
         binding: SignupBindings()),
-    // GetPage(name: RouteNames.profileview, page: ()=>profileView(),
-    // binding: profileBindings()
-    // ),
+    GetPage(name: RouteNames.profileview, page: ()=>profileView(),
+    binding: profileBindings()
+    ),
     GetPage(
         name: RouteNames.userlistview,
         page: () => userListView(),

@@ -111,8 +111,10 @@ class SignUpView extends GetView<SignupController> {
                   onpress: () {
                     print('inside on press');
                     final user = UserModel(
+                      id: controller.auth.currentUser!.uid.toString(),
                         // id: SessionController().userid.toString(),
                         email: controller.state.emailcontroller.text.trim(),
+                        profile: '',
                         username:
                         controller.state.usernamecontroller.text.trim(),
                         password:

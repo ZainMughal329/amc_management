@@ -30,9 +30,13 @@ class UserModel {
   final String email;
   final String username;
   final String password;
+  String? profile;
+
+
 
   UserModel({
     this.id = '',
+    this.profile='',
     required this.email,
     required this.username,
     required this.password,
@@ -40,6 +44,7 @@ class UserModel {
 
   toJson() {
     return {
+      'profile':profile,
       'id': id,
       'Email': email,
       'UserName': username,
@@ -51,6 +56,7 @@ class UserModel {
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
     final data = documentSnapshot.data()!;
     return UserModel(
+      profile: data['profile'],
       id: data['id'],
       email: data['Email'],
       username: data['UserName'],
