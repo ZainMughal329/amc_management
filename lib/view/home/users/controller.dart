@@ -1,5 +1,6 @@
 
 
+
 import 'package:amc_management/view/home/users/index.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,11 +14,11 @@ class userController extends GetxController with GetSingleTickerProviderStateMix
     // TODO: implement onInit
     super.onInit();
     tabController = TabController(length: 2, vsync: this);
-
   }
   Future<void> deleteUsers()async{
     try{
-      await state.dbref.doc('id').delete();
+      state.ref.collection('users').doc('id').delete();
+      // state.dbref.doc('id').delete();
     }catch(e){
       Get.snackbar('Error', e.toString());
 

@@ -7,9 +7,16 @@ import 'package:image_picker/image_picker.dart';
 import '../../../model/addFile_model/addFile_model.dart';
 import '../../../res/colors.dart';
 
-class addFileController extends GetxController{
+class addFileController extends GetxController with GetSingleTickerProviderStateMixin{
   final state = addFileState();
+  late TabController tabController;
   addFileController();
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    tabController = TabController(length: 2, vsync: this);
+  }
   RxString imagePath =''.obs;
   Future pickCameraImage(BuildContext context)async{
     final ImagePicker _picker = ImagePicker();

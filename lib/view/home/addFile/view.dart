@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../../model/addFile_model/addFile_model.dart';
 import '../../../res/components/custom_button.dart';
+import '../../../res/components/tab_bar_setting.dart';
 class addFileView extends GetView<addFileController> {
   const addFileView({super.key});
   @override
@@ -16,11 +17,8 @@ class addFileView extends GetView<addFileController> {
         child: SafeArea(
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          child:Column(
             children: [
-              SizedBox(height: 15,),
               Align(
                   alignment: Alignment.topLeft,
                   child: CircleAvatar(
@@ -29,75 +27,124 @@ class addFileView extends GetView<addFileController> {
                         onPressed: (){
                           Get.back();
                         }, icon: Icon(Icons.arrow_back,
-                    color: Colors.white,
+                      color: Colors.white,
                     )),
                   )),
-              Obx((){
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-
-                    Obx(()=>Container(
-                        height: 200,
-                        width: 200,
-
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.black,
-                              width: 1.0,
-                            )
-                          //   image: DecorationImage(
-                          //       fit: BoxFit.cover,
-                          //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
-                        ),
-                        child: controller.imagePath == ''
-                            ? Icon(Icons.image)
-                            : Image(
-                            fit: BoxFit.cover,
-                            image: FileImage(
-                                File(controller.imagePath.toString())))),),
-                    // Center(
-                    //   child: CircleAvatar(
-                    //       radius: 50,
-                    //       backgroundImage:controller.imagePath.isNotEmpty?
-                    //       FileImage(File(controller.imagePath.toString())):
-                    //       null
-                    //   ),
-                    // ),
-                    controller.imagePath == '' ? Center(
-                      child: TextButton(onPressed: (){
-                        controller.pickImage(context);
-                      }, child: Text('Pick Image')),
-                    ) : Container(),
-                  ],
-                );
-              }),
               SizedBox(height: 15,),
-              customTextField(hintText: 'Name', controller: controller.state.nameController),
-              SizedBox(height: 10,),
-              customTextField(hintText: 'Date', controller: controller.state.dateController),
-              SizedBox(height:10,),
-              customTextField(hintText: 'File No', controller: controller.state.filenoController),
-              SizedBox(height: 10,),
-              customTextField(hintText: 'From', controller: controller.state.fromController),
-              SizedBox(height: 10,),
-              ReuseButton(tittle: 'Upload', onpress: (){
+              Container(
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: TabBar(
+                    isScrollable: true,
+                    labelPadding:
+                    EdgeInsets.only(right: 20,left: 20),
+                    indicator: CircleTabIndicator(color: AppColors.primaryIconColor,radius: 4),
+                    controller: controller.tabController,
+                    labelColor: AppColors.lightGrayColor,
+                    unselectedLabelColor: Colors.grey,
+                    tabs: [
+                      Tab(
+                        text: 'UploadFile',
+                      ),
+                      Tab(
+                        text: 'UploadedFiles',
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 5,),
+              Container(height: 598,
+              width: double.infinity,
+                child: TabBarView(
+                  controller: controller.tabController,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Obx((){
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
 
-                 final addFile = AddFileModel(name: controller.state.nameController.text.trim(),
-                     date: controller.state.dateController.text.trim(),
-                     from: controller.state.fromController.text.trim(),
-                     filenum: controller.state.filenoController.text.trim(),
-                 image: controller.imagePath.toString()
-                 );
-                 controller.storeData(addFile, context, controller.state.nameController.text.trim(),
-                     controller.state.fromController.text.trim(),
-                     controller.imagePath.toString(),
-                     controller.state.filenoController.text.trim(),
-                     controller.state.dateController.text.trim());
-              })
+                              Obx(()=>Container(
+                                  height: 200,
+                                  width: 200,
+
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.black,
+                                        width: 1.0,
+                                      )
+                                    //   image: DecorationImage(
+                                    //       fit: BoxFit.cover,
+                                    //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
+                                  ),
+                                  child: controller.imagePath == ''
+                                      ? Icon(Icons.image)
+                                      : Image(
+                                      fit: BoxFit.cover,
+                                      image: FileImage(
+                                          File(controller.imagePath.toString())))),),
+                              // Center(
+                              //   child: CircleAvatar(
+                              //       radius: 50,
+                              //       backgroundImage:controller.imagePath.isNotEmpty?
+                              //       FileImage(File(controller.imagePath.toString())):
+                              //       null
+                              //   ),
+                              // ),
+                              controller.imagePath == '' ? Center(
+                                child: TextButton(onPressed: (){
+                                  controller.pickImage(context);
+                                }, child: Text('Pick Image')),
+                              ) : Container(),
+                            ],
+                          );
+                        }),
+                        SizedBox(height: 15,),
+                        customTextField(hintText: 'Name', controller: controller.state.nameController),
+                        SizedBox(height: 10,),
+                        customTextField(hintText: 'Date', controller: controller.state.dateController),
+                        SizedBox(height:10,),
+                        customTextField(hintText: 'File No', controller: controller.state.filenoController),
+                        SizedBox(height: 10,),
+                        customTextField(hintText: 'From', controller: controller.state.fromController),
+                        SizedBox(height: 10,),
+                        ReuseButton(tittle: 'Upload', onpress: (){
+
+                          final addFile = AddFileModel(name: controller.state.nameController.text.trim(),
+                              date: controller.state.dateController.text.trim(),
+                              from: controller.state.fromController.text.trim(),
+                              filenum: controller.state.filenoController.text.trim(),
+                              image: controller.imagePath.toString()
+                          );
+                          controller.storeData(addFile, context, controller.state.nameController.text.trim(),
+                              controller.state.fromController.text.trim(),
+                              controller.imagePath.toString(),
+                              controller.state.filenoController.text.trim(),
+                              controller.state.dateController.text.trim());
+                        })
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // SizedBox(height: 50,),
+                        Center(
+                          child: Icon(Icons.upload_file,size: 100,),
+                        )
+                      ],
+                    )
+                    
+                  ],
+                ),
+              )
             ],
-          ),
+          ) ,
           ),
         ),
       ),

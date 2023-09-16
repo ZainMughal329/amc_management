@@ -6,10 +6,17 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'index.dart';
 import 'package:amc_management/model/dispatch_model/dispatch_model.dart';
-class dispatchController extends GetxController{
+class dispatchController extends GetxController with GetSingleTickerProviderStateMixin{
 
   final state = dispatchState();
+  late TabController tabController;
   dispatchController();
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+    tabController = TabController(length: 2, vsync: this);
+  }
   RxString imagePath =''.obs;
   Future pickCameraImage(BuildContext context)async{
     final ImagePicker _picker = ImagePicker();

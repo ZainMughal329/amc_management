@@ -45,16 +45,18 @@ class userListView extends GetView<userController> {
                   children:[
                 Center(
                   child: StreamBuilder<QuerySnapshot>(
-                      stream: controller.state.ref,
+                      stream: controller.state.ref.collection('users').snapshots(),
                       builder: ( BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
                         if(snapshot.hasData){
                           print('if');
-                          return snapshot.data!.docs.length !=0?ListView.builder(
+                          return snapshot.data!.docs.length !=0?
+                          ListView.builder(
                               itemCount: snapshot.data!.docs.length,
                               itemBuilder:(context,index){
                                 return ListTile(
                                   title: Text(snapshot.data!.docs[index]['UserName'].toString()),
-                                  subtitle: Text(snapshot.data!.docs[index]['Email'].toString()),
+
+                                   subtitle: Text(snapshot.data!.docs[index]['Email'].toString()),
                                   trailing: PopupMenuButton(
                                       icon: Icon(Icons.more_vert),
                                       itemBuilder:
