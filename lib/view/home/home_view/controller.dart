@@ -8,5 +8,4 @@ class HomeController extends GetxController{
 
   final state = HomeState();
   HomeController();
-
 }

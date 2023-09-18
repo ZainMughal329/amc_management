@@ -5,6 +5,7 @@ class ReuseContainer extends StatelessWidget {
   final Callback onpress;
   ReuseContainer({super.key,
     required this.child,
+
     required this.onpress
   });
   @override
@@ -12,23 +13,24 @@ class ReuseContainer extends StatelessWidget {
     return InkWell(
       onTap: onpress,
       child: Container(
-        height: 100,
+        height: 200,
         width: 150,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF64B5F6), Color(0xFF1976D2)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+          color: Colors.white,
+          // gradient: LinearGradient(
+          //   colors: [Color(0xFF64B5F6), Color(0xFF1976D2)],
+          //   begin: Alignment.topLeft,
+          //   end: Alignment.bottomRight,
+          // ),
           borderRadius:BorderRadius.circular(16.0),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 2,
-              blurRadius: 5,
-              offset: Offset(0, 3),
-            ),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.white.withOpacity(0.5),
+          //     spreadRadius: 2,
+          //     blurRadius: 5,
+          //     offset: Offset(0, 3),
+          //   ),
+          // ],
         ),
         padding: EdgeInsets.all(16.0),
         child: child,

@@ -16,6 +16,18 @@ class SignupController extends GetxController
 
   SignupController();
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    state.emailcontroller.dispose();
+    state.Emailfocousnode.dispose();
+    state.passwordcontroller.dispose();
+    state.Passwordfocusnode.dispose();
+    state.usernamecontroller.dispose();
+    state.usernamefocousnode.dispose();
+  }
+
 
 
   final auth = FirebaseAuth.instance;

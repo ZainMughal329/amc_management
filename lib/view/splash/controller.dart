@@ -19,6 +19,7 @@ class SplashController extends GetxController{
     super.onInit();
     isLogin();
   }
+
   void isLogin(){
     FirebaseAuth auth =FirebaseAuth.instance;
     final user =auth.currentUser;

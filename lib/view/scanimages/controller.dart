@@ -4,5 +4,5 @@ import 'package:get/get.dart';
 class ScanImageController extends GetxController{
 
   final state = ScanImageState();
-
+  ScanImageController();
 }

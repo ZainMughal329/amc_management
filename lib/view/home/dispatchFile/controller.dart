@@ -12,6 +12,15 @@ class dispatchController extends GetxController with GetSingleTickerProviderStat
   late TabController tabController;
   dispatchController();
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    state.nameController.dispose();
+    state.dateController.dispose();
+    state.notificationToController.dispose();
+    state.recievedByController.dispose();
+  }
+  @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();

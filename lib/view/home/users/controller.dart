@@ -9,13 +9,14 @@ class userController extends GetxController with GetSingleTickerProviderStateMix
   final state = userState();
   late TabController tabController;
   userController();
+
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     tabController = TabController(length: 2, vsync: this);
   }
-  Future<void> deleteUsers()async{
+  Future<void> deleteUsers(String id)async{
     try{
       state.ref.collection('users').doc('id').delete();
       // state.dbref.doc('id').delete();

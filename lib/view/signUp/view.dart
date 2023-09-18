@@ -6,10 +6,8 @@ import '../../res/components/custom_tetxField.dart';
 import '../../utils/custom_Utils.dart';
 import '../../utils/routes/routes_name.dart';
 import 'index.dart';
-
 class SignUpView extends GetView<SignupController> {
   SignUpView({super.key});
-
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   final usernamecontroller = TextEditingController();
@@ -17,11 +15,9 @@ class SignUpView extends GetView<SignupController> {
   final Passwordfocusnode = FocusNode();
   final usernamefocousnode = FocusNode();
   final _formkey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
-
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -110,8 +106,8 @@ class SignUpView extends GetView<SignupController> {
                   onpress: () {
                     print('inside on press');
                     final user = UserModel(
-                      id: controller.auth.currentUser!.uid.toString(),
-                        // id: SessionController().userid.toString(),
+                      // id: controller.auth.currentUser!.uid.toString(),
+                      //   id: SessionController().userid.toString(),
                         email: controller.state.emailcontroller.text.trim(),
                         profile: '',
                         username:

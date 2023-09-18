@@ -9,6 +9,13 @@ import 'index.dart';
 class ForgotController extends GetxController{
   final state = ForgotState();
   ForgotController();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    state.Emailfocousnode.dispose();
+    state.emailcontroller.dispose();
+  }
 
 
   void forgotPassword(BuildContext context , String email)async{

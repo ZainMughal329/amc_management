@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:amc_management/res/colors.dart';
 import 'package:amc_management/view/home/addFile/controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 
@@ -129,16 +130,57 @@ class addFileView extends GetView<addFileController> {
                         })
                       ],
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        // SizedBox(height: 50,),
-                        Center(
-                          child: Icon(Icons.upload_file,size: 100,),
-                        )
-                      ],
-                    )
+                    Center(
+                      child: StreamBuilder<QuerySnapshot>(
+                          stream: controller.state.ref.snapshots(),
+                          builder:(BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
+                            if(snapshot.hasData){
+                              return snapshot.data!.docs.length !=0?
+                                  ListView.builder(
+                                      itemCount: snapshot.data!.docs.length,
+                                      itemBuilder:(context,index){
+                                    return Card(
+                                      child: Padding(padding: EdgeInsets.all(8.0),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text(snapshot.data!.docs[index]['Name'].toString()),
+                                          SizedBox(height: 15,),
+                                          SizedBox(height: 20,),
+                                          Text(snapshot.data!.docs[index]['From'].toString(),
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600,
+                                            ),
+                                          ),
+                                          SizedBox(height: 20,),
+                                          Text(snapshot.data!.docs[index]['Date'].toString(),
+                                            style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                      ),
+                                    );
+                                  }):Container();
+                            }
+                            else if (snapshot.hasError){
+                              return CircularProgressIndicator();
+                            }
+                            else {
+                              return Container();
+                            }
+                          }),
+                    ),
+                    // Center(
+                    //   child:Container(
+                    //       height: 200,
+                    //       width: 200,
+                    //       child: Icon(Icons.upload_file)) ,
+                    // )
                     
                   ],
                 ),

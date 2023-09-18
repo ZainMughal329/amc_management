@@ -1,4 +1,5 @@
 import 'package:amc_management/view/home/addFile/index.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,15 @@ class addFileController extends GetxController with GetSingleTickerProviderState
   final state = addFileState();
   late TabController tabController;
   addFileController();
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    state.dateController.dispose();
+    state.filenoController.dispose();
+    state.fromController.dispose();
+    state.nameController.dispose();
+  }
   @override
   void onInit() {
     // TODO: implement onInit
@@ -87,3 +97,5 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     addFileOnFirebase(name, image, date, fileNum, from);
   }
 }
+
+

@@ -64,7 +64,9 @@ class userListView extends GetView<userController> {
                                         PopupMenuItem(
                                             child: ListTile(
                                               onTap: (){
-                                                 controller.deleteUsers();
+                                                 controller.deleteUsers(
+                                                   snapshot.data!.docs[index]['id'].toString()
+                                                 );
                                               },
                                           leading: Icon(Icons.delete_forever_outlined),
                                           title: Text('delete'),
