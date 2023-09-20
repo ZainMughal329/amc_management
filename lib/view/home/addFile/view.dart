@@ -4,6 +4,7 @@ import 'package:amc_management/view/home/addFile/controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../../../model/addFile_model/addFile_model.dart';
 import '../../../res/components/custom_button.dart';
@@ -106,13 +107,32 @@ class addFileView extends GetView<addFileController> {
                           );
                         }),
                         SizedBox(height: 15,),
-                        customTextField(hintText: 'Name', controller: controller.state.nameController),
+                        customTextField(hintText: 'Name', controller: controller.state.nameController,
+                        suffixIcon: Icons.drive_file_rename_outline,
+                        ),
                         SizedBox(height: 10,),
-                        customTextField(hintText: 'Date', controller: controller.state.dateController),
+                        GetBuilder<addFileController>(
+                            builder: (con) {
+                              return customTextField(
+                                keyboardType: TextInputType.datetime,
+                                controller:con.state.dateController,
+                                hintText: DateFormat.yMMMd()
+                                    .format(con.state.selectedDate),
+                                suffixIcon: Icons.calendar_today_outlined,
+                                onPressSufix: (){
+                                  con.getDateFromUser(context);
+                                },
+                              );
+                            }
+                        ),
                         SizedBox(height:10,),
-                        customTextField(hintText: 'File No', controller: controller.state.filenoController),
+                        customTextField(hintText: 'File No', controller: controller.state.filenoController,
+                        suffixIcon:Icons.format_list_numbered,
+                        ),
                         SizedBox(height: 10,),
-                        customTextField(hintText: 'From', controller: controller.state.fromController),
+                        customTextField(hintText: 'From', controller: controller.state.fromController,
+                        suffixIcon: Icons.person,
+                        ),
                         SizedBox(height: 10,),
                         ReuseButton(tittle: 'Upload', onpress: (){
 
@@ -195,13 +215,23 @@ class addFileView extends GetView<addFileController> {
 }
 class customTextField extends StatelessWidget {
   final String hintText;
+  String? lableText;
   final bool obscureText;
-  final TextEditingController controller;
-  customTextField({super.key,
-    required this.hintText,
-    this.obscureText = false,
-    required this.controller,
-  });
+  IconData? icon;
+  final IconData? suffixIcon;
+  final VoidCallback? onPressSufix;
+  TextInputType? keyboardType;
+  final TextEditingController? controller;
+  customTextField(
+      {super.key,
+        required this.hintText,
+        this.lableText,
+        this.obscureText = false,
+        this.controller,
+        this.icon,
+        this.suffixIcon,
+        this.keyboardType,
+        this.onPressSufix});
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -212,6 +242,14 @@ class customTextField extends StatelessWidget {
         color: Colors.black,
       ),
       decoration: InputDecoration(
+
+        labelText: lableText,
+        labelStyle: TextStyle(color: Colors.grey,fontSize: 20,fontWeight: FontWeight.bold),
+        prefixIcon: Icon(icon),
+        suffixIcon: IconButton(
+          onPressed: onPressSufix,
+          icon: Icon(suffixIcon,color: Colors.grey,),
+        ),
         hintText: hintText,
         hintStyle: TextStyle(
           fontSize: 16.0,
@@ -233,6 +271,7 @@ class customTextField extends StatelessWidget {
           ),
         ),
       ),
+      keyboardType: keyboardType,
     );
   }
 }

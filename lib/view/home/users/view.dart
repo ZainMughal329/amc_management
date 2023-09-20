@@ -55,7 +55,6 @@ class userListView extends GetView<userController> {
                               itemBuilder:(context,index){
                                 return ListTile(
                                   title: Text(snapshot.data!.docs[index]['UserName'].toString()),
-
                                    subtitle: Text(snapshot.data!.docs[index]['Email'].toString()),
                                   trailing: PopupMenuButton(
                                       icon: Icon(Icons.more_vert),

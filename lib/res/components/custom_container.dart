@@ -1,39 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 class ReuseContainer extends StatelessWidget {
-  final Widget child;
-  final Callback onpress;
-  ReuseContainer({super.key,
-    required this.child,
+  final String image;
+  final String title;
+  final Color color;
+  final Callback? onpress;
 
-    required this.onpress
+  ReuseContainer({super.key,
+    required this.image,
+    required this.title,
+    required this.color,
+     this.onpress
   });
   @override
   Widget build(BuildContext context) {
+    double _screenWidth = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: onpress,
       child: Container(
-        height: 200,
-        width: 150,
         decoration: BoxDecoration(
-          color: Colors.white,
-          // gradient: LinearGradient(
-          //   colors: [Color(0xFF64B5F6), Color(0xFF1976D2)],
-          //   begin: Alignment.topLeft,
-          //   end: Alignment.bottomRight,
-          // ),
-          borderRadius:BorderRadius.circular(16.0),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.white.withOpacity(0.5),
-          //     spreadRadius: 2,
-          //     blurRadius: 5,
-          //     offset: Offset(0, 3),
-          //   ),
-          // ],
+          color: color.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: color.withOpacity(0.7),
+            width: 2,
+          ),
         ),
-        padding: EdgeInsets.all(16.0),
-        child: child,
+        child: Column(
+          children: [
+            Container(
+              height: _screenWidth * 0.3,
+              width: _screenWidth * 0.3,
+              decoration: BoxDecoration(
+                image:
+                DecorationImage(image: NetworkImage(image), fit: BoxFit.fill),
+              ),
+            ),
+            Text(
+              title,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+
+            ),
+          ],
+        ),
       ),
     );
   }

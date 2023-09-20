@@ -1,14 +1,9 @@
-
-
-
 import 'dart:io';
-
+import 'package:intl/intl.dart';
 import 'package:amc_management/model/dispatch_model/dispatch_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-
 import '../../../res/colors.dart';
 import '../../../res/components/custom_button.dart';
 import '../../../res/components/tab_bar_setting.dart';
@@ -17,36 +12,40 @@ import 'index.dart';
 class dispatchView extends GetView<dispatchController> {
   const dispatchView({super.key});
 
-
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 15),
-            child:Column(
+            child: Column(
               children: [
                 Align(
                     alignment: Alignment.topLeft,
                     child: CircleAvatar(
                       backgroundColor: AppColors.primaryIconColor,
                       child: IconButton(
-                          onPressed: (){
+                          onPressed: () {
                             Get.back();
-                          }, icon: Icon(Icons.arrow_back,
-                        color: Colors.white,
-                      )),
+                          },
+                          icon: Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                          )),
                     )),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 Container(
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: TabBar(
                       isScrollable: true,
-                      labelPadding:
-                      EdgeInsets.only(right: 20,left: 20),
-                      indicator: CircleTabIndicator(color: AppColors.primaryIconColor,radius: 4),
+                      labelPadding: EdgeInsets.only(right: 20, left: 20),
+                      indicator: CircleTabIndicator(
+                          color: AppColors.primaryIconColor, radius: 4),
                       controller: controller.tabController,
                       labelColor: AppColors.lightGrayColor,
                       unselectedLabelColor: Colors.grey,
@@ -61,7 +60,9 @@ class dispatchView extends GetView<dispatchController> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Container(
                   height: 598,
                   width: double.infinity,
@@ -76,153 +77,235 @@ class dispatchView extends GetView<dispatchController> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Obx(() =>
-                                  Container(
-                                      height: 200,
-                                      width: 200,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(
-                                            color: Colors.black,
-                                            width: 1.0,
-                                          )
+                              Obx(
+                                () => Container(
+                                    height: 200,
+                                    width: 200,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                      color: Colors.black,
+                                      width: 1.0,
+                                    )
                                         //   image: DecorationImage(
                                         //       fit: BoxFit.cover,
                                         //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
-                                      ),
-                                      // decoration: BoxDecoration(
-                                      //   image: DecorationImage(
-                                      //       fit: BoxFit.cover,
-                                      //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
-                                      // ),
-                                      child:
-                                      controller.imagePath== '' ?
-                                      Icon(Icons.file_copy) :
-                                      Image(
-                                          fit: BoxFit.cover,
-                                          image: FileImage(File(controller.imagePath.toString()))
-                                      )
-                                  ),
+                                        ),
+                                    // decoration: BoxDecoration(
+                                    //   image: DecorationImage(
+                                    //       fit: BoxFit.cover,
+                                    //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
+                                    // ),
+                                    child: controller.imagePath == ''
+                                        ? Icon(Icons.file_copy)
+                                        : Image(
+                                            fit: BoxFit.cover,
+                                            image: FileImage(File(controller
+                                                .imagePath
+                                                .toString())))),
                               ),
-                              controller.imagePath== ''? Center(
-                                child: TextButton(onPressed: (){
-                                  controller.pickImage(context);
-                                }, child: Text('Pick Image')),
-                              ):Container()
+                              controller.imagePath == ''
+                                  ? Center(
+                                      child: TextButton(
+                                          onPressed: () {
+                                            controller.pickImage(context);
+                                          },
+                                          child: Text('Pick Image')),
+                                    )
+                                  : Container()
                             ],
                           ),
-                          SizedBox(height: 20,),
-                          customTextField(hintText: 'Name', controller: controller.state.nameController),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          customTextField(
+                            lableText: 'FileName',
+                              hintText: 'Name',
+                              controller: controller.state.nameController,
+                          suffixIcon: Icons.drive_file_rename_outline,
+                          ),
                           SizedBox(
                             height: 10,
                           ),
-                          customTextField(hintText: 'date', controller: controller.state.dateController),
-                          SizedBox(height: 10,),
-                          customTextField(hintText: 'recievedBy', controller: controller.state.recievedByController),
-                          SizedBox(height: 10,),
-                          customTextField(hintText: 'notificationTo', controller: controller.state.notificationToController),
-                          SizedBox(height: 20,),
-                          ReuseButton(tittle: 'Dispatch', onpress: (){
-
-                            final dispatch = DispatchModel(name: controller.state.nameController.text.trim(),
-                                date: controller.state.dateController.text.trim(),
-                                recievedBy: controller.state.recievedByController.text.trim(),
-                                notificationTo: controller.state.notificationToController.text.trim(),
-                                image: controller.imagePath.toString()
-                            );
-                            controller.storeData(dispatch, context,controller.imagePath.toString() ,
-                              controller.state.nameController.text.trim(),
-                              controller.state.recievedByController.text.trim(),
-                              controller.state.notificationToController.text.trim(),
-                              controller.state.dateController.text.trim(),
-
-                            );
-
-                          })
+                          GetBuilder<dispatchController>(
+                            builder: (con) {
+                              return customTextField(
+                                keyboardType: TextInputType.datetime,
+                                controller:con.state.dateController,
+                                hintText: DateFormat.yMMMd()
+                                    .format(con.state.selectedDate),
+                                suffixIcon: Icons.calendar_today_outlined,
+                                onPressSufix: (){
+                                  con.getDateFromUser(context);
+                                },
+                              );
+                            }
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          customTextField(
+                              hintText: 'recievedBy',
+                              controller:
+                                  controller.state.recievedByController,
+                          suffixIcon: Icons.person,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          customTextField(
+                              hintText: 'notificationTo',
+                              controller:
+                                  controller.state.notificationToController,
+                          suffixIcon: Icons.person,
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          ReuseButton(
+                              tittle: 'Dispatch',
+                              onpress: () {
+                                final dispatch = DispatchModel(
+                                    name: controller.state.nameController.text
+                                        .trim(),
+                                    date: controller.state.selectedDate
+                                        .toString()
+                                        .trim(),
+                                    recievedBy: controller
+                                        .state.recievedByController.text
+                                        .trim(),
+                                    notificationTo: controller
+                                        .state.notificationToController.text
+                                        .trim(),
+                                    image: controller.imagePath.toString());
+                                controller.storeData(
+                                  dispatch,
+                                  context,
+                                  controller.imagePath.value.toString(),
+                                  controller.state.nameController.text.trim(),
+                                  controller.state.recievedByController.text
+                                      .trim(),
+                                  controller.state.notificationToController.text
+                                      .trim(),
+                                  controller.state.selectedDate
+                                      .toString()
+                                      .trim(),
+                                );
+                              })
                         ],
                       ),
                       Center(
-                        child: StreamBuilder<QuerySnapshot>(stream: controller.state.ref.snapshots(), builder: (BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
-                          if(snapshot.hasData){
-                            return snapshot.data!.docs.length != 0?
-                            ListView.builder(
-                                itemCount: snapshot.data!.docs.length,
-                                itemBuilder: (context,index){
-                                  return Card(
-                                    child:  Padding(
-                                      padding: EdgeInsets.all(8.0),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(height: 10,),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                  "FileName\n"+
-                                                  snapshot.data!.docs[index]['Name'].toString()),
-                                              SizedBox(height: 10,),
-                                              Text(
-                                                  "Date\n"+
-                                                  snapshot.data!.docs[index]['Date'].toString())
-                                            ],
-                                          ),
-                                          SizedBox(height: 20,),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text("RecievedBy\n"+
-                                                  snapshot.data!.docs[index]['RecievedBy'].toString()),
-                                              SizedBox(height: 10,),
-                                              Text(
-                                                  "NotificationTo\n"+
-                                                  snapshot.data!.docs[index]['NotificationTo'].toString())
-                                            ],
-                                          )
-
-
-
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                })
-                                :Container();
-
-                          }
-                          else if (snapshot.hasError){
-                            return CircularProgressIndicator();
-                          }
-                          else {
-                            return Container();
-                          }
-
-                        }),
+                        child: StreamBuilder<QuerySnapshot>(
+                            stream: controller.state.ref.snapshots(),
+                            builder: (BuildContext context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (snapshot.hasData) {
+                                return snapshot.data!.docs.length != 0
+                                    ? ListView.builder(
+                                        itemCount: snapshot.data!.docs.length,
+                                        itemBuilder: (context, index) {
+                                          return Card(
+                                            child: Padding(
+                                              padding: EdgeInsets.all(8.0),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  SizedBox(
+                                                    height: 10,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Text("FileName\n" +
+                                                          snapshot
+                                                              .data!
+                                                              .docs[index]
+                                                                  ['Name']
+                                                              .toString()),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text("Date\n" +
+                                                          snapshot
+                                                              .data!
+                                                              .docs[index]
+                                                                  ['Date']
+                                                              .toString())
+                                                    ],
+                                                  ),
+                                                  SizedBox(
+                                                    height: 20,
+                                                  ),
+                                                  Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    children: [
+                                                      Text("RecievedBy\n" +
+                                                          snapshot
+                                                              .data!
+                                                              .docs[index]
+                                                                  ['RecievedBy']
+                                                              .toString()),
+                                                      SizedBox(
+                                                        height: 10,
+                                                      ),
+                                                      Text("NotificationTo\n" +
+                                                          snapshot
+                                                              .data!
+                                                              .docs[index][
+                                                                  'NotificationTo']
+                                                              .toString())
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          );
+                                        })
+                                    : Container();
+                              } else if (snapshot.hasError) {
+                                return CircularProgressIndicator();
+                              } else {
+                                return Container();
+                              }
+                            }),
                       )
                     ],
                   ),
                 )
-
               ],
-            ) ,
+            ),
           ),
         ),
       ),
-
     );
   }
 }
 
-
 class customTextField extends StatelessWidget {
   final String hintText;
+   String? lableText;
   final bool obscureText;
-  final TextEditingController controller;
-  customTextField({super.key,
-    required this.hintText,
-    this.obscureText = false,
-    required this.controller,
-  });
+  IconData? icon;
+  final IconData? suffixIcon;
+  final VoidCallback? onPressSufix;
+   TextInputType? keyboardType;
+  final TextEditingController? controller;
+  customTextField(
+      {super.key,
+      required this.hintText,
+        this.lableText,
+      this.obscureText = false,
+      this.controller,
+      this.icon,
+      this.suffixIcon,
+        this.keyboardType,
+      this.onPressSufix});
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -233,6 +316,14 @@ class customTextField extends StatelessWidget {
         color: Colors.black,
       ),
       decoration: InputDecoration(
+
+        labelText: lableText,
+        labelStyle: TextStyle(color: Colors.grey,fontSize: 20,fontWeight: FontWeight.bold),
+        prefixIcon: Icon(icon),
+        suffixIcon: IconButton(
+          onPressed: onPressSufix,
+          icon: Icon(suffixIcon,color: Colors.grey,),
+        ),
         hintText: hintText,
         hintStyle: TextStyle(
           fontSize: 16.0,
@@ -254,12 +345,8 @@ class customTextField extends StatelessWidget {
           ),
         ),
       ),
+      keyboardType: keyboardType,
     );
   }
 }
 
-//controller.imagePath == null
-//                               ? Image(
-//                                   image: FileImage(
-//                                       File(controller.imagePath.toString())))
-//                               : Icon(Icons.image_aspect_ratio)),

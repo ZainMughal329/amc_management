@@ -96,6 +96,20 @@ class addFileController extends GetxController with GetSingleTickerProviderState
       )async{
     addFileOnFirebase(name, image, date, fileNum, from);
   }
+
+  getDateFromUser(BuildContext context)async{
+    DateTime? pickerDate= await  showDatePicker(
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1978),
+        lastDate: DateTime(2099));
+    if(pickerDate!=null){
+      state.selectedDate=pickerDate;
+      update();
+    }else{
+      print('select a date ');
+    }
+  }
 }
 
 

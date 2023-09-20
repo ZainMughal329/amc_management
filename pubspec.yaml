@@ -43,6 +43,7 @@ dependencies:
   fluttertoast:
   image_picker:
   get:
+  intl:
 
 #  document_scanner_flutter: ^0.2.7
 #  flutter_document_scanner: ^0.1.0

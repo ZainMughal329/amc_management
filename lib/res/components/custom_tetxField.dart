@@ -20,7 +20,8 @@ class ReuseField extends StatelessWidget {
   final String hint;
   final bool obsecureText;
   final bool enable ,autoFocous;
-
+  // IconData? prefixIcon;
+  // IconData? suffixIcon;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,6 +40,8 @@ class ReuseField extends StatelessWidget {
               contentPadding: EdgeInsets.all(15),
               hintText: hint,
               enabled: enable,
+              // prefixIcon: null,
+              // suffixIcon: null,
               hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(height:0,color: AppColors.primaryTextTextColor.withOpacity(0.8)),
               border: OutlineInputBorder(
                   borderSide: BorderSide(color: AppColors.textFieldDefaultFocus),
