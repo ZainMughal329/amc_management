@@ -38,13 +38,10 @@ class HomeView extends GetView<HomeController> {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           children: List.generate(5, (index) => ReuseContainer(
-            // onpress: (){
-            //   controller.appInfo[index]['onpress'];
-            // },
             title: controller.appInfo[index]['Text'],
             image: controller.appInfo[index]['imgPath'],
             color: controller.gridColors[index],
-            // onpress: controller.appInfo[index]['onpress'],
+            onpress: controller.pressButton[index],
           )),
         ),
       )
