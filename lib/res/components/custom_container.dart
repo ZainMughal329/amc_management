@@ -19,7 +19,7 @@ class ReuseContainer extends StatelessWidget {
       onTap: onpress,
       child: Container(
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: Colors.white,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: color.withOpacity(0.7),
