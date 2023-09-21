@@ -31,12 +31,12 @@ class UserModel {
   final String username;
   final String password;
   String? profile;
-
-
+  // String status;
 
   UserModel({
     this.id = '',
     this.profile='',
+     // required this.status=false,
     required this.email,
     required this.username,
     required this.password,

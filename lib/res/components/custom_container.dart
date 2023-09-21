@@ -26,25 +26,28 @@ class ReuseContainer extends StatelessWidget {
             width: 2,
           ),
         ),
-        child: Column(
-          children: [
-            Container(
-              height: _screenWidth * 0.3,
-              width: _screenWidth * 0.3,
-              decoration: BoxDecoration(
-                image:
-                DecorationImage(image: NetworkImage(image), fit: BoxFit.fill),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                height: _screenWidth * 0.3,
+                width: _screenWidth * 0.3,
+                decoration: BoxDecoration(
+                  image:
+                  DecorationImage(image: NetworkImage(image), fit: BoxFit.fill),
+                ),
               ),
-            ),
-            Text(
-              title,
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 20,
-              ),
+              Text(
+                title,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                ),
 
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
