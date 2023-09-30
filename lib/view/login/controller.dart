@@ -18,9 +18,10 @@ class LoginController extends GetxController{
   void LogIn(BuildContext context , String email,String password)async{
     try{
       state.auth.signInWithEmailAndPassword(email: email, password: password).then((value){
-
         SessionController().userid= value.user!.uid.toString();
-        Get.offAllNamed(RouteNames.homeview);
+
+         Get.offAllNamed(RouteNames.homeview);
+        print('user not spproved');
       }).onError((error, stackTrace){
         Get.snackbar('Error',error.toString());
       });

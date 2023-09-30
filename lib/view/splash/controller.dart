@@ -3,23 +3,17 @@
 
 
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-
 import '../../model/services/session_Controller.dart';
 import '../../utils/routes/routes_name.dart';
-
 class SplashController extends GetxController{
-
-
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
     isLogin();
   }
-
   void isLogin(){
     FirebaseAuth auth =FirebaseAuth.instance;
     final user =auth.currentUser;

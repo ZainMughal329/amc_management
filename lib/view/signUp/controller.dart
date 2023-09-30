@@ -37,6 +37,7 @@ class SignupController extends GetxController
   void registerUserWithEmailAndPassword(
       UserModel userinfo, String email, password) async {
     try {
+      print('inside try');
       var user = await auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) {
@@ -68,7 +69,7 @@ class SignupController extends GetxController
         .whenComplete(() {
       Get.snackbar('msg', 'Successfully created account');
 
-      Get.offAllNamed(RouteNames.homeview);
+      Get.offAllNamed(RouteNames.userView);
     }).catchError((error, stackTrace) {
       Get.snackbar('msg', "Error occurred");
     });

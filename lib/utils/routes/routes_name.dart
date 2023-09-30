@@ -14,4 +14,5 @@ class RouteNames{
   static const addfileshowcontainer ='/addfileshowcontainer';
   static const dispatchfileshowcontainer = '/dispatchfileshowcontainer';
   static const chatScreen = '/chatScreen';
+  static const userView = '/userView';
 }

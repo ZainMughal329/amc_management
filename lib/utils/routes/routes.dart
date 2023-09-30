@@ -4,6 +4,7 @@ import 'package:amc_management/view/home/dispatchFile/bindings.dart';
 import 'package:amc_management/view/home/dispatchFile/view.dart';
 import 'package:amc_management/view/scanimages/bindings.dart';
 import 'package:amc_management/view/scanimages/view.dart';
+import 'package:amc_management/view/userView/bindings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../../view/forgot/bindings.dart';
 import '../../view/forgot/view.dart';
@@ -24,6 +25,7 @@ import '../../view/signUp/bindings.dart';
 import '../../view/signUp/view.dart';
 import '../../view/splash/bindings.dart';
 import '../../view/splash/view.dart';
+import '../../view/userView/view.dart';
 
 class AppPages {
   static final List<GetPage> routes = [
@@ -88,6 +90,10 @@ class AppPages {
       email: "",
     ),
     binding: sendFileBindings()
-    )
+    ),
+
+    GetPage(name: RouteNames.userView, page:()=>userView(),
+    binding: userViewBindings())
   ];
 }
+

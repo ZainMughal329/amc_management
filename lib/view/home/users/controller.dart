@@ -18,7 +18,11 @@ class userController extends GetxController with GetSingleTickerProviderStateMix
   }
   Future<void> deleteUsers(String id)async{
     try{
-      state.ref.collection('users').doc('id').delete();
+     await state.ref.collection('users').doc(id).delete().then((value) {
+        print('user deleted');
+      }).onError((error, stackTrace) {
+        print('error is : ' + error.toString());
+      });
       // state.dbref.doc('id').delete();
     }catch(e){
       Get.snackbar('Error', e.toString());
