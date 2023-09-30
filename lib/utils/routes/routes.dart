@@ -7,11 +7,15 @@ import 'package:amc_management/view/scanimages/view.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../../view/forgot/bindings.dart';
 import '../../view/forgot/view.dart';
+import '../../view/home/addFile/fileshow.dart';
 import '../../view/home/addFile/view.dart';
+import '../../view/home/dispatchFile/fileshow.dart';
 import '../../view/home/home_view/bindings.dart';
 import '../../view/home/home_view/view.dart';
 import '../../view/home/profile/bindings.dart';
 import '../../view/home/profile/view.dart';
+import '../../view/home/sendFile/index.dart';
+import '../../view/home/sendFile/view.dart';
 import '../../view/home/users/bindings.dart';
 import '../../view/home/users/view.dart';
 import '../../view/login/bindings.dart';
@@ -54,13 +58,36 @@ class AppPages {
         name: RouteNames.addfileview,
         page: () => addFileView(),
         binding: addFileBindings()),
+    GetPage(name: RouteNames.addfileshowcontainer, page:()=> addFileShowContainer(date: "",
+        name: "",
+        fileNum: "",
+        from: ""),
+    binding: addFileBindings()
+    ),
     GetPage(
         name: RouteNames.dispatchview,
         page: () => dispatchView(),
         binding: dispatchBindings()),
+    GetPage(name: RouteNames.dispatchfileshowcontainer, page: ()=>dispatchFileShowContainer(
+      recievedFrom: "",
+      notificationTo: "",
+      img: "",
+      date: "",
+      name: "",
+    ),
+    binding: dispatchBindings()
+    ),
     GetPage(
         name: RouteNames.scanImage,
         page: () => ScannImageView(),
         binding: ScanImageBindings(),),
+    GetPage(name: RouteNames.chatScreen, page:()=>sendFile(
+      name: "",
+      img: "",
+      recieverId: "",
+      email: "",
+    ),
+    binding: sendFileBindings()
+    )
   ];
 }

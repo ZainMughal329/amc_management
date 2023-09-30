@@ -17,17 +17,21 @@ class addFileView extends GetView<addFileController> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
           child:Column(
             children: [
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.primaryIconColor,
-                    child: IconButton(
-                        onPressed: (){
-                          Get.back();
-                        }, icon: Icon(Icons.arrow_back,
-                      color: Colors.white,
+              SizedBox(height: 20,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                    alignment: Alignment.topLeft,
+                    child: CircleAvatar(
+                      backgroundColor: AppColors.primaryIconColor,
+                      child: IconButton(
+                          onPressed: (){
+                            Get.back();
+                          }, icon: Icon(Icons.arrow_back,
+                        color: Colors.white,
+                      )),
                     )),
-                  )),
+              ),
               SizedBox(height: 15,),
               Container(
                 child: Align(
@@ -52,16 +56,16 @@ class addFileView extends GetView<addFileController> {
                 ),
               ),
               SizedBox(height: 5,),
-              Container(height: 598,
-              width: double.infinity,
-                child: TabBarView(
-                  controller: controller.tabController,
-                  children: [
-                    addFileForm(),
-                    addFileDataList(),
-                  ],
+                 Container(height: 598,
+                width: double.infinity,
+                  child: TabBarView(
+                    controller: controller.tabController,
+                    children: [
+                      addFileForm(),
+                      addFileDataList(),
+                    ],
+                  ),
                 ),
-              )
             ],
           ) ,
           ),

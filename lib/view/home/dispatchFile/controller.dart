@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:amc_management/res/colors.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage ;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,12 +34,15 @@ class dispatchController extends GetxController
   }
 
   RxString imagePath = ''.obs;
-
+  XFile? _image;
+  XFile? get image=>_image;
   Future pickCameraImage(BuildContext context) async {
     final ImagePicker _picker = ImagePicker();
     final image = await _picker.pickImage(source: ImageSource.camera);
     if (image != null) {
+      // _image=XFile(image.path);
       imagePath.value = image.path.toString();
+      // uploadimageonDatabase(context);
     }
   }
 
@@ -45,6 +51,8 @@ class dispatchController extends GetxController
     final image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       imagePath.value = image.path.toString();
+      // _image=XFile(image.path);
+      // uploadimageonDatabase(context);
     }
   }
 
@@ -81,6 +89,14 @@ class dispatchController extends GetxController
       ),
     ));
   }
+  // void uploadimageonDatabase (BuildContext context) async{
+  //   firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/dispatchFile');
+  //   firebase_storage.UploadTask uploadTask =storageRef.putFile(File(image!.path).absolute);
+  //   await Future.value(uploadTask);
+  //   final newUrl = await storageRef.getDownloadURL();
+  // }
+
+
 
   Future<void> DispatchModelFile(String name, String image, String date,
       String recievedBy, String notificationTo) async {

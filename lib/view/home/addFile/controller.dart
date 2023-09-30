@@ -28,6 +28,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     tabController = TabController(length: 2, vsync: this);
   }
   RxString imagePath =''.obs;
+  // final fileId=DateTime.now().toString().obs;
   Future pickCameraImage(BuildContext context)async{
     final ImagePicker _picker = ImagePicker();
     final image = await _picker.pickImage(source: ImageSource.camera);
@@ -42,7 +43,6 @@ class addFileController extends GetxController with GetSingleTickerProviderState
       imagePath.value=image.path.toString();
     }
   }
-
   void pickImage(context){
 
     Get.dialog(AlertDialog(
@@ -71,15 +71,15 @@ class addFileController extends GetxController with GetSingleTickerProviderState
       ),
     ));
   }
-
-  Future<void> addFileOnFirebase(String name,String image,String date,String fileNum,String from)async{
+  Future<void> addFileOnFirebase(String name,String image,String date,String fileNum,String from,)async{
     try{
       await state.ref.add({
         'Image':image,
         'Name':name,
         'From':from,
         'FileNum':fileNum,
-        'Date':date
+        'Date':date,
+        // 'Id':FileId
       }).then((value) {
         Get.snackbar('Sucess', 'File Added');
         // Get.back();
@@ -92,11 +92,12 @@ class addFileController extends GetxController with GetSingleTickerProviderState
   }
   void storeData(
   AddFileModel addFile,
-      BuildContext context,String name ,String from,String image,String fileNum,String date
+      BuildContext context,String name ,String from,String image,String fileNum,String date,
       )async{
-    addFileOnFirebase(name, image, date, fileNum, from);
+    addFileOnFirebase(name, image, date, fileNum, from).then((value){
+      clearDateFromScreen();
+    });
   }
-
   getDateFromUser(BuildContext context)async{
     DateTime? pickerDate= await  showDatePicker(
         context: context,
@@ -110,6 +111,19 @@ class addFileController extends GetxController with GetSingleTickerProviderState
       print('select a date ');
     }
   }
+  clearDateFromScreen(){
+    state.dateController.clear();
+    state.fromController.clear();
+    state.nameController.clear();
+    state.filenoController.clear();
+    imagePath.value="";
+  }
+  Stream<DocumentSnapshot<Map<String,dynamic>>> getFIleData(){
+    return state.ref.doc(state.auth.currentUser!.uid.toString()).snapshots();
+  }
 }
+
+
+
 
 

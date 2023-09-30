@@ -10,4 +10,8 @@ class RouteNames{
   static const addfileview ='/addfileview';
   static const dispatchview = '/dispatchview';
   static const scanImage = '/ScamImage';
+  static const addFileShow ='/addFileShow';
+  static const addfileshowcontainer ='/addfileshowcontainer';
+  static const dispatchfileshowcontainer = '/dispatchfileshowcontainer';
+  static const chatScreen = '/chatScreen';
 }

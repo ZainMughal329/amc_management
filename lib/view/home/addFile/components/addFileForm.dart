@@ -1,19 +1,13 @@
-
-
 import 'dart:io';
-
 import 'package:amc_management/view/home/addFile/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import '../../../../model/addFile_model/addFile_model.dart';
 import '../../../../res/components/custom_button.dart';
 import 'addFileCustomField.dart';
-
 class addFileForm extends GetView<addFileController> {
   const addFileForm({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -87,13 +81,16 @@ class addFileForm extends GetView<addFileController> {
               date: controller.state.dateController.text.trim(),
               from: controller.state.fromController.text.trim(),
               filenum: controller.state.filenoController.text.trim(),
-              image: controller.imagePath.toString()
+              image: controller.imagePath.toString(),
+            // id: DateTime.now().toString()
           );
           controller.storeData(addFile, context, controller.state.nameController.text.trim(),
               controller.state.fromController.text.trim(),
               controller.imagePath.toString(),
               controller.state.filenoController.text.trim(),
-              controller.state.dateController.text.trim());
+              controller.state.dateController.text.trim(),
+            // controller.fileId.toString().trim(),
+          );
         })
       ],
     );

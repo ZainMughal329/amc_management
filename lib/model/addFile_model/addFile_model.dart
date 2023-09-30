@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddFileModel {
   final String? image;
+  // final String? id;
   final String name;
   final   String date;
   // final String username;
@@ -14,6 +15,7 @@ class AddFileModel {
 
   AddFileModel({
     this.image,
+    // this.id,
     required this.name,
     required this.date,
     required this.from,
@@ -27,6 +29,7 @@ class AddFileModel {
 
   toJson() {
     return {
+      // 'Id':id,
       'Image': image,
       'Name': name,
       'From': from,
@@ -44,7 +47,8 @@ class AddFileModel {
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
     final data = documentSnapshot.data()!;
     return AddFileModel(
-      image:data['image'],
+      // id: data['Id'],
+      image:data['Image'],
       name: data['Name'],
       from: data['From'],
       filenum: data['FileNum'],
