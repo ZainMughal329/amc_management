@@ -107,7 +107,7 @@ class LoginView extends GetView<LoginController> {
                                 "admin@admin.com" &&
                             controller.state.passwordController.text ==
                                 "admin@123") {
-                          Get.to(RouteNames.homeview)!.then((value){
+                          Get.offAndToNamed(RouteNames.homeview)!.then((value){
                             controller.state.passwordController.clear();
                             controller.state.emailController.clear();
 

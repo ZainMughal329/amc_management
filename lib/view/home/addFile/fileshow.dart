@@ -2,13 +2,15 @@ import 'package:amc_management/view/home/addFile/controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 class addFileShowContainer extends StatelessWidget {
   // final  String img;
-   String fileNum;
-   String name;
-   String from;
-   String date;
-   addFileShowContainer({super.key,
+  String fileNum;
+  String name;
+  String from;
+  String date;
+  addFileShowContainer({
+    super.key,
     required this.date,
     required this.name,
     required this.fileNum,
@@ -18,31 +20,51 @@ class addFileShowContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
+      body: Center(
+        child: Stack(alignment: Alignment.center, children: [
+          // Image(image: NetworkImage(i)),
+          Container(
+            color: Colors.black.withOpacity(0.5),
+            width: 300,
+            height: 200,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
-                  height: 20,
+                Text(
+                  name,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-                Center(child: Text(name,style: TextStyle(fontSize: 30),)),
-                SizedBox(height: 20,),
-                Center(child: Text(from)),
-                SizedBox(height: 20,),
-                Center(child: Text(date)),
-                SizedBox(height: 20,),
-                Center(child: Text(fileNum.toString())),
-
+                Text(
+                  from,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  date,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(fileNum.toString(),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                    )),
               ],
             ),
-          )),
+          ),
+        ]),
+      ),
     );
   }
 }
 
-
 //    FileShowContainer({super.key,
-

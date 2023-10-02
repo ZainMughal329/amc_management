@@ -9,7 +9,6 @@ import '../../sendFile/controller.dart';
 class userList extends GetView<userController> {
    userList({super.key});
   final controller = Get.put(userController());
-
   @override
   Widget build(BuildContext context) {
     final sendController = Get.put(sendFileController());
