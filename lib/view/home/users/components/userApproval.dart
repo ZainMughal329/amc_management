@@ -15,6 +15,7 @@ class userApproval extends GetView<userController> {
     return  Container(
       child: StreamBuilder<QuerySnapshot>(stream: controller.firestore,
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+        print('Length is : ' + snapshot.data!.docs.length.toString());
         try{
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -26,7 +27,7 @@ class userApproval extends GetView<userController> {
               ListView.builder(
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context,index){
-                    Padding(
+                    return Padding(
                       padding: EdgeInsets.all(18.0),
                       child: Container(
                         height: 130,
