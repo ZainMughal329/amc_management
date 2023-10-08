@@ -13,9 +13,6 @@ class userViewController extends GetxController{
     final userData = snapshot.docs.map((e) => UserModel.fromSnapshot(e)).single;
     return userData;
   }
-
-
-
   getUsersData() async {
     print('INSIDE FUNC');
     state.id = auth.currentUser!.uid.toString();
@@ -28,5 +25,4 @@ class userViewController extends GetxController{
     }
   }
 }
-
 

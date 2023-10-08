@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 class dispatchState {
   final nameController = TextEditingController();
   final dateController = TextEditingController();
+  final markByController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   final recievedByController = TextEditingController();
   final notificationToController = TextEditingController();

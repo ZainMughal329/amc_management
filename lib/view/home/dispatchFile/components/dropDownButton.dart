@@ -18,7 +18,6 @@ class DropDownList extends GetView<dispatchController> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SafeArea(
-
           child: DropdownButton(
             iconEnabledColor: AppColors.primaryIconColor,
             dropdownColor: AppColors.lightGrayColor,

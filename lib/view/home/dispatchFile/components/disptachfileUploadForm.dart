@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import '../../../../model/dispatch_model/dispatch_model.dart';
 import '../../../../res/components/custom_button.dart';
 import '../../addFile/components/addFileCustomField.dart';
+import 'dropDownButton.dart';
 class dispatchFileForm extends GetView<dispatchController> {
   const dispatchFileForm({super.key});
 
@@ -106,6 +107,13 @@ class dispatchFileForm extends GetView<dispatchController> {
         ),
         SizedBox(
           height: 20,
+        ),
+        TextFormField(
+          controller: controller.state.markByController,
+          decoration: InputDecoration(
+            hintText: 'MarkBy',
+            suffixIcon: DropDownList()
+          ),
         ),
         ReuseButton(
             tittle: 'Dispatch',

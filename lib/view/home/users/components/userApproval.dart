@@ -1,15 +1,11 @@
-
-
 import 'package:amc_management/view/home/users/controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../res/colors.dart';
-
 class userApproval extends GetView<userController> {
   const userApproval({super.key});
-
   @override
   Widget build(BuildContext context) {
     return  Container(
@@ -28,9 +24,9 @@ class userApproval extends GetView<userController> {
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context,index){
                     return Padding(
-                      padding: EdgeInsets.all(18.0),
+                      padding: EdgeInsets.all(16.0),
                       child: Container(
-                        height: 130,
+                        height: 130.h,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: AppColors.lightGrayColor.withOpacity(0.1),
@@ -40,11 +36,12 @@ class userApproval extends GetView<userController> {
                           ),
                         ),
                         child: Column(
+                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             ListTile(
                               leading: Container(
-                                height: 40,
-                                width: 40,
+                                height: 40.w,
+                                width: 40.w,
                                 decoration: BoxDecoration(
                                   color: AppColors.lightGrayColor,
                                   border: Border.all(
@@ -57,7 +54,7 @@ class userApproval extends GetView<userController> {
                                   child: snapshot.data!.docs[index]['profile'].toString() == ''
                                       ? Icon(
                                     Icons.person_outline,
-                                    size: 30,
+                                    size: 30.sp,
                                     color: AppColors.primaryTextTextColor,
                                   )
                                       : Image(
@@ -71,7 +68,9 @@ class userApproval extends GetView<userController> {
                               title: Text(snapshot.data!.docs[index]['UserName'].toString()),
                               subtitle: Text(snapshot.data!.docs[index]['Email'].toString()),
                             ),
-                            SizedBox(height: 20,),
+                            SizedBox(
+                              height: 20.h,
+                            ),
                             snapshot.data!.docs[index]['status']
                                 .toString() ==
                                 'false'
@@ -105,11 +104,8 @@ class userApproval extends GetView<userController> {
                             ),
                           ],
                         ),
-
                       ),
                     );
-
-
               }):Column(
             mainAxisAlignment: MainAxisAlignment.center,
             // crossAxisAlignment: CrossAxisAlignment.center,
@@ -123,12 +119,10 @@ class userApproval extends GetView<userController> {
               ),
             ],
           );
-
         }catch(e){
           return Text(
             'data : ' + e.toString(),
           );
-
         }
 
           }),

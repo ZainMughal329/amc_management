@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../res/colors.dart';
 import '../../res/components/custom_button.dart';
 import '../../res/components/custom_tetxField.dart';
 import '../../utils/custom_Utils.dart';
@@ -23,21 +24,21 @@ class LoginView extends GetView<LoginController> {
               SizedBox(
                 height: height * .05,
               ),
-              Text(
-                'Welcome to App',
-                style: Theme.of(context).textTheme.displaySmall,
-              ),
-              SizedBox(
-                height: height * .01,
-              ),
-              Text(
-                'Enter your email address \nto connect to your account',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
-              SizedBox(
-                height: height * .01,
-              ),
+              // Text(
+              //   'Welcome to App',
+              //   style: Theme.of(context).textTheme.displaySmall,
+              // ),
+              // SizedBox(
+              //   height: height * .01,
+              // ),
+              // Text(
+              //   'Enter your email address \nto connect to your account',
+              //   textAlign: TextAlign.center,
+              //   style: Theme.of(context).textTheme.bodyMedium,
+              // ),
+              // SizedBox(
+              //   height: height * .01,
+              // ),
               Form(
                   key: _formKey,
                   child: Padding(
@@ -45,9 +46,35 @@ class LoginView extends GetView<LoginController> {
                         bottom: height * .01, top: height * .06),
                     child: Column(
                       children: [
+                        // TextFormField(
+                        //   controller:controller.state.emailController,
+                        //   focusNode: controller.state.Emailfocousnode,
+                        //   keyboardType: TextInputType.emailAddress,
+                        //   decoration: InputDecoration(
+                        //     contentPadding: EdgeInsets.all(15),
+                        //     hintText: 'Email',
+                        //     hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(height:0,color: AppColors.primaryTextTextColor.withOpacity(0.8)),
+                        //     border: OutlineInputBorder(
+                        //         borderSide: BorderSide(color: AppColors.textFieldDefaultFocus),
+                        //         borderRadius: BorderRadius.all(Radius.circular(8))
+                        //     ),
+                        //     focusedBorder: OutlineInputBorder(
+                        //         borderSide: BorderSide(color: AppColors.secondaryColor),
+                        //         borderRadius: BorderRadius.all(Radius.circular(8))
+                        //     ),
+                        //     focusedErrorBorder: OutlineInputBorder(
+                        //         borderSide: BorderSide(color: AppColors.alertColor),
+                        //         borderRadius: BorderRadius.all(Radius.circular(8))
+                        //     ),
+                        //     enabledBorder: OutlineInputBorder(
+                        //         borderSide: BorderSide(color: AppColors.textFieldDefaultBorderColor),
+                        //         borderRadius: BorderRadius.all(Radius.circular(8))
+                        //     ),
+                        //   ),
+                        // ),
                         ReuseField(
                             myController: controller.state.emailController,
-                            focusNode: controller.state.Emailfocousnode,
+                            // focusNode: controller.state.Emailfocousnode,
                             onFiledSubmittedValue: (value) {
                               ReuseableUtils.fieldfocous(
                                   context,
@@ -65,9 +92,35 @@ class LoginView extends GetView<LoginController> {
                         SizedBox(
                           height: height * .01,
                         ),
+                        // TextFormField(
+                        //   controller:controller.state.passwordController,
+                        //   focusNode: controller.state.passwordfocous,
+                        //   keyboardType: TextInputType.emailAddress,
+                        //   decoration: InputDecoration(
+                        //     contentPadding: EdgeInsets.all(15),
+                        //     hintText: 'Password',
+                        //     hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(height:0,color: AppColors.primaryTextTextColor.withOpacity(0.8)),
+                        //     border: OutlineInputBorder(
+                        //         borderSide: BorderSide(color: AppColors.textFieldDefaultFocus),
+                        //         borderRadius: BorderRadius.all(Radius.circular(8))
+                        //     ),
+                        //     focusedBorder: OutlineInputBorder(
+                        //         borderSide: BorderSide(color: AppColors.secondaryColor),
+                        //         borderRadius: BorderRadius.all(Radius.circular(8))
+                        //     ),
+                        //     focusedErrorBorder: OutlineInputBorder(
+                        //         borderSide: BorderSide(color: AppColors.alertColor),
+                        //         borderRadius: BorderRadius.all(Radius.circular(8))
+                        //     ),
+                        //     enabledBorder: OutlineInputBorder(
+                        //         borderSide: BorderSide(color: AppColors.textFieldDefaultBorderColor),
+                        //         borderRadius: BorderRadius.all(Radius.circular(8))
+                        //     ),
+                        //   ),
+                        // ),
                         ReuseField(
                             myController: controller.state.passwordController,
-                            focusNode: controller.state.passwordfocous,
+                            // focusNode: controller.state.passwordfocous,
                             onFiledSubmittedValue: (value) {},
                             keyboardType: TextInputType.emailAddress,
                             obsecureText: false,

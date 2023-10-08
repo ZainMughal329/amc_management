@@ -3,7 +3,7 @@ import '../colors.dart';
 class ReuseField extends StatelessWidget {
   ReuseField({super.key,
     required this.myController,
-    required this.focusNode,
+    // required this.focusNode,
     required this.onFiledSubmittedValue,
     required this.keyboardType,
     required this.obsecureText,
@@ -13,7 +13,7 @@ class ReuseField extends StatelessWidget {
     this.autoFocous=false
   });
   final TextEditingController myController;
-  final FocusNode focusNode;
+  // final FocusNode focusNode;
    final FormFieldSetter onFiledSubmittedValue;
   final FormFieldValidator onvalidator;
   final TextInputType keyboardType;
@@ -30,12 +30,12 @@ class ReuseField extends StatelessWidget {
         children: [
           TextFormField(
             controller:  myController,
-            focusNode: focusNode,
+            // focusNode: focusNode,
             obscureText: obsecureText,
              onFieldSubmitted: onFiledSubmittedValue,
             validator: onvalidator,
             keyboardType: keyboardType,
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 10),
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 15),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(15),
               hintText: hint,

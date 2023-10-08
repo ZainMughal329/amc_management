@@ -17,9 +17,7 @@ class userView extends GetView<userViewController> {
     return Scaffold(
       body:SafeArea(
         child: FutureBuilder(future: controller.getUsersData(),
-
             builder: (context,snapshot){
-
           if(snapshot.hasData){
             UserModel user =snapshot.data as UserModel;
             if(user.status=='true'){

@@ -53,7 +53,7 @@ class SignUpView extends GetView<SignupController> {
                     // ..
                     ReuseField(
                       myController: controller.state.usernamecontroller,
-                      focusNode: usernamefocousnode,
+                      // focusNode: usernamefocousnode,
                        onFiledSubmittedValue: (value){
                          ReuseableUtils.fieldfocous(context, controller.state.usernamefocousnode, controller.state.Emailfocousnode);
                        },
@@ -69,7 +69,7 @@ class SignUpView extends GetView<SignupController> {
                     ),
                     ReuseField(
                       myController: controller.state.emailcontroller,
-                      focusNode: Emailfocousnode,
+                      // focusNode: Emailfocousnode,
                       onFiledSubmittedValue: (value){
                         ReuseableUtils.fieldfocous(context,controller.state. Emailfocousnode, controller.state.Passwordfocusnode);
                       },
@@ -85,7 +85,7 @@ class SignUpView extends GetView<SignupController> {
                     ),
                     ReuseField(
                       myController: controller.state.passwordcontroller,
-                      focusNode: Passwordfocusnode,
+                      // focusNode: Passwordfocusnode,
                       onFiledSubmittedValue: (value){
                       },
                       keyboardType: TextInputType.emailAddress,

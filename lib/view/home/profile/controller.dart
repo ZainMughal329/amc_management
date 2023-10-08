@@ -102,7 +102,7 @@ return FirebaseFirestore.instance.collection('users').doc(state.auth.currentUser
             children: [
               ReuseField(
                   myController:state.namecontroller,
-                  focusNode: state.namefocousNode,
+                  // focusNode: state.namefocousNode,
                    onFiledSubmittedValue: (value){
                    },
                   keyboardType: TextInputType.emailAddress,
@@ -147,7 +147,7 @@ return FirebaseFirestore.instance.collection('users').doc(state.auth.currentUser
           child: Column(
             children: [
               ReuseField(myController:state. emailcontroller,
-                  focusNode:state. emailfocousNode,
+                  // focusNode:state. emailfocousNode,
                    onFiledSubmittedValue: (value){
 
                   },
