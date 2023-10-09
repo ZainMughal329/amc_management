@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../res/colors.dart';
 import '../../res/components/custom_button.dart';
 import '../../res/components/custom_tetxField.dart';
 import '../../utils/custom_Utils.dart';
@@ -8,12 +7,14 @@ import '../../utils/routes/routes_name.dart';
 import 'controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  const LoginView({super.key});
+   LoginView({super.key});
+  final _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
-    final _formKey = GlobalKey<FormState>();
     return Scaffold(
+      // resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: SingleChildScrollView(
@@ -92,32 +93,6 @@ class LoginView extends GetView<LoginController> {
                         SizedBox(
                           height: height * .01,
                         ),
-                        // TextFormField(
-                        //   controller:controller.state.passwordController,
-                        //   focusNode: controller.state.passwordfocous,
-                        //   keyboardType: TextInputType.emailAddress,
-                        //   decoration: InputDecoration(
-                        //     contentPadding: EdgeInsets.all(15),
-                        //     hintText: 'Password',
-                        //     hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(height:0,color: AppColors.primaryTextTextColor.withOpacity(0.8)),
-                        //     border: OutlineInputBorder(
-                        //         borderSide: BorderSide(color: AppColors.textFieldDefaultFocus),
-                        //         borderRadius: BorderRadius.all(Radius.circular(8))
-                        //     ),
-                        //     focusedBorder: OutlineInputBorder(
-                        //         borderSide: BorderSide(color: AppColors.secondaryColor),
-                        //         borderRadius: BorderRadius.all(Radius.circular(8))
-                        //     ),
-                        //     focusedErrorBorder: OutlineInputBorder(
-                        //         borderSide: BorderSide(color: AppColors.alertColor),
-                        //         borderRadius: BorderRadius.all(Radius.circular(8))
-                        //     ),
-                        //     enabledBorder: OutlineInputBorder(
-                        //         borderSide: BorderSide(color: AppColors.textFieldDefaultBorderColor),
-                        //         borderRadius: BorderRadius.all(Radius.circular(8))
-                        //     ),
-                        //   ),
-                        // ),
                         ReuseField(
                             myController: controller.state.passwordController,
                             // focusNode: controller.state.passwordfocous,
@@ -160,11 +135,9 @@ class LoginView extends GetView<LoginController> {
                                 "admin@admin.com" &&
                             controller.state.passwordController.text ==
                                 "admin@123") {
-                          Get.offAndToNamed(RouteNames.homeview)!.then((value){
-                            controller.state.passwordController.clear();
-                            controller.state.emailController.clear();
-
-                          });
+                          Get.offNamed(RouteNames.homeview);
+                          controller.state.passwordController.clear();
+                          controller.state.emailController.clear();
                         } else {
                           LoginController().LogIn(
                               context,

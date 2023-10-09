@@ -1,4 +1,5 @@
 
+import 'package:amc_management/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../model/services/session_Controller.dart';
@@ -19,14 +20,15 @@ class HomeView extends GetView<HomeController> {
         ),
         actions: [
            IconButton(onPressed: (){
-            controller.state.auth.signOut().then((value){
-              //here we logout user and clear its ud
-              //when they open app again then they have to go on login screen and login again
-              SessionController().userid='';
-              Navigator.pushNamed(context, RouteNames.loginview);
-            }).onError((error, stackTrace){
-              Get.snackbar('Error', error.toString());
-            });
+             Get.offNamed(RouteNames.loginview);
+            // controller.state.auth.signOut().then((value){
+            //   //here we logout user and clear its ud
+            //   //when they open app again then they have to go on login screen and login again
+            //   SessionController().userid='';
+            //   Navigator.pushNamed(context, RouteNames.loginview);
+            // }).onError((error, stackTrace){
+            //   Get.snackbar('Error', error.toString());
+            // });
           }, icon: Icon(Icons.login_outlined))
         ],
       ),

@@ -9,9 +9,9 @@ class userApproval extends GetView<userController> {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      child: StreamBuilder<QuerySnapshot>(stream: controller.firestore,
+      child: StreamBuilder<QuerySnapshot>(
+          stream: controller.firestore,
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
-        print('Length is : ' + snapshot.data!.docs.length.toString());
         try{
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
@@ -19,7 +19,9 @@ class userApproval extends GetView<userController> {
           if (snapshot.hasError) {
             return Center(child: CircularProgressIndicator());
           }
-          return snapshot.data!.docs.length !=0?
+          if(snapshot.hasData){
+            if(snapshot.data!.docs.length !=0){
+              return snapshot.data!.docs.length !=0?
               ListView.builder(
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder: (context,index){
@@ -84,7 +86,7 @@ class userApproval extends GetView<userController> {
                                         snapshot.data!.docs[index].id
                                             .toString());
                                   },
-                                  child: Text('Decline' , style: TextStyle(color: AppColors.primaryMaterialColor),),
+                                  child: Text('Decline' , style: TextStyle(color: Colors.red),),
                                 ),
                                 TextButton(
                                   onPressed: () async {
@@ -92,7 +94,7 @@ class userApproval extends GetView<userController> {
                                         snapshot.data!.docs[index].id
                                             .toString());
                                   },
-                                  child: Text('Approve' , style: TextStyle(color: AppColors.iconBackgroundColor),),
+                                  child: Text('Approve' , style: TextStyle(color: AppColors.primaryMaterialColor),),
                                 ),
                               ],
                             )
@@ -106,19 +108,24 @@ class userApproval extends GetView<userController> {
                         ),
                       ),
                     );
-              }):Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Center(
-                child: Text(
-                  'No new users to approved!',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 26 ),
-                ),
-              ),
-            ],
-          );
+                  }):Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                    child: Text(
+                      'No new users to approved!',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 26 ),
+                    ),
+                  ),
+                ],
+              );
+            }
+
+          }
+          return CircularProgressIndicator(color: Colors.orange,);
+
         }catch(e){
           return Text(
             'data : ' + e.toString(),

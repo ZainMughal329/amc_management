@@ -13,6 +13,7 @@ class userListView extends GetView<userController> {
     return Scaffold(
       appBar: AppBar(
         title: Text('User List'),
+
       ),
       body: SingleChildScrollView(
         child: Column(
