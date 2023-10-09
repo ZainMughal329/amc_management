@@ -115,20 +115,51 @@ class dispatchFileForm extends GetView<dispatchController> {
           decoration: InputDecoration(
             labelText: 'Choose an option',
             suffixIcon: DropdownButton<String>(
+              hint: Text(controller.state.deptName.value.toString()),
               value: controller.state.deptName.value,
               onChanged: (String? newValue){
                 if(newValue != null){
                   controller.state.deptName.value = newValue;
                 }
               },
-              items: controller.state.listItem.map<DropdownMenuItem<String>>(
-                    (String value) {
-                  return DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(value),
-                  );
-                },
-              ).toList(),
+              items:  [
+                DropdownMenuItem(
+                  value: 'principle',
+                  child: Text('Principle'),
+                ),
+                DropdownMenuItem(
+                  value: 'IT',
+                  child: Text('IT'),
+                ),
+                DropdownMenuItem(
+                  value: 'english',
+                  child: Text('English'),
+                ),
+                DropdownMenuItem(
+                  value: 'math',
+                  child: Text('Math'),
+                ),
+                DropdownMenuItem(
+                  value: 'physics',
+                  child: Text('Physics'),
+                ),
+                DropdownMenuItem(
+                  value: 'economics',
+                  child: Text('Economics'),
+                ),
+                DropdownMenuItem(
+                  value: 'biology',
+                  child: Text('Biology'),
+                ),
+                DropdownMenuItem(
+                  value: 'urdu',
+                  child: Text('Urdu'),
+                ),
+                DropdownMenuItem(
+                  value: 'chemistry',
+                  child: Text('Chemistry'),
+                ),
+              ],
             ),
           ),
         ),),
