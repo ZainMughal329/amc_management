@@ -3,13 +3,75 @@
 import 'dart:io';
 import 'package:amc_management/view/home/dispatchFile/controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../model/dispatch_model/dispatch_model.dart';
+import '../../../../res/colors.dart';
 import '../../../../res/components/custom_button.dart';
 import '../../addFile/components/addFileCustomField.dart';
 class dispatchFileForm extends GetView<dispatchController> {
    dispatchFileForm({super.key});
+   Widget dropDownList(){
+     return Obx(()=> Expanded(
+       flex: 0,
+       child: DropdownButton(
+         iconEnabledColor: AppColors.lightGrayColor,
+         dropdownColor: AppColors.otpBackgroundColor,
+         style: TextStyle(color: AppColors.primaryTextTextColor),
+         iconSize: 40.0.h,
+         hint: controller.state.deptName.value==""?
+         Text("selectDept",
+           style: TextStyle(color: AppColors.lightGrayColor),
+         ):Text(
+           controller.state.deptName.value,
+           style: TextStyle(color: AppColors.lightGrayColor),
+         ),
+         // value: controller.state.deptName.value,
+         onChanged: (String? value){
+           controller.state.deptName.value = value!;
+         },
+         items: [
+           DropdownMenuItem(
+             value: 'Principle',
+             child: Text('Principle'),
+           ),
+           DropdownMenuItem(
+             value: 'IT',
+             child: Text('IT'),
+           ),
+           DropdownMenuItem(
+             value: 'English',
+             child: Text('English'),
+           ),
+           DropdownMenuItem(
+             value: 'Math',
+             child: Text('Math'),
+           ),
+           DropdownMenuItem(
+             value: 'Physics',
+             child: Text('Physics'),
+           ),
+           DropdownMenuItem(
+             value: 'Economics',
+             child: Text('Economics'),
+           ),
+           DropdownMenuItem(
+             value: 'Biology',
+             child: Text('Biology'),
+           ),
+           DropdownMenuItem(
+             value: 'Urdu',
+             child: Text('Urdu'),
+           ),
+           DropdownMenuItem(
+             value: 'Chemistry',
+             child: Text('Chemistry'),
+           ),
+         ],
+       ),
+     ));
+   }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,8 +84,8 @@ class dispatchFileForm extends GetView<dispatchController> {
           children: [
             Obx(
                   () => Container(
-                  height: 200,
-                  width: 200,
+                  height: 200.w,
+                  width: 200.w,
                   decoration: BoxDecoration(
                       border: Border.all(
                         color: Colors.black,
@@ -58,7 +120,7 @@ class dispatchFileForm extends GetView<dispatchController> {
           ],
         ),
         SizedBox(
-          height: 20,
+          height: 15.h,
         ),
         customTextField(
           lableText: 'FileName',
@@ -67,7 +129,7 @@ class dispatchFileForm extends GetView<dispatchController> {
           suffixIcon: Icons.drive_file_rename_outline,
         ),
         SizedBox(
-          height: 10,
+          height: 10.h,
         ),
         GetBuilder<dispatchController>(
             builder: (con) {
@@ -84,7 +146,7 @@ class dispatchFileForm extends GetView<dispatchController> {
             }
         ),
         SizedBox(
-          height: 10,
+          height: 10.h,
         ),
         customTextField(
           hintText: 'recievedBy',
@@ -93,7 +155,7 @@ class dispatchFileForm extends GetView<dispatchController> {
           suffixIcon: Icons.person,
         ),
         SizedBox(
-          height: 10,
+          height: 10.h,
         ),
         customTextField(
           hintText: 'notificationTo',
@@ -102,125 +164,23 @@ class dispatchFileForm extends GetView<dispatchController> {
           suffixIcon: Icons.person,
         ),
         SizedBox(
-          height: 20,
+          height: 10.h,
         ),
-        // Obx(() => TextFormField(
-        //   controller: controller.state.markByController,
-        //   decoration: InputDecoration(
-        //     labelText: 'Choose an option',
-        //     suffixIcon: DropdownButton<String>(
-        //       hint: Text(controller.state.deptName.value.toString()),
-        //       value: controller.state.deptName.value,
-        //       onChanged: (String? newValue){
-        //         if(newValue != null){
-        //           controller.state.deptName.value = newValue;
-        //         }
-        //       },
-        //       items:  [
-        //         DropdownMenuItem(
-        //           value: 'principle',
-        //           child: Text('Principle'),
-        //         ),
-        //         DropdownMenuItem(
-        //           value: 'IT',
-        //           child: Text('IT'),
-        //         ),
-        //         DropdownMenuItem(
-        //           value: 'english',
-        //           child: Text('English'),
-        //         ),
-        //         DropdownMenuItem(
-        //           value: 'math',
-        //           child: Text('Math'),
-        //         ),
-        //         DropdownMenuItem(
-        //           value: 'physics',
-        //           child: Text('Physics'),
-        //         ),
-        //         DropdownMenuItem(
-        //           value: 'economics',
-        //           child: Text('Economics'),
-        //         ),
-        //         DropdownMenuItem(
-        //           value: 'biology',
-        //           child: Text('Biology'),
-        //         ),
-        //         DropdownMenuItem(
-        //           value: 'urdu',
-        //           child: Text('Urdu'),
-        //         ),
-        //         DropdownMenuItem(
-        //           value: 'chemistry',
-        //           child: Text('Chemistry'),
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // ),),
+
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Select Dept'),
-            Flexible(
-              child: Obx((){
-                return DropdownButton(
-                  hint: Text(controller.state.deptName.value.toString()),
-                  value: controller.state.deptName.value,
-                  onChanged: (String? newValue){
-                    if(newValue != null){
-                      controller.state.deptName.value = newValue;
-                    }
-                  },
-                  items:<DropdownMenuItem<String>> [
-                    DropdownMenuItem<String>(
-                      value: 'Principle',
-                      child: Text('Principle'),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'IT',
-                      child: Text('IT'),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'English',
-                      child: Text('English'),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Math',
-                      child: Text('Math'),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Physics',
-                      child: Text('Physics'),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Economics',
-                      child: Text('Economics'),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Biology',
-                      child: Text('Biology'),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Urdu',
-                      child: Text('Urdu'),
-                    ),
-                    DropdownMenuItem<String>(
-                      value: 'Chemistry',
-                      child: Text('Chemistry'),
-                    ),
-                  ],
-                );
-              }),
-            )
+            dropDownList()
           ],
         ),
-
         ReuseButton(
             tittle: 'Dispatch',
             onpress: () {
               final dispatch = DispatchModel(
                   name: controller.state.nameController.text
                       .trim(),
+                  dept: controller.state.deptName.toString().trim(),
                   date: controller.state.selectedDate
                       .toString()
                       .trim(),
@@ -238,6 +198,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                 controller.state.nameController.text.trim(),
                 controller.state.recievedByController.text
                     .trim(),
+                controller.state.deptName.toString().trim(),
                 controller.state.notificationToController.text
                     .trim(),
                 controller.state.selectedDate

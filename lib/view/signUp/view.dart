@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../model/userModel/user_model.dart';
+import '../../res/colors.dart';
 import '../../res/components/custom_button.dart';
 import '../../res/components/custom_tetxField.dart';
 import '../../utils/custom_Utils.dart';
@@ -8,6 +10,66 @@ import '../../utils/routes/routes_name.dart';
 import 'index.dart';
 class SignUpView extends GetView<SignupController> {
   SignUpView({super.key});
+  Widget dropDownList(){
+    return Obx(()=> Expanded(
+      flex: 0,
+      child: DropdownButton(
+        iconEnabledColor: AppColors.lightGrayColor,
+        dropdownColor: AppColors.otpBackgroundColor,
+        style: TextStyle(color: AppColors.primaryTextTextColor),
+        iconSize: 40.0.h,
+        hint: controller.state.deptName.value==""?
+        Text("selectDept",
+          style: TextStyle(color: AppColors.lightGrayColor),
+        ):Text(
+          controller.state.deptName.value,
+          style: TextStyle(color: AppColors.lightGrayColor),
+        ),
+        // value: controller.state.deptName.value,
+        onChanged: (String? value){
+          controller.state.deptName.value = value!;
+        },
+        items: [
+          DropdownMenuItem(
+            value: 'Principle',
+            child: Text('Principle'),
+          ),
+          DropdownMenuItem(
+            value: 'IT',
+            child: Text('IT'),
+          ),
+          DropdownMenuItem(
+            value: 'English',
+            child: Text('English'),
+          ),
+          DropdownMenuItem(
+            value: 'Math',
+            child: Text('Math'),
+          ),
+          DropdownMenuItem(
+            value: 'Physics',
+            child: Text('Physics'),
+          ),
+          DropdownMenuItem(
+            value: 'Economics',
+            child: Text('Economics'),
+          ),
+          DropdownMenuItem(
+            value: 'Biology',
+            child: Text('Biology'),
+          ),
+          DropdownMenuItem(
+            value: 'Urdu',
+            child: Text('Urdu'),
+          ),
+          DropdownMenuItem(
+            value: 'Chemistry',
+            child: Text('Chemistry'),
+          ),
+        ],
+      ),
+    ));
+  }
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   final usernamecontroller = TextEditingController();
@@ -95,6 +157,17 @@ class SignUpView extends GetView<SignupController> {
                         return value.isEmpty?'enter password':null;
                       }
                     ),
+                    SizedBox(
+                      height: height * .01,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('Select'),
+                        dropDownList()
+
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -106,6 +179,7 @@ class SignUpView extends GetView<SignupController> {
                   onpress: () {
                     print('inside on press');
                     final user = UserModel(
+                      dept: controller.state.deptName.toString().trim(),
                         // id: controller.auth.currentUser!.uid.toString(),
                       //   id: SessionController().userid.toString(),
                         email: controller.state.emailcontroller.text.trim(),
@@ -115,7 +189,9 @@ class SignUpView extends GetView<SignupController> {
                         password:
                         controller.state.passwordcontroller.text.trim());
                     controller.storeUser(user , context,controller.state.emailcontroller.text.trim(),
-                        controller.state.passwordcontroller.text.trim());
+                        controller.state.passwordcontroller.text.trim(),
+                    controller.state.deptName.toString().trim()
+                    );
                     // controller.signUpUser(
                     //     controller.state.emailcontroller.text.trim(),
                     //     controller.state.passwordcontroller.text.trim());

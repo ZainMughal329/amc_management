@@ -31,6 +31,7 @@ class UserModel {
   final String username;
   final String password;
   String? profile;
+  final String dept;
   final String? status;
   // String status;
 
@@ -38,6 +39,7 @@ class UserModel {
     this.id = '',
     this.profile='',
     this.status='false',
+    required this.dept,
      // required this.status=false,
     required this.email,
     required this.username,
@@ -46,8 +48,10 @@ class UserModel {
 
   toJson() {
     return {
+
       'profile':profile,
       'status': 'false',
+      'dept':dept,
       'id': id,
       'Email': email,
       'UserName': username,
@@ -61,6 +65,7 @@ class UserModel {
     return UserModel(
       profile: data['profile'],
       id: data['id'],
+      dept: data['dept'],
       status: data['status'],
       email: data['Email'],
       username: data['UserName'],

@@ -76,7 +76,7 @@ class SignupController extends GetxController
   }
 
   void storeUser(
-      UserModel user, BuildContext context, String email, String pass) async {
+      UserModel user, BuildContext context, String email, String pass,String dept) async {
     registerUserWithEmailAndPassword(user, email, pass);
   }
 

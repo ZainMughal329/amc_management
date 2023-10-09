@@ -7,14 +7,11 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'index.dart';
 import 'package:amc_management/model/dispatch_model/dispatch_model.dart';
-
 class dispatchController extends GetxController
     with GetSingleTickerProviderStateMixin {
   final state = dispatchState();
   late TabController tabController;
-
   dispatchController();
-
   @override
   void dispose() {
     // TODO: implement dispose
@@ -24,7 +21,6 @@ class dispatchController extends GetxController
     state.notificationToController.dispose();
     state.recievedByController.dispose();
   }
-
   @override
   void onInit() {
     // TODO: implement onInit
@@ -32,29 +28,36 @@ class dispatchController extends GetxController
     tabController = TabController(length: 2, vsync: this);
     // state.selectedDate;
   }
-
-  RxString imagePath = ''.obs;
+   RxString imagePath = ''.obs;
+  final picker =ImagePicker();
   XFile? _image;
   XFile? get image=>_image;
   Future pickCameraImage(BuildContext context) async {
-    final ImagePicker _picker = ImagePicker();
-    final image = await _picker.pickImage(source: ImageSource.camera);
+    final image = await picker.pickImage(source: ImageSource.camera,imageQuality: 100);
     if (image != null) {
       // _image=XFile(image.path);
-      imagePath.value = image.path.toString();
+      // update();
+       imagePath.value = image.path.toString();
       // uploadimageonDatabase(context);
     }
   }
 
   Future pickGalleryImage(BuildContext context) async {
-    final ImagePicker _picker = ImagePicker();
-    final image = await _picker.pickImage(source: ImageSource.gallery);
+    // final ImagePicker _picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.gallery,imageQuality: 100);
     if (image != null) {
       imagePath.value = image.path.toString();
       // _image=XFile(image.path);
+      update();
       // uploadimageonDatabase(context);
     }
   }
+  // Future uploadimageonDatabase (String timeStamp) async{
+  //   firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/dispatchFile'+timeStamp);
+  //   firebase_storage.UploadTask uploadTask =storageRef.putFile(File(image!.path).absolute);
+  //   await Future.value(uploadTask);
+  //   // final newUrl = await storageRef.getDownloadURL();
+  // }
 
   void pickImage(context) {
     Get.dialog(AlertDialog(
@@ -89,21 +92,19 @@ class dispatchController extends GetxController
       ),
     ));
   }
-  // void uploadimageonDatabase (BuildContext context) async{
-  //   firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/dispatchFile');
-  //   firebase_storage.UploadTask uploadTask =storageRef.putFile(File(image!.path).absolute);
-  //   await Future.value(uploadTask);
-  //   final newUrl = await storageRef.getDownloadURL();
-  // }
+
 
 
 
   Future<void> DispatchModelFile(String name, String image, String date,
-      String recievedBy, String notificationTo) async {
+      String recievedBy,
+      String dept,
+      String notificationTo) async {
     try {
       await state.ref.add({
         'Image': image,
         'Name': name,
+        'Dept':dept,
         'RecievedBy': recievedBy,
         'NotificationTo': notificationTo,
         'Date': date,
@@ -122,10 +123,11 @@ class dispatchController extends GetxController
       BuildContext context,
       String image,
       String name,
+      String dept,
       String recievedBy,
       String notificationTo,
       String date) async {
-    DispatchModelFile(name, image, date, recievedBy, notificationTo)
+    DispatchModelFile(name, image,dept, date, recievedBy, notificationTo)
         .then((value) {
           clearDateFromScreen();
     });

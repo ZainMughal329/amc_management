@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 class dispatchState {
   final nameController = TextEditingController();
   final dateController = TextEditingController();
@@ -11,10 +10,50 @@ class dispatchState {
   final recievedByController = TextEditingController();
   final notificationToController = TextEditingController();
   final ref = FirebaseFirestore.instance.collection('dispatchFile');
-
-
   var deptName = 'Select'.obs;
-
+  // Widget _buildCatList() {
+//     return Obx(
+//       () => Expanded(
+//         flex: 0,
+//         child: DropdownButton(
+//           iconEnabledColor: AppColors.lightActiveIconColor,
+//           dropdownColor: AppColors.lightBgColor,
+//           style: TextStyle(color: AppColors.lightTextColor),
+//           iconSize: 40.0.h,
+//           hint: controller.state.catValue.value == ""
+//               ? Text(
+//                   "Category",
+//                   style: TextStyle(color: AppColors.lightTextColor),
+//                 )
+//               : Text(
+//                   controller.state.catValue.value,
+//                   style: TextStyle(color: AppColors.lightTextColor),
+//                 ),
+//           items: [
+//             DropdownMenuItem(
+//               child: Text("Adventure"),
+//               value: "Adventure",
+//             ),
+//             DropdownMenuItem(
+//               child: Text("Cultural"),
+//               value: "Cultural",
+//             ),
+//             DropdownMenuItem(
+//               child: Text("Hiking"),
+//               value: "Hiking",
+//             ),
+//             DropdownMenuItem(
+//               child: Text("Mountains"),
+//               value: "Mountains",
+//             ),
+//           ],
+//           onChanged: (String? value) {
+//             controller.state.catValue.value = value!;
+//           },
+//         ),
+//       ),
+//     );
+//   }
 
   // final List<String> listItem = [
   //   "Principle",

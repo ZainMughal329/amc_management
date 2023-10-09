@@ -6,6 +6,7 @@ class SignupState{
   // final dbFireStore = FirebaseFirestore.instance.collection('Users').snapshots();
   final dbFireStore = FirebaseFirestore.instance.collection('users');
   // RxBool loading = false.obs;
+  var deptName = 'Select'.obs;
   final emailcontroller = TextEditingController();
   final passwordcontroller= TextEditingController();
   final usernamecontroller=TextEditingController();

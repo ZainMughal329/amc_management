@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:amc_management/view/home/dispatchFile/components/disptachfileUploadForm.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:amc_management/model/dispatch_model/dispatch_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,7 +17,6 @@ class dispatchView extends GetView<dispatchController> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -24,7 +24,7 @@ class dispatchView extends GetView<dispatchController> {
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: Column(
               children: [
-                SizedBox(height: 20,),
+                SizedBox(height: 15.h,),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Align(
@@ -42,7 +42,7 @@ class dispatchView extends GetView<dispatchController> {
                       )),
                 ),
                 SizedBox(
-                  height: 15,
+                  height: 10.h,
                 ),
                 Container(
                   child: Align(
@@ -67,10 +67,10 @@ class dispatchView extends GetView<dispatchController> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Container(
-                  height: 598,
+                  height: 598.h,
                   width: double.infinity,
                   child: TabBarView(
                     controller: controller.tabController,

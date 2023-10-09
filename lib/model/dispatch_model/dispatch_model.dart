@@ -4,6 +4,7 @@ class DispatchModel {
   final String? image;
   final String name;
   final String date;
+  final String dept;
   // final String username;
   // final String pkgStartDate;
   final String recievedBy;
@@ -14,6 +15,7 @@ class DispatchModel {
 
   DispatchModel({
     this.image,
+    required this.dept,
     required this.name,
     required this.date,
     required this.recievedBy,
@@ -27,7 +29,9 @@ class DispatchModel {
 
   toJson() {
     return {
+
       'Image': image,
+      'Dept':dept,
       'Name': name,
       'RecievedBy': recievedBy,
       'NotificationTo': notificationTo,
@@ -44,6 +48,7 @@ class DispatchModel {
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
     final data = documentSnapshot.data()!;
     return DispatchModel(
+      dept: data['dept'],
       image:data['image'],
       name: data['Name'],
       recievedBy: data['RecievedBy'],
