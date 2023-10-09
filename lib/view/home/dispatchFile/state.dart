@@ -11,5 +11,8 @@ class dispatchState {
   final recievedByController = TextEditingController();
   final notificationToController = TextEditingController();
   final ref = FirebaseFirestore.instance.collection('dispatchFile');
-  final deptName = "".obs;
+  var deptName = ''.obs;
+   final List<String> listItem=[
+    "Principle","It","Math","English","Urdu","Physics","Chemistry","Ecnomics","Biology"
+  ];
 }

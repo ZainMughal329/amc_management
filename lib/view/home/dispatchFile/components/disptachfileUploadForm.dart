@@ -12,7 +12,9 @@ import '../../../../res/components/custom_button.dart';
 import '../../addFile/components/addFileCustomField.dart';
 import 'dropDownButton.dart';
 class dispatchFileForm extends GetView<dispatchController> {
-  const dispatchFileForm({super.key});
+   dispatchFileForm({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -108,13 +110,29 @@ class dispatchFileForm extends GetView<dispatchController> {
         SizedBox(
           height: 20,
         ),
-        TextFormField(
+        Obx(() => TextFormField(
           controller: controller.state.markByController,
           decoration: InputDecoration(
-            hintText: 'MarkBy',
-            suffixIcon: DropDownList()
+            labelText: 'Choose an option',
+            suffixIcon: DropdownButton<String>(
+              value: controller.state.deptName.value,
+              onChanged: (String? newValue){
+                if(newValue != null){
+                  controller.state.deptName.value = newValue;
+                }
+              },
+              items: controller.state.listItem.map<DropdownMenuItem<String>>(
+                    (String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                },
+              ).toList(),
+            ),
           ),
-        ),
+        ),),
+
         ReuseButton(
             tittle: 'Dispatch',
             onpress: () {

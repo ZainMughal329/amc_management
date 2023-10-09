@@ -75,7 +75,7 @@ class dispatchView extends GetView<dispatchController> {
                   child: TabBarView(
                     controller: controller.tabController,
                     children: [
-                      dispatchFileForm(),
+                      SingleChildScrollView(child: dispatchFileForm()),
                       FileList()
                     ],
                   ),

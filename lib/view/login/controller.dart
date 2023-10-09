@@ -19,7 +19,7 @@ class LoginController extends GetxController{
     try{
       state.auth.signInWithEmailAndPassword(email: email, password: password).then((value){
         SessionController().userid= value.user!.uid.toString();
-         Get.offAllNamed(RouteNames.homeview);
+         Get.offAllNamed(RouteNames.userView);
          state.emailController.clear();
          state.passwordController.clear();
       }).onError((error, stackTrace){

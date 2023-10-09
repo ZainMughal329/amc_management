@@ -25,7 +25,7 @@ class userView extends GetView<userViewController> {
                 key: _scaffoldKey,
                 // add profile in drawer here
                 resizeToAvoidBottomInset: false,
-                backgroundColor: AppColors.primaryMaterialColor,
+                backgroundColor: AppColors.primaryColor,
                 body: SafeArea(
                   child:
                   SingleChildScrollView(
