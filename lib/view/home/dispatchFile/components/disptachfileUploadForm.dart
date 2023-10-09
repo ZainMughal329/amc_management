@@ -1,21 +1,15 @@
 
 
 import 'dart:io';
-
 import 'package:amc_management/view/home/dispatchFile/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-
 import '../../../../model/dispatch_model/dispatch_model.dart';
 import '../../../../res/components/custom_button.dart';
 import '../../addFile/components/addFileCustomField.dart';
-import 'dropDownButton.dart';
 class dispatchFileForm extends GetView<dispatchController> {
    dispatchFileForm({super.key});
-
-
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -167,55 +161,57 @@ class dispatchFileForm extends GetView<dispatchController> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Select Dept'),
-            Obx((){
-              return DropdownButton(
-                hint: Text(controller.state.deptName.value.toString()),
-                value: controller.state.deptName.value,
-                onChanged: (String? newValue){
-                  if(newValue != null){
-                    controller.state.deptName.value = newValue;
-                  }
-                },
-                items:  [
-                  DropdownMenuItem(
-                    value: 'principle',
-                    child: Text('Principle'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'IT',
-                    child: Text('IT'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'english',
-                    child: Text('English'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'math',
-                    child: Text('Math'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'physics',
-                    child: Text('Physics'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'economics',
-                    child: Text('Economics'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'biology',
-                    child: Text('Biology'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'urdu',
-                    child: Text('Urdu'),
-                  ),
-                  DropdownMenuItem(
-                    value: 'chemistry',
-                    child: Text('Chemistry'),
-                  ),
-                ],
-              );
-            })
+            Flexible(
+              child: Obx((){
+                return DropdownButton(
+                  hint: Text(controller.state.deptName.value.toString()),
+                  value: controller.state.deptName.value,
+                  onChanged: (String? newValue){
+                    if(newValue != null){
+                      controller.state.deptName.value = newValue;
+                    }
+                  },
+                  items:<DropdownMenuItem<String>> [
+                    DropdownMenuItem<String>(
+                      value: 'Principle',
+                      child: Text('Principle'),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: 'IT',
+                      child: Text('IT'),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: 'English',
+                      child: Text('English'),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: 'Math',
+                      child: Text('Math'),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: 'Physics',
+                      child: Text('Physics'),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: 'Economics',
+                      child: Text('Economics'),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: 'Biology',
+                      child: Text('Biology'),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: 'Urdu',
+                      child: Text('Urdu'),
+                    ),
+                    DropdownMenuItem<String>(
+                      value: 'Chemistry',
+                      child: Text('Chemistry'),
+                    ),
+                  ],
+                );
+              }),
+            )
           ],
         ),
 

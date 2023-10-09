@@ -7,13 +7,11 @@ import 'package:amc_management/view/home/dispatchFile/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class DropDownList extends GetView<dispatchController> {
-
   DropDownList({super.key});
   String deptChoose ="";
   List<String> listItem=[
     "Principle","It","Math","English","Urdu","Physics","Chemistry","Ecnomics","Biology"
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
