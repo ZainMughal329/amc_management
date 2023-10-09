@@ -110,59 +110,114 @@ class dispatchFileForm extends GetView<dispatchController> {
         SizedBox(
           height: 20,
         ),
-        Obx(() => TextFormField(
-          controller: controller.state.markByController,
-          decoration: InputDecoration(
-            labelText: 'Choose an option',
-            suffixIcon: DropdownButton<String>(
-              hint: Text(controller.state.deptName.value.toString()),
-              value: controller.state.deptName.value,
-              onChanged: (String? newValue){
-                if(newValue != null){
-                  controller.state.deptName.value = newValue;
-                }
-              },
-              items:  [
-                DropdownMenuItem(
-                  value: 'principle',
-                  child: Text('Principle'),
-                ),
-                DropdownMenuItem(
-                  value: 'IT',
-                  child: Text('IT'),
-                ),
-                DropdownMenuItem(
-                  value: 'english',
-                  child: Text('English'),
-                ),
-                DropdownMenuItem(
-                  value: 'math',
-                  child: Text('Math'),
-                ),
-                DropdownMenuItem(
-                  value: 'physics',
-                  child: Text('Physics'),
-                ),
-                DropdownMenuItem(
-                  value: 'economics',
-                  child: Text('Economics'),
-                ),
-                DropdownMenuItem(
-                  value: 'biology',
-                  child: Text('Biology'),
-                ),
-                DropdownMenuItem(
-                  value: 'urdu',
-                  child: Text('Urdu'),
-                ),
-                DropdownMenuItem(
-                  value: 'chemistry',
-                  child: Text('Chemistry'),
-                ),
-              ],
-            ),
-          ),
-        ),),
+        // Obx(() => TextFormField(
+        //   controller: controller.state.markByController,
+        //   decoration: InputDecoration(
+        //     labelText: 'Choose an option',
+        //     suffixIcon: DropdownButton<String>(
+        //       hint: Text(controller.state.deptName.value.toString()),
+        //       value: controller.state.deptName.value,
+        //       onChanged: (String? newValue){
+        //         if(newValue != null){
+        //           controller.state.deptName.value = newValue;
+        //         }
+        //       },
+        //       items:  [
+        //         DropdownMenuItem(
+        //           value: 'principle',
+        //           child: Text('Principle'),
+        //         ),
+        //         DropdownMenuItem(
+        //           value: 'IT',
+        //           child: Text('IT'),
+        //         ),
+        //         DropdownMenuItem(
+        //           value: 'english',
+        //           child: Text('English'),
+        //         ),
+        //         DropdownMenuItem(
+        //           value: 'math',
+        //           child: Text('Math'),
+        //         ),
+        //         DropdownMenuItem(
+        //           value: 'physics',
+        //           child: Text('Physics'),
+        //         ),
+        //         DropdownMenuItem(
+        //           value: 'economics',
+        //           child: Text('Economics'),
+        //         ),
+        //         DropdownMenuItem(
+        //           value: 'biology',
+        //           child: Text('Biology'),
+        //         ),
+        //         DropdownMenuItem(
+        //           value: 'urdu',
+        //           child: Text('Urdu'),
+        //         ),
+        //         DropdownMenuItem(
+        //           value: 'chemistry',
+        //           child: Text('Chemistry'),
+        //         ),
+        //       ],
+        //     ),
+        //   ),
+        // ),),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Select Dept'),
+            Obx((){
+              return DropdownButton(
+                hint: Text(controller.state.deptName.value.toString()),
+                value: controller.state.deptName.value,
+                onChanged: (String? newValue){
+                  if(newValue != null){
+                    controller.state.deptName.value = newValue;
+                  }
+                },
+                items:  [
+                  DropdownMenuItem(
+                    value: 'principle',
+                    child: Text('Principle'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'IT',
+                    child: Text('IT'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'english',
+                    child: Text('English'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'math',
+                    child: Text('Math'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'physics',
+                    child: Text('Physics'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'economics',
+                    child: Text('Economics'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'biology',
+                    child: Text('Biology'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'urdu',
+                    child: Text('Urdu'),
+                  ),
+                  DropdownMenuItem(
+                    value: 'chemistry',
+                    child: Text('Chemistry'),
+                  ),
+                ],
+              );
+            })
+          ],
+        ),
 
         ReuseButton(
             tittle: 'Dispatch',
