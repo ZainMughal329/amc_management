@@ -28,36 +28,56 @@ class dispatchController extends GetxController
     tabController = TabController(length: 2, vsync: this);
     // state.selectedDate;
   }
-   RxString imagePath = ''.obs;
+   // RxString imagePath = ''.obs;
   final picker =ImagePicker();
   XFile? _image;
   XFile? get image=>_image;
-  Future pickCameraImage(BuildContext context) async {
-    final image = await picker.pickImage(source: ImageSource.camera,imageQuality: 100);
-    if (image != null) {
-      // _image=XFile(image.path);
-      // update();
-       imagePath.value = image.path.toString();
-      // uploadimageonDatabase(context);
-    }
-  }
-
-  Future pickGalleryImage(BuildContext context) async {
-    // final ImagePicker _picker = ImagePicker();
-    final image = await picker.pickImage(source: ImageSource.gallery,imageQuality: 100);
-    if (image != null) {
-      imagePath.value = image.path.toString();
-      // _image=XFile(image.path);
-      update();
-      // uploadimageonDatabase(context);
-    }
-  }
-  // Future uploadimageonDatabase (String timeStamp) async{
-  //   firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/dispatchFile'+timeStamp);
-  //   firebase_storage.UploadTask uploadTask =storageRef.putFile(File(image!.path).absolute);
-  //   await Future.value(uploadTask);
-  //   // final newUrl = await storageRef.getDownloadURL();
+  // Future pickCameraImage(BuildContext context) async {
+  //   final image = await picker.pickImage(source: ImageSource.camera,imageQuality: 100);
+  //   if (image != null) {
+  //     // _image=XFile(image.path);
+  //     // update();
+  //      imagePath.value = image.path.toString();
+  //     // uploadimageonDatabase(context);
+  //   }
   // }
+  // Future pickGalleryImage(BuildContext context) async {
+  //   // final ImagePicker _picker = ImagePicker();
+  //   final image = await picker.pickImage(source: ImageSource.gallery,imageQuality: 100);
+  //   if (image != null) {
+  //     imagePath.value = image.path.toString();
+  //     // _image=XFile(image.path);
+  //     update();
+  //     // uploadimageonDatabase(context);
+  //   }
+  // }
+
+  void pickedImageFromGallery(
+      BuildContext context,
+      ) async {
+    final pickedImage =
+    await picker.pickImage(source: ImageSource.gallery, imageQuality: 100);
+    if (pickedImage != null) {
+      _image = XFile(pickedImage.path);
+      update();
+    }
+  }
+  void pickedImageFromCamera(
+      BuildContext context,
+      ) async {
+    final pickedImage =
+    await picker.pickImage(source: ImageSource.camera, imageQuality: 100);
+    if (pickedImage != null) {
+      _image = XFile(pickedImage.path);
+      update();
+    }
+  }
+  Future uploadimageonDatabase (String timeStamp) async{
+    firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/dispatchFile'+timeStamp);
+    firebase_storage.UploadTask uploadTask =storageRef.putFile(File(image!.path).absolute);
+    await Future.value(uploadTask);
+    // final newUrl = await storageRef.getDownloadURL();
+  }
 
   void pickImage(context) {
     Get.dialog(AlertDialog(
@@ -67,7 +87,7 @@ class dispatchController extends GetxController
           children: [
             ListTile(
               onTap: () {
-                pickCameraImage(context);
+                pickedImageFromCamera(context);
                 Get.back();
               },
               title: Text('Camera'),
@@ -78,7 +98,7 @@ class dispatchController extends GetxController
             ),
             ListTile(
               onTap: () {
-                pickGalleryImage(context);
+                pickedImageFromGallery(context);
                 Get.back();
               },
               title: Text('Gallery'),
@@ -137,7 +157,7 @@ class dispatchController extends GetxController
     state.recievedByController.clear();
     state.nameController.clear();
     state.notificationToController.clear();
-    imagePath.value="";
+    // imagePath.value="";
   }
 
   getDateFromUser(BuildContext context) async {

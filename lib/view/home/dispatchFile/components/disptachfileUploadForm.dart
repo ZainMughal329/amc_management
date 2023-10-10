@@ -1,5 +1,3 @@
-
-
 import 'dart:io';
 import 'package:amc_management/view/home/dispatchFile/controller.dart';
 import 'package:flutter/material.dart';
@@ -82,41 +80,87 @@ class dispatchFileForm extends GetView<dispatchController> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Obx(
-                  () => Container(
-                  height: 200.w,
-                  width: 200.w,
-                  decoration: BoxDecoration(
+            GetBuilder<dispatchController>(builder:(controller){
+              return InkWell(
+                onTap: (){
+                  controller.pickImage(context);
+                },
+                child: Container(
+                    height: 200.h,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: controller.image == null
+                          ? AppColors.lightGrayColor
+                          : AppColors.primaryTextTextColor,
                       border: Border.all(
-                        color: Colors.black,
-                        width: 1.0,
-                      )
-                    //   image: DecorationImage(
-                    //       fit: BoxFit.cover,
-                    //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
-                  ),
-                  // decoration: BoxDecoration(
-                  //   image: DecorationImage(
-                  //       fit: BoxFit.cover,
-                  //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
-                  // ),
-                  child: controller.imagePath == ''
-                      ? Icon(Icons.file_copy)
-                      : Image(
-                      fit: BoxFit.cover,
-                      image: FileImage(File(controller
-                          .imagePath
-                          .toString())))),
-            ),
-            controller.imagePath == ''
-                ? Center(
-              child: TextButton(
-                  onPressed: () {
-                    controller.pickImage(context);
-                  },
-                  child: Text('Pick Image')),
-            )
-                : Container()
+                        color: controller.image == null
+                            ? AppColors.otpBackgroundColor
+                            : Colors.transparent,
+                        // width: 3.0,
+                      ),
+                    ),
+                    //  controller.imagePath == ''
+                    //                       ? Icon(Icons.file_copy)
+                    //                       : Image(
+                    //                       fit: BoxFit.cover,
+                    //                       image: FileImage(File(controller
+                    //                           .imagePath
+                    //                           .toString())))
+
+                    child:Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Column(
+                        children: [
+                          ClipRRect(
+                            // borderRadius: BorderRadius.circular(100.r),
+
+                            child: controller.image == null
+                                ? Icon(
+                              Icons.image,
+                              size: 50.sp,
+                              color: AppColors.primaryMaterialColor,
+                            )
+                                : Container(
+                              height: 185.h,
+                              width: double.infinity,
+                              child: Image.file(
+                                File(controller.image!.path)
+                                    .absolute,
+                                fit: BoxFit.fill,
+                              ),
+                            ),
+                          ),
+                          controller.image == null
+                              ? SizedBox(
+                            height: 10.h,
+                          )
+                              : SizedBox(),
+                          controller.image == null
+                              ? Text(
+                            "Tap to Upload Image",
+                            style: TextStyle(
+                                color: AppColors.lightGrayColor),
+                          )
+                              : Container(),
+                        ],
+
+                      )],
+
+                    )
+                ),
+              );
+
+            }),
+
+            // controller.imagePath == ''
+            //     ? Center(
+            //   child: TextButton(
+            //       onPressed: () {
+            //         controller.pickImage(context);
+            //       },
+            //       child: Text('Pick Image')),
+            // )
+            //     : Container()
           ],
         ),
         SizedBox(
@@ -190,11 +234,11 @@ class dispatchFileForm extends GetView<dispatchController> {
                   notificationTo: controller
                       .state.notificationToController.text
                       .trim(),
-                  image: controller.imagePath.toString());
+                  image: controller.image!.path.toString());
               controller.storeData(
                 dispatch,
                 context,
-                controller.imagePath.value.toString(),
+                controller.image!.path.toString(),
                 controller.state.nameController.text.trim(),
                 controller.state.recievedByController.text
                     .trim(),
@@ -210,3 +254,43 @@ class dispatchFileForm extends GetView<dispatchController> {
     );
   }
 }
+
+// void _showCustomDialog(
+//     BuildContext context, DispatchModel controller) {
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         title: Text('Choose an Option'),
+//         content: Column(
+//           mainAxisSize: MainAxisSize.min,
+//           children: <Widget>[
+//             ListTile(
+//               leading: Icon(Icons.camera),
+//               title: Text('Camera'),
+//               onTap: () {
+//                 Navigator.pop(context);
+//                 print("insdie camera code");
+//                 controller.pickedImageFromCamera(context);
+//
+//                 // Handle Camera onTap
+//                 // _handleCameraTap(context);
+//               },
+//             ),
+//             ListTile(
+//               leading: Icon(Icons.photo_library),
+//               title: Text('Gallery'),
+//               onTap: () {
+//                 Navigator.pop(context);
+//                 controller.pickedImageFromGallery(context);
+//                 // Handle Gallery onTap
+//                 // _handleGalleryTap(context);
+//               },
+//             ),
+//           ],
+//         ),
+//       );
+//     },
+//   );
+// }
+//
