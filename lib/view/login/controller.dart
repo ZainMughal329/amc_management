@@ -1,4 +1,5 @@
 import 'package:amc_management/view/login/state.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../model/services/session_Controller.dart';
@@ -18,15 +19,11 @@ class LoginController extends GetxController{
   LoginController();
   void LogIn(BuildContext context , String email,String password)async{
     try{
-      state.auth.signInWithEmailAndPassword(email: email, password: password).then((value){
+      state.auth.signInWithEmailAndPassword(email: email, password: password).then((value) async{
         SessionController().userid= value.user!.uid.toString();
-
-        // Get.offAllNamed(RouteNames.userView);
-         Get.off(
-             ()=>userView(
-               deptName:getuserId()['dept'] ,
-             )
-         );
+        state.deptName = await getuserDept(SessionController().userid.toString());
+        Get.offAll(()=>userView(deptName: state.deptName));
+        print(state.deptName.toString());
          state.emailController.clear();
          state.passwordController.clear();
       }).onError((error, stackTrace){
@@ -38,8 +35,11 @@ class LoginController extends GetxController{
   }
 
 
-  Future getuserId() async{
-     await  state.ref.collection('users').doc('id').get();
+  Future<String> getuserDept(String id) async{
+     DocumentSnapshot userData = await  state.ref.collection('users').doc(id).get();
+     String deptName = userData['dept'];
+     print(deptName.toString());
+     return deptName;
   }
 
 }

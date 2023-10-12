@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 class LoginState {
   Rx<bool> loading = false.obs;
   FirebaseAuth auth =FirebaseAuth.instance;
+  String deptName= '';
   final ref = FirebaseFirestore.instance;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();

@@ -141,8 +141,8 @@ class LoginView extends GetView<LoginController> {
                         } else {
                           LoginController().LogIn(
                               context,
-                              controller.state.emailController.text,
-                              controller.state.passwordController.text);
+                              controller.state.emailController.text.trim().toString(),
+                              controller.state.passwordController.text.trim().toString());
                         }
                       }
                     }),

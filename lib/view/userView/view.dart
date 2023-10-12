@@ -1,9 +1,13 @@
 
 
 
+import 'package:amc_management/model/services/session_Controller.dart';
+import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:amc_management/view/userView/controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../model/userModel/user_model.dart';
@@ -13,8 +17,10 @@ import '../../res/components/userApprovalPage.dart';
 class userView extends GetView<userViewController> {
   String deptName;
    userView({super.key,required this.deptName});
+   final controller = Get.put<userViewController>(userViewController());
   @override
   Widget build(BuildContext context) {
+    controller.state.dpName=deptName;
     final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
     return Scaffold(
       body:SafeArea(
@@ -32,10 +38,26 @@ class userView extends GetView<userViewController> {
                   child:
                   SingleChildScrollView(
                     child:   StreamBuilder<QuerySnapshot>(
-                        stream:controller.state.firestoreRef.where( 'dept',
-                            isEqualTo:deptName) ,
+                        stream:controller.state.firestoreRef.where( 'dept',isEqualTo: controller.state.dpName).snapshots() ,
                         builder: (BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
-                          return Text('wahba');
+                          return Column(
+                            children: [
+
+                              Center(child: Text('Wahab'+ controller.state.dpName.toString())),
+                              SizedBox(height: 100.h,),
+                            TextButton(
+                          onPressed: ()async{
+                            await FirebaseAuth.instance.signOut().then((value){
+                              SessionController().userid = '';
+                              Get.offAllNamed(RouteNames.loginview);
+                            }).onError((error, stackTrace){
+
+                            });
+                          },
+                              child: Text("Logout"),
+                          )
+                            ],
+                          );
                         }) ,
                   ),
                 ),

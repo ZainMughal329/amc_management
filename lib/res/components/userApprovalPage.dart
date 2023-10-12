@@ -32,7 +32,7 @@ class userApprovalPage extends StatelessWidget {
                 final auth = await FirebaseAuth.instance;
                 auth.signOut().then((value) {
                   Snackbar.showSnackBar("Sign-out", "Successfully");
-                  Get.offAndToNamed(RouteNames.loginview);
+                  Get.offAllNamed(RouteNames.loginview);
                 }).onError((error, stackTrace) {
                   Snackbar.showSnackBar("Error", error.toString());
                 });
@@ -45,7 +45,9 @@ class userApprovalPage extends StatelessWidget {
                   color: AppColors.primaryBackground,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: Center(child: Text('Logout', style: TextStyle(color: Colors.white,fontSize: 16.sp),)),
+                child: Center(
+                    child: Text('Logout', style: TextStyle(color: Colors.black,fontSize: 16.sp),)),
+
               ),
             )
           ],

@@ -3,8 +3,10 @@
 
 
 import 'dart:async';
+import 'package:amc_management/view/userView/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import '../../model/services/session_Controller.dart';
 import '../../utils/routes/routes_name.dart';
@@ -15,7 +17,7 @@ class SplashController extends GetxController{
     super.onInit();
     isLogin();
   }
-  void isLogin(){
+  void isLogin()async{
     // final Users =FirebaseFirestore.instance.collection('users');
     FirebaseAuth auth =FirebaseAuth.instance;
 
@@ -23,9 +25,11 @@ class SplashController extends GetxController{
     if(user!=null){
       //mean if uer is already login then it directly go to home screen app the splash screen
       SessionController().userid= user.uid.toString();
-      Timer(const Duration(milliseconds: 4000),()=> Get.offAllNamed(RouteNames.userView));
+      DocumentSnapshot userData = await  FirebaseFirestore.instance.collection('users').doc(user.uid.toString()).get();
+      String deptName = userData['dept'];
+      Timer(const Duration(milliseconds: 4000),()=> Get.off(userView(deptName: deptName)));
     }else{
-      Timer( const Duration(seconds: 3),()=> Get.toNamed(RouteNames.loginview));
+      Timer( const Duration(seconds: 3),()=> Get.offAllNamed(RouteNames.loginview));
     }
   }
 
