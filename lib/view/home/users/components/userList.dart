@@ -65,7 +65,7 @@ class userList extends GetView<userController> {
                         width: 40,
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(color: AppColors.primaryIconColor)
+                            border: Border.all(color: AppColors.lightActiveIconColor)
                         ),
                         child: snapshot.data!.docs[index]['profile'].toString()==""?
                         Icon(Icons.person_2_outlined):ClipRRect(

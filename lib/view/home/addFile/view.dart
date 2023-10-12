@@ -23,7 +23,7 @@ class addFileView extends GetView<addFileController> {
                 child: Align(
                     alignment: Alignment.topLeft,
                     child: CircleAvatar(
-                      backgroundColor: AppColors.primaryIconColor,
+                      backgroundColor: AppColors.lightActiveIconColor,
                       child: IconButton(
                           onPressed: (){
                             Get.back();
@@ -40,9 +40,9 @@ class addFileView extends GetView<addFileController> {
                     isScrollable: true,
                     labelPadding:
                     EdgeInsets.only(right: 20,left: 20),
-                    indicator: CircleTabIndicator(color: AppColors.primaryIconColor,radius: 4),
+                    indicator: CircleTabIndicator(color: AppColors.lightActiveIconColor,radius: 4),
                     controller: controller.tabController,
-                    labelColor: AppColors.lightGrayColor,
+                    labelColor: AppColors.unActiveTabElementColor,
                     unselectedLabelColor: Colors.grey,
                     tabs: [
                       Tab(

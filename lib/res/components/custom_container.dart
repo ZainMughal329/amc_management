@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 class ReuseContainer extends StatelessWidget {
   final String image;
@@ -23,7 +24,7 @@ class ReuseContainer extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
             color: color.withOpacity(0.7),
-            width: 2,
+            width: 2.w,
           ),
         ),
         child: Center(
@@ -42,7 +43,7 @@ class ReuseContainer extends StatelessWidget {
                 title,
                 style: TextStyle(
                   color: Colors.black,
-                  fontSize: 20,
+                  fontSize: 20.sp,
                 ),
 
               ),

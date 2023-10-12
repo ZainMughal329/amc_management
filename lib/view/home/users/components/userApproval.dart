@@ -31,10 +31,10 @@ class userApproval extends GetView<userController> {
                         height: 130.h,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: AppColors.lightGrayColor.withOpacity(0.1),
+                          color: AppColors.warningColor.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(15),
                           border: Border.all(
-                            color: AppColors.primaryTextTextColor.withOpacity(0.1),
+                            color: AppColors.lightTextFormFieldColor.withOpacity(0.1),
                           ),
                         ),
                         child: Column(
@@ -45,9 +45,9 @@ class userApproval extends GetView<userController> {
                                 height: 40.w,
                                 width: 40.w,
                                 decoration: BoxDecoration(
-                                  color: AppColors.lightGrayColor,
+                                  color: AppColors.unActiveIconColor,
                                   border: Border.all(
-                                    color: AppColors.primaryTextTextColor,
+                                    color: AppColors.lightActiveIconColor,
                                   ),
                                   borderRadius: BorderRadius.circular(50),
                                 ),
@@ -56,8 +56,8 @@ class userApproval extends GetView<userController> {
                                   child: snapshot.data!.docs[index]['profile'].toString() == ''
                                       ? Icon(
                                     Icons.person_outline,
-                                    size: 30.sp,
-                                    color: AppColors.primaryTextTextColor,
+                                    size: 30,
+                                    color: AppColors.lightActiveIconColor,
                                   )
                                       : Image(
                                     image: NetworkImage(
@@ -71,7 +71,7 @@ class userApproval extends GetView<userController> {
                               subtitle: Text(snapshot.data!.docs[index]['Email'].toString()),
                             ),
                             SizedBox(
-                              height: 20.h,
+                              height: 20,
                             ),
                             snapshot.data!.docs[index]['status']
                                 .toString() ==
@@ -94,7 +94,7 @@ class userApproval extends GetView<userController> {
                                         snapshot.data!.docs[index].id
                                             .toString());
                                   },
-                                  child: Text('Approve' , style: TextStyle(color: AppColors.primaryMaterialColor),),
+                                  child: Text('Approve' , style: TextStyle(color: AppColors.SuccessColor),),
                                 ),
                               ],
                             )

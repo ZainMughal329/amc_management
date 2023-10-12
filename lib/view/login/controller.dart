@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../model/services/session_Controller.dart';
 import '../../utils/routes/routes_name.dart';
+import '../userView/view.dart';
 class LoginController extends GetxController{
   @override
   void dispose() {
@@ -19,7 +20,13 @@ class LoginController extends GetxController{
     try{
       state.auth.signInWithEmailAndPassword(email: email, password: password).then((value){
         SessionController().userid= value.user!.uid.toString();
-         Get.offAllNamed(RouteNames.userView);
+
+        // Get.offAllNamed(RouteNames.userView);
+         Get.off(
+             ()=>userView(
+               deptName:getuserId()['dept'] ,
+             )
+         );
          state.emailController.clear();
          state.passwordController.clear();
       }).onError((error, stackTrace){
@@ -28,7 +35,11 @@ class LoginController extends GetxController{
     }catch(e){
       Get.snackbar('Error', e.toString());
     }
+  }
 
+
+  Future getuserId() async{
+     await  state.ref.collection('users').doc('id').get();
   }
 
 }

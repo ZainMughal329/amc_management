@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../colors.dart';
 class ReuseField extends StatelessWidget {
   ReuseField({super.key,
@@ -35,28 +36,28 @@ class ReuseField extends StatelessWidget {
              onFieldSubmitted: onFiledSubmittedValue,
             validator: onvalidator,
             keyboardType: keyboardType,
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 15),
+              style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 15.sp),
             decoration: InputDecoration(
               contentPadding: EdgeInsets.all(15),
               hintText: hint,
               enabled: enable,
               // prefixIcon: null,
               // suffixIcon: null,
-              hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(height:0,color: AppColors.primaryTextTextColor.withOpacity(0.8)),
+              hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(height:0,color: AppColors.lightTextColor.withOpacity(0.8)),
               border: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.textFieldDefaultFocus),
+                  borderSide: BorderSide(color: AppColors.errorColor),
                   borderRadius: BorderRadius.all(Radius.circular(8))
               ),
               focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.secondaryColor),
+                  borderSide: BorderSide(color: AppColors.lightTextColor),
                   borderRadius: BorderRadius.all(Radius.circular(8))
               ),
               focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.alertColor),
+                  borderSide: BorderSide(color: AppColors.errorColor),
                   borderRadius: BorderRadius.all(Radius.circular(8))
               ),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.textFieldDefaultBorderColor),
+                  borderSide: BorderSide(color: AppColors.warningColor),
                   borderRadius: BorderRadius.all(Radius.circular(8))
               ),
             ),

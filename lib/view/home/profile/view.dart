@@ -90,7 +90,7 @@ class profileView extends GetView<profileController> {
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border: Border.all(
-                                        color: AppColors.primaryTextTextColor,
+                                        color: AppColors.lightActiveIconColor,
                                       )),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
@@ -114,7 +114,7 @@ class profileView extends GetView<profileController> {
                                         return Container(
                                           child: Icon(
                                             Icons.error_outline,
-                                            color: AppColors.alertColor,
+                                            color: AppColors.errorColor,
                                           ),
                                         );
                                       },
@@ -138,7 +138,7 @@ class profileView extends GetView<profileController> {
                               },
                               child: CircleAvatar(
                                 radius: 14,
-                                backgroundColor: AppColors.primaryIconColor,
+                                backgroundColor: AppColors.lightActiveIconColor,
                                 child: Icon(
                                   Icons.add,size: 18,color: Colors.white,
                                 ),
@@ -232,12 +232,12 @@ class ReuseableRow extends StatelessWidget {
           ),
           leading: Icon(
             iconData,
-            color: AppColors.primaryIconColor,
+            color: AppColors.lightActiveIconColor,
           ),
           trailing: Text(value, style: Theme.of(context).textTheme.subtitle2),
         ),
         Divider(
-          color: AppColors.dividedColor.withOpacity(0.4),
+          color: AppColors.buttonBgColor.withOpacity(0.4),
         )
       ],
     );

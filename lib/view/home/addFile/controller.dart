@@ -56,7 +56,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
                 Get.back();
               },
               title: Text('Camera'),
-              leading: Icon(Icons.camera,color: AppColors.primaryIconColor,),
+              leading: Icon(Icons.camera,color: AppColors.lightActiveIconColor,),
             ),
             ListTile(
               onTap: (){
@@ -64,7 +64,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
                 Get.back();
               },
               title: Text('Gallery'),
-              leading: Icon(Icons.image,color: AppColors.primaryIconColor,),
+              leading: Icon(Icons.image,color: AppColors.lightActiveIconColor,),
             ),
           ],
         ),

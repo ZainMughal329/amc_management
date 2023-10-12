@@ -93,7 +93,7 @@ class dispatchController extends GetxController
               title: Text('Camera'),
               leading: Icon(
                 Icons.camera,
-                color: AppColors.primaryIconColor,
+                color: AppColors.lightActiveIconColor,
               ),
             ),
             ListTile(
@@ -104,7 +104,7 @@ class dispatchController extends GetxController
               title: Text('Gallery'),
               leading: Icon(
                 Icons.image,
-                color: AppColors.primaryIconColor,
+                color: AppColors.lightActiveIconColor,
               ),
             ),
           ],

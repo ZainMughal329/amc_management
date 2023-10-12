@@ -25,9 +25,9 @@ class userListView extends GetView<userController> {
                   isScrollable: true,
                   labelPadding:
                   EdgeInsets.only(right: 20,left: 20),
-                  indicator: CircleTabIndicator(color: AppColors.primaryIconColor,radius: 4),
+                  indicator: CircleTabIndicator(color: AppColors.lightActiveIconColor,radius: 4),
                   controller: controller.tabController,
-                  labelColor: AppColors.lightGrayColor,
+                  labelColor: AppColors.buttonBgColor,
                   unselectedLabelColor: Colors.grey,
                   tabs: [
                     Tab(

@@ -30,7 +30,7 @@ class dispatchView extends GetView<dispatchController> {
                   child: Align(
                       alignment: Alignment.topLeft,
                       child: CircleAvatar(
-                        backgroundColor: AppColors.primaryIconColor,
+                        backgroundColor: AppColors.lightActiveIconColor,
                         child: IconButton(
                             onPressed: () {
                               Get.back();
@@ -51,9 +51,9 @@ class dispatchView extends GetView<dispatchController> {
                       isScrollable: true,
                       labelPadding: EdgeInsets.only(right: 20, left: 20),
                       indicator: CircleTabIndicator(
-                          color: AppColors.primaryIconColor, radius: 4),
+                          color: AppColors.lightActiveIconColor, radius: 4),
                       controller: controller.tabController,
-                      labelColor: AppColors.lightGrayColor,
+                      labelColor: AppColors.unActiveIconColor,
                       unselectedLabelColor: Colors.grey,
                       tabs: [
                         Tab(
@@ -75,7 +75,7 @@ class dispatchView extends GetView<dispatchController> {
                   child: TabBarView(
                     controller: controller.tabController,
                     children: [
-                      SingleChildScrollView(child: dispatchFileForm()),
+                      dispatchFileForm(),
                       FileList()
                     ],
                   ),

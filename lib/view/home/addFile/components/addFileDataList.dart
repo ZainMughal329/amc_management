@@ -28,7 +28,6 @@ class addFileDataList extends GetView<addFileController> {
                                 from: snapshot.data!.docs[index]['From'])
 
                         );
-                       // Navigator.push(context, MaterialPageRoute(builder:);
                       },
                       child: Card(
                         child: Padding(padding: EdgeInsets.all(8.0),

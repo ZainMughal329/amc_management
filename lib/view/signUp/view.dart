@@ -14,16 +14,16 @@ class SignUpView extends GetView<SignupController> {
     return Obx(()=> Expanded(
       flex: 0,
       child: DropdownButton(
-        iconEnabledColor: AppColors.lightGrayColor,
-        dropdownColor: AppColors.otpBackgroundColor,
-        style: TextStyle(color: AppColors.primaryTextTextColor),
+        iconEnabledColor: AppColors.lightActiveIconColor,
+        dropdownColor: AppColors.lightBgColor,
+        style: TextStyle(color: AppColors.lightActiveIconColor),
         iconSize: 40.0.h,
         hint: controller.state.deptName.value==""?
         Text("selectDept",
-          style: TextStyle(color: AppColors.lightGrayColor),
+          style: TextStyle(color: AppColors.titleTextColor),
         ):Text(
           controller.state.deptName.value,
-          style: TextStyle(color: AppColors.lightGrayColor),
+          style: TextStyle(color: AppColors.subtitleTextColor),
         ),
         // value: controller.state.deptName.value,
         onChanged: (String? value){

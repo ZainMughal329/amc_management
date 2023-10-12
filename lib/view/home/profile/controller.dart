@@ -50,7 +50,7 @@ return FirebaseFirestore.instance.collection('users').doc(state.auth.currentUser
                   Navigator.pop(context);
                 },
                 title: Text('Camera'),
-                leading: Icon(Icons.camera,color: AppColors.primaryIconColor,),
+                leading: Icon(Icons.camera,color: AppColors.lightActiveIconColor,),
               ),
               ListTile(
                 onTap: (){
@@ -58,7 +58,7 @@ return FirebaseFirestore.instance.collection('users').doc(state.auth.currentUser
                   Navigator.pop(context);
                 },
                 title: Text('Gallery'),
-                leading: Icon(Icons.image,color: AppColors.primaryIconColor,),
+                leading: Icon(Icons.image,color: AppColors.lightActiveIconColor,),
               ),
             ],
           ),
@@ -118,7 +118,7 @@ return FirebaseFirestore.instance.collection('users').doc(state.auth.currentUser
         actions: [
           TextButton(onPressed: (){
             Navigator.pop(context);
-          }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.alertColor),)),
+          }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.warningColor),)),
           TextButton(onPressed: (){
             //this  code will update the name in database
             state.ref.collection('users').doc(state.auth.currentUser!.uid.toString()).update({
@@ -165,7 +165,7 @@ return FirebaseFirestore.instance.collection('users').doc(state.auth.currentUser
         actions: [
           TextButton(onPressed: (){
             Navigator.pop(context);
-          }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.alertColor),)),
+          }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.warningColor),)),
           TextButton(onPressed: (){
             //this  code will update the name in database
             state.ref.collection('users').doc(state.auth.currentUser!.uid.toString()).update({

@@ -14,16 +14,16 @@ class dispatchFileForm extends GetView<dispatchController> {
      return Obx(()=> Expanded(
        flex: 0,
        child: DropdownButton(
-         iconEnabledColor: AppColors.lightGrayColor,
-         dropdownColor: AppColors.otpBackgroundColor,
-         style: TextStyle(color: AppColors.primaryTextTextColor),
+         iconEnabledColor: AppColors.lightActiveIconColor,
+         dropdownColor: AppColors.lightBgColor,
+         style: TextStyle(color: AppColors.lightActiveIconColor),
          iconSize: 40.0.h,
          hint: controller.state.deptName.value==""?
          Text("selectDept",
-           style: TextStyle(color: AppColors.lightGrayColor),
+           style: TextStyle(color: AppColors.titleTextColor),
          ):Text(
            controller.state.deptName.value,
-           style: TextStyle(color: AppColors.lightGrayColor),
+           style: TextStyle(color: AppColors.subtitleTextColor),
          ),
          // value: controller.state.deptName.value,
          onChanged: (String? value){
@@ -90,11 +90,11 @@ class dispatchFileForm extends GetView<dispatchController> {
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: controller.image == null
-                          ? AppColors.lightGrayColor
-                          : AppColors.primaryTextTextColor,
+                          ? AppColors.unActiveTabElementColor
+                          : AppColors.lightActiveIconColor,
                       border: Border.all(
                         color: controller.image == null
-                            ? AppColors.otpBackgroundColor
+                            ? AppColors.errorColor
                             : Colors.transparent,
                         // width: 3.0,
                       ),
@@ -118,7 +118,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                                 ? Icon(
                               Icons.image,
                               size: 50.sp,
-                              color: AppColors.primaryMaterialColor,
+                              color: AppColors.lightActiveIconColor,
                             )
                                 : Container(
                               height: 185.h,
@@ -139,7 +139,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                               ? Text(
                             "Tap to Upload Image",
                             style: TextStyle(
-                                color: AppColors.lightGrayColor),
+                                color: AppColors.subtitleTextColor),
                           )
                               : Container(),
                         ],

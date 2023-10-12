@@ -13,7 +13,7 @@ class BigAppText extends StatelessWidget {
       style: TextStyle(
           fontWeight: FontWeight.bold,
           fontSize: size.toDouble(),
-          color: AppColors.lightGrayColor),
+          color: AppColors.lightActiveIconColor),
     );
   }
 }
@@ -43,50 +43,3 @@ class _CirclePainter extends BoxPainter {
   }
 }
 
-// class BigAppText extends StatelessWidget {
-//    final String text;
-//    final int size;
-//    BigAppText({super.key,
-//    required this.text,
-//      required this.size
-//    });
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Text(
-//       text,
-//       style: TextStyle(
-//         fontWeight: FontWeight.bold,
-//         fontSize: size.toDouble(),
-//         color: AppColors.lightGrayColor
-//       ),
-//     );
-//   }
-// }
-//
-// class CircleTabIndicator extends Decoration{
-//
-//   final Color color;
-//   double raduis;
-//
-//   CircleTabIndicator({
-//    required this.color,required this.raduis
-// });
-//
-//   @override
-//   BoxPainter createBoxPainter([VoidCallback? onChanged]) {
-//     return _CirclePainter(
-//       color:color,
-//       raduis:raduis
-//     );
-//   }}
-//
-// class _CirclePainter extends BoxPainter{
-//   final double radius;
-//   late Color color;
-//   _CirclePainter({
-//     required this.color,
-//     required
-// });
-// }
-//

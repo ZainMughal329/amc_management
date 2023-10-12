@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../colors.dart';
 class ReuseButton extends StatelessWidget {
   final String tittle;
@@ -6,8 +7,8 @@ class ReuseButton extends StatelessWidget {
   final VoidCallback onpress;
   final bool loading;
   ReuseButton({super.key,
-    this.color=AppColors.primaryTextTextColor,required this.tittle,required this.onpress,
-    this.textcolr=AppColors.whiteColor,
+    this.color=AppColors.lightActiveIconColor,required this.tittle,required this.onpress,
+    this.textcolr=AppColors.lightBgColor,
     this.loading=false
   });
   @override
@@ -15,7 +16,7 @@ class ReuseButton extends StatelessWidget {
     return InkWell(
       onTap: loading?null:onpress,
       child: Container(
-        height: 50,
+        height: 50.h,
         width: double.infinity,
         decoration: BoxDecoration(
             color: color,
@@ -23,7 +24,7 @@ class ReuseButton extends StatelessWidget {
         ),
         child: Center(
           child: loading ?Center(child: CircularProgressIndicator(color: Colors.white,)):Text(tittle,
-            style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16,color: textcolr),),
+            style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 16.sp,color: textcolr),),
         ),
       ),
     );();

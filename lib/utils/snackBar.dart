@@ -8,6 +8,6 @@ class Snackbar {
         colorText: Colors.black,
         snackPosition: SnackPosition.TOP,
         isDismissible: true,
-        backgroundColor: AppColors.lightGrayColor.withOpacity(0.2));
+        backgroundColor: AppColors.lightTextFormFieldColor.withOpacity(0.2));
   }
 }

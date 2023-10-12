@@ -92,7 +92,9 @@ class AppPages {
     binding: sendFileBindings()
     ),
 
-    GetPage(name: RouteNames.userView, page:()=>userView(),
+    GetPage(name: RouteNames.userView, page:()=>userView(
+      deptName: "",
+    ),
     binding: userViewBindings())
   ];
 }

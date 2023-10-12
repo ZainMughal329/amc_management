@@ -68,7 +68,6 @@ class SignupController extends GetxController
         .set(user.toJson())
         .whenComplete(() {
       Get.snackbar('msg', 'Successfully created account');
-
       Get.offAllNamed(RouteNames.userView);
     }).catchError((error, stackTrace) {
       Get.snackbar('msg', "Error occurred");

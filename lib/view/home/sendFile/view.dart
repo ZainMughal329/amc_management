@@ -51,27 +51,27 @@ class sendFile extends GetView<sendFileController> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: CircleAvatar(
-                                  backgroundColor: AppColors.primaryIconColor,
+                                  backgroundColor: AppColors.lightActiveIconColor,
                                   child: Icon(Icons.send,color:Colors.white),
                                 ),
                               ),
                             ),
                             hintText: 'enter your message',
-                            hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(height:0,color: AppColors.primaryTextTextColor.withOpacity(0.8)),
+                            hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(height:0,color: AppColors.titleTextColor.withOpacity(0.8)),
                             border: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.textFieldDefaultFocus),
+                                borderSide: BorderSide(color: AppColors.lightActiveIconColor),
                                 borderRadius: BorderRadius.all(Radius.circular(50))
                             ),
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.secondaryColor),
+                                borderSide: BorderSide(color: AppColors.unActiveIconColor),
                                 borderRadius: BorderRadius.all(Radius.circular(50))
                             ),
                             focusedErrorBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.alertColor),
+                                borderSide: BorderSide(color: AppColors.warningColor),
                                 borderRadius: BorderRadius.all(Radius.circular(50))
                             ),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: AppColors.textFieldDefaultBorderColor),
+                                borderSide: BorderSide(color: AppColors.lightTextFormFieldColor),
                                 borderRadius: BorderRadius.all(Radius.circular(50))
                             ),
 
