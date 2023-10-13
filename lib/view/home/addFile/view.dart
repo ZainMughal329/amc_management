@@ -1,5 +1,6 @@
 import 'package:amc_management/res/colors.dart';
 import 'package:amc_management/view/home/addFile/controller.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../../../res/components/tab_bar_setting.dart';
@@ -17,7 +18,7 @@ class addFileView extends GetView<addFileController> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
           child:Column(
             children: [
-              SizedBox(height: 20,),
+              SizedBox(height: 20.h,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Align(
@@ -32,7 +33,7 @@ class addFileView extends GetView<addFileController> {
                       )),
                     )),
               ),
-              SizedBox(height: 15,),
+              SizedBox(height: 15.h,),
               Container(
                 child: Align(
                   alignment: Alignment.topLeft,
@@ -55,8 +56,8 @@ class addFileView extends GetView<addFileController> {
                   ),
                 ),
               ),
-              SizedBox(height: 5,),
-                 Container(height: 598,
+              SizedBox(height: 5.h,),
+                 Container(height: 598.h,
                 width: double.infinity,
                   child: TabBarView(
                     controller: controller.tabController,

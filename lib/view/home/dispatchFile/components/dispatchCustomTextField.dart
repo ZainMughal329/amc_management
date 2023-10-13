@@ -3,6 +3,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class customTextField extends StatelessWidget {
   final String hintText;
@@ -29,13 +30,13 @@ class customTextField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       style: TextStyle(
-        fontSize: 16.0,
+        fontSize: 16.0.sp,
         color: Colors.black,
       ),
       decoration: InputDecoration(
 
         labelText: lableText,
-        labelStyle: TextStyle(color: Colors.grey,fontSize: 20,fontWeight: FontWeight.bold),
+        labelStyle: TextStyle(color: Colors.grey,fontSize: 20.sp,fontWeight: FontWeight.bold),
         prefixIcon: Icon(icon),
         suffixIcon: IconButton(
           onPressed: onPressSufix,
@@ -43,7 +44,7 @@ class customTextField extends StatelessWidget {
         ),
         hintText: hintText,
         hintStyle: TextStyle(
-          fontSize: 16.0,
+          fontSize: 16.0.sp,
           color: Colors.grey,
         ),
         contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),

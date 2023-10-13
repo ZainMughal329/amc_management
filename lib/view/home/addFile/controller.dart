@@ -71,9 +71,10 @@ class addFileController extends GetxController with GetSingleTickerProviderState
       ),
     ));
   }
-  Future<void> addFileOnFirebase(String name,String image,String date,String fileNum,String from,)async{
+  Future<void> addFileOnFirebase(String name,String dept,String image,String date,String fileNum,String from,)async{
     try{
       await state.ref.add({
+        'Dept':dept,
         'Image':image,
         'Name':name,
         'From':from,
@@ -92,9 +93,11 @@ class addFileController extends GetxController with GetSingleTickerProviderState
   }
   void storeData(
   AddFileModel addFile,
-      BuildContext context,String name ,String from,String image,String fileNum,String date,
+      BuildContext context,String name ,
+      String dept,
+      String from,String image,String fileNum,String date,
       )async{
-    addFileOnFirebase(name, image, date, fileNum, from).then((value){
+    addFileOnFirebase(name,dept, image, date, fileNum, from).then((value){
       clearDateFromScreen();
     });
   }

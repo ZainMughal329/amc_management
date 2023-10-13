@@ -210,7 +210,6 @@ class dispatchFileForm extends GetView<dispatchController> {
         SizedBox(
           height: 10.h,
         ),
-
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
