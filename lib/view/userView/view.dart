@@ -40,24 +40,28 @@ class userView extends GetView<userViewController> {
                     child:   StreamBuilder<QuerySnapshot>(
                         stream:controller.state.firestoreRef.where( 'dept',isEqualTo: controller.state.dpName).snapshots() ,
                         builder: (BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
-                          return Column(
-                            children: [
+                          if(snapshot.hasData){
+                            return snapshot.data!.docs.length !=0
+                                ?ListView.builder(
+                                itemCount: snapshot.data!.docs.length,
+                                itemBuilder: (context,index){
+                                  Card(
+                                    child:ListTile(
+                                      title: Text(snapshot.data!.docs[index]['Name'].toString()),
+                                      subtitle: Text(snapshot.data!.docs[index]['Date'].toString()),
+                                      trailing: Text(snapshot.data!.docs[index]['FileNum'.toString()]),
+                                    ) ,
+                                  );
+                            }):Container();
+                          }
+                          else if(snapshot.hasError){
+                          return  CircularProgressIndicator();
+                          }
+                          else{
+                           return Container();
+                          }
 
-                              Center(child: Text('Wahab'+ controller.state.dpName.toString())),
-                              SizedBox(height: 100.h,),
-                            TextButton(
-                          onPressed: ()async{
-                            await FirebaseAuth.instance.signOut().then((value){
-                              SessionController().userid = '';
-                              Get.offAllNamed(RouteNames.loginview);
-                            }).onError((error, stackTrace){
 
-                            });
-                          },
-                              child: Text("Logout"),
-                          )
-                            ],
-                          );
                         }) ,
                   ),
                 ),
@@ -146,4 +150,25 @@ class userView extends GetView<userViewController> {
 //                           height: 30,
 //                         ),
 //                       ],
-//                     )
+//
+//
+//
+//
+//                     Column(
+//                             children: [
+//
+//                               Center(child: Text('Wahab'+ controller.state.dpName.toString())),
+//                               SizedBox(height: 100.h,),
+//                             TextButton(
+//                           onPressed: ()async{
+//                             await FirebaseAuth.instance.signOut().then((value){
+//                               SessionController().userid = '';
+//                               Get.offAllNamed(RouteNames.loginview);
+//                             }).onError((error, stackTrace){
+//
+//                             });
+//                           },
+//                               child: Text("Logout"),
+//                           )
+//                             ],
+//                           ))

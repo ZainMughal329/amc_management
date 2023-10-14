@@ -157,6 +157,7 @@ class dispatchController extends GetxController
     state.recievedByController.clear();
     state.nameController.clear();
     state.notificationToController.clear();
+    state.deptName="".obs;
     // imagePath.value="";
   }
 

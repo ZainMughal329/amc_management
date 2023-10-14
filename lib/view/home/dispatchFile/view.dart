@@ -14,7 +14,6 @@ import 'index.dart';
 
 class dispatchView extends GetView<dispatchController> {
   const dispatchView({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

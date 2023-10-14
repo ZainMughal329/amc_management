@@ -120,6 +120,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     state.nameController.clear();
     state.filenoController.clear();
     imagePath.value="";
+    state.deptName="".obs;
   }
   Stream<DocumentSnapshot<Map<String,dynamic>>> getFIleData(){
     return state.ref.doc(state.auth.currentUser!.uid.toString()).snapshots();

@@ -2,7 +2,6 @@ import 'package:amc_management/view/userView/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-
 import '../../model/userModel/user_model.dart';
 class userViewController extends GetxController{
   final auth = FirebaseAuth.instance;

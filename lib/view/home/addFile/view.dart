@@ -18,7 +18,6 @@ class addFileView extends GetView<addFileController> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
           child:Column(
             children: [
-              SizedBox(height: 20.h,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Align(
@@ -56,7 +55,7 @@ class addFileView extends GetView<addFileController> {
                   ),
                 ),
               ),
-              SizedBox(height: 5.h,),
+              // SizedBox(height: 5.h,),
                  Container(height: 598.h,
                 width: double.infinity,
                   child: TabBarView(
