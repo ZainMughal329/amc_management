@@ -29,15 +29,18 @@ class userView extends GetView<userViewController> {
           if(snapshot.hasData){
             UserModel user =snapshot.data as UserModel;
             if(user.status=='true'){
-              return Scaffold(
+              return  Scaffold(
                 key: _scaffoldKey,
+                appBar: AppBar(
+                  title: Text('wahab')
+                ),
                 // add profile in drawer here
                 resizeToAvoidBottomInset: false,
-                backgroundColor: AppColors.primaryBackground,
+                // backgroundColor: AppColors.primaryBackground,
                 body: SafeArea(
                   child:
                   SingleChildScrollView(
-                    child:   StreamBuilder<QuerySnapshot>(
+                    child:StreamBuilder<QuerySnapshot>(
                         stream:controller.state.firestoreRef.where( 'dept',isEqualTo: controller.state.dpName).snapshots() ,
                         builder: (BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
                           if(snapshot.hasData){
@@ -45,14 +48,22 @@ class userView extends GetView<userViewController> {
                                 ?ListView.builder(
                                 itemCount: snapshot.data!.docs.length,
                                 itemBuilder: (context,index){
+                                  Text(deptName);
                                   Card(
                                     child:ListTile(
-                                      title: Text(snapshot.data!.docs[index]['Name'].toString()),
-                                      subtitle: Text(snapshot.data!.docs[index]['Date'].toString()),
-                                      trailing: Text(snapshot.data!.docs[index]['FileNum'.toString()]),
+                                      title: Text(snapshot.data!.docs[index]['Name'].toString(),
+                                      style: TextStyle(color: Colors.red,fontSize: 15),
+                                      ),
+                                      subtitle: Text(snapshot.data!.docs[index]['Date'].toString(),
+                                      style: TextStyle(color: Colors.purpleAccent,fontSize: 15),
+                                      ),
+                                      trailing: Text(snapshot.data!.docs[index]['FileNum'].toString(),
+                                      style: TextStyle(color: Colors.greenAccent,fontSize: 15),),
                                     ) ,
                                   );
-                            }):Container();
+                            }):Center(
+                              child: Icon(Icons.file_copy_outlined,size: 50,),
+                            );
                           }
                           else if(snapshot.hasError){
                           return  CircularProgressIndicator();

@@ -32,17 +32,12 @@ class AddFileModel {
   toJson() {
     return {
       // 'Id':id,
-      'Dept':dept,
+      'dept':dept,
       'Image': image,
       'Name': name,
       'From': from,
       'FileNum': filenum,
       'Date': date,
-      // 'pkgEndDate': pkgEndDate,
-      // 'pkgType': pkgType,
-      // 'Password': password,
-      // 'address': address,
-      // 'deviceToken': deviceToken,
     };
   }
 
@@ -51,18 +46,12 @@ class AddFileModel {
     final data = documentSnapshot.data()!;
     return AddFileModel(
       // id: data['Id'],
-      dept: data['Dept'],
+      dept: data['dept'],
       image:data['Image'],
       name: data['Name'],
       from: data['From'],
       filenum: data['FileNum'],
       date: data['Date'],
-      // pkgStartDate: data['pkgStartDate'],
-      // pkgEndDate: data['pkgEndDate'],
-      // pkgType: data['pkgType'],
-      // address: data['address'],
-      // password: data['Password'],
-      // deviceToken: data['deviceToken'],
     );
   }
 }
