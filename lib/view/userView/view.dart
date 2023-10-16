@@ -1,6 +1,3 @@
-
-
-
 import 'package:amc_management/model/services/session_Controller.dart';
 import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:amc_management/view/userView/controller.dart';
@@ -14,93 +11,188 @@ import '../../model/userModel/user_model.dart';
 import '../../res/colors.dart';
 import '../../res/components/bigAppText.dart';
 import '../../res/components/userApprovalPage.dart';
+
 class userView extends GetView<userViewController> {
   String deptName;
-   userView({super.key,required this.deptName});
-   final controller = Get.put<userViewController>(userViewController());
+
+  userView({super.key, required this.deptName});
+
+  final controller = Get.put<userViewController>(userViewController());
+
   @override
   Widget build(BuildContext context) {
-    controller.state.dpName=deptName;
-    final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+    controller.state.dpName = deptName;
+    final GlobalKey<ScaffoldState> _scaffoldKey =
+        new GlobalKey<ScaffoldState>();
     return Scaffold(
-      body:SafeArea(
-        child: FutureBuilder(future: controller.getUsersData(),
-            builder: (context,snapshot){
-          if(snapshot.hasData){
-            UserModel user =snapshot.data as UserModel;
-            if(user.status=='true'){
-              return  Scaffold(
-                key: _scaffoldKey,
-                appBar: AppBar(
-                  title: Text('wahab')
-                ),
-                // add profile in drawer here
-                resizeToAvoidBottomInset: false,
-                // backgroundColor: AppColors.primaryBackground,
-                body: SafeArea(
-                  child:
-                  SingleChildScrollView(
-                    child:StreamBuilder<QuerySnapshot>(
-                        stream:controller.state.firestoreRef.where( 'dept',isEqualTo: controller.state.dpName).snapshots() ,
-                        builder: (BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
-                          if(snapshot.hasData){
-                            return snapshot.data!.docs.length !=0
-                                ?ListView.builder(
-                                itemCount: snapshot.data!.docs.length,
-                                itemBuilder: (context,index){
-                                  Text(deptName);
-                                  Card(
-                                    child:ListTile(
-                                      title: Text(snapshot.data!.docs[index]['Name'].toString(),
-                                      style: TextStyle(color: Colors.red,fontSize: 15),
-                                      ),
-                                      subtitle: Text(snapshot.data!.docs[index]['Date'].toString(),
-                                      style: TextStyle(color: Colors.purpleAccent,fontSize: 15),
-                                      ),
-                                      trailing: Text(snapshot.data!.docs[index]['FileNum'].toString(),
-                                      style: TextStyle(color: Colors.greenAccent,fontSize: 15),),
-                                    ) ,
-                                  );
-                            }):Center(
-                              child: Icon(Icons.file_copy_outlined,size: 50,),
-                            );
-                          }
-                          else if(snapshot.hasError){
-                          return  CircularProgressIndicator();
-                          }
-                          else{
-                           return Container();
-                          }
+      appBar: AppBar(
+        title: Text('Wahab'),
+      ),
+      body:  SafeArea(
+                child: FutureBuilder(
+                    future: controller.getUsersData(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        UserModel user = snapshot.data as UserModel;
+                        if (user.status == "true") {
+                          return StreamBuilder<QuerySnapshot>(
+                              stream: controller.state.firestoreRef
+                                  .where('Dept',
+                                      isEqualTo: controller.state.dpName)
+                                  .snapshots(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                                if (snapshot.hasData) {
+                                  print('inside if');
+                                  print('length is' +
+                                      snapshot.data!.docs.length.toString());
+                                  return snapshot.data!.docs.length != 0
+                                      ?
+                                  ListView.builder(
+                                          itemCount:
+                                              snapshot.data!.docs.length,
+                                          itemBuilder: (context, index) {
+                                            print('length is1' +
+                                                snapshot.data!.docs.length
+                                                    .toString());
+                                            return Container(
+                                              height: 230.h,
+                                              child: Stack(
+                                                children: [
+                                                  Positioned(
+                                                      top: 35,
+                                                      left: 20,
+                                                      child: Material(
+                                                        child: Container(
+                                                          height: 180.0.h,
+                                                          // width: ,
+                                                          decoration: BoxDecoration(
+                                                            color: Colors.white,
+                                                            borderRadius: BorderRadius.circular(0.0),
+                                                            boxShadow: [
+                                                              BoxShadow(
+                                                                color: Colors.grey.withOpacity(0.3),
+                                                                  offset: Offset(-10.0, 10.0),
+                                                                  blurRadius: 20.0,
+                                                                  spreadRadius: 4.0 // Extent of the shadow
+                                                              ),
+                                                            ],
 
+                                                          ),
+                                                        ),
+                                                      )),
+                                                  Positioned(
+                                                       top: 0,
+                                                      left: 30,
+                                                      child:Card(
+                                                        elevation: 10.0,
+                                                        shadowColor: Colors.grey.withOpacity(0.5),
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(15.0)
+                                                        ),
+                                                        child: Container(
+                                                          height: 200.h,
+                                                          width: 150.w,
+                                                          decoration: BoxDecoration(
+                                                              borderRadius: BorderRadius.circular(10.0),
+                                                              image: DecorationImage(
+                                                                fit: BoxFit.fill,
+                                                                image: AssetImage(""),)
+                                                          ),
+                                                        ),
+                                                      ) ),
+                                                  Positioned(
+                                                      top: 60,
+                                                      left: 220,
+                                                      child: Container(
+                                                        height: 150.h,
+                                                        width: 160.w,
+                                                        child: Column(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            Text(snapshot.data!.docs[index]['Name']
+                                                                .toString(),style: TextStyle(
+                                                                fontSize: 20,
+                                                                color: Color(0xFF363f93),
+                                                                fontWeight: FontWeight.bold
+                                                            ),),
+                                                            Text(
+                                                              snapshot.data!.docs[index]['FileNum'].toString(),
+                                                              style: TextStyle(
+                                                                fontSize: 16,
+                                                                color: Colors.grey,
+                                                                fontWeight: FontWeight.bold
+                                                            ),),
+                                                            Divider(color: Colors.black,),
+                                                            Text(
+                                                              snapshot.data!.docs[index]['Date'].toString(),
+                                                              style: TextStyle(
+                                                                fontSize: 16,
+                                                                color: Colors.grey,
+                                                                fontWeight: FontWeight.bold
+                                                            ),),
 
-                        }) ,
-                  ),
-                ),
-
-
-              );
-            }else{
-              return userApprovalPage();
-            }
-
-          }else{
-            return Scaffold(
-              body: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator()
-                ],
+                                                          ],
+                                                        ),
+                                                      ))
+                                                ],
+                                              ),
+                                            ) ;
+                                          })
+                                      : Center(
+                                          child: Icon(
+                                            Icons.file_copy_outlined,
+                                            size: 50,
+                                          ),
+                                        );
+                                } else if (snapshot.hasError) {
+                                  return CircularProgressIndicator();
+                                } else {
+                                  return Container();
+                                }
+                              });
+                        } else {
+                          return userApprovalPage();
+                        }
+                      } else {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [CircularProgressIndicator()],
+                        );
+                      }
+                    }),
               ),
-            );
-          }
-            }
-            ),
-      )
+    //   Card(
+      //                                               child: ListTile(
+      //                                                 title: Text(
+      //                                                   snapshot.data!.docs[index]['Name']
+      //                                                       .toString(),
+      //                                                   style: TextStyle(
+      //                                                       color: Colors.red,
+      //                                                       fontSize: 15),
+      //                                                 ),
+      //                                                 subtitle: Text(
+      //                                                   snapshot.data!.docs[index]['Date']
+      //                                                       .toString(),
+      //                                                   style: TextStyle(
+      //                                                       color: Colors.purpleAccent,
+      //                                                       fontSize: 15),
+      //                                                 ),
+      //                                                 trailing: Text(
+      //                                                   snapshot
+      //                                                       .data!.docs[index]['FileNum']
+      //                                                       .toString(),
+      //                                                   style: TextStyle(
+      //                                                       color: Colors.greenAccent,
+      //                                                       fontSize: 15),
+      //                                                 ),
+      //                                               ),
+      //                                             )
+
     );
   }
 }
-
 
 //Column(
 //                       crossAxisAlignment: CrossAxisAlignment.start,

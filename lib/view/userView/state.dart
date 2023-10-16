@@ -7,6 +7,6 @@ class userViewState{
   String dpName='';
   FirebaseAuth auth =FirebaseAuth.instance;
   final ref = FirebaseFirestore.instance;
-  final firestoreRef = FirebaseFirestore.instance.collection('addFile');
-  final getDataRef = FirebaseFirestore.instance.collection('addFile').snapshots();
+  final firestoreRef = FirebaseFirestore.instance.collection('addFiles');
+  final getDataRef = FirebaseFirestore.instance.collection('addFiles').snapshots();
 }

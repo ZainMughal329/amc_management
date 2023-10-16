@@ -154,8 +154,8 @@ import 'addFileCustomField.dart';class addFileForm extends GetView<addFileContro
             // id: DateTime.now().toString()
           );
           controller.storeData(addFile, context, controller.state.nameController.text.trim(),
+              controller.state.deptName.toString().trim(),
               controller.state.fromController.text.trim(),
-            controller.state.deptName.toString().trim(),
               controller.imagePath.toString(),
               controller.state.filenoController.text.trim(),
               controller.state.dateController.text.trim(),
