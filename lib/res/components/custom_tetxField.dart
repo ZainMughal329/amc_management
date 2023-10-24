@@ -4,25 +4,33 @@ import '../colors.dart';
 class ReuseField extends StatelessWidget {
   ReuseField({super.key,
     required this.myController,
-    // required this.focusNode,
+    this.lableText='',
+    this.focusNode,
+    this.suffixIcon,
+    this.prefixIcon,
     required this.onFiledSubmittedValue,
     required this.keyboardType,
-    required this.obsecureText,
-    required this.hint,
+    this.obsecureText=true,
+    this.onPressSufix,
+    // this.onPressPre,
     this.enable=true,
     required this.onvalidator,
     this.autoFocous=false
   });
   final TextEditingController myController;
-  // final FocusNode focusNode;
+  final FocusNode? focusNode;
+  final  String lableText;
    final FormFieldSetter onFiledSubmittedValue;
+  final Icon? prefixIcon;
+  final IconData? suffixIcon;
+  // final VoidCallback? onPressPre;
+  final VoidCallback? onPressSufix;
   final FormFieldValidator onvalidator;
   final TextInputType keyboardType;
-  final String hint;
-  final bool obsecureText;
+  // final String hint;
+    bool obsecureText;
   final bool enable ,autoFocous;
-  // IconData? prefixIcon;
-  // IconData? suffixIcon;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,34 +39,38 @@ class ReuseField extends StatelessWidget {
         children: [
           TextFormField(
             controller:  myController,
-            // focusNode: focusNode,
+             focusNode: focusNode,
             obscureText: obsecureText,
              onFieldSubmitted: onFiledSubmittedValue,
             validator: onvalidator,
             keyboardType: keyboardType,
               style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 15.sp),
             decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: onPressSufix,
+                icon: Icon(suffixIcon,color: Colors.grey,),
+              ),
+              prefixIcon: Icon(suffixIcon),
+              labelText: lableText,
               contentPadding: EdgeInsets.all(15),
-              hintText: hint,
+              // hintText: hint,
               enabled: enable,
-              // prefixIcon: null,
-              // suffixIcon: null,
-              hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(height:0,color: AppColors.lightTextColor.withOpacity(0.8)),
+              // hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(height:0,color: AppColors.lightTextColor.withOpacity(0.8)),
               border: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.errorColor),
-                  borderRadius: BorderRadius.all(Radius.circular(8))
+                  // borderSide: BorderSide(color: AppColors.errorColor),
+                  borderRadius: BorderRadius.circular(10)
               ),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.lightTextColor),
-                  borderRadius: BorderRadius.all(Radius.circular(8))
-              ),
-              focusedErrorBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.errorColor),
-                  borderRadius: BorderRadius.all(Radius.circular(8))
-              ),
+              // focusedBorder: OutlineInputBorder(
+              //     borderSide: BorderSide(color: AppColors.lightTextColor),
+              //     borderRadius: BorderRadius.all(Radius.circular(8))
+              // ),
+              // focusedErrorBorder: OutlineInputBorder(
+              //     borderSide: BorderSide(color: AppColors.errorColor),
+              //     borderRadius: BorderRadius.all(Radius.circular(8))
+              // ),
               enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.warningColor),
-                  borderRadius: BorderRadius.all(Radius.circular(8))
+                  // borderSide: BorderSide(color: AppColors.warningColor),
+                  borderRadius: BorderRadius.circular(10)
               ),
             ),
           ),

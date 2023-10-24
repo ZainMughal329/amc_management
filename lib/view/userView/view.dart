@@ -14,11 +14,8 @@ import '../../res/components/userApprovalPage.dart';
 
 class userView extends GetView<userViewController> {
   String deptName;
-
   userView({super.key, required this.deptName});
-
   final controller = Get.put<userViewController>(userViewController());
-
   @override
   Widget build(BuildContext context) {
     controller.state.dpName = deptName;
@@ -55,6 +52,9 @@ class userView extends GetView<userViewController> {
                                             print('length is1' +
                                                 snapshot.data!.docs.length
                                                     .toString());
+                                            final tittle = snapshot.data!.docs[index]['Name']
+                                                .toString();
+
                                             return Container(
                                               height: 230.h,
                                               child: Stack(
@@ -71,7 +71,7 @@ class userView extends GetView<userViewController> {
                                                             borderRadius: BorderRadius.circular(0.0),
                                                             boxShadow: [
                                                               BoxShadow(
-                                                                color: Colors.grey.withOpacity(0.3),
+                                                                  color: Colors.grey.withOpacity(0.3),
                                                                   offset: Offset(-10.0, 10.0),
                                                                   blurRadius: 20.0,
                                                                   spreadRadius: 4.0 // Extent of the shadow
@@ -82,7 +82,7 @@ class userView extends GetView<userViewController> {
                                                         ),
                                                       )),
                                                   Positioned(
-                                                       top: 0,
+                                                      top: 0,
                                                       left: 30,
                                                       child:Card(
                                                         elevation: 10.0,
@@ -97,7 +97,7 @@ class userView extends GetView<userViewController> {
                                                               borderRadius: BorderRadius.circular(10.0),
                                                               image: DecorationImage(
                                                                 fit: BoxFit.fill,
-                                                                image: AssetImage(""),)
+                                                                image: AssetImage(snapshot.data!.docs[index]['Image']),)
                                                           ),
                                                         ),
                                                       ) ),
@@ -119,25 +119,202 @@ class userView extends GetView<userViewController> {
                                                             Text(
                                                               snapshot.data!.docs[index]['FileNum'].toString(),
                                                               style: TextStyle(
-                                                                fontSize: 16,
-                                                                color: Colors.grey,
-                                                                fontWeight: FontWeight.bold
-                                                            ),),
+                                                                  fontSize: 16,
+                                                                  color: Colors.grey,
+                                                                  fontWeight: FontWeight.bold
+                                                              ),),
                                                             Divider(color: Colors.black,),
                                                             Text(
                                                               snapshot.data!.docs[index]['Date'].toString(),
                                                               style: TextStyle(
-                                                                fontSize: 16,
-                                                                color: Colors.grey,
-                                                                fontWeight: FontWeight.bold
-                                                            ),),
+                                                                  fontSize: 16,
+                                                                  color: Colors.grey,
+                                                                  fontWeight: FontWeight.bold
+                                                              ),),
 
                                                           ],
                                                         ),
                                                       ))
                                                 ],
                                               ),
-                                            ) ;
+                                            );
+
+
+                                            // if(controller.state.searchController.text.isEmpty){
+                                            //   return Container(
+                                            //     height: 230.h,
+                                            //     child: Stack(
+                                            //       children: [
+                                            //         Positioned(
+                                            //             top: 35,
+                                            //             left: 20,
+                                            //             child: Material(
+                                            //               child: Container(
+                                            //                 height: 180.0.h,
+                                            //                 // width: ,
+                                            //                 decoration: BoxDecoration(
+                                            //                   color: Colors.white,
+                                            //                   borderRadius: BorderRadius.circular(0.0),
+                                            //                   boxShadow: [
+                                            //                     BoxShadow(
+                                            //                         color: Colors.grey.withOpacity(0.3),
+                                            //                         offset: Offset(-10.0, 10.0),
+                                            //                         blurRadius: 20.0,
+                                            //                         spreadRadius: 4.0 // Extent of the shadow
+                                            //                     ),
+                                            //                   ],
+                                            //
+                                            //                 ),
+                                            //               ),
+                                            //             )),
+                                            //         Positioned(
+                                            //             top: 0,
+                                            //             left: 30,
+                                            //             child:Card(
+                                            //               elevation: 10.0,
+                                            //               shadowColor: Colors.grey.withOpacity(0.5),
+                                            //               shape: RoundedRectangleBorder(
+                                            //                   borderRadius: BorderRadius.circular(15.0)
+                                            //               ),
+                                            //               child: Container(
+                                            //                 height: 200.h,
+                                            //                 width: 150.w,
+                                            //                 decoration: BoxDecoration(
+                                            //                     borderRadius: BorderRadius.circular(10.0),
+                                            //                     image: DecorationImage(
+                                            //                       fit: BoxFit.fill,
+                                            //                       image: AssetImage(snapshot.data!.docs[index]['Image']),)
+                                            //                 ),
+                                            //               ),
+                                            //             ) ),
+                                            //         Positioned(
+                                            //             top: 60,
+                                            //             left: 220,
+                                            //             child: Container(
+                                            //               height: 150.h,
+                                            //               width: 160.w,
+                                            //               child: Column(
+                                            //                 crossAxisAlignment: CrossAxisAlignment.start,
+                                            //                 children: [
+                                            //                   Text(snapshot.data!.docs[index]['Name']
+                                            //                       .toString(),style: TextStyle(
+                                            //                       fontSize: 20,
+                                            //                       color: Color(0xFF363f93),
+                                            //                       fontWeight: FontWeight.bold
+                                            //                   ),),
+                                            //                   Text(
+                                            //                     snapshot.data!.docs[index]['FileNum'].toString(),
+                                            //                     style: TextStyle(
+                                            //                         fontSize: 16,
+                                            //                         color: Colors.grey,
+                                            //                         fontWeight: FontWeight.bold
+                                            //                     ),),
+                                            //                   Divider(color: Colors.black,),
+                                            //                   Text(
+                                            //                     snapshot.data!.docs[index]['Date'].toString(),
+                                            //                     style: TextStyle(
+                                            //                         fontSize: 16,
+                                            //                         color: Colors.grey,
+                                            //                         fontWeight: FontWeight.bold
+                                            //                     ),),
+                                            //
+                                            //                 ],
+                                            //               ),
+                                            //             ))
+                                            //       ],
+                                            //     ),
+                                            //   );
+                                            // }
+                                            // else if(tittle.toLowerCase().contains(controller.state.searchController.text.toLowerCase().toLowerCase())){
+                                            //   return Container(
+                                            //     height: 230.h,
+                                            //     child: Stack(
+                                            //       children: [
+                                            //         Positioned(
+                                            //             top: 35,
+                                            //             left: 20,
+                                            //             child: Material(
+                                            //               child: Container(
+                                            //                 height: 180.0.h,
+                                            //                 // width: ,
+                                            //                 decoration: BoxDecoration(
+                                            //                   color: Colors.white,
+                                            //                   borderRadius: BorderRadius.circular(0.0),
+                                            //                   boxShadow: [
+                                            //                     BoxShadow(
+                                            //                         color: Colors.grey.withOpacity(0.3),
+                                            //                         offset: Offset(-10.0, 10.0),
+                                            //                         blurRadius: 20.0,
+                                            //                         spreadRadius: 4.0 // Extent of the shadow
+                                            //                     ),
+                                            //                   ],
+                                            //
+                                            //                 ),
+                                            //               ),
+                                            //             )),
+                                            //         Positioned(
+                                            //             top: 0,
+                                            //             left: 30,
+                                            //             child:Card(
+                                            //               elevation: 10.0,
+                                            //               shadowColor: Colors.grey.withOpacity(0.5),
+                                            //               shape: RoundedRectangleBorder(
+                                            //                   borderRadius: BorderRadius.circular(15.0)
+                                            //               ),
+                                            //               child: Container(
+                                            //                 height: 200.h,
+                                            //                 width: 150.w,
+                                            //                 decoration: BoxDecoration(
+                                            //                     borderRadius: BorderRadius.circular(10.0),
+                                            //                     image: DecorationImage(
+                                            //                       fit: BoxFit.fill,
+                                            //                       image: AssetImage(""),)
+                                            //                 ),
+                                            //               ),
+                                            //             ) ),
+                                            //         Positioned(
+                                            //             top: 60,
+                                            //             left: 220,
+                                            //             child: Container(
+                                            //               height: 150.h,
+                                            //               width: 160.w,
+                                            //               child: Column(
+                                            //                 crossAxisAlignment: CrossAxisAlignment.start,
+                                            //                 children: [
+                                            //                   Text(snapshot.data!.docs[index]['Name']
+                                            //                       .toString(),style: TextStyle(
+                                            //                       fontSize: 20,
+                                            //                       color: Color(0xFF363f93),
+                                            //                       fontWeight: FontWeight.bold
+                                            //                   ),),
+                                            //                   Text(
+                                            //                     snapshot.data!.docs[index]['FileNum'].toString(),
+                                            //                     style: TextStyle(
+                                            //                         fontSize: 16,
+                                            //                         color: Colors.grey,
+                                            //                         fontWeight: FontWeight.bold
+                                            //                     ),),
+                                            //                   Divider(color: Colors.black,),
+                                            //                   Text(
+                                            //                     snapshot.data!.docs[index]['Date'].toString(),
+                                            //                     style: TextStyle(
+                                            //                         fontSize: 16,
+                                            //                         color: Colors.grey,
+                                            //                         fontWeight: FontWeight.bold
+                                            //                     ),),
+                                            //
+                                            //                 ],
+                                            //               ),
+                                            //             ))
+                                            //       ],
+                                            //     ),
+                                            //   );
+                                            //
+                                            // }
+                                            // else{
+                                            //   return Container()  ;
+                                            // }
+
                                           })
                                       : Center(
                                           child: Icon(
@@ -193,6 +370,9 @@ class userView extends GetView<userViewController> {
     );
   }
 }
+
+
+
 
 //Column(
 //                       crossAxisAlignment: CrossAxisAlignment.start,

@@ -10,8 +10,7 @@ class LoginState {
   final ref = FirebaseFirestore.instance;
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final passwordfocous = FocusNode();
+  RxBool  obscurepassword = true.obs;
   final Emailfocousnode = FocusNode();
   final Passwordfocusnode=FocusNode();
-  final usernamefocousnode=FocusNode();
 }
