@@ -26,9 +26,7 @@ class dispatchController extends GetxController
     // TODO: implement onInit
     super.onInit();
     tabController = TabController(length: 2, vsync: this);
-    // state.selectedDate;
   }
-   // RxString imagePath = ''.obs;
   final picker =ImagePicker();
   XFile? _image;
   XFile? get image=>_image;
@@ -158,6 +156,7 @@ class dispatchController extends GetxController
     state.nameController.clear();
     state.notificationToController.clear();
     state.deptName="".obs;
+    // image=null;
     // imagePath.value="";
   }
 

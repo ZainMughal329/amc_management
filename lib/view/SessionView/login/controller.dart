@@ -4,7 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../model/services/session_Controller.dart';
-import '../../userView/view.dart';
+import '../../../utils/routes/routes.dart';
+import '../../userView/index.dart';
 class LoginController extends GetxController{
   @override
   void dispose() {

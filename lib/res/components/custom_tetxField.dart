@@ -50,7 +50,7 @@ class ReuseField extends StatelessWidget {
                 onPressed: onPressSufix,
                 icon: Icon(suffixIcon,color: Colors.grey,),
               ),
-              prefixIcon: Icon(suffixIcon),
+              prefixIcon: prefixIcon,
               labelText: lableText,
               contentPadding: EdgeInsets.all(15),
               // hintText: hint,

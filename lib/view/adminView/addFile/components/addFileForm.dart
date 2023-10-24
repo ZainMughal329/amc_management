@@ -80,31 +80,101 @@ import 'addFileCustomField.dart';class addFileForm extends GetView<addFileContro
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              GetBuilder<addFileController>(builder: (controller){
+                return InkWell(
+                  onTap: (){
+                    controller.pickImage(context);
+                  },
+                  child: Container(
+                      height: 200.h,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: controller.image == null
+                            ? AppColors.unActiveTabElementColor
+                            : AppColors.lightActiveIconColor,
+                        border: Border.all(
+                          color: controller.image == null
+                              ? AppColors.errorColor
+                              : Colors.transparent,
+                          // width: 3.0,
+                        ),
+                      ),
+                      //  controller.imagePath == ''
+                      //                       ? Icon(Icons.file_copy)
+                      //                       : Image(
+                      //                       fit: BoxFit.cover,
+                      //                       image: FileImage(File(controller
+                      //                           .imagePath
+                      //                           .toString())))
 
-              Obx(()=>Container(
-                  height: 200.h,
-                  width: 200.w,
+                      child:Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [Column(
+                          children: [
+                            ClipRRect(
+                              // borderRadius: BorderRadius.circular(100.r),
 
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 1.0,
+                              child: controller.image == null
+                                  ? Icon(
+                                Icons.image,
+                                size: 50.sp,
+                                color: AppColors.lightActiveIconColor,
+                              )
+                                  : Container(
+                                height: 185.h,
+                                width: double.infinity,
+                                child: Image.file(
+                                  File(controller.image!.path)
+                                      .absolute,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                            ),
+                            controller.image == null
+                                ? SizedBox(
+                              height: 10.h,
+                            )
+                                : SizedBox(),
+                            controller.image == null
+                                ? Text(
+                              "Tap to Upload Image",
+                              style: TextStyle(
+                                  color: AppColors.subtitleTextColor),
+                            )
+                                : Container(),
+                          ],
+
+                        )],
+
                       )
-                    //   image: DecorationImage(
-                    //       fit: BoxFit.cover,
-                    //       image: controller.imagePath.isNotEmpty?FileImage(File(controller.imagePath.toString())))
                   ),
-                  child: controller.imagePath == ''
-                      ? Icon(Icons.image)
-                      : Image(
-                      fit: BoxFit.cover,
-                      image: FileImage(
-                          File(controller.imagePath.toString())))),),
-              controller.imagePath == '' ? Center(
-                child: TextButton(onPressed: (){
-                  controller.pickImage(context);
-                }, child: Text('Pick Image')),
-              ) : Container(),
+                );
+
+              })
+
+
+              // Obx(()=>Container(
+              //     height: 200.h,
+              //     width: 200.w,
+              //
+              //     decoration: BoxDecoration(
+              //         border: Border.all(
+              //           color: Colors.black,
+              //           width: 1.0,
+              //         )
+              //
+              //     ),
+              //     child: controller.image == null
+              //         ? Icon(Icons.image)
+              //         : Image(
+              //         fit: BoxFit.cover,
+              //         image: FileImage(
+              //             File(controller.imagePath.toString())))),),
+              // controller.imagePath == '' ? Center(
+              //   child: TextButton(onPressed: (){
+              //     controller.pickImage(context);
+              //   }, child: Text('Pick Image')),
+              // ) : Container(),
             ],
           );
         }),
@@ -150,13 +220,13 @@ import 'addFileCustomField.dart';class addFileForm extends GetView<addFileContro
               date: controller.state.dateController.text.trim(),
               from: controller.state.fromController.text.trim(),
               filenum: controller.state.filenoController.text.trim(),
-              image: controller.imagePath.toString(),
+              image:controller.image!.path.toString(),
             // id: DateTime.now().toString()
           );
           controller.storeData(addFile, context, controller.state.nameController.text.trim(),
               controller.state.deptName.toString().trim(),
               controller.state.fromController.text.trim(),
-              controller.imagePath.toString(),
+            controller.image!.path.toString(),
               controller.state.filenoController.text.trim(),
               controller.state.dateController.text.trim(),
             // controller.fileId.toString().trim(),

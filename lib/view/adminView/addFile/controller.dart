@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:amc_management/view/adminView/addFile/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,22 +30,38 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     super.onInit();
     tabController = TabController(length: 2, vsync: this);
   }
-  RxString imagePath =''.obs;
-  // final fileId=DateTime.now().toString().obs;
+  final picker =ImagePicker();
+  XFile? _image;
+  XFile? get image=>_image;
+  // RxString imagePath =''.obs;
+
+
+
   Future pickCameraImage(BuildContext context)async{
-    final ImagePicker _picker = ImagePicker();
-    final image = await _picker.pickImage(source: ImageSource.camera);
+    // final ImagePicker _picker = ImagePicker();
+    final image = await picker.pickImage(source: ImageSource.camera,imageQuality: 100);
     if(image!=null){
-      imagePath.value  = image.path.toString();
+      _image = XFile(image.path);
+      update();
+      // imagePath.value  = image.path.toString();
     }
   }
   Future pickGalleryImage(BuildContext context)async{
-    final ImagePicker _picker = ImagePicker();
-    final image = await _picker.pickImage(source: ImageSource.gallery);
+
+    final image = await picker.pickImage(source: ImageSource.gallery,imageQuality: 100);
     if(image!=null){
-      imagePath.value=image.path.toString();
+      _image = XFile(image.path);
+      update();
     }
   }
+
+  Future uploadimageonDatabase (String timeStamp) async{
+    firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/addFile'+timeStamp);
+    firebase_storage.UploadTask uploadTask =storageRef.putFile(File(image!.path).absolute);
+    await Future.value(uploadTask);
+    // final newUrl = await storageRef.getDownloadURL();
+  }
+
   void pickImage(context){
 
     Get.dialog(AlertDialog(
@@ -119,7 +138,6 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     state.fromController.clear();
     state.nameController.clear();
     state.filenoController.clear();
-    imagePath.value="";
     state.deptName="".obs;
   }
   Stream<DocumentSnapshot<Map<String,dynamic>>> getFIleData(){

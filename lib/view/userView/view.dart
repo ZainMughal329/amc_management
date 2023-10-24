@@ -1,17 +1,12 @@
-import 'package:amc_management/model/services/session_Controller.dart';
-import 'package:amc_management/utils/routes/routes_name.dart';
-import 'package:amc_management/view/userView/controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../model/userModel/user_model.dart';
-import '../../res/colors.dart';
-import '../../res/components/bigAppText.dart';
-import '../../res/components/userApprovalPage.dart';
-
+import '../../../model/userModel/user_model.dart';
+import '../../../res/components/userApprovalPage.dart';
+import '../../model/services/session_Controller.dart';
+import '../../utils/routes/routes_name.dart';
+import 'index.dart';
 class userView extends GetView<userViewController> {
   String deptName;
   userView({super.key, required this.deptName});
@@ -23,7 +18,24 @@ class userView extends GetView<userViewController> {
         new GlobalKey<ScaffoldState>();
     return Scaffold(
       appBar: AppBar(
-        title: Text('Wahab'),
+        title: Text('GAMC DOC',
+        style: TextStyle(fontWeight: FontWeight.bold,
+        fontSize: 25,color: Colors.lightBlue
+        ),
+        ),
+        actions: [
+          IconButton(onPressed: (){
+            Get.toNamed(RouteNames.profileview);
+          }, icon: Icon(Icons.person_outline)),
+          IconButton(onPressed: (){
+    controller.state.auth.signOut().then((value){
+      SessionController().userid='';
+      Get.to(RouteNames.loginview);
+    }).onError((error, stackTrace){
+      Get.snackbar('Error', error.toString());
+    });
+          }, icon: Icon(Icons.logout_outlined))
+        ],
       ),
       body:  SafeArea(
                 child: FutureBuilder(
@@ -366,7 +378,6 @@ class userView extends GetView<userViewController> {
       //                                                 ),
       //                                               ),
       //                                             )
-
     );
   }
 }
