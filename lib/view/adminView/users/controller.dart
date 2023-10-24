@@ -1,7 +1,8 @@
-import 'package:amc_management/view/home/users/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'index.dart';
 class userController extends GetxController with GetSingleTickerProviderStateMixin{
   final state = userState();
   late TabController tabController;

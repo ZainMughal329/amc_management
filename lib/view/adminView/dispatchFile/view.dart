@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:amc_management/view/home/dispatchFile/components/disptachfileUploadForm.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:amc_management/model/dispatch_model/dispatch_model.dart';
@@ -9,6 +8,7 @@ import 'package:get/get.dart';
 import '../../../res/colors.dart';
 import '../../../res/components/custom_button.dart';
 import '../../../res/components/tab_bar_setting.dart';
+import 'components/disptachfileUploadForm.dart';
 import 'components/filesListViewbuilder.dart';
 import 'index.dart';
 

@@ -1,13 +1,15 @@
 
 
 
-import 'package:amc_management/view/home/dispatchFile/controller.dart';
-import 'package:amc_management/view/home/dispatchFile/fileshow.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+import '../fileshow.dart';
+import '../index.dart';
 
 class FileList extends GetView<dispatchController> {
   const FileList({super.key});

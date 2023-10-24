@@ -1,9 +1,9 @@
-import 'package:amc_management/view/home/users/controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../res/colors.dart';
+import '../index.dart';
 class userApproval extends GetView<userController> {
   const userApproval({super.key});
   @override

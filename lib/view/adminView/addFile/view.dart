@@ -1,11 +1,11 @@
 import 'package:amc_management/res/colors.dart';
-import 'package:amc_management/view/home/addFile/controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import '../../../res/components/tab_bar_setting.dart';
 import 'components/addFileDataList.dart';
 import 'components/addFileForm.dart';
+import 'index.dart';
 class addFileView extends GetView<addFileController> {
   const addFileView({super.key});
   @override

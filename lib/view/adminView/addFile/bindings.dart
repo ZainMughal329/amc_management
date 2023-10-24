@@ -1,7 +1,8 @@
 
 
-import 'package:amc_management/view/home/addFile/controller.dart';
 import 'package:get/get.dart';
+
+import 'index.dart';
 
 class addFileBindings implements Bindings{
   @override

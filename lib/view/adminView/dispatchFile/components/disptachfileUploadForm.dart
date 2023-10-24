@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:amc_management/view/home/dispatchFile/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,6 +7,7 @@ import '../../../../model/dispatch_model/dispatch_model.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/components/custom_button.dart';
 import '../../addFile/components/addFileCustomField.dart';
+import '../index.dart';
 class dispatchFileForm extends GetView<dispatchController> {
    dispatchFileForm({super.key});
    Widget dropDownList(){

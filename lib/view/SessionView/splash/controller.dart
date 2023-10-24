@@ -8,8 +8,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
-import '../../model/services/session_Controller.dart';
-import '../../utils/routes/routes_name.dart';
+
+import '../../../model/services/session_Controller.dart';
+import '../../../utils/routes/routes_name.dart';
 class SplashController extends GetxController{
   @override
   void onInit() {

@@ -1,4 +1,4 @@
-import 'package:amc_management/view/home/addFile/index.dart';
+import 'package:amc_management/view/adminView/addFile/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

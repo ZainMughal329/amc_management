@@ -1,6 +1,6 @@
 
 
-import 'package:amc_management/view/home/sendFile/index.dart';
+import 'package:amc_management/view/adminView/sendFile/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 

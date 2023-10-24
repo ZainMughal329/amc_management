@@ -2,7 +2,7 @@ import 'package:amc_management/res/components/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../res/components/custom_tetxField.dart';
+import '../../../res/components/custom_tetxField.dart';
 import 'index.dart';
 class Forgotview extends GetView<ForgotController> {
   const Forgotview({super.key});

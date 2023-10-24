@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:amc_management/view/home/addFile/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../../../../model/addFile_model/addFile_model.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/components/custom_button.dart';
+import '../index.dart';
 import 'addFileCustomField.dart';class addFileForm extends GetView<addFileController> {
   const addFileForm({super.key});
   Widget dropDownList(){

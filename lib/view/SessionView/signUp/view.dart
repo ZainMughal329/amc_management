@@ -2,12 +2,12 @@ import 'package:amc_management/res/components/elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import '../../model/userModel/user_model.dart';
-import '../../res/colors.dart';
-import '../../res/components/custom_button.dart';
-import '../../res/components/custom_tetxField.dart';
-import '../../utils/custom_Utils.dart';
-import '../../utils/routes/routes_name.dart';
+
+import '../../../model/userModel/user_model.dart';
+import '../../../res/colors.dart';
+import '../../../res/components/custom_tetxField.dart';
+import '../../../utils/custom_Utils.dart';
+import '../../../utils/routes/routes_name.dart';
 import 'index.dart';
 class SignUpView extends GetView<SignupController> {
   SignUpView({super.key});

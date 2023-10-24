@@ -1,10 +1,10 @@
 import 'package:amc_management/utils/routes/routes_name.dart';
-import 'package:amc_management/view/home/addFile/controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../fileshow.dart';
+import '../index.dart';
 class addFileDataList extends GetView<addFileController> {
   const addFileDataList({super.key});
   @override

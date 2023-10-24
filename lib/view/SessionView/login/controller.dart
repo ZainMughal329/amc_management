@@ -1,10 +1,10 @@
-import 'package:amc_management/view/login/state.dart';
+import 'package:amc_management/view/SessionView/login/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import '../../model/services/session_Controller.dart';
-import '../../utils/routes/routes_name.dart';
-import '../userView/view.dart';
+
+import '../../../model/services/session_Controller.dart';
+import '../../userView/view.dart';
 class LoginController extends GetxController{
   @override
   void dispose() {

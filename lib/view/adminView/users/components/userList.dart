@@ -1,11 +1,11 @@
-import 'package:amc_management/view/home/sendFile/view.dart';
-import 'package:amc_management/view/home/users/controller.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../res/colors.dart';
 import '../../sendFile/controller.dart';
+import '../index.dart';
 class userList extends GetView<userController> {
    userList({super.key});
   final controller = Get.put(userController());

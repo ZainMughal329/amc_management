@@ -7,7 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import '../../model/userModel/user_model.dart';
+import '../../../model/userModel/user_model.dart';
 import 'index.dart';
 
 class SignupController extends GetxController

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../res/components/elevated_button.dart';
-import '../../res/components/custom_tetxField.dart';
-import '../../utils/custom_Utils.dart';
-import '../../utils/routes/routes_name.dart';
+import '../../../res/components/custom_tetxField.dart';
+import '../../../res/components/elevated_button.dart';
+import '../../../utils/custom_Utils.dart';
+import '../../../utils/routes/routes_name.dart';
 import 'controller.dart';
 
 class LoginView extends GetView<LoginController> {

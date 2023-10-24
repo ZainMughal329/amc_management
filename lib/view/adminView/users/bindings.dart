@@ -1,5 +1,6 @@
-import 'package:amc_management/view/home/users/controller.dart';
 import 'package:get/get.dart';
+
+import 'index.dart';
 
 class userBindings implements Bindings{
   @override
