@@ -17,8 +17,7 @@ class elevatedButton extends StatelessWidget {
         ),
         backgroundColor: Colors.indigo
       ),
-      onPressed:onpress,
-      // loading?null:onpress ,
+      onPressed:loading?null:onpress ,
       child: loading==false?Text(tittle,style: TextStyle(color: Colors.white),):Center(child: CircularProgressIndicator())
     );
   }

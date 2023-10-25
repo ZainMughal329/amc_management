@@ -26,14 +26,9 @@ class AppColors {
   static Color lightDetailCardColor = Colors.cyanAccent;
   static Color lightCardColor = Colors.cyanAccent.shade400;
   static const Color lightBgColor = Colors.white;
-
   static const Color lightTextColor = Colors.black;
-
   static const Color lightInActiveIconColor = Colors.grey;
-
   static const Color lightActiveIconColor = Colors.black;
-
-
   static const Color darkBgColor = Color(0xff081921);
 
 }

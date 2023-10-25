@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../model/services/session_controller.dart';
 import '../../../res/colors.dart';
@@ -16,7 +17,7 @@ class profileView extends GetView<profileController> {
     // MobileScannerController cameraController = MobileScannerController();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mobile Scanner'),
+        title: const Text('Profile'),
         // actions: [
         //   IconButton(
         //     color: Colors.white,
@@ -96,7 +97,7 @@ class profileView extends GetView<profileController> {
                                     borderRadius: BorderRadius.circular(100),
                                     child:controller.image==null ?
                                         snapshot.data!['profile'].toString()==""
-                                        ? Icon(Icons.percent_outlined, size: 35)
+                                        ? Icon(Icons.person_outline, size: 35)
                                         : Image(
                                       image: NetworkImage(
                                         snapshot.data!['profile'].toString(),
@@ -158,7 +159,7 @@ class profileView extends GetView<profileController> {
                           },
                           child: ReuseableRow(
                               title: 'UserName',
-                              iconData: Icons.percent_outlined,
+                              iconData: Icons.drive_file_rename_outline,
                               value: snapshot.data!['UserName'].toString()),
                         ),
                         SizedBox(
@@ -174,16 +175,21 @@ class profileView extends GetView<profileController> {
                           },
                           child: ReuseableRow(
                               title: 'Email',
-                              iconData: Icons.email_rounded,
+                              iconData: Icons.email_outlined,
                               value:snapshot.data!['Email']
                               // map['email']
                           ),
                         ),
                         SizedBox(
-                          height: 40,
+                          height: 20.h,
                         ),
-                        SizedBox(height: 50,),
-                        ReuseButton(tittle: 'logout', onpress:(){
+                        Divider(color: AppColors.lightActiveIconColor,
+                        indent: 50,
+                        endIndent:50,
+                          thickness: 1.5,
+                        ),
+                        SizedBox(height: 20.h,),
+                        ReuseButton(tittle: 'Update', onpress:(){
                           FirebaseAuth auth =FirebaseAuth.instance;
                           auth.signOut().then((value){
                             //here we logout user and clear its ud
@@ -193,7 +199,15 @@ class profileView extends GetView<profileController> {
                             Get.snackbar('Error', error.toString());
                           });
 
-                        })
+                        }),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Divider(color: AppColors.lightActiveIconColor,
+                          indent: 50,
+                          endIndent:50,
+                          thickness: 1.5,
+                        ),
                       ],
                     ),
                   );

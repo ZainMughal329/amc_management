@@ -47,6 +47,10 @@ dependencies:
   image_picker:
   get:
   intl:
+  font_awesome_flutter: ^10.4.0
+  animations:
+  animated_text_kit: ^4.2.2
+  password_strength:
 
 #  document_scanner_flutter: ^0.2.7
 #  flutter_document_scanner: ^0.1.0
@@ -76,7 +80,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
