@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../res/components/custom_tetxField.dart';
 import '../../../res/components/elevated_button.dart';
@@ -30,6 +31,7 @@ class LoginView extends GetView<LoginController> {
                     child: Text(
                       "Welcome back",
                       style: Theme.of(context).textTheme.headlineLarge,
+
                     ),
                   ),
                   const SizedBox(
@@ -63,18 +65,19 @@ class LoginView extends GetView<LoginController> {
                       myController: controller.state.passwordController,
                       focusNode: controller.state.Passwordfocusnode,
                       keyboardType: TextInputType.emailAddress,
-                      lableText: "Passowrd",
+                      lableText: "Password",
                        prefixIcon: Icon(Icons.password_outlined),
                       onFiledSubmittedValue: (value) {
-                        ReuseableUtils.fieldfocous(
-                            context,
-                            controller.state.Emailfocousnode,
-                            controller.state.Passwordfocusnode);
+                        // ReuseableUtils.fieldfocous(
+                        //     context,
+                        //     controller.state.Emailfocousnode,
+                        //     controller.state.Passwordfocusnode);
                       },
                       obsecureText: false,
                       onvalidator: (value) {
-                        return value.isEmpty ? 'Please Enter Email.' : null;
+                        return value.isEmpty ? 'Please Enter Password.' : null;
                       }),
+                  SizedBox(height: 20.h,),
                   InkWell(
                     onTap: () {
                       Get.toNamed(RouteNames.forgotview);
@@ -100,14 +103,18 @@ class LoginView extends GetView<LoginController> {
                                   "admin@admin.com" &&
                                   controller.state.passwordController.text ==
                                       "admin@123") {
-                                Get.offAllNamed(RouteNames.homeview);
-                                controller.state.passwordController.clear();
-                                controller.state.emailController.clear();
+                                controller.setLoading(true);
+                                Get.offAllNamed(RouteNames.homeview)!.then((value){
+                                  controller.setLoading(false);
+                                  controller.state.passwordController.clear();
+                                  controller.state.emailController.clear();
+                                });
+
                               } else {
-                                LoginController().LogIn(
+                                controller.LogIn(
                                     context,
-                                    controller.state.emailController.text.trim().toString(),
-                                    controller.state.passwordController.text.trim().toString());
+                                    controller.state.emailController.text.trim(),
+                                    controller.state.passwordController.text.trim());
                               }
                             }
 

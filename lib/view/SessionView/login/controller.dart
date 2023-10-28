@@ -18,24 +18,32 @@ class LoginController extends GetxController{
   }
   final state =LoginState();
   LoginController();
+
+  // function to setLoading for buttons
+  void setLoading(bool value){
+    state.loading.value = value;
+  }
+
   void LogIn(BuildContext context , String email,String password)async{
-    state.loading=true.obs;
+    setLoading(true);
     try{
       state.auth.signInWithEmailAndPassword(email: email, password: password).then((value) async{
+        setLoading(false);
         SessionController().userid= value.user!.uid.toString();
         state.deptName = await getuserDept(SessionController().userid.toString());
         Get.offAll(()=>userView(deptName: state.deptName));
         print(state.deptName.toString());
          state.emailController.clear();
          state.passwordController.clear();
-         state.loading.value;
       }).onError((error, stackTrace){
         Get.snackbar('Error',error.toString());
-        state.loading.value;
+        setLoading(false);
+        // state.loading.value=false;
       });
     }catch(e){
       Get.snackbar('Error', e.toString());
-      state.loading.value;
+      setLoading(false);
+      // state.loading.value=false;
     }
   }
 

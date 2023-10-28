@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../../../../model/dispatch_model/dispatch_model.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/components/custom_button.dart';
+import '../../../../utils/custom_Utils.dart';
 import '../../addFile/components/addFileCustomField.dart';
 import '../index.dart';
 class dispatchFileForm extends GetView<dispatchController> {
@@ -167,10 +168,18 @@ class dispatchFileForm extends GetView<dispatchController> {
           height: 15.h,
         ),
         customTextField(
-          lableText: 'FileName',
-          hintText: 'Name',
+          focusNode: controller.state.nameFocusNode,
           controller: controller.state.nameController,
-          suffixIcon: Icons.drive_file_rename_outline,
+          lableText: 'FileName',
+          prefixIcon: Icon(Icons.drive_file_rename_outline),
+            onFiledSubmittedValue: (value){
+              ReuseableUtils.fieldfocous(context,
+                  controller.state.nameFocusNode,
+                  controller.state.dateFocusNode);
+            },
+            onvalidator: (value) {
+              return value.isEmpty ? 'Please Enter Name.' : null;
+            }
         ),
         SizedBox(
           height: 10.h,
@@ -179,6 +188,7 @@ class dispatchFileForm extends GetView<dispatchController> {
             builder: (con) {
               return customTextField(
                 keyboardType: TextInputType.datetime,
+                focusNode:controller.state.dateFocusNode,
                 controller:con.state.dateController,
                 hintText: DateFormat.yMMMd()
                     .format(con.state.selectedDate),
@@ -186,6 +196,16 @@ class dispatchFileForm extends GetView<dispatchController> {
                 onPressSufix: (){
                   con.getDateFromUser(context);
                 },
+                  onFiledSubmittedValue: (value){
+                    ReuseableUtils.fieldfocous(context,
+                        controller.state.dateFocusNode,
+                        controller.state.recievedByFocusNode);
+                  },
+                  prefixIcon: Icon(Icons.date_range_outlined),
+
+                  onvalidator: (value) {
+                    return value.isEmpty ? 'Please Enter Date.' : null;
+                  }
               );
             }
         ),
@@ -193,19 +213,34 @@ class dispatchFileForm extends GetView<dispatchController> {
           height: 10.h,
         ),
         customTextField(
-          hintText: 'recievedBy',
-          controller:
-          controller.state.recievedByController,
-          suffixIcon: Icons.person,
+          focusNode: controller.state.recievedByFocusNode,
+          controller: controller.state.recievedByController,
+          lableText: 'recievedBy',
+          prefixIcon: Icon(Icons.person),
+            onFiledSubmittedValue: (value){
+              ReuseableUtils.fieldfocous(context,
+                  controller.state.recievedByFocusNode,
+                  controller.state.notificationToFocusNode);
+            },
+            onvalidator: (value) {
+              return value.isEmpty ? 'Please Enter Receiver Name.' : null;
+            }
+
+
         ),
         SizedBox(
           height: 10.h,
         ),
         customTextField(
-          hintText: 'notificationTo',
+          focusNode: controller.state.notificationToFocusNode,
+          lableText: 'notificationTo',
           controller:
           controller.state.notificationToController,
-          suffixIcon: Icons.person,
+          prefixIcon: Icon(Icons.person),
+          onFiledSubmittedValue: (value){},
+            onvalidator: (value) {
+              return value.isEmpty ? 'Please Enter  Name.' : null;
+            }
         ),
         SizedBox(
           height: 10.h,

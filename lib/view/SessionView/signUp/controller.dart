@@ -33,21 +33,30 @@ class SignupController extends GetxController
   final auth = FirebaseAuth.instance;
   final _dbUser = FirebaseFirestore.instance.collection('users');
 
-
+  void setLoading(bool value){
+    state.loading.value = value;
+  }
   void registerUserWithEmailAndPassword(
       UserModel userinfo, String email, password) async {
+    setLoading(true);
     try {
       var user = await auth
-          .createUserWithEmailAndPassword(email: email, password: password)
+          .createUserWithEmailAndPassword(email: email, password: password,
+      )
           .then((value) {
+        setLoading(false);
         userinfo.id = auth.currentUser!.uid.toString();
         createUser(userinfo);
       }).onError((error, stackTrace) {
+        setLoading(false);
+
         Get.snackbar('msg', error.toString());
       });
     } on FirebaseAuthException catch (e) {
+      setLoading(false);
       Get.snackbar('msg', e.toString());
     } catch (_) {
+      setLoading(false);
     }
   }
 

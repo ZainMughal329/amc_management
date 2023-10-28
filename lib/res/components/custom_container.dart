@@ -36,7 +36,7 @@ class ReuseContainer extends StatelessWidget {
                 width: _screenWidth * 0.3,
                 decoration: BoxDecoration(
                   image:
-                  DecorationImage(image: NetworkImage(image), fit: BoxFit.fill),
+                  DecorationImage(image: AssetImage(image), fit: BoxFit.fill),
                 ),
               ),
               Text(

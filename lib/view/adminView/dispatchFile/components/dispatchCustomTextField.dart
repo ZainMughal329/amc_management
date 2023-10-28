@@ -4,67 +4,66 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 class customTextField extends StatelessWidget {
-  final String hintText;
-  String? lableText;
-  final bool obscureText;
-  IconData? icon;
+  final String? hintText;
+  final TextEditingController? controller;
+  final FocusNode? focusNode;
+  final TextInputType? keyboardType;
+  final String? lableText;
+  final FormFieldSetter? onFiledSubmittedValue;
+  final Icon? prefixIcon;
   final IconData? suffixIcon;
   final VoidCallback? onPressSufix;
-  TextInputType? keyboardType;
-  final TextEditingController? controller;
+  final FormFieldValidator? onvalidator;
+  final bool enable ,autoFocous;
   customTextField(
       {super.key,
-        required this.hintText,
-        this.lableText,
-        this.obscureText = false,
         this.controller,
-        this.icon,
+        this.lableText,
+        this.hintText,
+        this.focusNode,
         this.suffixIcon,
+        this.prefixIcon,
+        this.onFiledSubmittedValue,
         this.keyboardType,
+        this.enable=true,
+        this.onvalidator,
+        this.autoFocous=false,
         this.onPressSufix});
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      obscureText: obscureText,
-      style: TextStyle(
-        fontSize: 16.0.sp,
-        color: Colors.black,
-      ),
-      decoration: InputDecoration(
-
-        labelText: lableText,
-        labelStyle: TextStyle(color: Colors.grey,fontSize: 20.sp,fontWeight: FontWeight.bold),
-        prefixIcon: Icon(icon),
-        suffixIcon: IconButton(
-          onPressed: onPressSufix,
-          icon: Icon(suffixIcon,color: Colors.grey,),
-        ),
-        hintText: hintText,
-        hintStyle: TextStyle(
-          fontSize: 16.0.sp,
-          color: Colors.grey,
-        ),
-        contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 20.0),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(
-            color: Colors.grey,
-            width: 1.0,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
+      child: Column(
+        children: [
+          TextFormField(
+            controller:  controller,
+            focusNode: focusNode,
+            // obscureText: obsecureText,
+            onFieldSubmitted: onFiledSubmittedValue,
+            validator: onvalidator,
+            keyboardType: keyboardType,
+            style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 15.sp),
+            decoration: InputDecoration(
+              suffixIcon: IconButton(
+                onPressed: onPressSufix,
+                icon: Icon(suffixIcon,color: Colors.grey,),
+              ),
+              hintText: hintText,
+              prefixIcon: prefixIcon,
+              labelText: lableText,
+              enabled: enable,
+              contentPadding: EdgeInsets.all(15),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10)
+              ),
+            ),
           ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
-          borderSide: BorderSide(
-            color: Colors.blue,
-            width: 2.0,
-          ),
-        ),
+        ],
       ),
-      keyboardType: keyboardType,
     );
   }
 }
-

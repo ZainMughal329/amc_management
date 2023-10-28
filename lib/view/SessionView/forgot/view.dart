@@ -1,5 +1,6 @@
 import 'package:amc_management/res/components/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../res/components/custom_tetxField.dart';
@@ -19,7 +20,7 @@ class Forgotview extends GetView<ForgotController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: height * .01,
+                height: 80.h,
               ),
               Text(
                 'Forgot Password',

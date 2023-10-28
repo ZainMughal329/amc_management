@@ -161,7 +161,9 @@ class SignUpView extends GetView<SignupController> {
 
                   ],
                 ),
-                elevatedButton(tittle: 'Register', onpress: (){
+                elevatedButton(tittle: 'Register',
+                    loading: controller.state.loading.value,
+                    onpress: (){
                   final user = UserModel(
                       dept: controller.state.deptName.toString().trim(),
                       email: controller.state.emailcontroller.text.trim(),

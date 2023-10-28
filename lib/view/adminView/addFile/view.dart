@@ -11,6 +11,7 @@ class addFileView extends GetView<addFileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: SafeArea(
@@ -18,6 +19,7 @@ class addFileView extends GetView<addFileController> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
           child:Column(
             children: [
+              SizedBox(height: 15.h,),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Align(

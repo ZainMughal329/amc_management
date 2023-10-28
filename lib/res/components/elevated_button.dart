@@ -1,3 +1,4 @@
+import 'package:amc_management/res/colors.dart';
 import 'package:flutter/material.dart';
 class elevatedButton extends StatelessWidget {
   final String tittle;
@@ -15,10 +16,10 @@ class elevatedButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
-        backgroundColor: Colors.indigo
+        backgroundColor: AppColors.elevatedButtonColour
       ),
-      onPressed:loading?null:onpress ,
-      child: loading==false?Text(tittle,style: TextStyle(color: Colors.white),):Center(child: CircularProgressIndicator())
+      onPressed:onpress,
+      child: loading?Center(child: CircularProgressIndicator(color: AppColors.CircularProgressIndicatorColour,)):Text(tittle,style: TextStyle(color:AppColors.textColour),)
     );
   }
 }

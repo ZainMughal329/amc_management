@@ -14,7 +14,7 @@ class ReuseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: loading?null:onpress,
+      onTap:onpress,
       child: Container(
         height: 50.h,
         width: double.infinity,

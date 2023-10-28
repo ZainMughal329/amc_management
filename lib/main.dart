@@ -13,11 +13,8 @@ void main()async {
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  // jhgjhgjhgjh
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
     return  ScreenUtilInit(
       builder: (context,child){
         return GetMaterialApp(
@@ -27,7 +24,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          initialRoute: RouteNames.splashview,
+          initialRoute: RouteNames.homeview,
           getPages:AppPages.routes,
         );
 

@@ -1,12 +1,20 @@
 
 
+
 import 'package:flutter/material.dart';
 class AppColors {
+
+   static const Color elevatedButtonColour = Color(0xFF283593);
+   static const Color textColour = Color(0xFFFFFFFF);
+   static const Color CircularProgressIndicatorColour = Color(0xFFFFFFFF);
+
+
+
   static const double defaultPadding = 16.0;
   static const Color titleTextColor = Color(0xFF27374D);
   static const Color bgColor = Color(0xff081921);
   static const Color subtitleTextColor = Color(0xFF526D82);
-  static const Color primaryBackground = Color(0xFFFFFFFF);
+   static const Color primaryBackground = Color(0xFFFFFFFF);
   static const Color iconColor = Color(0xFF27374D);
   static const Color iconsColor = Colors.blue;
   static const Color cardBgColor = Color(0xff0c3e4f);

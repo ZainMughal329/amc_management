@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class SignupState{
   // final dbFireStore = FirebaseFirestore.instance.collection('Users').snapshots();
   final dbFireStore = FirebaseFirestore.instance.collection('users');
-  // RxBool loading = false.obs;
+  final loading = false.obs;
   var deptName = 'Select'.obs;
   final emailcontroller = TextEditingController();
   final passwordcontroller= TextEditingController();

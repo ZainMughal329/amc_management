@@ -17,37 +17,32 @@ class HomeController extends GetxController{
   ];
 
   List<Map<String , dynamic>> appInfo = [
-    {
-      'imgPath' : 'https://img.freepik.com/premium-photo/3d-image-profile-isolated-white-background_598925-626.jpg?w=740',
-      'Text' : 'profile',
 
-    },
     {
-      'imgPath' : Image(image: AssetImage('assets/users.jpg'),),
+      'imgPath' : 'assets/images/users.jpg',
       'Text' : 'Users',
     },
     {
-      'imgPath' : Image(image: AssetImage('assets/addFile.jpg'),),
-
+      'imgPath' : 'assets/images/addFile.jpg',
       'Text' : 'Add File',
 
     },
     {
-      'imgPath' : Image(image: AssetImage('assets/dispatchFile.jpg'),),
+      'imgPath' : 'assets/images/dispatchFile.jpg',
       'Text' : 'Dispatch File',
     },
     {
-      'imgPath' : 'https://img.freepik.com/free-photo/rag-doll-with-bar-graph-green-pencil_1156-248.jpg?w=740&t=st=1695272973~exp=1695273573~hmac=2ca10243093368f480d118bb39d685651b30e6fe9f7d3166d0e8f9b1a3844457',
+      'imgPath' : 'assets/images/single.jpg',
       'Text' : 'Send File',
     },
 
   ];
 
   final List<void Function()> pressButton = [
-        () {
-          Get.toNamed(RouteNames.profileview);
-      print('1');
-    },
+    //     () {
+    //       Get.toNamed(RouteNames.profileview);
+    //   print('1');
+    // },
         () {
       print('2');
       Get.toNamed(RouteNames.userlistview);

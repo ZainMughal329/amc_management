@@ -7,7 +7,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../model/addFile_model/addFile_model.dart';
 import '../../../res/colors.dart';
 
@@ -29,6 +28,9 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     // TODO: implement onInit
     super.onInit();
     tabController = TabController(length: 2, vsync: this);
+  }
+  void setLoading(bool value){
+    state.loading.value = value;
   }
   final picker =ImagePicker();
   XFile? _image;
@@ -59,7 +61,15 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/addFile'+timeStamp);
     firebase_storage.UploadTask uploadTask =storageRef.putFile(File(image!.path).absolute);
     await Future.value(uploadTask);
-    // final newUrl = await storageRef.getDownloadURL();
+    final imageUrl = await storageRef.getDownloadURL();
+    state.ref.doc(timeStamp).update({
+      'image': imageUrl,
+    }).then((value){
+      print('File uploaded and stored');
+    });
+
+
+
   }
 
   void pickImage(context){
@@ -90,20 +100,22 @@ class addFileController extends GetxController with GetSingleTickerProviderState
       ),
     ));
   }
-  Future<void> addFileOnFirebase(String name,String dept,String image,String date,String fileNum,String from,)async{
+  Future<void> addFileOnFirebase(String timeStamp, String name,String dept,String image,String date,String fileNum,String from,)async{
+     setLoading(true);
     try{
-      await state.ref.add({
+      await state.ref.doc(timeStamp).set({
         'Dept':dept,
-        'Image':image,
         'Name':name,
         'From':from,
         'FileNum':fileNum,
         'Date':date,
         // 'Id':FileId
       }).then((value) {
-        Get.snackbar('Sucess', 'File Added');
+        setLoading(false);
+        Get.snackbar('Success', 'File Added');
         // Get.back();
       }).onError((error, stackTrace) {
+        setLoading(false);
         Get.snackbar('Error', error.toString());
       });
     }catch(e){
@@ -111,14 +123,22 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     }
   }
   void storeData(
+      String timeStamp,
   AddFileModel addFile,
       BuildContext context,String name ,
       String dept,
       String from,String image,String fileNum,String date,
       )async{
-    addFileOnFirebase(name,dept, image, date, fileNum, from).then((value){
+    setLoading(true);
+    addFileOnFirebase(timeStamp,name,dept, image, date, fileNum, from).then((value){
+      uploadimageonDatabase(timeStamp);
+
+
+      setLoading(false);
       clearDateFromScreen();
-    });
+    }).onError((error, stackTrace){
+      setLoading(false);
+      Get.snackbar('Error', error.toString());    });
   }
   getDateFromUser(BuildContext context)async{
     DateTime? pickerDate= await  showDatePicker(
@@ -138,7 +158,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     state.fromController.clear();
     state.nameController.clear();
     state.filenoController.clear();
-    state.deptName="".obs;
+    state.deptName.value="Select";
   }
   Stream<DocumentSnapshot<Map<String,dynamic>>> getFIleData(){
     return state.ref.doc(state.auth.currentUser!.uid.toString()).snapshots();

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:amc_management/utils/custom_Utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,8 +8,9 @@ import '../../../../model/addFile_model/addFile_model.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/components/custom_button.dart';
 import '../index.dart';
-import 'addFileCustomField.dart';class addFileForm extends GetView<addFileController> {
-  const addFileForm({super.key});
+import 'addFileCustomField.dart';
+class addFileForm extends GetView<addFileController> {
+   addFileForm({super.key});
   Widget dropDownList(){
     return Obx(()=> Expanded(
       flex: 0,
@@ -71,168 +73,212 @@ import 'addFileCustomField.dart';class addFileForm extends GetView<addFileContro
   }
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Obx((){
-          return Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GetBuilder<addFileController>(builder: (controller){
-                return InkWell(
-                  onTap: (){
-                    controller.pickImage(context);
-                  },
-                  child: Container(
-                      height: 200.h,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: controller.image == null
-                            ? AppColors.unActiveTabElementColor
-                            : AppColors.lightActiveIconColor,
-                        border: Border.all(
-                          color: controller.image == null
-                              ? AppColors.errorColor
-                              : Colors.transparent,
-                          // width: 3.0,
-                        ),
-                      ),
-                      //  controller.imagePath == ''
-                      //                       ? Icon(Icons.file_copy)
-                      //                       : Image(
-                      //                       fit: BoxFit.cover,
-                      //                       image: FileImage(File(controller
-                      //                           .imagePath
-                      //                           .toString())))
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10,),
+                  GetBuilder<addFileController>(builder: (controller){
+                    return InkWell(
+                      onTap: (){
+                        controller.pickImage(context);
+                      },
+                      child: Container(
+                          height: 200.h,
+                          width: double.infinity,
 
-                      child:Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [Column(
-                          children: [
-                            ClipRRect(
-                              // borderRadius: BorderRadius.circular(100.r),
-
-                              child: controller.image == null
-                                  ? Icon(
-                                Icons.image,
-                                size: 50.sp,
-                                color: AppColors.lightActiveIconColor,
-                              )
-                                  : Container(
-                                height: 185.h,
-                                width: double.infinity,
-                                child: Image.file(
-                                  File(controller.image!.path)
-                                      .absolute,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
+                          decoration: BoxDecoration(
+                            color: controller.image == null
+                                ? AppColors.unActiveTabElementColor
+                                : AppColors.lightActiveIconColor,
+                            border: Border.all(
+                              color: controller.image == null
+                                  ? AppColors.textColour
+                                  : Colors.transparent,
+                              // width: 3.0,
                             ),
-                            controller.image == null
-                                ? SizedBox(
-                              height: 10.h,
-                            )
-                                : SizedBox(),
-                            controller.image == null
-                                ? Text(
-                              "Tap to Upload Image",
-                              style: TextStyle(
-                                  color: AppColors.subtitleTextColor),
-                            )
-                                : Container(),
-                          ],
+                          ),
+                          //  controller.imagePath == ''
+                          //                       ? Icon(Icons.file_copy)
+                          //                       : Image(
+                          //                       fit: BoxFit.cover,
+                          //                       image: FileImage(File(controller
+                          //                           .imagePath
+                          //                           .toString())))
 
-                        )],
+                          child:Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Column(
+                              children: [
+                                ClipRRect(
+                                  // borderRadius: BorderRadius.circular(100.r),
 
-                      )
-                  ),
-                );
+                                  child: controller.image == null
+                                      ? Icon(
+                                    Icons.image,
+                                    size: 50.sp,
+                                    color: AppColors.lightActiveIconColor,
+                                  )
+                                      : Container(
+                                    height: 185.h,
+                                    width: double.infinity,
+                                    child: Image.file(
+                                      File(controller.image!.path)
+                                          .absolute,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                                controller.image == null
+                                    ? SizedBox(
+                                  height: 10.h,
+                                )
+                                    : SizedBox(),
+                                controller.image == null
+                                    ? Text(
+                                  "Tap to Upload Image",
+                                  style: TextStyle(
+                                      color: AppColors.subtitleTextColor),
+                                )
+                                    : Container(),
+                              ],
 
-              })
+                            )],
 
+                          )
+                      ),
+                    );
 
-              // Obx(()=>Container(
-              //     height: 200.h,
-              //     width: 200.w,
-              //
-              //     decoration: BoxDecoration(
-              //         border: Border.all(
-              //           color: Colors.black,
-              //           width: 1.0,
-              //         )
-              //
-              //     ),
-              //     child: controller.image == null
-              //         ? Icon(Icons.image)
-              //         : Image(
-              //         fit: BoxFit.cover,
-              //         image: FileImage(
-              //             File(controller.imagePath.toString())))),),
-              // controller.imagePath == '' ? Center(
-              //   child: TextButton(onPressed: (){
-              //     controller.pickImage(context);
-              //   }, child: Text('Pick Image')),
-              // ) : Container(),
-            ],
-          );
-        }),
-        SizedBox(height: 15.h,),
-        customTextField(hintText: 'Name', controller: controller.state.nameController,
-          suffixIcon: Icons.drive_file_rename_outline,
-        ),
-        SizedBox(height: 10.h,),
-        GetBuilder<addFileController>(
-            builder: (con) {
-              return customTextField(
-                keyboardType: TextInputType.datetime,
-                controller:con.state.dateController,
-                hintText: DateFormat.yMMMd()
-                    .format(con.state.selectedDate),
-                suffixIcon: Icons.calendar_today_outlined,
-                onPressSufix: (){
-                  con.getDateFromUser(context);
+                  })
+                  // Obx(()=>Container(
+                  //     height: 200.h,
+                  //     width: 200.w,
+                  //
+                  //     decoration: BoxDecoration(
+                  //         border: Border.all(
+                  //           color: Colors.black,
+                  //           width: 1.0,
+                  //         )
+                  //
+                  //     ),
+                  //     child: controller.image == null
+                  //         ? Icon(Icons.image)
+                  //         : Image(
+                  //         fit: BoxFit.cover,
+                  //         image: FileImage(
+                  //             File(controller.imagePath.toString())))),),
+                  // controller.imagePath == '' ? Center(
+                  //   child: TextButton(onPressed: (){
+                  //     controller.pickImage(context);
+                  //   }, child: Text('Pick Image')),
+                  // ) : Container(),
+                ],
+              ),
+              SizedBox(height: 15.h,),
+              customTextField(
+                  focusNode: controller.state.nameFocusNode,
+                  controller: controller.state.nameController,
+                  lableText: 'Name',
+                  prefixIcon: Icon(Icons.drive_file_rename_outline),
+                  onFiledSubmittedValue: (value){
+                    ReuseableUtils.fieldfocous(context,
+                        controller.state.nameFocusNode,
+                        controller.state.dateFocusNode);
+                  },
+                  onvalidator: (value) {
+                    return value.isEmpty ? 'Please Enter Name.' : null;
+                  }
+              ),
+              SizedBox(height: 10.h,),
+              GetBuilder<addFileController>(
+                  builder: (con) {
+                    return customTextField(
+                        keyboardType: TextInputType.datetime,
+                        focusNode: controller.state.dateFocusNode,
+                        controller:con.state.dateController,
+                        prefixIcon: Icon(Icons.date_range_outlined),
+                        hintText: DateFormat.yMMMd()
+                            .format(con.state.selectedDate),
+                        suffixIcon: Icons.calendar_today_outlined,
+                        onPressSufix: (){
+                          con.getDateFromUser(context);
+                        },
+                        onFiledSubmittedValue: (value){
+                          ReuseableUtils.fieldfocous(context, controller.state.dateFocusNode,
+                              controller.state.filenoFocusNode);
+                        },
+                        onvalidator: (value) {
+                          return value.isEmpty ? 'Please Enter Date.' : null;
+                        }
+                    );
+                  }
+              ),
+              SizedBox(height:10.h,),
+              customTextField(
+                  keyboardType: TextInputType.number,
+                  lableText: 'File No',
+                  controller: controller.state.filenoController,
+                  focusNode: controller.state.filenoFocusNode,
+                  prefixIcon: Icon(Icons.format_list_numbered),
+                  onFiledSubmittedValue: (value){
+                    ReuseableUtils.fieldfocous(context, controller.state.filenoFocusNode,
+                        controller.state.fromFocusNode);
+                  },
+                  onvalidator: (value) {
+                    return value.isEmpty ? 'Please Enter File Number.' : null;
+                  }
+              ),
+              SizedBox(height: 10.h,),
+              customTextField(lableText: 'From',
+                focusNode: controller.state.fromFocusNode,
+                controller: controller.state.fromController,
+                onFiledSubmittedValue: (value){
                 },
-              );
-            }
+                onvalidator: (value) {
+                  return value.isEmpty ? 'Please Enter Receiver Name.' : null;
+                },
+                prefixIcon: Icon(Icons.person_outline),
+              ),
+              SizedBox(height: 10.h,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Select Dept'),
+                  dropDownList()
+                ],
+              ),
+              ReuseButton(tittle: 'Upload',
+                  loading: controller.state.loading.value,
+                  onpress: (){
+                    String timeStamp = DateTime.now().millisecondsSinceEpoch.toString();
+                    final addFile = AddFileModel(name: controller.state.nameController.text.trim(),
+                      dept: controller.state.deptName.toString().trim(),
+                      date: controller.state.dateController.text.trim(),
+                      from: controller.state.fromController.text.trim(),
+                      filenum: controller.state.filenoController.text.trim(),
+                      image:controller.image!.path.toString(),
+                    );
+                    controller.storeData(timeStamp,addFile, context, controller.state.nameController.text.trim(),
+                      controller.state.deptName.toString().trim(),
+                      controller.state.fromController.text.trim(),
+                      controller.image!.path.toString(),
+                      controller.state.filenoController.text.trim(),
+                      controller.state.dateController.text.trim(),
+                    );
+                  })
+            ],
+          ),
         ),
-        SizedBox(height:10.h,),
-        customTextField(hintText: 'File No', controller: controller.state.filenoController,
-          suffixIcon:Icons.format_list_numbered,
-        ),
-        SizedBox(height: 10.h,),
-        customTextField(hintText: 'From', controller: controller.state.fromController,
-          suffixIcon: Icons.person,
-        ),
-        SizedBox(height: 10.h,),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Select Dept'),
-            dropDownList()
-          ],
-        ),
-        ReuseButton(tittle: 'Upload', onpress: (){
-
-          final addFile = AddFileModel(name: controller.state.nameController.text.trim(),
-              dept: controller.state.deptName.toString().trim(),
-              date: controller.state.dateController.text.trim(),
-              from: controller.state.fromController.text.trim(),
-              filenum: controller.state.filenoController.text.trim(),
-              image:controller.image!.path.toString(),
-            // id: DateTime.now().toString()
-          );
-          controller.storeData(addFile, context, controller.state.nameController.text.trim(),
-              controller.state.deptName.toString().trim(),
-              controller.state.fromController.text.trim(),
-            controller.image!.path.toString(),
-              controller.state.filenoController.text.trim(),
-              controller.state.dateController.text.trim(),
-            // controller.fileId.toString().trim(),
-          );
-        })
-      ],
+      ),
     );
   }
 }

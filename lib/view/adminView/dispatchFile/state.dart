@@ -4,11 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class dispatchState {
   final nameController = TextEditingController();
+  final nameFocusNode = FocusNode();
   final dateController = TextEditingController();
+  final dateFocusNode =FocusNode();
   final markByController = TextEditingController();
+  final markByFocusNode =FocusNode();
   DateTime selectedDate = DateTime.now();
   final recievedByController = TextEditingController();
+  final recievedByFocusNode =FocusNode();
   final notificationToController = TextEditingController();
+  final notificationToFocusNode =FocusNode();
   final ref = FirebaseFirestore.instance.collection('dispatchFile');
   var deptName = 'Select'.obs;
   // Widget _buildCatList() {
