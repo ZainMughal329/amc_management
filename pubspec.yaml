@@ -52,6 +52,7 @@ dependencies:
   animated_text_kit: ^4.2.2
   password_strength:
   image_gallery_saver:
+  multi_image_picker_view:
 
 #  document_scanner_flutter: ^0.2.7
 #  flutter_document_scanner: ^0.1.0

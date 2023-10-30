@@ -69,7 +69,6 @@ class addFileController extends GetxController with GetSingleTickerProviderState
   }
 
   void pickImage(context){
-
     Get.dialog(AlertDialog(
       content: Container(
         height: 120,
