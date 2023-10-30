@@ -1,6 +1,6 @@
 
 
-import 'package:amc_management/res/components/custom_tetxField.dart';
+import 'package:amc_management/res/components/SessionViewComponents/custom_tetxField.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';

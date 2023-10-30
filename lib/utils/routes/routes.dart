@@ -12,7 +12,7 @@ import '../../view/SessionView/signUp/view.dart';
 import '../../view/SessionView/splash/bindings.dart';
 import '../../view/SessionView/splash/view.dart';
 import '../../view/adminView/addFile/bindings.dart';
-import '../../view/adminView/addFile/fileshow.dart';
+import '../../view/adminView/addFile/components/fileshow.dart';
 import '../../view/adminView/addFile/view.dart';
 import '../../view/adminView/dispatchFile/bindings.dart';
 import '../../view/adminView/dispatchFile/fileshow.dart';
@@ -60,7 +60,11 @@ class AppPages {
         name: RouteNames.addfileview,
         page: () => addFileView(),
         binding: addFileBindings()),
-    GetPage(name: RouteNames.addfileshowcontainer, page:()=> addFileShowContainer(date: "",
+    GetPage(name: RouteNames.addfileshowcontainer, page:()=> addFileShowContainer(
+        img: "",
+        details: "",
+        dept: "",
+        date: "",
         name: "",
         fileNum: "",
         from: ""),

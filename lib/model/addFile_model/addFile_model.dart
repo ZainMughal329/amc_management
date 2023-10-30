@@ -6,6 +6,7 @@ class AddFileModel {
   final String name;
   final   String date;
   final String dept;
+  final String? detail;
   // final String username;
   // final String pkgStartDate;
   final String from;
@@ -17,6 +18,7 @@ class AddFileModel {
   AddFileModel({
     this.image,
     // this.id,
+    this.detail,
     required this.name,
     required this.dept,
     required this.date,
@@ -32,6 +34,7 @@ class AddFileModel {
   toJson() {
     return {
       // 'Id':id,
+      'Detail':detail,
       'dept':dept,
       'Image': image,
       'Name': name,
@@ -46,6 +49,7 @@ class AddFileModel {
     final data = documentSnapshot.data()!;
     return AddFileModel(
       // id: data['Id'],
+      detail: data['Detail'],
       dept: data['dept'],
       image:data['Image'],
       name: data['Name'],

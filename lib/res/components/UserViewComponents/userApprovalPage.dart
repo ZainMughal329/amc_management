@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../utils/snackBar.dart';
-import '../colors.dart';
+import '../../../utils/snackBar.dart';
+import '../../colors.dart';
 
 class userApprovalPage extends StatelessWidget {
   @override

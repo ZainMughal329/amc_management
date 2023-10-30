@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../model/services/session_controller.dart';
 import '../../../res/colors.dart';
-import '../../../res/components/custom_button.dart';
+import '../../../res/components/adminViewComponents/custom_button.dart';
 import '../../../utils/routes/routes_name.dart';
 import 'index.dart';
 class profileView extends GetView<profileController> {

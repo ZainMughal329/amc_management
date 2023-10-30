@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../model/dispatch_model/dispatch_model.dart';
 import '../../../../res/colors.dart';
-import '../../../../res/components/custom_button.dart';
+import '../../../../res/components/adminViewComponents/custom_addordispatchfields.dart';
+import '../../../../res/components/adminViewComponents/custom_button.dart';
+import '../../../../res/components/adminViewComponents/detailTextForm.dart';
 import '../../../../utils/custom_Utils.dart';
-import '../../addFile/components/addFileCustomField.dart';
 import '../index.dart';
 class dispatchFileForm extends GetView<dispatchController> {
    dispatchFileForm({super.key});
@@ -73,218 +74,224 @@ class dispatchFileForm extends GetView<dispatchController> {
    }
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            GetBuilder<dispatchController>(builder:(controller){
-              return InkWell(
-                onTap: (){
-                  controller.pickImage(context);
-                },
-                child: Container(
-                    height: 200.h,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: controller.image == null
-                          ? AppColors.unActiveTabElementColor
-                          : AppColors.lightActiveIconColor,
-                      border: Border.all(
-                        color: controller.image == null
-                            ? AppColors.errorColor
-                            : Colors.transparent,
-                        // width: 3.0,
-                      ),
-                    ),
-                    //  controller.imagePath == ''
-                    //                       ? Icon(Icons.file_copy)
-                    //                       : Image(
-                    //                       fit: BoxFit.cover,
-                    //                       image: FileImage(File(controller
-                    //                           .imagePath
-                    //                           .toString())))
-
-                    child:Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Column(
-                        children: [
-                          ClipRRect(
-                            // borderRadius: BorderRadius.circular(100.r),
-
-                            child: controller.image == null
-                                ? Icon(
-                              Icons.image,
-                              size: 50.sp,
-                              color: AppColors.lightActiveIconColor,
-                            )
-                                : Container(
-                              height: 185.h,
-                              width: double.infinity,
-                              child: Image.file(
-                                File(controller.image!.path)
-                                    .absolute,
-                                fit: BoxFit.fill,
-                              ),
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      resizeToAvoidBottomInset: true,
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  GetBuilder<dispatchController>(builder:(controller){
+                    return InkWell(
+                      onTap: (){
+                        controller.pickImage(context);
+                      },
+                      child: Container(
+                          height: 200.h,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: controller.image == null
+                                ? AppColors.unActiveTabElementColor
+                                : AppColors.lightActiveIconColor,
+                            border: Border.all(
+                              color: controller.image == null
+                                  ? AppColors.errorColor
+                                  : Colors.transparent,
+                              // width: 3.0,
                             ),
                           ),
-                          controller.image == null
-                              ? SizedBox(
-                            height: 10.h,
+                          child:Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [Column(
+                              children: [
+                                ClipRRect(
+                                  // borderRadius: BorderRadius.circular(100.r),
+                                  child: controller.image == null
+                                      ? Icon(
+                                    Icons.image,
+                                    size: 50.sp,
+                                    color: AppColors.lightActiveIconColor,
+                                  )
+                                      : Container(
+                                    height: 185.h,
+                                    width: double.infinity,
+                                    child: Image.file(
+                                      File(controller.image!.path)
+                                          .absolute,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                                controller.image == null
+                                    ? SizedBox(
+                                  height: 10.h,
+                                )
+                                    : SizedBox(),
+                                controller.image == null
+                                    ? Text(
+                                  "Tap to Upload Image",
+                                  style: TextStyle(
+                                      color: AppColors.subtitleTextColor),
+                                )
+                                    : Container(),
+                              ],
+
+                            )],
+
                           )
-                              : SizedBox(),
-                          controller.image == null
-                              ? Text(
-                            "Tap to Upload Image",
-                            style: TextStyle(
-                                color: AppColors.subtitleTextColor),
-                          )
-                              : Container(),
-                        ],
+                      ),
+                    );
 
-                      )],
-
-                    )
-                ),
-              );
-
-            }),
-
-            // controller.imagePath == ''
-            //     ? Center(
-            //   child: TextButton(
-            //       onPressed: () {
-            //         controller.pickImage(context);
-            //       },
-            //       child: Text('Pick Image')),
-            // )
-            //     : Container()
-          ],
-        ),
-        SizedBox(
-          height: 15.h,
-        ),
-        customTextField(
-          focusNode: controller.state.nameFocusNode,
-          controller: controller.state.nameController,
-          lableText: 'FileName',
-          prefixIcon: Icon(Icons.drive_file_rename_outline),
-            onFiledSubmittedValue: (value){
-              ReuseableUtils.fieldfocous(context,
-                  controller.state.nameFocusNode,
-                  controller.state.dateFocusNode);
-            },
-            onvalidator: (value) {
-              return value.isEmpty ? 'Please Enter Name.' : null;
-            }
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        GetBuilder<dispatchController>(
-            builder: (con) {
-              return customTextField(
-                keyboardType: TextInputType.datetime,
-                focusNode:controller.state.dateFocusNode,
-                controller:con.state.dateController,
-                hintText: DateFormat.yMMMd()
-                    .format(con.state.selectedDate),
-                suffixIcon: Icons.calendar_today_outlined,
-                onPressSufix: (){
-                  con.getDateFromUser(context);
-                },
+                  }),
+                ],
+              ),
+              SizedBox(
+                height: 15.h,
+              ),
+              customTextField(
+                focusNode: controller.state.nameFocusNode,
+                controller: controller.state.nameController,
+                lableText: 'FileName',
+                prefixIcon: Icon(Icons.drive_file_rename_outline),
                   onFiledSubmittedValue: (value){
                     ReuseableUtils.fieldfocous(context,
-                        controller.state.dateFocusNode,
-                        controller.state.recievedByFocusNode);
+                        controller.state.nameFocusNode,
+                        controller.state.dateFocusNode);
                   },
-                  prefixIcon: Icon(Icons.date_range_outlined),
-
                   onvalidator: (value) {
-                    return value.isEmpty ? 'Please Enter Date.' : null;
+                    return value.isEmpty ? 'Please Enter Name.' : null;
                   }
-              );
-            }
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        customTextField(
-          focusNode: controller.state.recievedByFocusNode,
-          controller: controller.state.recievedByController,
-          lableText: 'recievedBy',
-          prefixIcon: Icon(Icons.person),
-            onFiledSubmittedValue: (value){
-              ReuseableUtils.fieldfocous(context,
-                  controller.state.recievedByFocusNode,
-                  controller.state.notificationToFocusNode);
-            },
-            onvalidator: (value) {
-              return value.isEmpty ? 'Please Enter Receiver Name.' : null;
-            }
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              GetBuilder<dispatchController>(
+                  builder: (con) {
+                    return customTextField(
+                      keyboardType: TextInputType.datetime,
+                      focusNode:controller.state.dateFocusNode,
+                      controller:con.state.dateController,
+                      hintText: DateFormat.yMMMd()
+                          .format(con.state.selectedDate),
+                      suffixIcon: Icons.calendar_today_outlined,
+                      onPressSufix: (){
+                        con.getDateFromUser(context);
+                      },
+                        onFiledSubmittedValue: (value){
+                          ReuseableUtils.fieldfocous(context,
+                              controller.state.dateFocusNode,
+                              controller.state.recievedByFocusNode);
+                        },
+                        prefixIcon: Icon(Icons.date_range_outlined),
 
-
+                        onvalidator: (value) {
+                          return value.isEmpty ? 'Please Enter Date.' : null;
+                        }
+                    );
+                  }
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              customTextField(
+                focusNode: controller.state.recievedByFocusNode,
+                controller: controller.state.recievedByController,
+                lableText: 'recievedBy',
+                prefixIcon: Icon(Icons.person),
+                  onFiledSubmittedValue: (value){
+                    ReuseableUtils.fieldfocous(context,
+                        controller.state.recievedByFocusNode,
+                        controller.state.notificationToFocusNode);
+                  },
+                  onvalidator: (value) {
+                    return value.isEmpty ? 'Please Enter Receiver Name.' : null;
+                  }
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              customTextField(
+                focusNode: controller.state.notificationToFocusNode,
+                lableText: 'notificationTo',
+                controller:
+                controller.state.notificationToController,
+                prefixIcon: Icon(Icons.person),
+                onFiledSubmittedValue: (value){
+                  ReuseableUtils.fieldfocous(context,
+                      controller.state.notificationToFocusNode,
+                      controller.state.detailFocousNode);
+                },
+                  onvalidator: (value) {
+                    return value.isEmpty ? 'Please Enter  Name.' : null;
+                  }
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              detailTextFormField(
+                controller: controller.state.detailController,
+                focusNode: controller.state.detailFocousNode,
+                hintText: 'Please Enter File Details',
+                onFiledSubmittedValue: (value){
+                },
+                onvalidator: (value) {
+                  return value.isEmpty ? 'Please Enter File Detail.' : null;
+                },
+              ),
+              SizedBox(height: 10.h,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Select Dept'),
+                  dropDownList()
+                ],
+              ),
+              ReuseButton(
+                  tittle: 'Dispatch',
+                  onpress: () {
+                    String timeStamp = DateTime.now().millisecondsSinceEpoch.toString();
+                    final dispatch = DispatchModel(
+                      detail: controller.state.detailController.text.trim(),
+                        name: controller.state.nameController.text
+                            .trim(),
+                        dept: controller.state.deptName.toString().trim(),
+                        date: controller.state.selectedDate
+                            .toString()
+                            .trim(),
+                        recievedBy: controller
+                            .state.recievedByController.text
+                            .trim(),
+                        notificationTo: controller
+                            .state.notificationToController.text
+                            .trim(),
+                        image: controller.image!.path.toString());
+                    controller.storeData(
+                      timeStamp,
+                      dispatch,
+                      context,
+                      controller.state.detailController.text.trim(),
+                      controller.image!.path.toString(),
+                      controller.state.nameController.text.trim(),
+                      controller.state.recievedByController.text
+                          .trim(),
+                      controller.state.deptName.toString().trim(),
+                      controller.state.notificationToController.text
+                          .trim(),
+                      controller.state.selectedDate
+                          .toString()
+                          .trim(),
+                    );
+                  })
+            ],
+          ),
         ),
-        SizedBox(
-          height: 10.h,
-        ),
-        customTextField(
-          focusNode: controller.state.notificationToFocusNode,
-          lableText: 'notificationTo',
-          controller:
-          controller.state.notificationToController,
-          prefixIcon: Icon(Icons.person),
-          onFiledSubmittedValue: (value){},
-            onvalidator: (value) {
-              return value.isEmpty ? 'Please Enter  Name.' : null;
-            }
-        ),
-        SizedBox(
-          height: 10.h,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text('Select Dept'),
-            dropDownList()
-          ],
-        ),
-        ReuseButton(
-            tittle: 'Dispatch',
-            onpress: () {
-              final dispatch = DispatchModel(
-                  name: controller.state.nameController.text
-                      .trim(),
-                  dept: controller.state.deptName.toString().trim(),
-                  date: controller.state.selectedDate
-                      .toString()
-                      .trim(),
-                  recievedBy: controller
-                      .state.recievedByController.text
-                      .trim(),
-                  notificationTo: controller
-                      .state.notificationToController.text
-                      .trim(),
-                  image: controller.image!.path.toString());
-              controller.storeData(
-                dispatch,
-                context,
-                controller.image!.path.toString(),
-                controller.state.nameController.text.trim(),
-                controller.state.recievedByController.text
-                    .trim(),
-                controller.state.deptName.toString().trim(),
-                controller.state.notificationToController.text
-                    .trim(),
-                controller.state.selectedDate
-                    .toString()
-                    .trim(),
-              );
-            })
-      ],
+      ),
     );
   }
 }

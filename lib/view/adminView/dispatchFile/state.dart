@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 class dispatchState {
+  final detailController = TextEditingController();
+  final detailFocousNode = FocusNode();
   final nameController = TextEditingController();
   final nameFocusNode = FocusNode();
   final dateController = TextEditingController();

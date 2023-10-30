@@ -6,8 +6,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../res/colors.dart';
-import '../../../res/components/custom_button.dart';
-import '../../../res/components/tab_bar_setting.dart';
+import '../../../res/components/adminViewComponents/custom_button.dart';
+import '../../../res/components/adminViewComponents/tab_bar_setting.dart';
 import 'components/disptachfileUploadForm.dart';
 import 'components/filesListViewbuilder.dart';
 import 'index.dart';
@@ -17,6 +17,7 @@ class dispatchView extends GetView<dispatchController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(

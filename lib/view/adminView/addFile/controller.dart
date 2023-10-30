@@ -22,6 +22,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     state.filenoController.dispose();
     state.fromController.dispose();
     state.nameController.dispose();
+    state.detailFocusNode.dispose();
   }
   @override
   void onInit() {
@@ -35,17 +36,14 @@ class addFileController extends GetxController with GetSingleTickerProviderState
   final picker =ImagePicker();
   XFile? _image;
   XFile? get image=>_image;
-  // RxString imagePath =''.obs;
 
 
 
   Future pickCameraImage(BuildContext context)async{
-    // final ImagePicker _picker = ImagePicker();
     final image = await picker.pickImage(source: ImageSource.camera,imageQuality: 100);
     if(image!=null){
       _image = XFile(image.path);
       update();
-      // imagePath.value  = image.path.toString();
     }
   }
   Future pickGalleryImage(BuildContext context)async{
@@ -67,8 +65,6 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     }).then((value){
       print('File uploaded and stored');
     });
-
-
 
   }
 
@@ -100,10 +96,11 @@ class addFileController extends GetxController with GetSingleTickerProviderState
       ),
     ));
   }
-  Future<void> addFileOnFirebase(String timeStamp, String name,String dept,String image,String date,String fileNum,String from,)async{
+  Future<void> addFileOnFirebase(String detail,String timeStamp, String name,String dept,String image,String date,String fileNum,String from,)async{
      setLoading(true);
     try{
       await state.ref.doc(timeStamp).set({
+        'Detail':detail,
         'Dept':dept,
         'Name':name,
         'From':from,
@@ -123,6 +120,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     }
   }
   void storeData(
+      String detail,
       String timeStamp,
   AddFileModel addFile,
       BuildContext context,String name ,
@@ -130,10 +128,8 @@ class addFileController extends GetxController with GetSingleTickerProviderState
       String from,String image,String fileNum,String date,
       )async{
     setLoading(true);
-    addFileOnFirebase(timeStamp,name,dept, image, date, fileNum, from).then((value){
+    addFileOnFirebase(detail,timeStamp,name,dept, image, date, fileNum, from).then((value){
       uploadimageonDatabase(timeStamp);
-
-
       setLoading(false);
       clearDateFromScreen();
     }).onError((error, stackTrace){
@@ -159,6 +155,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     state.nameController.clear();
     state.filenoController.clear();
     state.deptName.value="Select";
+    state.detailController.clear();
   }
   Stream<DocumentSnapshot<Map<String,dynamic>>> getFIleData(){
     return state.ref.doc(state.auth.currentUser!.uid.toString()).snapshots();

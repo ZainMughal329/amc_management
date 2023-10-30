@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../colors.dart';
+import '../../colors.dart';
 class ReuseButton extends StatelessWidget {
   final String tittle;
   final Color color,textcolr;

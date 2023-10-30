@@ -20,6 +20,7 @@ class dispatchController extends GetxController
     // state.dateController.dispose();
     state.notificationToController.dispose();
     state.recievedByController.dispose();
+    state.detailController.dispose();
   }
   @override
   void onInit() {
@@ -30,25 +31,6 @@ class dispatchController extends GetxController
   final picker =ImagePicker();
   XFile? _image;
   XFile? get image=>_image;
-  // Future pickCameraImage(BuildContext context) async {
-  //   final image = await picker.pickImage(source: ImageSource.camera,imageQuality: 100);
-  //   if (image != null) {
-  //     // _image=XFile(image.path);
-  //     // update();
-  //      imagePath.value = image.path.toString();
-  //     // uploadimageonDatabase(context);
-  //   }
-  // }
-  // Future pickGalleryImage(BuildContext context) async {
-  //   // final ImagePicker _picker = ImagePicker();
-  //   final image = await picker.pickImage(source: ImageSource.gallery,imageQuality: 100);
-  //   if (image != null) {
-  //     imagePath.value = image.path.toString();
-  //     // _image=XFile(image.path);
-  //     update();
-  //     // uploadimageonDatabase(context);
-  //   }
-  // }
 
   void pickedImageFromGallery(
       BuildContext context,
@@ -74,7 +56,13 @@ class dispatchController extends GetxController
     firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/dispatchFile'+timeStamp);
     firebase_storage.UploadTask uploadTask =storageRef.putFile(File(image!.path).absolute);
     await Future.value(uploadTask);
-    // final newUrl = await storageRef.getDownloadURL();
+    final imageUrl = await storageRef.getDownloadURL();
+    state.ref.doc(timeStamp).update({
+      'Image': imageUrl,
+    }).then((value){
+      print('File uploaded and stored');
+    });
+
   }
 
   void pickImage(context) {
@@ -114,12 +102,13 @@ class dispatchController extends GetxController
 
 
 
-  Future<void> DispatchModelFile(String name, String image, String date,
+  Future<void> DispatchModelFile(String detail,String timeStamp,String name, String image, String date,
       String recievedBy,
       String dept,
       String notificationTo) async {
     try {
-      await state.ref.add({
+      await state.ref.doc(timeStamp).set({
+        'Detail':detail,
         'Image': image,
         'Name': name,
         'Dept':dept,
@@ -137,15 +126,17 @@ class dispatchController extends GetxController
     }
   }
   void storeData(
+      String timeStamp,
       DispatchModel dispatch,
       BuildContext context,
+      String detail,
       String image,
       String name,
       String dept,
       String recievedBy,
       String notificationTo,
       String date) async {
-    DispatchModelFile(name, image,dept, date, recievedBy, notificationTo)
+    DispatchModelFile(detail,timeStamp,name, image,dept, date, recievedBy, notificationTo)
         .then((value) {
           clearDateFromScreen();
     });
@@ -156,7 +147,7 @@ class dispatchController extends GetxController
     state.nameController.clear();
     state.notificationToController.clear();
     state.deptName="".obs;
-    // image=null;
+    state.detailController.clear();
     // imagePath.value="";
   }
 

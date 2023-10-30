@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../colors.dart';
+import '../../colors.dart';
 class ReuseField extends StatelessWidget {
   ReuseField({super.key,
     required this.myController,

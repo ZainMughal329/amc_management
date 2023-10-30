@@ -6,9 +6,10 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../../../model/addFile_model/addFile_model.dart';
 import '../../../../res/colors.dart';
-import '../../../../res/components/custom_button.dart';
+import '../../../../res/components/adminViewComponents/custom_addordispatchfields.dart';
+import '../../../../res/components/adminViewComponents/custom_button.dart';
+import '../../../../res/components/adminViewComponents/detailTextForm.dart';
 import '../index.dart';
-import 'addFileCustomField.dart';
 class addFileForm extends GetView<addFileController> {
    addFileForm({super.key});
   Widget dropDownList(){
@@ -107,21 +108,11 @@ class addFileForm extends GetView<addFileController> {
                               // width: 3.0,
                             ),
                           ),
-                          //  controller.imagePath == ''
-                          //                       ? Icon(Icons.file_copy)
-                          //                       : Image(
-                          //                       fit: BoxFit.cover,
-                          //                       image: FileImage(File(controller
-                          //                           .imagePath
-                          //                           .toString())))
-
                           child:Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [Column(
                               children: [
                                 ClipRRect(
-                                  // borderRadius: BorderRadius.circular(100.r),
-
                                   child: controller.image == null
                                       ? Icon(
                                     Icons.image,
@@ -159,28 +150,6 @@ class addFileForm extends GetView<addFileController> {
                     );
 
                   })
-                  // Obx(()=>Container(
-                  //     height: 200.h,
-                  //     width: 200.w,
-                  //
-                  //     decoration: BoxDecoration(
-                  //         border: Border.all(
-                  //           color: Colors.black,
-                  //           width: 1.0,
-                  //         )
-                  //
-                  //     ),
-                  //     child: controller.image == null
-                  //         ? Icon(Icons.image)
-                  //         : Image(
-                  //         fit: BoxFit.cover,
-                  //         image: FileImage(
-                  //             File(controller.imagePath.toString())))),),
-                  // controller.imagePath == '' ? Center(
-                  //   child: TextButton(onPressed: (){
-                  //     controller.pickImage(context);
-                  //   }, child: Text('Pick Image')),
-                  // ) : Container(),
                 ],
               ),
               SizedBox(height: 15.h,),
@@ -242,11 +211,24 @@ class addFileForm extends GetView<addFileController> {
                 focusNode: controller.state.fromFocusNode,
                 controller: controller.state.fromController,
                 onFiledSubmittedValue: (value){
+                  ReuseableUtils.fieldfocous(context, controller.state.fromFocusNode,
+                      controller.state.detailFocusNode);
                 },
                 onvalidator: (value) {
                   return value.isEmpty ? 'Please Enter Receiver Name.' : null;
                 },
                 prefixIcon: Icon(Icons.person_outline),
+              ),
+              SizedBox(height: 10.h,),
+              detailTextFormField(
+                controller: controller.state.detailController,
+                focusNode: controller.state.detailFocusNode,
+                hintText: 'Please Enter File Details',
+                onFiledSubmittedValue: (value){
+                },
+                onvalidator: (value) {
+                  return value.isEmpty ? 'Please Enter File Detail.' : null;
+                },
               ),
               SizedBox(height: 10.h,),
               Row(
@@ -260,14 +242,18 @@ class addFileForm extends GetView<addFileController> {
                   loading: controller.state.loading.value,
                   onpress: (){
                     String timeStamp = DateTime.now().millisecondsSinceEpoch.toString();
-                    final addFile = AddFileModel(name: controller.state.nameController.text.trim(),
+                    final addFile = AddFileModel(
+                      detail: controller.state.detailController.text.trim(),
+                      name: controller.state.nameController.text.trim(),
                       dept: controller.state.deptName.toString().trim(),
                       date: controller.state.dateController.text.trim(),
                       from: controller.state.fromController.text.trim(),
                       filenum: controller.state.filenoController.text.trim(),
                       image:controller.image!.path.toString(),
                     );
-                    controller.storeData(timeStamp,addFile, context, controller.state.nameController.text.trim(),
+                    controller.storeData(
+                      controller.state.detailController.text.trim(),
+                      timeStamp,addFile, context, controller.state.nameController.text.trim(),
                       controller.state.deptName.toString().trim(),
                       controller.state.fromController.text.trim(),
                       controller.image!.path.toString(),

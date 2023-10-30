@@ -14,6 +14,8 @@ class addFileState{
  final auth = FirebaseAuth.instance;
  var deptName = 'Select'.obs;
  final loading = false.obs;
+ final detailController = TextEditingController();
+ final detailFocusNode = FocusNode();
   final nameController = TextEditingController();
   final nameFocusNode = FocusNode();
  DateTime selectedDate = DateTime.now();

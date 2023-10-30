@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class DispatchModel {
   final String? image;
   final String name;
+  final String? detail;
   final String date;
   final String dept;
   // final String username;
@@ -15,6 +16,7 @@ class DispatchModel {
 
   DispatchModel({
     this.image,
+    this.detail,
     required this.dept,
     required this.name,
     required this.date,
@@ -29,7 +31,7 @@ class DispatchModel {
 
   toJson() {
     return {
-
+      'Detail':detail,
       'Image': image,
       'Dept':dept,
       'Name': name,
@@ -48,6 +50,7 @@ class DispatchModel {
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
     final data = documentSnapshot.data()!;
     return DispatchModel(
+      detail: data['Detail'],
       dept: data['dept'],
       image:data['image'],
       name: data['Name'],

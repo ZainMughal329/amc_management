@@ -20,7 +20,7 @@ class customTextField extends StatelessWidget {
       {super.key,
         this.controller,
         this.lableText,
-         this.hintText,
+        this.hintText,
         this.focusNode,
         this.suffixIcon,
         this.prefixIcon,

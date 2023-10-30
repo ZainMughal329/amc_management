@@ -2,7 +2,7 @@ import 'package:amc_management/res/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import '../../../res/components/tab_bar_setting.dart';
+import '../../../res/components/adminViewComponents/tab_bar_setting.dart';
 import 'components/addFileDataList.dart';
 import 'components/addFileForm.dart';
 import 'index.dart';

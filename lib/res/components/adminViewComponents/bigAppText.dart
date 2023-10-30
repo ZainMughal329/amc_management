@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../colors.dart';
+import '../../colors.dart';
 
 class BigAppText extends StatelessWidget {
   final String text;

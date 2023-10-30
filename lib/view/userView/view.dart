@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../model/userModel/user_model.dart';
-import '../../../res/components/userApprovalPage.dart';
+import '../../res/components/UserViewComponents/userApprovalPage.dart';
 import '../../model/services/session_Controller.dart';
 import '../../utils/routes/routes_name.dart';
 import '../../utils/snackBar.dart';
