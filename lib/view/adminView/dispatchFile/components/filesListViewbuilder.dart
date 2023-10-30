@@ -29,11 +29,14 @@ class FileList extends GetView<dispatchController> {
                     return InkWell(
 
                       onTap: (){
-                        Get.to(()=>dispatchFileShowContainer(date: snapshot.data!.docs[index]['Date'],
+                        Get.to(()=>dispatchFileShowContainer(
+                            recievedBy: snapshot.data!.docs[index]['RecievedBy'],
+                            details: snapshot.data!.docs[index]['Detail'],
+                            date: snapshot.data!.docs[index]['Date'],
                             name: snapshot.data!.docs[index]['Name'],
                             img: snapshot.data!.docs[index]['Image'],
                             notificationTo: snapshot.data!.docs[index]['NotificationTo'],
-                            recievedFrom: snapshot.data!.docs[index]['RecievedBy']));
+                            ));
                       },
                       child: Container(
                         height: 200.h,

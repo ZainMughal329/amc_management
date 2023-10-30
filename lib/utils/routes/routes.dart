@@ -75,7 +75,9 @@ class AppPages {
         page: () => dispatchView(),
         binding: dispatchBindings()),
     GetPage(name: RouteNames.dispatchfileshowcontainer, page: ()=>dispatchFileShowContainer(
-      recievedFrom: "",
+
+     details: '',
+      recievedBy: "",
       notificationTo: "",
       img: "",
       date: "",

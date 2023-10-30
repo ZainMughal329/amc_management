@@ -16,9 +16,9 @@ class BeautifulCard extends StatelessWidget {
     required this.imagePath,
     required this.date,
     required this.receiverFrom,
-    required this.fileNumber,
+    this.fileNumber='',
     required this.fileName,
-    required this.deptName,
+     this.deptName='',
     required this.fileDetails,
   });
 
