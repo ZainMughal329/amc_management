@@ -1,17 +1,26 @@
-// import 'dart:html';
 
-import 'dart:typed_data';
 
 import 'package:amc_management/view/adminView/listofImages/controller.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:io';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 
 class ListOfFileView extends StatelessWidget {
-   ListOfFileView({Key? key}) : super(key: key);
+  String FileName,
+      date,
+      deptName,
+      details,
+      recieverName,
+   fileNo;
+   ListOfFileView({Key? key,
+     required this.FileName,
+     required this.fileNo,
+     required this.details,
+     required this.date,
+     required this.recieverName,
+     required this.deptName,
+   }) : super(key: key);
    final con = Get.put<ListOfFileController>(ListOfFileController());
 
   final controller = MultiImagePickerController(
@@ -21,16 +30,12 @@ class ListOfFileView extends StatelessWidget {
   );
    Future<void> uploadImages(var images) async {
      // FirebaseStorage storage = FirebaseStorage.instance;
-
      for (var image in images) {
        String fileName = image.name;
        print("File name is"+ fileName.toString());
-
        // Reference ref = storage.ref().child('your_directory_name/$fileName');
-
        // ByteData byteData = await image.data;
        // List<int> imageData = byteData.buffer.asUint8List();
-
        try {
          // await ref.putData(imageData);
          // print('Uploaded $fileName successfully');
@@ -75,21 +80,14 @@ class ListOfFileView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-
           // uploadImages(controller.images);
           print(controller.images.length.toString());
           for(var data in controller.images) {
             String timestamp = DateTime.timestamp().microsecondsSinceEpoch.toString();
             // print(data.path.toString());
             print(data.path);
-
-
             // code to uploading images in storage
             con.uploadimageonDatabase(timestamp, data.path);
-
-
-
-
             // con.uploadimageonDatabase(timestamp, data.path);
           }
           // controller.clearImages();

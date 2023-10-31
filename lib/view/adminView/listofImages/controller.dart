@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
+import '../../../res/colors.dart';
+
 class ListOfFileController extends GetxController{
 
 
@@ -33,6 +35,33 @@ class ListOfFileController extends GetxController{
       images.add(image.path);
       update();
     }
+  }
+  void pickImage(context){
+    Get.dialog(AlertDialog(
+      content: Container(
+        height: 120,
+        child: Column(
+          children: [
+            ListTile(
+              onTap: (){
+                pickCameraImage(context);
+                Get.back();
+              },
+              title: Text('Camera'),
+              leading: Icon(Icons.camera,color: AppColors.lightActiveIconColor,),
+            ),
+            ListTile(
+              onTap: (){
+                pickGalleryImage(context);
+                Get.back();
+              },
+              title: Text('Gallery'),
+              leading: Icon(Icons.image,color: AppColors.lightActiveIconColor,),
+            ),
+          ],
+        ),
+      ),
+    ));
   }
 
 

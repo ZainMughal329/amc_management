@@ -25,4 +25,5 @@ class addFileState{
   final fromFocusNode = FocusNode();
   final filenoController = TextEditingController();
   final filenoFocusNode = FocusNode();
+ final RxBool isFormValid = false.obs;
 }

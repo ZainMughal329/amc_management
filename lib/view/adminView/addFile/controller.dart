@@ -159,6 +159,18 @@ class addFileController extends GetxController with GetSingleTickerProviderState
   Stream<DocumentSnapshot<Map<String,dynamic>>> getFIleData(){
     return state.ref.doc(state.auth.currentUser!.uid.toString()).snapshots();
   }
+
+
+//   here we create function to vaLidate THE FORM
+
+  void validateForm() {
+    state.isFormValid.value = state.nameController.text.isNotEmpty &&
+       state.dateController.text.isNotEmpty &&
+        state.filenoController.text.isNotEmpty &&
+        state.fromController.text.isNotEmpty &&
+        state.detailController.text.isNotEmpty &&
+        state.deptName.value.isNotEmpty;
+  }
 }
 
 

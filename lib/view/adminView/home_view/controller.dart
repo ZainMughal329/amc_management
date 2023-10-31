@@ -58,11 +58,11 @@ class HomeController extends GetxController{
           Get.toNamed(RouteNames.dispatchview);
       print('4');
     },
-        () {
-    Get.to(ListOfFileView());
-          // Get.toNamed(RouteNames.scanImage);
-      print('5');
-    },
+    //     () {
+    // Get.to(ListOfFileView());
+    //       // Get.toNamed(RouteNames.scanImage);
+    //   print('5');
+    // },
   ];
 
 
