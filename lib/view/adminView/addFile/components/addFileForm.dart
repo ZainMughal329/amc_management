@@ -286,6 +286,8 @@ class addFileForm extends GetView<addFileController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [Text('Select Dept'), dropDownList()],
                     ),
+                    SizedBox(height: 15.h,),
+                    // if(controller.state.isFormValid.value)
                     ReuseButton(
                         tittle: 'Select Images',
                         loading: controller.state.loading.value,
@@ -293,8 +295,7 @@ class addFileForm extends GetView<addFileController> {
                           Get.to(() => ListOfFileView(
                                 details: controller.state.detailController.text
                                     .trim(),
-                                date:
-                                    controller.state.dateController.text.trim(),
+                                date:controller.state.dateController.text.trim(),
                                 fileNo: controller.state.filenoController.text
                                     .trim(),
                                 recieverName:
@@ -304,6 +305,7 @@ class addFileForm extends GetView<addFileController> {
                                 deptName: controller.state.deptName.value,
                               ));
                         }),
+
                     // (controller.state.isFormValid.value)?
                     // ReuseButton(
                     //     tittle: 'Select Images',
@@ -353,3 +355,5 @@ class addFileForm extends GetView<addFileController> {
 //                             controller.image!.path.toString(),
 //                             controller.state.filenoController.text.trim(),
 //                             controller.state.dateController.text.trim(),
+
+

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import '../../../../res/colors.dart';
 import '../../../../res/components/adminViewComponents/fileShowScreen.dart';
 
 class addFileShowContainer extends StatelessWidget {
@@ -27,13 +28,33 @@ class addFileShowContainer extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       resizeToAvoidBottomInset: false,
-      body: BeautifulCard(imagePath: img,
-          date: date,
-          receiverFrom: from,
-          fileNumber: fileNum,
-          fileName: name,
-          deptName: dept,
-          fileDetails: details),
+      body: Column(
+        children: [
+          SizedBox(height:40,),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+                alignment: Alignment.topLeft,
+                child: CircleAvatar(
+                  backgroundColor: AppColors.lightActiveIconColor,
+                  child: IconButton(
+                      onPressed: (){
+                        Get.back();
+                      }, icon: Icon(Icons.arrow_back,
+                    color: Colors.white,
+                  )),
+                )),
+          ),
+          SizedBox(height: 10,),
+          BeautifulCard(imagePath: img,
+              date: date,
+              receiverFrom: from,
+              fileNumber: fileNum,
+              fileName: name,
+              deptName: dept,
+              fileDetails: details),
+        ],
+      ),
     );
   }
 }

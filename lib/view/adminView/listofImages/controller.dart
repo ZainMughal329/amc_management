@@ -92,7 +92,9 @@ class ListOfFileController extends GetxController{
 
   Future<void> addFileDataOnFirebase (String id,String name, String date, String fileNo , String deptName, String recieverName, String details) async{
     try{
-      await state.ref.doc(id).set(AddFileModel(name: name, dept: deptName, date: date, from: recieverName, filenum: fileNo).toJson()).then((value){
+      await state.ref.doc(id).set(AddFileModel(name: name, dept: deptName, date: date, from: recieverName, filenum: fileNo,
+      detail: details
+      ).toJson()).then((value){
 
       }).onError((error, stackTrace){
         print("Error"+error.toString());
