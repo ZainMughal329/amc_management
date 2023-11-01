@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:amc_management/model/addFile_model/addFile_model.dart';
 import 'package:amc_management/view/adminView/listofImages/state.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -65,23 +66,46 @@ class ListOfFileController extends GetxController{
   }
 
 
-  Future uploadimageonDatabase (String timeStamp,var imagePath) async{
+
+
+  Future uploadimageonDatabase (String docId , String timeStamp,var imagePath) async{
+
     try{
       firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/addFile'+timeStamp);
       firebase_storage.UploadTask uploadTask =storageRef.putFile(File(imagePath).absolute);
       await Future.value(uploadTask);
       final imageUrl = await storageRef.getDownloadURL();
-      print("Downloaded Image Url is "+ imageUrl.toString());
-      // state.ref.doc(timeStamp).update({
-      //   'image': imageUrl,
-      // }).then((value){
-      //   print('File uploaded and stored');
-      // });
+      state.ref.doc(docId).collection('Images').doc(docId).set({
+        state.imageNo.toString() : imageUrl.toString(),
+      }).then((value){
+        print("image no is" + state.imageNo.toString());
+        print("image url is" + imageUrl.toString());
+      }).onError((error, stackTrace){
+        print(error.toString());
+      });
+
     }catch(e){
       print(e.toString());
     }
 
   }
 
+  Future<void> addFileDataOnFirebase (String id,String name, String date, String fileNo , String deptName, String recieverName, String details) async{
+    try{
+      await state.ref.doc(id).set(AddFileModel(name: name, dept: deptName, date: date, from: recieverName, filenum: fileNo).toJson()).then((value){
+
+      }).onError((error, stackTrace){
+        print("Error"+error.toString());
+      });
+
+
+    }catch(e){
+
+    }
+  }
+
+
 
 }
+
+

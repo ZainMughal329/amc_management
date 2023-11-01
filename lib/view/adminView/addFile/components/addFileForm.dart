@@ -84,7 +84,7 @@ class addFileForm extends GetView<addFileController> {
       resizeToAvoidBottomInset: true,
       body: GetBuilder<addFileController>(
         init: addFileController(),
-        builder: (controller){
+        builder: (controller) {
           return SingleChildScrollView(
             child: Form(
               child: Container(
@@ -92,97 +92,97 @@ class addFileForm extends GetView<addFileController> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 10,
-                          ),
-                          // GetBuilder<addFileController>(builder: (controller) {
-                          //   return InkWell(
-                          //     onTap: () {
-                          //       controller.pickImage(context);
-                          //     },
-                          //     child: Container(
-                          //         height: 200.h,
-                          //         width: double.infinity,
-                          //         decoration: BoxDecoration(
-                          //           color: controller.image == null
-                          //               ? AppColors.unActiveTabElementColor
-                          //               : AppColors.lightActiveIconColor,
-                          //           border: Border.all(
-                          //             color: controller.image == null
-                          //                 ? AppColors.textColour
-                          //                 : Colors.transparent,
-                          //             // width: 3.0,
-                          //           ),
-                          //         ),
-                          //         child: Column(
-                          //           mainAxisAlignment: MainAxisAlignment.center,
-                          //           children: [
-                          //             Column(
-                          //               children: [
-                          //                 ClipRRect(
-                          //                   child: controller.image == null
-                          //                       ? Icon(
-                          //                           Icons.image,
-                          //                           size: 50.sp,
-                          //                           color:
-                          //                               AppColors.lightActiveIconColor,
-                          //                         )
-                          //                       : Container(
-                          //                           height: 185.h,
-                          //                           width: double.infinity,
-                          //                           child: Image.file(
-                          //                             File(controller.image!.path)
-                          //                                 .absolute,
-                          //                             fit: BoxFit.fill,
-                          //                           ),
-                          //                         ),
-                          //                 ),
-                          //                 controller.image == null
-                          //                     ? SizedBox(
-                          //                         height: 10.h,
-                          //                       )
-                          //                     : SizedBox(),
-                          //                 controller.image == null
-                          //                     ? Text(
-                          //                         "Tap to Upload Image",
-                          //                         style: TextStyle(
-                          //                             color:
-                          //                                 AppColors.subtitleTextColor),
-                          //                       )
-                          //                     : Container(),
-                          //               ],
-                          //             )
-                          //           ],
-                          //         )),
-                          //   );
-                          // })
-                          InkWell(
-                              onTap: (){
-                                Get.offAll(ListOfFileView(
-                                  details: controller.state.detailController.text.trim(),
-                                  date: controller.state.dateController.text.trim(),
-                                  fileNo: controller.state.filenoController.text.trim(),
-                                  recieverName: controller.state.fromController.text.trim(),
-                                  FileName: controller.state.nameController.text.trim(),
-                                  deptName:controller.state.deptName.value,
-                                ));
-                              },
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: AppColors.elevatedButtonColour
-                                      )
-                                  ),
-                                  height: 150.h,
-                                  width: double.infinity,
-                                  child: Center(child: Text('Tap To Upload a photo')))
-
-                          )]
-                    ),
+                    // Column(
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     crossAxisAlignment: CrossAxisAlignment.center,
+                    //     children: [
+                    //       SizedBox(
+                    //         height: 10,
+                    //       ),
+                    //       // GetBuilder<addFileController>(builder: (controller) {
+                    //       //   return InkWell(
+                    //       //     onTap: () {
+                    //       //       controller.pickImage(context);
+                    //       //     },
+                    //       //     child: Container(
+                    //       //         height: 200.h,
+                    //       //         width: double.infinity,
+                    //       //         decoration: BoxDecoration(
+                    //       //           color: controller.image == null
+                    //       //               ? AppColors.unActiveTabElementColor
+                    //       //               : AppColors.lightActiveIconColor,
+                    //       //           border: Border.all(
+                    //       //             color: controller.image == null
+                    //       //                 ? AppColors.textColour
+                    //       //                 : Colors.transparent,
+                    //       //             // width: 3.0,
+                    //       //           ),
+                    //       //         ),
+                    //       //         child: Column(
+                    //       //           mainAxisAlignment: MainAxisAlignment.center,
+                    //       //           children: [
+                    //       //             Column(
+                    //       //               children: [
+                    //       //                 ClipRRect(
+                    //       //                   child: controller.image == null
+                    //       //                       ? Icon(
+                    //       //                           Icons.image,
+                    //       //                           size: 50.sp,
+                    //       //                           color:
+                    //       //                               AppColors.lightActiveIconColor,
+                    //       //                         )
+                    //       //                       : Container(
+                    //       //                           height: 185.h,
+                    //       //                           width: double.infinity,
+                    //       //                           child: Image.file(
+                    //       //                             File(controller.image!.path)
+                    //       //                                 .absolute,
+                    //       //                             fit: BoxFit.fill,
+                    //       //                           ),
+                    //       //                         ),
+                    //       //                 ),
+                    //       //                 controller.image == null
+                    //       //                     ? SizedBox(
+                    //       //                         height: 10.h,
+                    //       //                       )
+                    //       //                     : SizedBox(),
+                    //       //                 controller.image == null
+                    //       //                     ? Text(
+                    //       //                         "Tap to Upload Image",
+                    //       //                         style: TextStyle(
+                    //       //                             color:
+                    //       //                                 AppColors.subtitleTextColor),
+                    //       //                       )
+                    //       //                     : Container(),
+                    //       //               ],
+                    //       //             )
+                    //       //           ],
+                    //       //         )),
+                    //       //   );
+                    //       // })
+                    //       InkWell(
+                    //           onTap: (){
+                    //             Get.to(ListOfFileView(
+                    //               details: controller.state.detailController.text.trim(),
+                    //               date: controller.state.dateController.text.trim(),
+                    //               fileNo: controller.state.filenoController.text.trim(),
+                    //               recieverName: controller.state.fromController.text.trim(),
+                    //               FileName: controller.state.nameController.text.trim(),
+                    //               deptName:controller.state.deptName.value,
+                    //             ));
+                    //           },
+                    //           child: Container(
+                    //               decoration: BoxDecoration(
+                    //                   border: Border.all(
+                    //                       color: AppColors.elevatedButtonColour
+                    //                   )
+                    //               ),
+                    //               height: 150.h,
+                    //               width: double.infinity,
+                    //               child: Center(child: Text('Tap To Upload a photo')))
+                    //
+                    //       )]
+                    // ),
                     SizedBox(
                       height: 15.h,
                     ),
@@ -209,7 +209,8 @@ class addFileForm extends GetView<addFileController> {
                           focusNode: controller.state.dateFocusNode,
                           controller: con.state.dateController,
                           prefixIcon: Icon(Icons.date_range_outlined),
-                          hintText: DateFormat.yMMMd().format(con.state.selectedDate),
+                          hintText:
+                              DateFormat.yMMMd().format(con.state.selectedDate),
                           suffixIcon: Icons.calendar_today_outlined,
                           onPressSufix: () {
                             con.getDateFromUser(context);
@@ -240,7 +241,9 @@ class addFileForm extends GetView<addFileController> {
                               controller.state.fromFocusNode);
                         },
                         onvalidator: (value) {
-                          return value.isEmpty ? 'Please Enter File Number.' : null;
+                          return value.isEmpty
+                              ? 'Please Enter File Number.'
+                              : null;
                         }),
                     SizedBox(
                       height: 10.h,
@@ -256,7 +259,9 @@ class addFileForm extends GetView<addFileController> {
                             controller.state.detailFocusNode);
                       },
                       onvalidator: (value) {
-                        return value.isEmpty ? 'Please Enter Receiver Name.' : null;
+                        return value.isEmpty
+                            ? 'Please Enter Receiver Name.'
+                            : null;
                       },
                       prefixIcon: Icon(Icons.person_outline),
                     ),
@@ -269,7 +274,9 @@ class addFileForm extends GetView<addFileController> {
                       hintText: 'Please Enter File Details',
                       onFiledSubmittedValue: (value) {},
                       onvalidator: (value) {
-                        return value.isEmpty ? 'Please Enter File Detail.' : null;
+                        return value.isEmpty
+                            ? 'Please Enter File Detail.'
+                            : null;
                       },
                     ),
                     SizedBox(
@@ -279,45 +286,70 @@ class addFileForm extends GetView<addFileController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [Text('Select Dept'), dropDownList()],
                     ),
-                     if(controller.state.isFormValid.value)
                     ReuseButton(
-                        tittle: 'Upload',
+                        tittle: 'Select Images',
                         loading: controller.state.loading.value,
                         onpress: () {
-                          String timeStamp =
-                          DateTime.now().millisecondsSinceEpoch.toString();
-                          final addFile = AddFileModel(
-                            detail: controller.state.detailController.text.trim(),
-                            name: controller.state.nameController.text.trim(),
-                            dept: controller.state.deptName.toString().trim(),
-                            date: controller.state.dateController.text.trim(),
-                            from: controller.state.fromController.text.trim(),
-                            filenum: controller.state.filenoController.text.trim(),
-                            image: controller.image!.path.toString(),
-                          );
-                          controller.storeData(
-                            controller.state.detailController.text.trim(),
-                            timeStamp,
-                            addFile,
-                            context,
-                            controller.state.nameController.text.trim(),
-                            controller.state.deptName.toString().trim(),
-                            controller.state.fromController.text.trim(),
-                            controller.image!.path.toString(),
-                            controller.state.filenoController.text.trim(),
-                            controller.state.dateController.text.trim(),
-                          );
-                        })
+                          Get.to(() => ListOfFileView(
+                                details: controller.state.detailController.text
+                                    .trim(),
+                                date:
+                                    controller.state.dateController.text.trim(),
+                                fileNo: controller.state.filenoController.text
+                                    .trim(),
+                                recieverName:
+                                    controller.state.fromController.text.trim(),
+                                FileName:
+                                    controller.state.nameController.text.trim(),
+                                deptName: controller.state.deptName.value,
+                              ));
+                        }),
+                    // (controller.state.isFormValid.value)?
+                    // ReuseButton(
+                    //     tittle: 'Select Images',
+                    //     loading: controller.state.loading.value,
+                    //     onpress: () {
+                    //       Get.to(()=>ListOfFileView(
+                    //         details: controller.state.detailController.text.trim(),
+                    //         date: controller.state.dateController.text.trim(),
+                    //         fileNo: controller.state.filenoController.text.trim(),
+                    //         recieverName: controller.state.fromController.text.trim(),
+                    //         FileName: controller.state.nameController.text.trim(),
+                    //         deptName:controller.state.deptName.value,
+                    //       )
+                    //
+                    //       );
+                    //     }): Container(),
                   ],
                 ),
               ),
             ),
           );
         },
-
-
       ),
     );
   }
 }
 
+//String timeStamp =
+//                           DateTime.now().millisecondsSinceEpoch.toString();
+//                           final addFile = AddFileModel(
+//                             detail: controller.state.detailController.text.trim(),
+//                             name: controller.state.nameController.text.trim(),
+//                             dept: controller.state.deptName.toString().trim(),
+//                             date: controller.state.dateController.text.trim(),
+//                             from: controller.state.fromController.text.trim(),
+//                             filenum: controller.state.filenoController.text.trim(),
+//                             image: controller.image!.path.toString(),
+//                           );
+//                           controller.storeData(
+//                             controller.state.detailController.text.trim(),
+//                             timeStamp,
+//                             addFile,
+//                             context,
+//                             controller.state.nameController.text.trim(),
+//                             controller.state.deptName.toString().trim(),
+//                             controller.state.fromController.text.trim(),
+//                             controller.image!.path.toString(),
+//                             controller.state.filenoController.text.trim(),
+//                             controller.state.dateController.text.trim(),
