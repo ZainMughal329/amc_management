@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AddFileModel {
-  // final String? image;
   // final String? id;
   final String name;
   final   String date;
@@ -14,9 +13,10 @@ class AddFileModel {
   final String filenum;
   // final String address;
   // final String deviceToken;
+  final List<String> images;
+
 
   AddFileModel({
-    // this.image,
     // this.id,
     this.detail,
     required this.name,
@@ -24,6 +24,8 @@ class AddFileModel {
     required this.date,
     required this.from,
     required this.filenum,
+    required this.images,
+
     // required this.pkgEndDate,
     // required this.pkgType,
     // required this.password,
@@ -41,6 +43,7 @@ class AddFileModel {
       'From': from,
       'FileNum': filenum,
       'Date': date,
+      'images' : images
     };
   }
 
@@ -56,6 +59,7 @@ class AddFileModel {
       from: data['From'],
       filenum: data['FileNum'],
       date: data['Date'],
+      images: ['images'],
     );
   }
 }

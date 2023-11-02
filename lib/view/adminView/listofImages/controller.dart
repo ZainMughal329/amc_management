@@ -78,12 +78,14 @@ class ListOfFileController extends GetxController{
       firebase_storage.UploadTask uploadTask =storageRef.putFile(File(imagePath).absolute);
       await Future.value(uploadTask);
       imageUrl = await storageRef.getDownloadURL();
-      await state.ref.doc(docId).collection('Images').doc(docId).set(
+      // List<String> imageUrls = imageUrl;
+      print('img 12'+imageUrl.toString());
+      await state.ref.doc(docId).update(
         {
-          imageId.toString() : imageUrl.toString(),
-          imageId.toString() : [],
+          'images' : FieldValue.arrayUnion([imageUrl]),
         },
-        SetOptions(merge: false),
+
+        // SetOptions(merge: false),
 
       ).then((value){
         print("image no is" + imageId.toString());
@@ -104,9 +106,14 @@ class ListOfFileController extends GetxController{
 
   Future<void> addFileDataOnFirebase (String id,String name, String date, String fileNo , String deptName, String recieverName, String details) async{
     try{
-      await state.ref.doc(id).set(AddFileModel(name: name, dept: deptName, date: date, from: recieverName, filenum: fileNo,
+      print('inside try');
+      await state.ref.doc(id).set(AddFileModel(images: [
+        '0' : 0,
+
+      ],name: name, dept: deptName, date: date, from: recieverName, filenum: fileNo,
       detail: details
       ).toJson()).then((value){
+        print('inside then');
 
       }).onError((error, stackTrace){
         print("Error"+error.toString());

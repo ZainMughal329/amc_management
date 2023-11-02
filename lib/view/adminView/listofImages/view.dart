@@ -84,11 +84,14 @@ class ListOfFileView extends StatelessWidget {
           int imageId = con.state.imageNo.value;
           // uploadImages(controller.images);
           // print(controller.images.length.toString());
+          print('object213');
           await con.addFileDataOnFirebase(docId, FileName, date, fileNo, deptName, recieverName, details);
+          print('object265413');
+
           for(var data in controller.images) {
             print(imageId);
             String timestamp = DateTime.timestamp().microsecondsSinceEpoch.toString();
-            con.uploadimageonDatabase(imageId,docId,timestamp, data.path);
+            // con.uploadimageonDatabase(imageId,docId,timestamp, data.path);
 
             print(imageId.toString()+"after code");
             con.state.imageNo.value++;

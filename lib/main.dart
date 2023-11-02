@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           // home: ListOfFileView(),
-          initialRoute: RouteNames.homeview,
+          initialRoute: RouteNames.splashview,
           getPages:AppPages.routes,
         );
 
