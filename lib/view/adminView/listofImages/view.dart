@@ -81,15 +81,20 @@ class ListOfFileView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           String docId = DateTime.now().millisecondsSinceEpoch.toString();
+          int imageId = con.state.imageNo.value;
           // uploadImages(controller.images);
           // print(controller.images.length.toString());
-          con.addFileDataOnFirebase(docId, FileName, date, fileNo, deptName, recieverName, details);
+          await con.addFileDataOnFirebase(docId, FileName, date, fileNo, deptName, recieverName, details);
           for(var data in controller.images) {
-            con.state.imageNo = con.state.imageNo+1;
+            print(imageId);
             String timestamp = DateTime.timestamp().microsecondsSinceEpoch.toString();
-            con.uploadimageonDatabase(docId,timestamp, data.path);
+            con.uploadimageonDatabase(imageId,docId,timestamp, data.path);
+
+            print(imageId.toString()+"after code");
+            con.state.imageNo.value++;
+
           }
-          con.state.imageNo=0;
+          con.state.imageNo.value=0;
 
 
 

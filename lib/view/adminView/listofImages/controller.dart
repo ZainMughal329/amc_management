@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:amc_management/model/addFile_model/addFile_model.dart';
 import 'package:amc_management/view/adminView/listofImages/state.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -68,21 +69,32 @@ class ListOfFileController extends GetxController{
 
 
 
-  Future uploadimageonDatabase (String docId , String timeStamp,var imagePath) async{
+  Future
+  uploadimageonDatabase (int imageId, String docId , String timeStamp,var imagePath) async{
+    final imageUrl;
 
     try{
       firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/addFile'+timeStamp);
       firebase_storage.UploadTask uploadTask =storageRef.putFile(File(imagePath).absolute);
       await Future.value(uploadTask);
-      final imageUrl = await storageRef.getDownloadURL();
-      state.ref.doc(docId).collection('Images').doc(docId).set({
-        state.imageNo.toString() : imageUrl.toString(),
-      }).then((value){
-        print("image no is" + state.imageNo.toString());
+      imageUrl = await storageRef.getDownloadURL();
+      await state.ref.doc(docId).collection('Images').doc(docId).set(
+        {
+          imageId.toString() : imageUrl.toString(),
+          imageId.toString() : [],
+        },
+        SetOptions(merge: false),
+
+      ).then((value){
+        print("image no is" + imageId.toString());
         print("image url is" + imageUrl.toString());
       }).onError((error, stackTrace){
         print(error.toString());
       });
+
+
+
+
 
     }catch(e){
       print(e.toString());
