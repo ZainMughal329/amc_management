@@ -67,6 +67,8 @@ class ListOfFileController extends GetxController{
   }
 
 
+  String documentId = DateTime.now().millisecondsSinceEpoch.toString();
+
 
 
   Future
@@ -80,9 +82,11 @@ class ListOfFileController extends GetxController{
       imageUrl = await storageRef.getDownloadURL();
       // List<String> imageUrls = imageUrl;
       print('img 12'+imageUrl.toString());
-      await state.ref.doc(docId).update(
+      print('id Is : ' + documentId);
+      await state.ref.doc(documentId).update(
         {
           'images' : FieldValue.arrayUnion([imageUrl]),
+          // imageId.toString() : imageUrl,
         },
 
         // SetOptions(merge: false),
@@ -107,10 +111,7 @@ class ListOfFileController extends GetxController{
   Future<void> addFileDataOnFirebase (String id,String name, String date, String fileNo , String deptName, String recieverName, String details) async{
     try{
       print('inside try');
-      await state.ref.doc(id).set(AddFileModel(images: [
-        '0' : 0,
-
-      ],name: name, dept: deptName, date: date, from: recieverName, filenum: fileNo,
+      await state.ref.doc(id).set(AddFileModel(images: [],name: name, dept: deptName, date: date, from: recieverName, filenum: fileNo,
       detail: details
       ).toJson()).then((value){
         print('inside then');

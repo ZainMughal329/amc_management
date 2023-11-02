@@ -9,6 +9,7 @@ import '../../../../res/colors.dart';
 import '../../../../res/components/adminViewComponents/custom_addordispatchfields.dart';
 import '../../../../res/components/adminViewComponents/custom_button.dart';
 import '../../../../res/components/adminViewComponents/detailTextForm.dart';
+import '../../listofImages/controller.dart';
 import '../../listofImages/view.dart';
 import '../index.dart';
 
@@ -292,6 +293,16 @@ class addFileForm extends GetView<addFileController> {
                         tittle: 'Select Images',
                         loading: controller.state.loading.value,
                         onpress: () {
+                          String docId = DateTime.now().millisecondsSinceEpoch.toString();
+
+                          final cont = Get.put(ListOfFileController());
+                          cont.addFileDataOnFirebase(cont.documentId, controller.state.nameController.text
+                              .trim(), controller.state.dateController.text
+                              .trim(), controller.state.filenoController.text
+                              .trim(), controller.state.deptName.value
+                              .trim(), controller.state.fromController.text
+                              .trim(), controller.state.detailController.text
+                              .trim(),);
                           Get.to(() => ListOfFileView(
                                 details: controller.state.detailController.text
                                     .trim(),
