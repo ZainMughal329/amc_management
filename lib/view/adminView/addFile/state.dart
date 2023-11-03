@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class addFileState{
+ RxInt imageNo = 0.obs;
  final ref = FirebaseFirestore.instance.collection('addFiles');
  final auth = FirebaseAuth.instance;
  var deptName = 'Select'.obs;

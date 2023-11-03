@@ -9,9 +9,8 @@ import '../../../../res/colors.dart';
 import '../../../../res/components/adminViewComponents/custom_addordispatchfields.dart';
 import '../../../../res/components/adminViewComponents/custom_button.dart';
 import '../../../../res/components/adminViewComponents/detailTextForm.dart';
-import '../../listofImages/controller.dart';
-import '../../listofImages/view.dart';
 import '../index.dart';
+import 'listofImages/view.dart';
 
 class addFileForm extends GetView<addFileController> {
   addFileForm({super.key});
@@ -295,8 +294,9 @@ class addFileForm extends GetView<addFileController> {
                         onpress: () {
                           String docId = DateTime.now().millisecondsSinceEpoch.toString();
 
-                          final cont = Get.put(ListOfFileController());
-                          cont.addFileDataOnFirebase(cont.documentId, controller.state.nameController.text
+                          controller.addFileDataOnFirebase(
+                            controller.documentId,
+                            controller.state.nameController.text
                               .trim(), controller.state.dateController.text
                               .trim(), controller.state.filenoController.text
                               .trim(), controller.state.deptName.value

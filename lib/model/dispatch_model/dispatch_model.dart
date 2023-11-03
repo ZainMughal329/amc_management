@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DispatchModel {
-  final String? image;
+  final String id;
+  final List<String> images;
   final String name;
   final String? detail;
   final String date;
@@ -15,7 +16,8 @@ class DispatchModel {
   // final String deviceToken;
 
   DispatchModel({
-    this.image,
+    required this.id,
+    required this.images,
     this.detail,
     required this.dept,
     required this.name,
@@ -31,8 +33,9 @@ class DispatchModel {
 
   toJson() {
     return {
+      'Id':id,
       'Detail':detail,
-      'Image': image,
+      'Image': images,
       'Dept':dept,
       'Name': name,
       'RecievedBy': recievedBy,
@@ -50,9 +53,10 @@ class DispatchModel {
       DocumentSnapshot<Map<String, dynamic>> documentSnapshot) {
     final data = documentSnapshot.data()!;
     return DispatchModel(
+      id: data['Id'],
       detail: data['Detail'],
       dept: data['dept'],
-      image:data['image'],
+      images:data['image'],
       name: data['Name'],
       recievedBy: data['RecievedBy'],
       notificationTo: data['NotificationTo'],

@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import '../../../model/services/session_Controller.dart';
 import '../../../res/components/adminViewComponents/custom_container.dart';
 import '../../../utils/routes/routes_name.dart';
-import '../listofImages/view.dart';
 import 'index.dart';
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});

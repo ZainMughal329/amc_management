@@ -36,6 +36,10 @@ class addFileController extends GetxController with GetSingleTickerProviderState
   final picker =ImagePicker();
   XFile? _image;
   XFile? get image=>_image;
+  List<String> images = [];
+  String documentId = DateTime.now().millisecondsSinceEpoch.toString();
+
+
 
 
 
@@ -171,6 +175,70 @@ class addFileController extends GetxController with GetSingleTickerProviderState
         state.detailController.text.isNotEmpty &&
         state.deptName.value.isNotEmpty;
   }
+
+
+  Future
+  uploadimagelistonDatabase (int imageId, String docId , String timeStamp,var imagePath) async{
+    final imageUrl;
+
+    try{
+      firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/addFile'+timeStamp);
+      firebase_storage.UploadTask uploadTask =storageRef.putFile(File(imagePath).absolute);
+      await Future.value(uploadTask);
+      imageUrl = await storageRef.getDownloadURL();
+      // List<String> imageUrls = imageUrl;
+      print('img 12'+imageUrl.toString());
+      print('id Is : ' + documentId);
+      await state.ref.doc(documentId).update(
+        {
+          'images' : FieldValue.arrayUnion([imageUrl]),
+          // imageId.toString() : imageUrl,
+        },
+
+        // SetOptions(merge: false),
+
+      ).then((value){
+        print("image no is" + imageId.toString());
+        print("image url is" + imageUrl.toString());
+      }).onError((error, stackTrace){
+        print(error.toString());
+      });
+
+
+
+
+
+    }catch(e){
+      print(e.toString());
+    }
+
+  }
+
+  Future<void> addFileDataOnFirebase (String id,
+      String name,
+      String date,
+      String fileNo ,
+      String deptName,
+      String recieverName,
+      String details) async{
+    try{
+      print('inside try');
+      await state.ref.doc(id).set(AddFileModel(id: id,
+          images: [],name: name, dept: deptName, date: date, from: recieverName, filenum: fileNo,
+          detail: details
+      ).toJson()).then((value){
+        print('inside then');
+      }).onError((error, stackTrace){
+        print("Error"+error.toString());
+      });
+
+
+    }catch(e){
+
+    }
+  }
+
+
 }
 
 

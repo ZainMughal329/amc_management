@@ -1,6 +1,4 @@
 import 'package:amc_management/utils/routes/routes_name.dart';
-import 'package:amc_management/view/adminView/listofImages/controller.dart';
-import 'package:amc_management/view/adminView/listofImages/view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'index.dart';

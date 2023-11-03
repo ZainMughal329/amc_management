@@ -1,22 +1,27 @@
-import 'package:amc_management/view/adminView/listofImages/controller.dart';
+import 'package:amc_management/view/adminView/addFile/index.dart';
+import 'package:amc_management/view/adminView/dispatchFile/controller.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 
-class ListOfFileView extends StatelessWidget {
-  String FileName, date, deptName, details, recieverName, fileNo;
 
-  ListOfFileView({
+
+class listOfImages extends StatelessWidget {
+  String FileName, notificationTo,date,details,deptName, recievedBy;
+
+
+  listOfImages({
     Key? key,
     required this.FileName,
-    required this.fileNo,
-    required this.details,
     required this.date,
-    required this.recieverName,
-    required this.deptName,
+    required this.recievedBy,
+    required this.notificationTo,
+    required this.details,
+     required this.deptName,
   }) : super(key: key);
-  final con = Get.put<ListOfFileController>(ListOfFileController());
+  final con = Get.put<dispatchController>(dispatchController());
+
 
   final controller = MultiImagePickerController(
     maxImages: 10,
@@ -25,7 +30,6 @@ class ListOfFileView extends StatelessWidget {
   );
 
   Future<void> uploadImages(var images) async {
-    // FirebaseStorage storage = FirebaseStorage.instance;
     for (var image in images) {
       String fileName = image.name;
       print("File name is" + fileName.toString());
@@ -88,8 +92,8 @@ class ListOfFileView extends StatelessWidget {
           for (var data in controller.images) {
             print(imageId);
             String timestamp =
-                DateTime.timestamp().microsecondsSinceEpoch.toString();
-            con.uploadimageonDatabase(imageId, docId, timestamp, data.path);
+            DateTime.timestamp().microsecondsSinceEpoch.toString();
+            con.uploadimagelistonDatabase(imageId, docId, timestamp, data.path);
             print(imageId.toString() + "after code");
             con.state.imageNo.value++;
           }

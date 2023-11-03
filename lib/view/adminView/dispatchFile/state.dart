@@ -18,6 +18,9 @@ class dispatchState {
   final notificationToFocusNode =FocusNode();
   final ref = FirebaseFirestore.instance.collection('dispatchFile');
   var deptName = 'Select'.obs;
+  RxInt imageNo = 0.obs;
+  final loading = false.obs;
+  final RxBool isFormValid = false.obs;
   // Widget _buildCatList() {
 //     return Obx(
 //       () => Expanded(

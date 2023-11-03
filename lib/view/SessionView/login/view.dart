@@ -99,9 +99,9 @@ class LoginView extends GetView<LoginController> {
                           loading: controller.state.loading.value,
                           onpress:(){
                             if (_formKey.currentState!.validate()) {
-                              if (controller.state.emailController.text ==
+                              if (controller.state.emailController.text.trim() ==
                                   "admin@admin.com" &&
-                                  controller.state.passwordController.text ==
+                                  controller.state.passwordController.text.trim() ==
                                       "admin@123") {
                                 controller.setLoading(true);
                                 Get.offAllNamed(RouteNames.homeview)!.then((value){

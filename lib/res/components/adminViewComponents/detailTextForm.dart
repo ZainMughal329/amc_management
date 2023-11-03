@@ -25,12 +25,12 @@ class detailTextFormField extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 8),
       child: Column(
         children: [
-          TextFormField(
+          TextField(
             controller:  controller,
             focusNode: focusNode,
             maxLines: 4,
-            onFieldSubmitted: onFiledSubmittedValue,
-            validator: onvalidator,
+            // onFieldSubmitted: onFiledSubmittedValue,
+            // validator: onvalidator,
             keyboardType: keyboardType,
             style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 15.sp),
             decoration: InputDecoration(

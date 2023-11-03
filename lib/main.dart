@@ -1,7 +1,5 @@
 import 'package:amc_management/utils/routes/routes.dart';
 import 'package:amc_management/utils/routes/routes_name.dart';
-import 'package:amc_management/view/adminView/listofImages/controller.dart';
-import 'package:amc_management/view/adminView/listofImages/view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +9,7 @@ void main()async {
   await Firebase.initializeApp(
     // options: DefaultFirebaseOptions.currentPlatform
   );
-  Get.put(ListOfFileController());
+  // Get.put(ListOfFileController());
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           // home: ListOfFileView(),
-          initialRoute: RouteNames.splashview,
+          initialRoute: RouteNames.homeview,
           getPages:AppPages.routes,
         );
 

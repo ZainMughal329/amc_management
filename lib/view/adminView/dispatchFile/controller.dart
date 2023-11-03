@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:amc_management/res/colors.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage ;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,9 +29,14 @@ class dispatchController extends GetxController
     super.onInit();
     tabController = TabController(length: 2, vsync: this);
   }
+  void setLoading(bool value){
+    state.loading.value = value;
+  }
   final picker =ImagePicker();
   XFile? _image;
   XFile? get image=>_image;
+  List<String> images = [];
+  String documentId = DateTime.now().millisecondsSinceEpoch.toString();
 
   void pickedImageFromGallery(
       BuildContext context,
@@ -164,4 +170,79 @@ class dispatchController extends GetxController
       print('select a date ');
     }
   }
+
+
+  void validateForm() {
+    state.isFormValid.value = state.nameController.text.isNotEmpty &&
+        state.dateController.text.isNotEmpty &&
+        state.recievedByController.text.isNotEmpty &&
+        state.notificationToController.text.isNotEmpty &&
+        state.detailController.text.isNotEmpty &&
+        state.deptName.value.isNotEmpty;
+  }
+
+
+  Future
+  uploadimagelistonDatabase (int imageId, String docId , String timeStamp,var imagePath) async{
+    final imageUrl;
+
+    try{
+      firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/dispatchFile'+timeStamp);
+      firebase_storage.UploadTask uploadTask =storageRef.putFile(File(imagePath).absolute);
+      await Future.value(uploadTask);
+      imageUrl = await storageRef.getDownloadURL();
+      // List<String> imageUrls = imageUrl;
+      print('img 12'+imageUrl.toString());
+      print('id Is : ' + documentId);
+      await state.ref.doc(documentId).update(
+        {
+          'images' : FieldValue.arrayUnion([imageUrl]),
+          // imageId.toString() : imageUrl,
+        },
+
+        // SetOptions(merge: false),
+
+      ).then((value){
+        print("image no is" + imageId.toString());
+        print("image url is" + imageUrl.toString());
+      }).onError((error, stackTrace){
+        print(error.toString());
+      });
+
+
+
+
+
+    }catch(e){
+      print(e.toString());
+    }
+
+  }
+
+  Future<void> dispatchfileDataOnFirebase (String id,String name, String date, String recievedBy , String deptName, String notificationTo, String details) async{
+    try{
+      print('inside try');
+      await state.ref.doc(id).set(
+          DispatchModel(
+            id: id,
+              images: [],
+              name: name,
+              dept: deptName,
+              date: date,
+              recievedBy: recievedBy,
+              notificationTo: notificationTo,
+          detail: details
+          ).toJson()).then((value){
+        print('inside then');
+      }).onError((error, stackTrace){
+        print("Error"+error.toString());
+      });
+
+
+    }catch(e){
+
+    }
+  }
+
+
 }
