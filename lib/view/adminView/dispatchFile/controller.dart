@@ -219,7 +219,7 @@ class dispatchController extends GetxController
 
   }
 
-  Future<void> dispatchfileDataOnFirebase (String fileNum,String id,String name, String date, String recievedBy , String deptName, String notificationTo, String details) async{
+  Future<void> dispatchfileDataOnFirebase (String fileNum,String id,String name, final DateTime date, String recievedBy , String deptName, String notificationTo, String details) async{
     try{
       print('inside try');
       await state.ref.doc(id).set(

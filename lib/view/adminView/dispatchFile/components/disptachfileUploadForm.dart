@@ -177,8 +177,9 @@ class dispatchFileForm extends GetView<dispatchController> {
                         keyboardType: TextInputType.datetime,
                         focusNode:controller.state.dateFocusNode,
                         controller:con.state.dateController,
-                        hintText: DateFormat.yMMMd()
-                            .format(con.state.selectedDate),
+                        hintText: con.state.selectedDate !=null?
+                        DateFormat.yMMMd().format(con.state.selectedDate):
+                        "Select a date",
                         suffixIcon: Icons.calendar_today_outlined,
                         onPressSufix: (){
                           con.getDateFromUser(context);
@@ -277,7 +278,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                         controller.state.fileNumcontroller.text.trim(),
                           controller.documentId,
                           controller.state.nameController.text.trim(),
-                          controller.state.dateController.text.trim(),
+                          controller.state.selectedDate,
                           controller.state.recievedByController.text.trim(),
                           controller.state.deptName.value,
                           controller.state.notificationToController.text.trim(),
@@ -285,7 +286,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                       Get.to(() => listOfImages(
                         fileNum: controller.state.fileNumcontroller.text.trim(),
                           FileName: controller.state.nameController.text.trim(),
-                          date: controller.state.dateController.text.trim(),
+                          date: controller.state.selectedDate,
                           recievedBy:controller.state.recievedByController.text.trim(),
                           notificationTo: controller.state.notificationToController.text.trim(),
                           details: controller.state.detailController.text.trim(),

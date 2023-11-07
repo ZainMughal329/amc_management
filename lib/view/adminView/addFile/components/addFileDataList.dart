@@ -29,22 +29,8 @@ class addFileDataList extends GetView<addFileController> {
                     final timeInMilli = DateTime.fromMillisecondsSinceEpoch(idFromDb);
                     final formattedDate = DateFormat('dd-MM-yy').format(timeInMilli);
                     print('date is : ' + formattedDate.toString());
-                    return InkWell(
-                    onTap: (){
-
-                        Get.to(
-                            ()=>addFileShowContainer(
-                              img: snapshot.data!.docs[index]['images'],
-                                date: formattedDate,
-                                name: snapshot.data!.docs[index]['Name'],
-                                dept: snapshot.data!.docs[index]['Dept'],
-                                details: snapshot.data!.docs[index]['Detail'],
-                                fileNum: snapshot.data!.docs[index]['FileNum'],
-                                from: snapshot.data!.docs[index]['From'])
-
-                        );
-                      },
-                      child: Padding(
+                    return
+                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Card(
                           // elevation: 4,
@@ -65,55 +51,71 @@ class addFileDataList extends GetView<addFileController> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             snapshot.data!.docs[index]['Name'],
-                                            style: TextStyle(fontSize: 20.0),
+                                            style: TextStyle(fontSize: 20.0,color: Colors.white),
                                           ),
+                                          Spacer(),
                                           Text(
                                             snapshot.data!.docs[index]['dept'],
-                                            style: TextStyle(fontSize: 16.0 ),
+                                            style: TextStyle(fontSize: 16.0 ,color: Colors.white),
                                           ),
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 10,
+                                        height: 15,
                                       ),
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
                                             snapshot.data!.docs[index]['From'],
-                                            style: TextStyle(fontSize: 16.0),
+                                            style: TextStyle(fontSize: 16.0,color: Colors.white),
                                           ),
+                                          Spacer(),
                                           Text(
                                             snapshot.data!.docs[index]['FileNum'],
-                                            style: TextStyle(fontSize: 16.0),
+                                            style: TextStyle(fontSize: 16.0,color: Colors.white),
                                           ),
 
                                         ],
                                       ),
                                       SizedBox(
-                                        height: 10,
+                                        height: 15,
                                       ),
                                       Row(
                                         children: [
                                           Text(
-                                            snapshot.data!.docs[index]['Detail'] == '' ? 'Detils' : snapshot.data!.docs[index]['Detail'],
-                                              style: TextStyle(fontSize: 16.0)
-                                          ),
-                                          Spacer(),
-                                          Text(
                                            formattedDate,
                                             style: TextStyle(fontSize: 16.0, color: Colors.white),
                                           ),
-                                          // elevatedButton(tittle: 'Details', onpress: (){
-                                          //
-                                          // })
+                                          Spacer(),
+                                          Container(
+                                            color: Color(0xffBEC3C7),
+                                            width: 80,
+                                            height: 40,
+                                            child: TextButton(onPressed: (){
+                                              Get.toNamed(RouteNames.loginview
+
+                                                      //     addFileShowContainer(
+                                                      // // img: snapshot.data!.docs[index]['images'],
+                                                      // date: formattedDate,
+                                                      // name: snapshot.data!.docs[index]['Name'],
+                                                      // dept: snapshot.data!.docs[index]['Dept'],
+                                                      // details: snapshot.data!.docs[index]['Detail'],
+                                                      // fileNum: snapshot.data!.docs[index]['FileNum'],
+                                                      // from: snapshot.data!.docs[index]['From'])
+
+                                              );
+                                            }, child:Text('Details',
+                                              style: TextStyle(color: AppColors.elevatedButtonColour),
+                                            )),
+                                          ),
+
                                         ],
-                                      )
-                                     
+                                      ),
 
 
 
@@ -125,8 +127,8 @@ class addFileDataList extends GetView<addFileController> {
                             ),
                           ),
                         ),
-                      ),
-                    ) ;
+                      );
+
 
                   }):Container();
             }
@@ -171,19 +173,7 @@ class addFileDataList extends GetView<addFileController> {
 
 
 //InkWell(
-//                       onTap: (){
-//                         Get.to(
-//                             ()=>addFileShowContainer(
-//                               img: snapshot.data!.docs[index]['images'],
-//                                 date: snapshot.data!.docs[index]['Date'],
-//                                 name: snapshot.data!.docs[index]['Name'],
-//                                 dept: snapshot.data!.docs[index]['Dept'],
-//                                 details: snapshot.data!.docs[index]['Detail'],
-//                                 fileNum: snapshot.data!.docs[index]['FileNum'],
-//                                 from: snapshot.data!.docs[index]['From'])
-//
-//                         );
-//                       },
+
 //                     child: CustomCardWidget(
 //                     // imagePath: snapshot.data!.docs[index]['images'],
 //                      date: snapshot.data!.docs[index]['Date'],

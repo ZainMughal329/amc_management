@@ -47,16 +47,24 @@ class addFileShowContainer extends StatelessWidget {
                 )),
           ),
           SizedBox(height: 10,),
-          BeautifulCard(
-
-              // imagePath: img,
-              // date: DateTime.parse(date.to),
-            date: date,
-              receiverFrom: from,
-              fileNumber: fileNum,
-              fileName: name,
-              deptName: dept,
-              fileDetails: details),
+          Center(
+            child: Container(
+              child: Column(
+                children: [
+                  Text(name),
+                  Text(from)
+                ],
+              ),
+            ),
+          )
+          // BeautifulCard(
+          //     // imagePath: img,
+          //     //  date: date,
+          //     receiverFrom: from,
+          //     fileNumber: fileNum,
+          //     fileName: name,
+          //     deptName: dept,
+          //     fileDetails: details),
         ],
       ),
     );

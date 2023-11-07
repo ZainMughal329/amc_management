@@ -5,7 +5,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import '../../../utils/snackBar.dart';
 class BeautifulCard extends StatelessWidget {
    String? imagePath;
-  final String date;
+   String? date;
   final String receiverFrom;
   final String fileNumber;
   final String fileName;
@@ -14,7 +14,7 @@ class BeautifulCard extends StatelessWidget {
 
   BeautifulCard({
      this.imagePath='',
-    required this.date,
+     this.date,
     required this.receiverFrom,
     this.fileNumber='',
     required this.fileName,
@@ -70,13 +70,11 @@ class BeautifulCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     AttributeText(label: 'File Name', value: fileName),
-                    AttributeText(label: 'Date', value: date),
+                    // AttributeText(label: 'Date', value: date!),
                     AttributeText(label: 'File Number', value: fileNumber),
                     AttributeText(label: 'Received From', value: receiverFrom),
                     AttributeText(label: 'Department Name', value: deptName),
-
                     SizedBox(height: 16.0),
-
                     FileDetailsText(fileDetails: fileDetails),
                   ],
                 ),

@@ -6,7 +6,7 @@ class DispatchModel {
   final String name;
   final String? detail;
   final String filenum;
-  final String date;
+  final   DateTime date;
   final String dept;
   // final String username;
   // final String pkgStartDate;
