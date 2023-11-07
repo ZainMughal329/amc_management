@@ -290,7 +290,7 @@ class addFileForm extends GetView<addFileController> {
                     ),
                     SizedBox(height: 15.h,),
 
-                    if(controller.state.isFormValid.value)
+                    // if(controller.state.isFormValid.value)
                     ReuseButton(
                         tittle: 'Select Images',
                         loading: controller.state.loading.value,

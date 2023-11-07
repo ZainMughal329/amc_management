@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../../../../res/colors.dart';
 import 'fileshow.dart';
 import '../index.dart';
@@ -17,16 +18,24 @@ class addFileDataList extends GetView<addFileController> {
           stream: controller.state.ref.snapshots(),
           builder:(BuildContext context , AsyncSnapshot<QuerySnapshot> snapshot){
             if(snapshot.hasData){
+
               return snapshot.data!.docs.length !=0?
               ListView.builder(
                   itemCount: snapshot.data!.docs.length,
                   itemBuilder:(context,index){
+                    final idFromDb = int.parse(
+                      snapshot.data!.docs[index]['Id'].toString()
+                    );
+                    final timeInMilli = DateTime.fromMillisecondsSinceEpoch(idFromDb);
+                    final formattedDate = DateFormat('dd-MM-yy').format(timeInMilli);
+                    print('date is : ' + formattedDate.toString());
                     return InkWell(
                     onTap: (){
+
                         Get.to(
                             ()=>addFileShowContainer(
                               img: snapshot.data!.docs[index]['images'],
-                                date: DateTime.parse(snapshot.data!.docs[index]['Date'].toString()),
+                                date: formattedDate,
                                 name: snapshot.data!.docs[index]['Name'],
                                 dept: snapshot.data!.docs[index]['Dept'],
                                 details: snapshot.data!.docs[index]['Detail'],
@@ -64,7 +73,7 @@ class addFileDataList extends GetView<addFileController> {
                                           ),
                                           Text(
                                             snapshot.data!.docs[index]['dept'],
-                                            style: TextStyle(fontSize: 16.0),
+                                            style: TextStyle(fontSize: 16.0 ),
                                           ),
                                         ],
                                       ),
@@ -91,12 +100,13 @@ class addFileDataList extends GetView<addFileController> {
                                       Row(
                                         children: [
                                           Text(
-                                            snapshot.data!.docs[index]['Detail'],
+                                            snapshot.data!.docs[index]['Detail'] == '' ? 'Detils' : snapshot.data!.docs[index]['Detail'],
                                               style: TextStyle(fontSize: 16.0)
                                           ),
+                                          Spacer(),
                                           Text(
-                                           DateTime.parse(snapshot.data!.docs[index]['Date'].toString()),
-                                            style: TextStyle(fontSize: 16.0),
+                                           formattedDate,
+                                            style: TextStyle(fontSize: 16.0, color: Colors.white),
                                           ),
                                           // elevatedButton(tittle: 'Details', onpress: (){
                                           //
