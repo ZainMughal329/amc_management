@@ -1,3 +1,4 @@
+import 'package:amc_management/res/components/adminViewComponents/addFileDisplay.dart';
 import 'package:amc_management/utils/routes/routes.dart';
 import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -25,7 +26,12 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          // home: ListOfFileView(),
+          // home: addFileDisplay(
+          //   receiverName: 'wahab',
+          //   fileName: 'Abcd',
+          //   deptName: 'it',
+          //   fileNumber: '101',
+          // ),
           initialRoute: RouteNames.homeview,
           getPages:AppPages.routes,
         );

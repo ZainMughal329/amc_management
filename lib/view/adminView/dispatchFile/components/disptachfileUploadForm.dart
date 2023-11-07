@@ -1,9 +1,7 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import '../../../../model/dispatch_model/dispatch_model.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/components/adminViewComponents/custom_addordispatchfields.dart';
 import '../../../../res/components/adminViewComponents/custom_button.dart';
@@ -227,10 +225,25 @@ class dispatchFileForm extends GetView<dispatchController> {
                   onFiledSubmittedValue: (value){
                     ReuseableUtils.fieldfocous(context,
                         controller.state.notificationToFocusNode,
-                        controller.state.detailFocousNode);
+                        controller.state.filenumFocousNode);
                   },
                     onvalidator: (value) {
                       return value.isEmpty ? 'Please Enter  Name.' : null;
+                    }
+                ),
+                SizedBox(height: 10.h,),
+                customTextField(
+                  controller: controller.state.fileNumcontroller,
+                  focusNode: controller.state.filenumFocousNode,
+                  hintText: 'Enter File Number',
+                  onFiledSubmittedValue: (value){
+                    ReuseableUtils.fieldfocous(context,
+                        controller.state.filenumFocousNode,
+                        controller.state.detailFocousNode);
+
+                  },
+                    onvalidator: (value) {
+                      return value.isEmpty ? 'Please Enter File Number.' : null;
                     }
                 ),
                 SizedBox(
@@ -241,6 +254,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                   focusNode: controller.state.detailFocousNode,
                   hintText: 'Please Enter File Details',
                   onFiledSubmittedValue: (value){
+
                   },
                   onvalidator: (value) {
                     return value.isEmpty ? 'Please Enter File Detail.' : null;
@@ -260,6 +274,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                     onpress: () {
                       String docId = DateTime.now().millisecondsSinceEpoch.toString();
                       controller.dispatchfileDataOnFirebase(
+                        controller.state.fileNumcontroller.text.trim(),
                           controller.documentId,
                           controller.state.nameController.text.trim(),
                           controller.state.dateController.text.trim(),
@@ -268,6 +283,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                           controller.state.notificationToController.text.trim(),
                           controller.state.detailController.text.trim());
                       Get.to(() => listOfImages(
+                        fileNum: controller.state.fileNumcontroller.text.trim(),
                           FileName: controller.state.nameController.text.trim(),
                           date: controller.state.dateController.text.trim(),
                           recievedBy:controller.state.recievedByController.text.trim(),

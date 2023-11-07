@@ -6,7 +6,8 @@ import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 
 
 class ListOfFileView extends StatelessWidget {
-  String FileName, date, deptName, details, recieverName, fileNo;
+  String FileName, deptName, details, recieverName, fileNo;
+  final DateTime date;
 
   ListOfFileView({
     Key? key,
@@ -63,7 +64,7 @@ class ListOfFileView extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
-        title: const Text('Multi Image Picker View'),
+        title: const Text('Select Images'),
         actions: [
           IconButton(
             icon: const Icon(Icons.arrow_upward),

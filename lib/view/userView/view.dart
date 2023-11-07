@@ -2,12 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import '../../../model/services/session_Controller.dart';
 import '../../../model/userModel/user_model.dart';
-import '../../res/components/UserViewComponents/userApprovalPage.dart';
-import '../../model/services/session_Controller.dart';
-import '../../utils/routes/routes_name.dart';
-import '../../utils/snackBar.dart';
+import '../../../res/components/UserViewComponents/userApprovalPage.dart';
+import '../../../utils/routes/routes_name.dart';
+import '../../../utils/snackBar.dart';
 import 'index.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 class userView extends GetView<userViewController> {
   String deptName;
   userView({super.key, required this.deptName});
@@ -19,12 +20,22 @@ class userView extends GetView<userViewController> {
         new GlobalKey<ScaffoldState>();
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'GAMC DOC',
-          style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 25,
-              color: Colors.lightBlue),
+        title:AnimatedTextKit(
+          animatedTexts: [
+            TypewriterAnimatedText(
+              'GAMC DOC',
+              textStyle: const TextStyle(
+                fontSize: 32.0,
+                fontWeight: FontWeight.bold,
+              ),
+              speed: const Duration(milliseconds: 2000),
+            ),
+          ],
+
+          totalRepeatCount: 4,
+          pause: const Duration(milliseconds: 1000),
+          displayFullTextOnTap: true,
+          stopPauseOnTap: true,
         ),
         actions: [
           IconButton(

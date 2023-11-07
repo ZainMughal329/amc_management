@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:amc_management/res/components/adminViewComponents/box_button.dart';
 import 'package:amc_management/utils/custom_Utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -209,8 +210,9 @@ class addFileForm extends GetView<addFileController> {
                           focusNode: controller.state.dateFocusNode,
                           controller: con.state.dateController,
                           prefixIcon: Icon(Icons.date_range_outlined),
-                          hintText:
-                              DateFormat.yMMMd().format(con.state.selectedDate),
+                          hintText:con.state.selectedDate !=null?
+                              DateFormat.yMMMd().format(con.state.selectedDate):
+                              "Select a date",
                           suffixIcon: Icons.calendar_today_outlined,
                           onPressSufix: () {
                             con.getDateFromUser(context);
@@ -287,7 +289,8 @@ class addFileForm extends GetView<addFileController> {
                       children: [Text('Select Dept'), dropDownList()],
                     ),
                     SizedBox(height: 15.h,),
-                    // if(controller.state.isFormValid.value)
+
+                    if(controller.state.isFormValid.value)
                     ReuseButton(
                         tittle: 'Select Images',
                         loading: controller.state.loading.value,
@@ -297,8 +300,8 @@ class addFileForm extends GetView<addFileController> {
                           controller.addFileDataOnFirebase(
                             controller.documentId,
                             controller.state.nameController.text
-                              .trim(), controller.state.dateController.text
-                              .trim(), controller.state.filenoController.text
+                              .trim(), controller.state.selectedDate,
+                            controller.state.filenoController.text
                               .trim(), controller.state.deptName.value
                               .trim(), controller.state.fromController.text
                               .trim(), controller.state.detailController.text
@@ -306,7 +309,7 @@ class addFileForm extends GetView<addFileController> {
                           Get.to(() => ListOfFileView(
                                 details: controller.state.detailController.text
                                     .trim(),
-                                date:controller.state.dateController.text.trim(),
+                                date:controller.state.selectedDate,
                                 fileNo: controller.state.filenoController.text
                                     .trim(),
                                 recieverName:
@@ -316,6 +319,7 @@ class addFileForm extends GetView<addFileController> {
                                 deptName: controller.state.deptName.value,
                               ));
                         }),
+                    
 
                     // (controller.state.isFormValid.value)?
                     // ReuseButton(

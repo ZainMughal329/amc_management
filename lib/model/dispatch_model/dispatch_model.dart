@@ -5,6 +5,7 @@ class DispatchModel {
   final List<String> images;
   final String name;
   final String? detail;
+  final String filenum;
   final String date;
   final String dept;
   // final String username;
@@ -24,6 +25,7 @@ class DispatchModel {
     required this.date,
     required this.recievedBy,
     required this.notificationTo,
+    required this.filenum,
     // required this.pkgEndDate,
     // required this.pkgType,
     // required this.password,
@@ -38,6 +40,7 @@ class DispatchModel {
       'Image': images,
       'Dept':dept,
       'Name': name,
+      'FileNum': filenum,
       'RecievedBy': recievedBy,
       'NotificationTo': notificationTo,
       'Date': date,
@@ -58,6 +61,7 @@ class DispatchModel {
       dept: data['dept'],
       images:data['image'],
       name: data['Name'],
+      filenum: data['FileNum'],
       recievedBy: data['RecievedBy'],
       notificationTo: data['NotificationTo'],
       date: data['Date'],

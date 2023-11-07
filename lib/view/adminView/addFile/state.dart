@@ -20,6 +20,7 @@ class addFileState{
   final nameController = TextEditingController();
   final nameFocusNode = FocusNode();
  DateTime selectedDate = DateTime.now();
+ // final Timestamp timestamp = Timestamp.fromDate(selectedDate);
   final dateController = TextEditingController();
   final dateFocusNode =FocusNode();
   final fromController = TextEditingController();
@@ -27,4 +28,5 @@ class addFileState{
   final filenoController = TextEditingController();
   final filenoFocusNode = FocusNode();
  final RxBool isFormValid = false.obs;
+
 }

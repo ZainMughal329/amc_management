@@ -19,14 +19,13 @@ import '../../view/adminView/dispatchFile/fileshow.dart';
 import '../../view/adminView/dispatchFile/view.dart';
 import '../../view/adminView/home_view/bindings.dart';
 import '../../view/adminView/home_view/view.dart';
-import '../../view/adminView/profile/bindings.dart';
-import '../../view/adminView/profile/view.dart';
 import '../../view/adminView/sendFile/bindings.dart';
 import '../../view/adminView/sendFile/view.dart';
 import '../../view/adminView/users/bindings.dart';
 import '../../view/adminView/users/view.dart';
+import '../../view/userView/profile/bindings.dart';
+import '../../view/userView/profile/view.dart';
 import '../../view/userView/view.dart';
-
 class AppPages {
   static final List<GetPage> routes = [
     GetPage(
@@ -49,8 +48,11 @@ class AppPages {
         name: RouteNames.signupview,
         page: () => SignUpView(),
         binding: SignupBindings()),
-    GetPage(name: RouteNames.profileview, page: ()=>profileView(),
-    binding: profileBindings()
+
+    GetPage(
+        name: RouteNames.profileview,
+        page: ()=>profileView(),
+        binding: profileBindings()
     ),
     GetPage(
         name: RouteNames.userlistview,
@@ -61,7 +63,7 @@ class AppPages {
         page: () => addFileView(),
         binding: addFileBindings()),
     GetPage(name: RouteNames.addfileshowcontainer, page:()=> addFileShowContainer(
-        img: "",
+        // img: '',
         details: "",
         dept: "",
         date: "",

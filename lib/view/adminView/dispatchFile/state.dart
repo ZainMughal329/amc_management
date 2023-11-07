@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,8 @@ class dispatchState {
   final nameFocusNode = FocusNode();
   final dateController = TextEditingController();
   final dateFocusNode =FocusNode();
+  final fileNumcontroller = TextEditingController();
+  final filenumFocousNode = FocusNode();
   final markByController = TextEditingController();
   final markByFocusNode =FocusNode();
   DateTime selectedDate = DateTime.now();
@@ -20,6 +23,7 @@ class dispatchState {
   var deptName = 'Select'.obs;
   RxInt imageNo = 0.obs;
   final loading = false.obs;
+  final auth = FirebaseAuth.instance;
   final RxBool isFormValid = false.obs;
   // Widget _buildCatList() {
 //     return Obx(

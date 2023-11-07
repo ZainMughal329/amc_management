@@ -25,7 +25,7 @@ class addFileView extends GetView<addFileController> {
                 child: Align(
                     alignment: Alignment.topLeft,
                     child: CircleAvatar(
-                      backgroundColor: AppColors.lightActiveIconColor,
+                      backgroundColor: AppColors.elevatedButtonColour,
                       child: IconButton(
                           onPressed: (){
                             Get.back();

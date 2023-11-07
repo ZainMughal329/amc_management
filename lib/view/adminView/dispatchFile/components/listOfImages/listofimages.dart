@@ -8,12 +8,13 @@ import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 
 
 class listOfImages extends StatelessWidget {
-  String FileName, notificationTo,date,details,deptName, recievedBy;
+  String FileName, notificationTo,date,details,deptName, recievedBy,fileNum;
 
 
   listOfImages({
     Key? key,
     required this.FileName,
+    required this.fileNum,
     required this.date,
     required this.recievedBy,
     required this.notificationTo,

@@ -6,11 +6,12 @@ import '../../../../res/colors.dart';
 import '../../../../res/components/adminViewComponents/fileShowScreen.dart';
 
 class addFileShowContainer extends StatelessWidget {
-  final  String img;
+  final  List? img;
   String fileNum;
   String name;
   String from;
   String date;
+  // DateTime date;
   String dept;
   String details;
   addFileShowContainer({
@@ -21,7 +22,7 @@ class addFileShowContainer extends StatelessWidget {
     required this.from,
     required this.dept,
     required this.details,
-     required this.img,
+      this.img,
   });
   @override
   Widget build(BuildContext context) {
@@ -46,8 +47,11 @@ class addFileShowContainer extends StatelessWidget {
                 )),
           ),
           SizedBox(height: 10,),
-          BeautifulCard(imagePath: img,
-              date: date,
+          BeautifulCard(
+
+              // imagePath: img,
+              // date: DateTime.parse(date.to),
+            date: date,
               receiverFrom: from,
               fileNumber: fileNum,
               fileName: name,

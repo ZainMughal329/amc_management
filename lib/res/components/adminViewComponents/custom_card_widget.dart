@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class CustomCardWidget extends StatelessWidget {
-  final String imagePath;
-  final String date;
+  final String? imagePath;
+  final DateTime? date;
   final String receiverName;
   final String fileNumber;
   final String fileName;
   final String deptName;
 
   CustomCardWidget({
-    required this.imagePath,
-    required this.date,
+     this.imagePath,
+     this.date,
     required this.receiverName,
     required this.fileNumber,
     required this.fileName,
@@ -32,12 +32,12 @@ class CustomCardWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             // Display the image
-            Image.network(
-              imagePath,
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 150.0, // Adjust the height as needed
-            ),
+            // Image.network(
+            //   imagePath,
+            //   fit: BoxFit.cover,
+            //   width: double.infinity,
+            //   height: 150.0, // Adjust the height as needed
+            // ),
 
             Padding(
               padding: EdgeInsets.all(16.0),

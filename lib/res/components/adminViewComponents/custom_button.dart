@@ -7,7 +7,7 @@ class ReuseButton extends StatelessWidget {
   final VoidCallback onpress;
   final bool loading;
   ReuseButton({super.key,
-    this.color=AppColors.lightActiveIconColor,required this.tittle,required this.onpress,
+    this.color=AppColors.elevatedButtonColour,required this.tittle,required this.onpress,
     this.textcolr=AppColors.lightBgColor,
     this.loading=false
   });
@@ -30,3 +30,5 @@ class ReuseButton extends StatelessWidget {
     );();
   }
 }
+
+

@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../model/services/session_Controller.dart';
 import '../../../utils/routes/routes.dart';
-import '../../userView/index.dart';
+import '../../userView/view.dart';
 class LoginController extends GetxController{
   @override
   void dispose() {

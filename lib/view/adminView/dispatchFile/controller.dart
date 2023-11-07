@@ -6,6 +6,7 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage ;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../res/components/SessionViewComponents/custom_tetxField.dart';
 import 'index.dart';
 import 'package:amc_management/model/dispatch_model/dispatch_model.dart';
 class dispatchController extends GetxController
@@ -185,7 +186,6 @@ class dispatchController extends GetxController
   Future
   uploadimagelistonDatabase (int imageId, String docId , String timeStamp,var imagePath) async{
     final imageUrl;
-
     try{
       firebase_storage.Reference storageRef =firebase_storage.FirebaseStorage.instance.ref('/dispatchFile'+timeStamp);
       firebase_storage.UploadTask uploadTask =storageRef.putFile(File(imagePath).absolute);
@@ -219,11 +219,12 @@ class dispatchController extends GetxController
 
   }
 
-  Future<void> dispatchfileDataOnFirebase (String id,String name, String date, String recievedBy , String deptName, String notificationTo, String details) async{
+  Future<void> dispatchfileDataOnFirebase (String fileNum,String id,String name, String date, String recievedBy , String deptName, String notificationTo, String details) async{
     try{
       print('inside try');
       await state.ref.doc(id).set(
           DispatchModel(
+            filenum: fileNum,
             id: id,
               images: [],
               name: name,
@@ -237,12 +238,95 @@ class dispatchController extends GetxController
       }).onError((error, stackTrace){
         print("Error"+error.toString());
       });
-
-
     }catch(e){
 
     }
   }
 
 
+//   here we manage the section of update the data
+  Future<void> showFileNameDialogAlert(BuildContext context,String filename){
+    //this line 104 code mean jo user ka already name ho ga wo show ho
+    state.nameController.text=filename;
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title:Center(child: Text('update filename')) ,
+        content: SingleChildScrollView(
+          child: Column(
+            children: [
+              ReuseField(
+                  myController:state.nameController,
+                  focusNode: state.nameFocusNode,
+                  lableText: 'Enter your Filename',
+                  onFiledSubmittedValue: (value){
+                  },
+                  keyboardType: TextInputType.emailAddress,
+                  obsecureText: false,
+                  onvalidator: (value){
+                  }
+
+              )
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+          }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.warningColor),)),
+          TextButton(onPressed: (){
+            //this  code will update the name in database
+            state.ref.doc(state.auth.currentUser!.uid.toString()).update({
+              'Name':state.nameController.text.toString()
+            }).then((value){
+              state.nameController.clear();
+            });
+
+            Navigator.pop(context);
+          }, child: Text('ok',style: Theme.of(context).textTheme.subtitle2,))
+        ],
+      );
+
+    });
+  }
+  Future<void> showFileNumDialogAlert(BuildContext context,String filename){
+    //this line 104 code mean jo user ka already name ho ga wo show ho
+    state.nameController.text=filename;
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title:Center(child: Text('update fileNum')) ,
+        content: SingleChildScrollView(
+          child: Column(
+            children: [
+              ReuseField(
+                  myController:state.nameController,
+                  focusNode: state.nameFocusNode,
+                  lableText: 'Enter your FileNum',
+                  onFiledSubmittedValue: (value){
+                  },
+                  keyboardType: TextInputType.emailAddress,
+                  obsecureText: false,
+                  onvalidator: (value){
+                  }
+
+              )
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+          }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.warningColor),)),
+          TextButton(onPressed: (){
+            //this  code will update the name in database
+            state.ref.doc().update({
+              'FileNum':state.fileNumcontroller.text.toString()
+            }).then((value){
+              state.fileNumcontroller.clear();
+            });
+            Navigator.pop(context);
+          }, child: Text('ok',style: Theme.of(context).textTheme.subtitle2,))
+        ],
+      );
+    });
+  }
 }

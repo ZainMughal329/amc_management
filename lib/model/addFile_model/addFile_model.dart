@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class AddFileModel {
   final String id;
   final String name;
-  final   String date;
+  final   DateTime date;
   final String dept;
   final String? detail;
   // final String username;

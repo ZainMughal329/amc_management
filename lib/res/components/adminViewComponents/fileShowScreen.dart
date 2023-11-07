@@ -4,7 +4,7 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import '../../../utils/snackBar.dart';
 class BeautifulCard extends StatelessWidget {
-  final String imagePath;
+   String? imagePath;
   final String date;
   final String receiverFrom;
   final String fileNumber;
@@ -13,7 +13,7 @@ class BeautifulCard extends StatelessWidget {
   final String fileDetails;
 
   BeautifulCard({
-    required this.imagePath,
+     this.imagePath='',
     required this.date,
     required this.receiverFrom,
     this.fileNumber='',
@@ -36,32 +36,32 @@ class BeautifulCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               // Image
-              Stack(
-                children: <Widget>[
-                  Image.network(
-                    imagePath,
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                    height: 400.0,
-                  ),
-                  Positioned(
-                    top: 8.0,
-                    right: 8.0,
-                    child: IconButton(
-                      icon: Icon(Icons.download, color: Colors.black38),
-                      onPressed: () async{
-                        // Define the path to the image you want to save
-                        final imageBytes = await rootBundle.load(imagePath);
-
-                        // Save the image to the gallery
-                        await ImageGallerySaver.saveImage(Uint8List.sublistView(imageBytes.buffer.asUint8List()));
-                        SnackBar(content: Text('Image Save To Gallery'));
-                        // Handle download action here
-                      },
-                    ),
-                  ),
-                ],
-              ),
+              // Stack(
+              //   children: <Widget>[
+              //     // Image.network(
+              //     //   imagePath,
+              //     //   fit: BoxFit.cover,
+              //     //   width: double.infinity,
+              //     //   height: 400.0,
+              //     // ),
+              //     Positioned(
+              //       top: 8.0,
+              //       right: 8.0,
+              //       child: IconButton(
+              //         icon: Icon(Icons.download, color: Colors.black38),
+              //         onPressed: () async{
+              //           // Define the path to the image you want to save
+              //           final imageBytes = await rootBundle.load(imagePath);
+              //
+              //           // Save the image to the gallery
+              //           await ImageGallerySaver.saveImage(Uint8List.sublistView(imageBytes.buffer.asUint8List()));
+              //           SnackBar(content: Text('Image Save To Gallery'));
+              //           // Handle download action here
+              //         },
+              //       ),
+              //     ),
+              //   ],
+              // ),
 
               // Other attributes
               Padding(

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:amc_management/res/components/SessionViewComponents/custom_tetxField.dart';
 import 'package:amc_management/view/adminView/addFile/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -216,7 +217,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
 
   Future<void> addFileDataOnFirebase (String id,
       String name,
-      String date,
+      final DateTime date,
       String fileNo ,
       String deptName,
       String recieverName,
@@ -224,7 +225,11 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     try{
       print('inside try');
       await state.ref.doc(id).set(AddFileModel(id: id,
-          images: [],name: name, dept: deptName, date: date, from: recieverName, filenum: fileNo,
+          images: [],name: name, dept: deptName,
+
+          date:date,
+
+          from: recieverName, filenum: fileNo,
           detail: details
       ).toJson()).then((value){
         print('inside then');
@@ -236,6 +241,98 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     }catch(e){
 
     }
+  }
+//   here we manage the section of update the file data
+
+  Future<void> showFileNameDialogAlert(BuildContext context,String filename){
+    //this line 104 code mean jo user ka already name ho ga wo show ho
+    state.nameController.text=filename;
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title:Center(child: Text('update filename')) ,
+        content: SingleChildScrollView(
+          child: Column(
+            children: [
+              ReuseField(
+                  myController:state.nameController,
+                  focusNode: state.nameFocusNode,
+                  lableText: 'Enter your Filename',
+                  onFiledSubmittedValue: (value){
+                  },
+                  keyboardType: TextInputType.emailAddress,
+                  obsecureText: false,
+                  onvalidator: (value){
+                  }
+
+              )
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+          }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.warningColor),)),
+          TextButton(onPressed: (){
+            //this  code will update the name in database
+            state.ref.doc(state.auth.currentUser!.uid.toString()).update({
+              'Name':state.nameController.text.toString()
+            }).then((value){
+              state.nameController.clear();
+            });
+
+            Navigator.pop(context);
+          }, child: Text('ok',style: Theme.of(context).textTheme.subtitle2,))
+        ],
+      );
+
+    });
+
+  }
+
+
+  Future<void> showFileNumDialogAlert(BuildContext context,String filenum){
+    //this line 104 code mean jo user ka already name ho ga wo show ho
+    state.filenoController.text=filenum;
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title:Center(child: Text('update username')) ,
+        content: SingleChildScrollView(
+          child: Column(
+            children: [
+              ReuseField(
+                  myController:state.filenoController,
+                  focusNode: state.filenoFocusNode,
+                  lableText: 'Enter your FileNum',
+                  onFiledSubmittedValue: (value){
+                  },
+                  keyboardType: TextInputType.emailAddress,
+                  obsecureText: false,
+                  onvalidator: (value){
+                  }
+
+              )
+            ],
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+          }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.warningColor),)),
+          TextButton(onPressed: (){
+            //this  code will update the name in database
+            state.ref.doc(state.auth.currentUser!.uid.toString()).update({
+              'FileNum':state.filenoController.text.toString()
+            }).then((value){
+              state.filenoController.clear();
+            });
+
+            Navigator.pop(context);
+          }, child: Text('ok',style: Theme.of(context).textTheme.subtitle2,))
+        ],
+      );
+
+    });
+
   }
 
 
