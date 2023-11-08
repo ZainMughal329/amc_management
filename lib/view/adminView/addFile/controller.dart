@@ -356,6 +356,24 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     return imageUrls;
   }
 
+  List<dynamic> fetchedImageUrls = [];
+  RxBool fetchedLoading = true.obs;
+  setFetchLoading(bool val){
+    fetchedLoading.value = val;
+  }
+  Future<List<dynamic>> fetchImageUrls(String docId) async {
+    setFetchLoading(true);
+    final snapshot = await FirebaseFirestore.instance.collection('addFiles').doc(docId).get();
+    // if(snapshot.exists){
+    //   final List<String> imageUrls = List<String>.from(snapshot.data()!['images']);
+    //   return imageUrls;
+    // }
+    // return [];
+    final List<String> imageUrls = List<String>.from(snapshot.data()!['images']);
+    return imageUrls;
+  }
+
+
 
 }
 

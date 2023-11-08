@@ -81,12 +81,6 @@ class ListOfFileView extends StatelessWidget {
         onPressed: () async {
           String docId = DateTime.now().millisecondsSinceEpoch.toString();
           int imageId = con.state.imageNo.value;
-          // uploadImages(controller.images);
-          // print(controller.images.length.toString());
-          print('object213');
-          // await con.addFileDataOnFirebase(
-          //     docId, FileName, date, fileNo, deptName, recieverName, details);
-          print('object265413');
 
           for (var data in controller.images) {
             print(imageId);

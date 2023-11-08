@@ -126,13 +126,13 @@ class FileList extends GetView<dispatchController> {
                                                                   .data!
                                                                   .docs[index]
                                                               ['Detail'],
-                                                          date: formattedDate,
+                                                          // date: formattedDate,
                                                           name: snapshot.data!
                                                                   .docs[index]
                                                               ['Name'],
-                                                          img: snapshot.data!
-                                                                  .docs[index]
-                                                              ['Image'],
+                                                          // img: snapshot.data!
+                                                          //         .docs[index]
+                                                          //     ['Image'],
                                                           notificationTo: snapshot
                                                                   .data!
                                                                   .docs[index][

@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 class dispatchFileShowContainer extends StatelessWidget {
   String notificationTo;
   String recievedBy;
-  String img;
+  // String img;
   String name;
   String details;
-  String date;
+  // String date;
    dispatchFileShowContainer({super.key,
-    required this.date,
+    // required this.date,
     required this.name,
     required this.details,
      required this.recievedBy,
      required this.notificationTo,
-     required this.img,
+     // required this.img,
   });
 
   @override
@@ -28,7 +28,7 @@ class dispatchFileShowContainer extends StatelessWidget {
 
         (
           // imagePath: img,
-          date: date,
+          // date: date,
           receiverFrom: recievedBy,  fileName: name,
           fileDetails: details),
     );

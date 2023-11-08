@@ -97,17 +97,11 @@ class addFileDataList extends GetView<addFileController> {
                                            height: 40,
                                            child: TextButton(onPressed: (){
                                              Get.to(()=>
-                                                 // addFileDisplay(name: snapshot.data!.docs[index]['Name'],
-                                                 // date: formattedDate,
-                                                 // recievedFrom: snapshot.data!.docs[index]['From'],
-                                                 // details: snapshot.data!.docs[index]['Details'],
-                                                 // dept: snapshot.data!.docs[index]['Dept'],
-                                                 // filenum: snapshot.data!.docs[index]['FileNum'])
-
-                                                         addFileShowContainer(
-                                                      img: snapshot.data!.docs[index]['images'],
-                                                     date: formattedDate,
+                                                 addFileShowContainer(
+                                                      // img: snapshot.data!.docs[index]['images'],
+                                                     // date: formattedDate,
                                                      name: snapshot.data!.docs[index]['Name'],
+                                                     id: snapshot.data!.docs[index]['Id'],
                                                      dept: snapshot.data!.docs[index]['dept'],
                                                      details: snapshot.data!.docs[index]['Detail'],
                                                      fileNum: snapshot.data!.docs[index]['FileNum'],
