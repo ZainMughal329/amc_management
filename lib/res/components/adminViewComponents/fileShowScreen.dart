@@ -1,10 +1,12 @@
+import 'package:amc_management/view/adminView/addFile/index.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
 
 import '../../../utils/snackBar.dart';
 class BeautifulCard extends StatelessWidget {
-   String? imagePath;
+    String? imagePath;
    String? date;
   final String receiverFrom;
   final String fileNumber;
@@ -13,7 +15,7 @@ class BeautifulCard extends StatelessWidget {
   final String fileDetails;
 
   BeautifulCard({
-     this.imagePath='',
+    this.imagePath='',
      this.date,
     required this.receiverFrom,
     this.fileNumber='',
@@ -24,53 +26,68 @@ class BeautifulCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final state = addFileState();
     return Center(
       child: IntrinsicHeight(
         child: Card(
-          elevation: 4,
+          // elevation: 4,
           margin: EdgeInsets.all(16.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.0),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              // Image
-              // Stack(
-              //   children: <Widget>[
-              //     // Image.network(
-              //     //   imagePath,
-              //     //   fit: BoxFit.cover,
-              //     //   width: double.infinity,
-              //     //   height: 400.0,
-              //     // ),
-              //     Positioned(
-              //       top: 8.0,
-              //       right: 8.0,
-              //       child: IconButton(
-              //         icon: Icon(Icons.download, color: Colors.black38),
-              //         onPressed: () async{
-              //           // Define the path to the image you want to save
-              //           final imageBytes = await rootBundle.load(imagePath);
-              //
-              //           // Save the image to the gallery
-              //           await ImageGallerySaver.saveImage(Uint8List.sublistView(imageBytes.buffer.asUint8List()));
-              //           SnackBar(content: Text('Image Save To Gallery'));
-              //           // Handle download action here
-              //         },
-              //       ),
-              //     ),
-              //   ],
-              // ),
+            children: [
+          Container(
+            child: ListView.builder(
+              itemCount: state.imageUrls.length,
+              itemBuilder: (context, index) {
+                return CachedNetworkImage(
+                  imageUrl: state.imageUrls[index],
+                  placeholder: (context, url) => CircularProgressIndicator(), // Show a loading indicator
+                  errorWidget: (context, url, error) => Icon(Icons.error), //
+                  // Show an error icon if the image fails to load
+                );
+              },
+            ),
+                // Image
+                // Stack(
+                //   children: <Widget>[
+                //     Image.network(
+                //       imagePath!,
+                //       fit: BoxFit.cover,
+                //       width: double.infinity,
+                //       height: 400.0,
+                //     ),
+                //     Positioned(
+                //       top: 8.0,
+                //       right: 8.0,
+                //       child: IconButton(
+                //         icon: Icon(Icons.download, color: Colors.black38),
+                //         onPressed: () async{
+                //           // Define the path to the image you want to save
+                //           final imageBytes = await rootBundle.load(imagePath!);
+                //
+                //           // Save the image to the gallery
+                //           await ImageGallerySaver.saveImage(Uint8List.sublistView(imageBytes.buffer.asUint8List()));
+                //           SnackBar(content: Text('Image Save To Gallery'));
+                //           // Handle download action here
+                //         },
+                //       ),
+                //     ),
+                //   ],
+                // ),
 
-              // Other attributes
+                // Other attributes
+
+          ),
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     AttributeText(label: 'File Name', value: fileName),
-                    // AttributeText(label: 'Date', value: date!),
+                    AttributeText(label: 'Date', value: date!),
                     AttributeText(label: 'File Number', value: fileNumber),
                     AttributeText(label: 'Received From', value: receiverFrom),
                     AttributeText(label: 'Department Name', value: deptName),
@@ -79,6 +96,7 @@ class BeautifulCard extends StatelessWidget {
                   ],
                 ),
               ),
+
             ],
           ),
         ),

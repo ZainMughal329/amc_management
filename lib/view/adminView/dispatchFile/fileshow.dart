@@ -24,7 +24,10 @@ class dispatchFileShowContainer extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       resizeToAvoidBottomInset: false,
 
-      body: BeautifulCard(imagePath: img,
+      body: BeautifulCard
+
+        (
+          // imagePath: img,
           date: date,
           receiverFrom: recievedBy,  fileName: name,
           fileDetails: details),

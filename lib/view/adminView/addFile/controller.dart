@@ -30,6 +30,10 @@ class addFileController extends GetxController with GetSingleTickerProviderState
     // TODO: implement onInit
     super.onInit();
     tabController = TabController(length: 2, vsync: this);
+    // for image list
+    getImageUrls().then((urls) =>{
+      state.imageUrls=urls
+    });
   }
   void setLoading(bool value){
     state.loading.value = value;
@@ -333,6 +337,23 @@ class addFileController extends GetxController with GetSingleTickerProviderState
 
     });
 
+  }
+
+
+  Future<List<String>> getImageUrls() async {
+    final QuerySnapshot querySnapshot = await state.ref.get();
+
+    final List<String> imageUrls = [];
+    querySnapshot.docs.forEach((doc) {
+      final data = doc.data() as Map<String, dynamic>;
+      if(data.containsKey('imageUrl'))
+      {
+        final imageUrl = data['images']; // Assuming 'imageUrl' is the field name where you store image URLs.
+        imageUrls.add(imageUrl);
+      }
+    });
+
+    return imageUrls;
   }
 
 

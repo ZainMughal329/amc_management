@@ -20,6 +20,7 @@ class addFileState{
   final nameController = TextEditingController();
   final nameFocusNode = FocusNode();
  DateTime selectedDate = DateTime.now();
+ List<String> imageUrls = [];
  // final Timestamp timestamp = Timestamp.fromDate(selectedDate);
   final dateController = TextEditingController();
   final dateFocusNode =FocusNode();
