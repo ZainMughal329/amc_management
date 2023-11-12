@@ -16,24 +16,21 @@ class addFileView extends GetView<addFileController> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 0),
           child:Column(
             children: [
               SizedBox(height: 15.h,),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Align(
-                    alignment: Alignment.topLeft,
-                    child: CircleAvatar(
-                      backgroundColor: AppColors.elevatedButtonColour,
-                      child: IconButton(
-                          onPressed: (){
-                            Get.back();
-                          }, icon: Icon(Icons.arrow_back,
-                        color: Colors.white,
-                      )),
+              Align(
+                  alignment: Alignment.topLeft,
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.elevatedButtonColour,
+                    child: IconButton(
+                        onPressed: (){
+                          Get.back();
+                        }, icon: Icon(Icons.arrow_back,
+                      color: Colors.white,
                     )),
-              ),
+                  )),
               SizedBox(height: 15.h,),
               Container(
                 child: Align(
@@ -63,7 +60,10 @@ class addFileView extends GetView<addFileController> {
                   child: TabBarView(
                     controller: controller.tabController,
                     children: [
-                      addFileForm(),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: addFileForm(),
+                      ),
                       addFileDataList(),
                     ],
                   ),

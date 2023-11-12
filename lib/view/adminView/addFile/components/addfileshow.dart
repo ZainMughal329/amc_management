@@ -89,23 +89,19 @@ class addFileShowContainer extends StatelessWidget {
                                        final int first = index * 2;
                                        final int second = first + 1 ;
                                        return SingleChildScrollView(
-                                         child: Row(
+                                         child: Column(
                                            children: [
                                              first, second
                                            ].map((idx){
-                                             return Expanded(
-                                                 // flex: 1,
-                                                 child:
-                                                 Container(
-                                                   height: 400,
-                                                   // width: double.infinity,
-                                                   margin: EdgeInsets.symmetric(horizontal: 10),
-                                                   child:CachedNetworkImage(
-                                                     imageUrl: controller.fetchedImageUrls[index],
-                                                     placeholder: (context, url) => CircularProgressIndicator(color: Colors.white,),
-                                                     errorWidget: (context, url, error) => Icon(Icons.error),
-                                                   ),
-                                                 )
+                                             return Container(
+                                               height: 400,
+                                               // width: double.infinity,
+                                               margin: EdgeInsets.symmetric(horizontal: 10),
+                                               child:CachedNetworkImage(
+                                                 imageUrl: controller.fetchedImageUrls[index],
+                                                 placeholder: (context, url) => CircularProgressIndicator(color: Colors.white,),
+                                                 errorWidget: (context, url, error) => Icon(Icons.error),
+                                               ),
                                              );
                                            }).toList(),
 
@@ -135,7 +131,7 @@ class addFileShowContainer extends StatelessWidget {
                               GestureDetector(
                                 onTap: (){
                                   controller.showFileNameDialogAlert(context,
-                                      name);
+                                      name ,id);
                                 },
                                 child: ReuseableRow(
                                     title: 'FileName',
@@ -165,7 +161,7 @@ class addFileShowContainer extends StatelessWidget {
                               SizedBox(height: 15,),
                               GestureDetector(
                                 onTap: (){
-
+                                  controller.showFileNumDialogAlert(context, fileNum, id);
                                 },
                                 child: ReuseableRow(
                                     title: 'FileNum',

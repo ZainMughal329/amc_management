@@ -1,6 +1,7 @@
 import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:amc_management/view/scanimages/bindings.dart';
 import 'package:amc_management/view/scanimages/view.dart';
+import 'package:amc_management/view/search/index.dart';
 import 'package:amc_management/view/userView/bindings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import '../../view/SessionView/forgot/bindings.dart';
@@ -54,6 +55,13 @@ class AppPages {
         page: ()=>profileView(),
         binding: profileBindings()
     ),
+
+    GetPage(
+        name: RouteNames.searchView,
+        page: ()=>SearchView(),
+        binding: SearchBindings()
+    ),
+
     GetPage(
         name: RouteNames.userlistview,
         page: () => userListView(),

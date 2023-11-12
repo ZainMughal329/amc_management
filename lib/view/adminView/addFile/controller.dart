@@ -248,7 +248,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
   }
 //   here we manage the section of update the file data
 
-  Future<void> showFileNameDialogAlert(BuildContext context,String filename){
+  Future<void> showFileNameDialogAlert(BuildContext context,String filename,String id){
     //this line 104 code mean jo user ka already name ho ga wo show ho
     state.nameController.text=filename;
     return showDialog(context: context, builder: (context){
@@ -277,8 +277,9 @@ class addFileController extends GetxController with GetSingleTickerProviderState
             Navigator.pop(context);
           }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.warningColor),)),
           TextButton(onPressed: (){
+            print('id' + id);
             //this  code will update the name in database
-            state.ref.doc().update({
+            state.ref.doc(id).update({
               'Name':state.nameController.text.toString()
             }).then((value){
               state.nameController.clear();
@@ -293,7 +294,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
   }
 
 
-  Future<void> showFileNumDialogAlert(BuildContext context,String filenum){
+  Future<void> showFileNumDialogAlert(BuildContext context,String filenum , String id){
     //this line 104 code mean jo user ka already name ho ga wo show ho
     state.filenoController.text=filenum;
     return showDialog(context: context, builder: (context){
@@ -323,7 +324,7 @@ class addFileController extends GetxController with GetSingleTickerProviderState
           }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.warningColor),)),
           TextButton(onPressed: (){
             //this  code will update the name in database
-            state.ref.doc(state.auth.currentUser!.uid.toString()).update({
+            state.ref.doc(id).update({
               'FileNum':state.filenoController.text.toString()
             }).then((value){
               state.filenoController.clear();
