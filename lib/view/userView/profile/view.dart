@@ -155,7 +155,7 @@ class profileView extends GetView<profileController> {
                           thickness: 1.5,
                         ),
                         SizedBox(height: 20.h,),
-                        ReuseButton(tittle: 'Update', onpress:(){
+                        ReuseButton(tittle: 'logout', onpress:(){
                           FirebaseAuth auth =FirebaseAuth.instance;
                           auth.signOut().then((value){
                             //here we logout user and clear its ud

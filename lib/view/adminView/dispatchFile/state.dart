@@ -25,6 +25,7 @@ class dispatchState {
   final loading = false.obs;
   final auth = FirebaseAuth.instance;
   final RxBool isFormValid = false.obs;
+  List<String> imageUrls = [];
   // Widget _buildCatList() {
 //     return Obx(
 //       () => Expanded(

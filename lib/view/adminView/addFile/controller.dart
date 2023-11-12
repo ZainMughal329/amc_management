@@ -278,12 +278,11 @@ class addFileController extends GetxController with GetSingleTickerProviderState
           }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.warningColor),)),
           TextButton(onPressed: (){
             //this  code will update the name in database
-            state.ref.doc(state.auth.currentUser!.uid.toString()).update({
+            state.ref.doc().update({
               'Name':state.nameController.text.toString()
             }).then((value){
               state.nameController.clear();
             });
-
             Navigator.pop(context);
           }, child: Text('ok',style: Theme.of(context).textTheme.subtitle2,))
         ],

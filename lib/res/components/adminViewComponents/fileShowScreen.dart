@@ -3,7 +3,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
-
 import '../../../utils/snackBar.dart';
 class BeautifulCard extends StatelessWidget {
    //  String? imagePath;
