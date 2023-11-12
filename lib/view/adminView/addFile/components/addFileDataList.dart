@@ -122,7 +122,6 @@ class addFileDataList extends GetView<addFileController> {
                                                       onPressed: () {
                                                         Get.to(() =>
                                                             addFileShowContainer(
-                                                                // img: snapshot.data!.docs[index]['images'],
                                                                  date: formattedDate,
                                                                 name: snapshot.data!.docs[index]
                                                                     ['Name'],

@@ -109,60 +109,64 @@ class addFileShowContainer extends StatelessWidget {
                                     child: CircularProgressIndicator(),
                                   ),
                                 )
-                              : Container(
-                                  child:
-                                      // CarouselSlider.builder(
-                                      //     itemCount:
-                                      //         (controller.fetchedImageUrls.length /
-                                      //                 2)
-                                      //             .round(),
-                                      //     itemBuilder: (context, index, realIdx) {
-                                      //       final int first = index * 2;
-                                      //       final int second = first + 1;
-                                      //       return Row(
-                                      //         mainAxisAlignment:
-                                      //             MainAxisAlignment.center,
-                                      //         crossAxisAlignment:
-                                      //             CrossAxisAlignment.center,
-                                      //         children: [first, second].map((idx) {
-                                      //           return Container(
-                                      //             height: 400,
-                                      //             margin: EdgeInsets.symmetric(
-                                      //                 horizontal: 10),
-                                      //             child: CachedNetworkImage(
-                                      //               imageUrl: controller
-                                      //                   .fetchedImageUrls[index],
-                                      //               placeholder: (context, url) =>
-                                      //                   CircularProgressIndicator(
-                                      //                 color: Colors.white,
-                                      //               ),
-                                      //               errorWidget:
-                                      //                   (context, url, error) =>
-                                      //                       Icon(Icons.error),
-                                      //             ),
-                                      //           );
-                                      //         }).toList(),
-                                      //       );
-                                      //     },
-                                      //     options: CarouselOptions(
-                                      //         aspectRatio: 2.0,
-                                      //         enlargeCenterPage: true,
-                                      //         viewportFraction: 1)),
-                                      GridView.builder(
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2),
-                                  itemBuilder: (_, index) => Container(
-                                    height: 100,
-                                    width: 100,
-                                    child: Image.network(
-                                      controller.fetchedImageUrls[index],
+                              : Padding(
+                                padding: const EdgeInsets.only(top: 30),
+                                child: Container(
+
+                                    child:
+                                        // CarouselSlider.builder(
+                                        //     itemCount:
+                                        //         (controller.fetchedImageUrls.length /
+                                        //                 2)
+                                        //             .round(),
+                                        //     itemBuilder: (context, index, realIdx) {
+                                        //       final int first = index * 2;
+                                        //       final int second = first + 1;
+                                        //       return Row(
+                                        //         mainAxisAlignment:
+                                        //             MainAxisAlignment.center,
+                                        //         crossAxisAlignment:
+                                        //             CrossAxisAlignment.center,
+                                        //         children: [first, second].map((idx) {
+                                        //           return Container(
+                                        //             height: 400,
+                                        //             margin: EdgeInsets.symmetric(
+                                        //                 horizontal: 10),
+                                        //             child: CachedNetworkImage(
+                                        //               imageUrl: controller
+                                        //                   .fetchedImageUrls[index],
+                                        //               placeholder: (context, url) =>
+                                        //                   CircularProgressIndicator(
+                                        //                 color: Colors.white,
+                                        //               ),
+                                        //               errorWidget:
+                                        //                   (context, url, error) =>
+                                        //                       Icon(Icons.error),
+                                        //             ),
+                                        //           );
+                                        //         }).toList(),
+                                        //       );
+                                        //     },
+                                        //     options: CarouselOptions(
+                                        //         aspectRatio: 2.0,
+                                        //         enlargeCenterPage: true,
+                                        //         viewportFraction: 1)),
+                                        GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2),
+                                    itemBuilder: (_, index) => Container(
                                       height: 100,
                                       width: 100,
+                                      child: Image.network(
+                                        controller.fetchedImageUrls[index],
+                                        height: 100,
+                                        width: 100,
+                                      ),
                                     ),
-                                  ),
-                                  itemCount: controller.fetchedImageUrls.length,
-                                ));
+                                    itemCount: controller.fetchedImageUrls.length,
+                                  )),
+                              );
                         }),
                         Obx(
                           () => controller.state.loaded.value == false

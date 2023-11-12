@@ -42,6 +42,14 @@ class addFileForm extends GetView<addFileController> {
                 child: Text('Principle'),
               ),
               DropdownMenuItem(
+                value: 'Vice_Principle',
+                child: Text('Vice_Principle'),
+              ),
+              DropdownMenuItem(
+                value: 'Staff',
+                child: Text('Staff'),
+              ),
+              DropdownMenuItem(
                 value: 'IT',
                 child: Text('IT'),
               ),
@@ -319,24 +327,8 @@ class addFileForm extends GetView<addFileController> {
                                 deptName: controller.state.deptName.value,
                               ));
                         }),
-                    
-
                     // (controller.state.isFormValid.value)?
-                    // ReuseButton(
-                    //     tittle: 'Select Images',
-                    //     loading: controller.state.loading.value,
-                    //     onpress: () {
-                    //       Get.to(()=>ListOfFileView(
-                    //         details: controller.state.detailController.text.trim(),
-                    //         date: controller.state.dateController.text.trim(),
-                    //         fileNo: controller.state.filenoController.text.trim(),
-                    //         recieverName: controller.state.fromController.text.trim(),
-                    //         FileName: controller.state.nameController.text.trim(),
-                    //         deptName:controller.state.deptName.value,
-                    //       )
-                    //
-                    //       );
-                    //     }): Container(),
+
                   ],
                 ),
               ),
@@ -348,27 +340,5 @@ class addFileForm extends GetView<addFileController> {
   }
 }
 
-//String timeStamp =
-//                           DateTime.now().millisecondsSinceEpoch.toString();
-//                           final addFile = AddFileModel(
-//                             detail: controller.state.detailController.text.trim(),
-//                             name: controller.state.nameController.text.trim(),
-//                             dept: controller.state.deptName.toString().trim(),
-//                             date: controller.state.dateController.text.trim(),
-//                             from: controller.state.fromController.text.trim(),
-//                             filenum: controller.state.filenoController.text.trim(),
-//                             image: controller.image!.path.toString(),
-//                           );
-//                           controller.storeData(
-//                             controller.state.detailController.text.trim(),
-//                             timeStamp,
-//                             addFile,
-//                             context,
-//                             controller.state.nameController.text.trim(),
-//                             controller.state.deptName.toString().trim(),
-//                             controller.state.fromController.text.trim(),
-//                             controller.image!.path.toString(),
-//                             controller.state.filenoController.text.trim(),
-//                             controller.state.dateController.text.trim(),
 
 

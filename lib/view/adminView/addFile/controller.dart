@@ -38,6 +38,7 @@ class addFileController extends GetxController
       await FirebaseFirestore.instance.collection('addFiles').doc(id).get();
       if (documentSnapshot!.exists) {
         print('id' + id);
+
         addFileModel = AddFileModel(
             id: id,
             name: documentSnapshot!['Name'],
@@ -225,6 +226,7 @@ class addFileController extends GetxController
     state.filenoController.clear();
     state.deptName.value = "Select";
     state.detailController.clear();
+    state.imageUrls.clear();
   }
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> getFIleData() {
@@ -447,11 +449,7 @@ class addFileController extends GetxController
         .collection('addFiles')
         .doc(docId)
         .get();
-    // if(snapshot.exists){
-    //   final List<String> imageUrls = List<String>.from(snapshot.data()!['images']);
-    //   return imageUrls;
-    // }
-    // return [];
+
     final List<String> imageUrls =
         List<String>.from(snapshot.data()!['images']);
     return imageUrls;

@@ -36,6 +36,14 @@ class dispatchFileForm extends GetView<dispatchController> {
              child: Text('Principle'),
            ),
            DropdownMenuItem(
+             value: 'Vice-Principle',
+             child: Text('Vice_Principle'),
+           ),
+           DropdownMenuItem(
+             value: 'Staff',
+             child: Text('Staff'),
+           ),
+           DropdownMenuItem(
              value: 'IT',
              child: Text('IT'),
            ),

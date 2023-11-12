@@ -6,7 +6,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../res/colors.dart';
-import '../fileshow.dart';
+import '../../../../utils/routes/routes_name.dart';
+import '../dispatchfileshow.dart';
 import '../index.dart';
 
 class FileList extends GetView<dispatchController> {
@@ -14,22 +15,26 @@ class FileList extends GetView<dispatchController> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: StreamBuilder<QuerySnapshot>(
-          stream: controller.state.ref.snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-            if (snapshot.hasData) {
-              return snapshot.data!.docs.length != 0
-                  ? ListView.builder(
+    return Stack(
+      children: [
+        Padding(
+          padding: EdgeInsets.only(bottom: 110,top: 0),
+          child: Center(
+          child: StreamBuilder<QuerySnapshot>(
+              stream: controller.state.ref.snapshots(),
+              builder:
+                  (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasData) {
+                  return snapshot.data!.docs.length != 0
+                      ? ListView.builder(
                       itemCount: snapshot.data!.docs.length,
                       itemBuilder: (context, index) {
                         final idFromDb = int.parse(
                             snapshot.data!.docs[index]['Id'].toString());
                         final timeInMilli =
-                            DateTime.fromMillisecondsSinceEpoch(idFromDb);
+                        DateTime.fromMillisecondsSinceEpoch(idFromDb);
                         final formattedDate =
-                            DateFormat('dd-MM-yy').format(timeInMilli);
+                        DateFormat('dd-MM-yy').format(timeInMilli);
                         print('date is : ' + formattedDate.toString());
                         return Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -42,7 +47,7 @@ class FileList extends GetView<dispatchController> {
                                   16.0), // Round the corners
                             ),
                             margin:
-                                EdgeInsets.all(16.0), // Margin around the card
+                            EdgeInsets.all(10.0), // Margin around the card
 
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -53,26 +58,25 @@ class FileList extends GetView<dispatchController> {
                                     padding: EdgeInsets.all(16.0),
                                     child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: <Widget>[
                                         Row(
-                                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
                                               snapshot.data!.docs[index]
-                                                  ['Name'],
+                                              ['Name'],
                                               style: TextStyle(
                                                   fontSize: 20.0,
                                                   color: Colors.white),
                                             ),
                                             Spacer(),
-                                            // Text(
-                                            //   snapshot.data!.docs[index]
-                                            //       ['dept'],
-                                            //   style: TextStyle(
-                                            //       fontSize: 16.0,
-                                            //       color: Colors.white),
-                                            // ),
+                                            Text(
+                                              snapshot.data!.docs[index]
+                                                  ['Dept'],
+                                              style: TextStyle(
+                                                  fontSize: 16.0,
+                                                  color: Colors.white),
+                                            ),
                                           ],
                                         ),
                                         SizedBox(
@@ -83,7 +87,7 @@ class FileList extends GetView<dispatchController> {
                                           children: [
                                             Text(
                                               snapshot.data!.docs[index]
-                                                  ['RecievedBy'],
+                                              ['RecievedBy'],
                                               style: TextStyle(
                                                   fontSize: 16.0,
                                                   color: Colors.white),
@@ -91,7 +95,7 @@ class FileList extends GetView<dispatchController> {
                                             Spacer(),
                                             Text(
                                               snapshot.data!.docs[index]
-                                                  ['NotificationTo'],
+                                              ['NotificationTo'],
                                               style: TextStyle(
                                                   fontSize: 16.0,
                                                   color: Colors.white),
@@ -118,25 +122,26 @@ class FileList extends GetView<dispatchController> {
                                                   onPressed: () {
                                                     Get.to(() =>
                                                         dispatchFileShowContainer(
+                                                          date: formattedDate,
+                                                          filenum: snapshot.data!.docs[index]['FileNum'],
+                                                          Dept: snapshot.data!.docs[index]['Dept'],
+                                                          id: snapshot.data!.docs[index]['Id'],
                                                           recievedBy: snapshot
-                                                                  .data!
-                                                                  .docs[index]
-                                                              ['RecievedBy'],
+                                                              .data!
+                                                              .docs[index]
+                                                          ['RecievedBy'],
                                                           details: snapshot
-                                                                  .data!
-                                                                  .docs[index]
-                                                              ['Detail'],
+                                                              .data!
+                                                              .docs[index]
+                                                          ['Detail'],
                                                           // date: formattedDate,
                                                           name: snapshot.data!
-                                                                  .docs[index]
-                                                              ['Name'],
-                                                          // img: snapshot.data!
-                                                          //         .docs[index]
-                                                          //     ['Image'],
+                                                              .docs[index]
+                                                          ['Name'],
                                                           notificationTo: snapshot
-                                                                  .data!
-                                                                  .docs[index][
-                                                              'NotificationTo'],
+                                                              .data!
+                                                              .docs[index][
+                                                          'NotificationTo'],
                                                         ));
                                                   },
                                                   child: Text(
@@ -157,13 +162,48 @@ class FileList extends GetView<dispatchController> {
                           ),
                         );
                       })
-                  : Container();
-            } else if (snapshot.hasError) {
-              return CircularProgressIndicator();
-            } else {
-              return Container();
-            }
-          }),
+                      : Container();
+                } else if (snapshot.hasError) {
+                  return CircularProgressIndicator();
+                } else {
+                  return Container();
+                }
+              }),
+      ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 40,bottom: 40,left: 40,right: 40),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: (){
+                Get.toNamed(RouteNames.searchView);
+              },
+              child: Container(
+                height: 60,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.elevatedButtonColour,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                    // topRight: Radius.circular(10),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    'Search files',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+
+      ]
     );
   }
 }

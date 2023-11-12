@@ -16,7 +16,7 @@ import '../../view/adminView/addFile/bindings.dart';
 import '../../view/adminView/addFile/components/addfileshow.dart';
 import '../../view/adminView/addFile/view.dart';
 import '../../view/adminView/dispatchFile/bindings.dart';
-import '../../view/adminView/dispatchFile/fileshow.dart';
+import '../../view/adminView/dispatchFile/dispatchfileshow.dart';
 import '../../view/adminView/dispatchFile/view.dart';
 import '../../view/adminView/home_view/bindings.dart';
 import '../../view/adminView/home_view/view.dart';
@@ -71,7 +71,6 @@ class AppPages {
         page: () => addFileView(),
         binding: addFileBindings()),
     GetPage(name: RouteNames.addfileshowcontainer, page:()=> addFileShowContainer(
-        // img: '',
         details: "",
         id: "",
         dept: "",
@@ -86,7 +85,10 @@ class AppPages {
         page: () => dispatchView(),
         binding: dispatchBindings()),
     GetPage(name: RouteNames.dispatchfileshowcontainer, page: ()=>dispatchFileShowContainer(
-
+      id: "",
+     date: "",
+     filenum: "",
+     Dept: "",
      details: '',
       recievedBy: "",
       notificationTo: "",

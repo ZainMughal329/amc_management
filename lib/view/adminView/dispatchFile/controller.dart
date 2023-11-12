@@ -24,6 +24,34 @@ class dispatchController extends GetxController
     state.recievedByController.dispose();
     state.detailController.dispose();
   }
+  DispatchModel? dispatchModel;
+  DocumentSnapshot? documentSnapshot;
+  fetchDataOfFile(String id)async{
+    try{
+      documentSnapshot = await FirebaseFirestore.instance.collection('dispatchFile').doc(id).get();
+      if(documentSnapshot!.exists){
+        dispatchModel = DispatchModel(id: id,
+            images: images,
+            dept: documentSnapshot!['Dept'],
+            name: documentSnapshot!['Name'],
+            recievedBy: documentSnapshot!['RecievedBy'],
+            notificationTo:documentSnapshot!['NotificationTo'],
+            filenum:documentSnapshot!['FileNum']);
+        state.nameFile.value = documentSnapshot!['Name'];
+        state.fileNum.value = documentSnapshot!['FileNum'];
+        state.loaded.value = true;
+
+      }else{
+        print('empty');
+
+      }
+    }catch(e){
+      print('exception : ' + e.toString());
+
+    }
+  }
+  
+  
   @override
   void onInit() {
     // TODO: implement onInit
@@ -245,7 +273,7 @@ class dispatchController extends GetxController
 
 
 //   here we manage the section of update the data
-  Future<void> showFileNameDialogAlert(BuildContext context,String filename){
+  Future<void> showFileNameDialogAlert(BuildContext context,String filename,String id){
     //this line 104 code mean jo user ka already name ho ga wo show ho
     state.nameController.text=filename;
     return showDialog(context: context, builder: (context){
@@ -275,9 +303,10 @@ class dispatchController extends GetxController
           }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.warningColor),)),
           TextButton(onPressed: (){
             //this  code will update the name in database
-            state.ref.doc(state.auth.currentUser!.uid.toString()).update({
+            state.ref.doc(id).update({
               'Name':state.nameController.text.toString()
             }).then((value){
+              fetchDataOfFile(id);
               state.nameController.clear();
             });
 
@@ -288,9 +317,9 @@ class dispatchController extends GetxController
 
     });
   }
-  Future<void> showFileNumDialogAlert(BuildContext context,String filename){
+  Future<void> showFileNumDialogAlert(BuildContext context,String filenum,String id){
     //this line 104 code mean jo user ka already name ho ga wo show ho
-    state.nameController.text=filename;
+    state.nameController.text=filenum;
     return showDialog(context: context, builder: (context){
       return AlertDialog(
         title:Center(child: Text('update fileNum')) ,
@@ -318,9 +347,10 @@ class dispatchController extends GetxController
           }, child: Text('cancel',style: Theme.of(context).textTheme.subtitle2!.copyWith(color: AppColors.warningColor),)),
           TextButton(onPressed: (){
             //this  code will update the name in database
-            state.ref.doc().update({
+            state.ref.doc(id).update({
               'FileNum':state.fileNumcontroller.text.toString()
             }).then((value){
+              fetchDataOfFile(id);
               state.fileNumcontroller.clear();
             });
             Navigator.pop(context);
@@ -329,4 +359,24 @@ class dispatchController extends GetxController
       );
     });
   }
+
+  List<dynamic> fetchedImageUrls = [];
+  RxBool fetchedLoading = true.obs;
+
+  setFetchLoading(bool val) {
+    fetchedLoading.value = val;
+  }
+
+  Future<List<dynamic>> fetchImageUrls(String docId) async {
+    setFetchLoading(true);
+    final snapshot = await FirebaseFirestore.instance
+        .collection('dispatchFile')
+        .doc(docId)
+        .get();
+
+    final List<String> imageUrls =
+    List<String>.from(snapshot.data()!['images']);
+    return imageUrls;
+  }
+
 }

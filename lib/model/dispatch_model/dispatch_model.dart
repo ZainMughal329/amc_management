@@ -6,7 +6,7 @@ class DispatchModel {
   final String name;
   final String? detail;
   final String filenum;
-  final   DateTime date;
+  final   DateTime? date;
   final String dept;
   // final String username;
   // final String pkgStartDate;
@@ -22,7 +22,7 @@ class DispatchModel {
     this.detail,
     required this.dept,
     required this.name,
-    required this.date,
+     this.date,
     required this.recievedBy,
     required this.notificationTo,
     required this.filenum,
