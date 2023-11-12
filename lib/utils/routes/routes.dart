@@ -75,7 +75,7 @@ class AppPages {
         details: "",
         id: "",
         dept: "",
-        // date: "",
+         date: "",
         name: "",
         fileNum: "",
         from: ""),

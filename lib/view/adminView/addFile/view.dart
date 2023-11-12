@@ -20,18 +20,21 @@ class addFileView extends GetView<addFileController> {
           child:Column(
             children: [
               SizedBox(height: 15.h,),
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.elevatedButtonColour,
-                    child: IconButton(
-                        onPressed: (){
-                          Get.back();
-                        }, icon: Icon(Icons.arrow_back,
-                      color: Colors.white,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                    alignment: Alignment.topLeft,
+                    child: CircleAvatar(
+                      backgroundColor: AppColors.elevatedButtonColour,
+                      child: IconButton(
+                          onPressed: (){
+                            Get.back();
+                          }, icon: Icon(Icons.arrow_back,
+                        color: Colors.white,
+                      )),
                     )),
-                  )),
-              SizedBox(height: 15.h,),
+              ),
+              SizedBox(height: 5.h,),
               Container(
                 child: Align(
                   alignment: Alignment.topLeft,

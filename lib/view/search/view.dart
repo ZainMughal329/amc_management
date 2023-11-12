@@ -170,7 +170,7 @@ class SearchView extends GetView<SearchBarController> {
                                               Get.to(() =>
                                                   addFileShowContainer(
                                                     // img: snapshot.data!.docs[index]['images'],
-                                                    // date: formattedDate,
+                                                     date: formattedDate,
                                                       name: item
                                                       ['Name'],
                                                       id: item

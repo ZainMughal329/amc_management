@@ -18,7 +18,7 @@ class addFileDataList extends GetView<addFileController> {
     return Stack(
       children: [
         Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.only(bottom: 110,top: 10),
           child: Center(
             child: StreamBuilder<QuerySnapshot>(
                 stream: controller.state.ref.snapshots(),
@@ -123,7 +123,7 @@ class addFileDataList extends GetView<addFileController> {
                                                         Get.to(() =>
                                                             addFileShowContainer(
                                                                 // img: snapshot.data!.docs[index]['images'],
-                                                                // date: formattedDate,
+                                                                 date: formattedDate,
                                                                 name: snapshot.data!.docs[index]
                                                                     ['Name'],
                                                                 id: snapshot.data!.docs[index]
@@ -170,29 +170,32 @@ class addFileDataList extends GetView<addFileController> {
                 }),
           ),
         ),
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: GestureDetector(
-            onTap: (){
-              Get.toNamed(RouteNames.searchView);
-            },
-            child: Container(
-              height: 80,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: AppColors.elevatedButtonColour,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
+        Padding(
+          padding: const EdgeInsets.only(top: 40,bottom: 40,left: 40,right: 40),
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: GestureDetector(
+              onTap: (){
+                Get.toNamed(RouteNames.searchView);
+              },
+              child: Container(
+                height: 60,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: AppColors.elevatedButtonColour,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                    // topRight: Radius.circular(10),
+                  ),
                 ),
-              ),
-              child: Center(
-                child: Text(
-                  'Search files',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 23,
-                      fontWeight: FontWeight.w500),
+                child: Center(
+                  child: Text(
+                    'Search files',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 23,
+                        fontWeight: FontWeight.w500),
+                  ),
                 ),
               ),
             ),

@@ -34,7 +34,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return  ScreenUtilInit(
       builder: (context,child){
-        return GetMaterialApp(
+        return
+          GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
