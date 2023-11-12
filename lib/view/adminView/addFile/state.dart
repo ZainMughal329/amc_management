@@ -30,4 +30,9 @@ class addFileState{
   final filenoFocusNode = FocusNode();
  final RxBool isFormValid = false.obs;
 
+ RxString nameFile = ''.obs;
+ RxString fileNum = ''.obs;
+ RxBool loaded = false.obs;
+
+
 }

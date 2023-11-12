@@ -18,7 +18,7 @@ class addFileDataList extends GetView<addFileController> {
     return Stack(
       children: [
         Padding(
-          padding: EdgeInsets.only(bottom: 110,top: 10),
+          padding: EdgeInsets.only(bottom: 110,top: 0),
           child: Center(
             child: StreamBuilder<QuerySnapshot>(
                 stream: controller.state.ref.snapshots(),
@@ -44,7 +44,7 @@ class addFileDataList extends GetView<addFileController> {
                                   borderRadius: BorderRadius.circular(
                                       16.0), // Round the corners
                                 ),
-                                margin: EdgeInsets.all(16.0),
+                                margin: EdgeInsets.all(10.0),
                                 // Margin around the card
 
                                 child: Padding(

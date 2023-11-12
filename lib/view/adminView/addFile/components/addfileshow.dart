@@ -20,6 +20,7 @@ class addFileShowContainer extends StatelessWidget {
   String id;
   String dept;
   String details;
+
   addFileShowContainer({
     super.key,
     required this.name,
@@ -30,11 +31,13 @@ class addFileShowContainer extends StatelessWidget {
     required this.dept,
     required this.details,
   });
+
   @override
   Widget build(BuildContext context) {
     final state = addFileState();
     CarouselController buttonCarouselController = CarouselController();
     final controller = Get.put<addFileController>(addFileController());
+    controller.fetchDataOfFiles(id);
     controller.fetchImageUrls(id).then((urls) {
       print("urls" + urls.toString());
       controller.fetchedImageUrls = urls;
@@ -59,11 +62,13 @@ class addFileShowContainer extends StatelessWidget {
                         child: CircleAvatar(
                           backgroundColor: AppColors.elevatedButtonColour,
                           child: IconButton(
-                              onPressed: (){
+                              onPressed: () {
                                 Get.back();
-                              }, icon: Icon(Icons.arrow_back,
-                            color: Colors.white,
-                          )),
+                              },
+                              icon: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              )),
                         )),
                   ),
                   SizedBox(
@@ -105,121 +110,162 @@ class addFileShowContainer extends StatelessWidget {
                                   ),
                                 )
                               : Container(
-                                  child: CarouselSlider.builder(
-                                      itemCount:
-                                          (controller.fetchedImageUrls.length /
-                                                  2)
-                                              .round(),
-                                      itemBuilder: (context, index, realIdx) {
-                                        final int first = index * 2;
-                                        final int second = first + 1;
-                                        return Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [first, second].map((idx) {
-                                            return Container(
-                                              height: 400,
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 10),
-                                              child: CachedNetworkImage(
-                                                imageUrl: controller
-                                                    .fetchedImageUrls[index],
-                                                placeholder: (context, url) =>
-                                                    CircularProgressIndicator(
-                                                  color: Colors.white,
-                                                ),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        Icon(Icons.error),
-                                              ),
-                                            );
-                                          }).toList(),
-                                        );
-                                      },
-                                      options: CarouselOptions(
-                                          aspectRatio: 2.0,
-                                          enlargeCenterPage: true,
-                                          viewportFraction: 1)));
+                                  child:
+                                      // CarouselSlider.builder(
+                                      //     itemCount:
+                                      //         (controller.fetchedImageUrls.length /
+                                      //                 2)
+                                      //             .round(),
+                                      //     itemBuilder: (context, index, realIdx) {
+                                      //       final int first = index * 2;
+                                      //       final int second = first + 1;
+                                      //       return Row(
+                                      //         mainAxisAlignment:
+                                      //             MainAxisAlignment.center,
+                                      //         crossAxisAlignment:
+                                      //             CrossAxisAlignment.center,
+                                      //         children: [first, second].map((idx) {
+                                      //           return Container(
+                                      //             height: 400,
+                                      //             margin: EdgeInsets.symmetric(
+                                      //                 horizontal: 10),
+                                      //             child: CachedNetworkImage(
+                                      //               imageUrl: controller
+                                      //                   .fetchedImageUrls[index],
+                                      //               placeholder: (context, url) =>
+                                      //                   CircularProgressIndicator(
+                                      //                 color: Colors.white,
+                                      //               ),
+                                      //               errorWidget:
+                                      //                   (context, url, error) =>
+                                      //                       Icon(Icons.error),
+                                      //             ),
+                                      //           );
+                                      //         }).toList(),
+                                      //       );
+                                      //     },
+                                      //     options: CarouselOptions(
+                                      //         aspectRatio: 2.0,
+                                      //         enlargeCenterPage: true,
+                                      //         viewportFraction: 1)),
+                                      GridView.builder(
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2),
+                                  itemBuilder: (_, index) => Container(
+                                    height: 100,
+                                    width: 100,
+                                    child: Image.network(
+                                      controller.fetchedImageUrls[index],
+                                      height: 100,
+                                      width: 100,
+                                    ),
+                                  ),
+                                  itemCount: controller.fetchedImageUrls.length,
+                                ));
                         }),
-                        SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 20.h,
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  controller.showFileNameDialogAlert(
-                                      context, name, id);
-                                },
-                                child: ReuseableRow(
-                                    title: 'FileName',
-                                    iconData: Icons.drive_file_rename_outline,
-                                    value: name),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: ReuseableRow(
-                                    title: 'Dept',
-                                    iconData: Icons.place_outlined,
-                                    value: dept),
-                              ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: ReuseableRow(
-                                    title: 'ReceivedFrom',
-                                    iconData: Icons.person_outlined,
-                                    value: from),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  controller.showFileNumDialogAlert(
-                                      context, fileNum, id);
-                                },
-                                child: ReuseableRow(
-                                    title: 'FileNum',
-                                    iconData: Icons.format_list_numbered,
-                                    value: fileNum),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              GestureDetector(
-                                onTap: () {
-
-                                },
-                                child: ReuseableRow(
-                                    title: 'Date',
-                                    iconData: Icons.calendar_today_outlined,
-                                    value: date),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: ReuseableRow(
-                                    title: 'Details',
-                                    iconData: Icons.details_outlined,
-                                    value: details),
-                              ),
-                              SizedBox(
-                                height: 15,
-                              ),
-                            ],
-                          ),
-                        )
+                        Obx(
+                          () => controller.state.loaded.value == false
+                              ? Center(
+                                  child: CircularProgressIndicator(
+                                    color: AppColors.elevatedButtonColour,
+                                  ),
+                                )
+                              : SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 20.h,
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Obx(
+                                        () => GestureDetector(
+                                          onTap: () {
+                                            controller.showFileNameDialogAlert(
+                                                context,
+                                                controller.state.nameFile.value
+                                                    .toString(),
+                                                id);
+                                          },
+                                          child: ReuseableRow(
+                                            title: 'FileName',
+                                            iconData:
+                                                Icons.drive_file_rename_outline,
+                                            value: controller
+                                                .state.nameFile.value
+                                                .toString(),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {},
+                                        child: ReuseableRow(
+                                            title: 'Dept',
+                                            iconData: Icons.place_outlined,
+                                            value: dept),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {},
+                                        child: ReuseableRow(
+                                            title: 'ReceivedFrom',
+                                            iconData: Icons.person_outlined,
+                                            value: from),
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Obx(
+                                        () => GestureDetector(
+                                          onTap: () {
+                                            controller.showFileNumDialogAlert(
+                                                context,
+                                                controller.state.fileNum.value
+                                                    .toString(),
+                                                id);
+                                          },
+                                          child: ReuseableRow(
+                                            title: 'FileNum',
+                                            iconData:
+                                                Icons.format_list_numbered,
+                                            value: controller
+                                                .state.fileNum.value
+                                                .toString(),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {},
+                                        child: ReuseableRow(
+                                            title: 'Date',
+                                            iconData:
+                                                Icons.calendar_today_outlined,
+                                            value: date),
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {},
+                                        child: ReuseableRow(
+                                            title: 'Details',
+                                            iconData: Icons.details_outlined,
+                                            value: details),
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                        ),
                       ],
                     ),
                   ),
@@ -288,12 +334,14 @@ class addFileShowContainer extends StatelessWidget {
 class ReuseableRow extends StatelessWidget {
   final String title, value;
   final IconData iconData;
+
   ReuseableRow(
       {Key? key,
       required this.title,
       required this.iconData,
       required this.value})
       : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
