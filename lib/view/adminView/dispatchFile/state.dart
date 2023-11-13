@@ -22,7 +22,7 @@ class dispatchState {
   final ref = FirebaseFirestore.instance.collection('dispatchFile');
   var deptName = 'Select'.obs;
   RxInt imageNo = 0.obs;
-  final loading = false.obs;
+  RxBool loading = false.obs;
   final auth = FirebaseAuth.instance;
   final RxBool isFormValid = false.obs;
   List<String> imageUrls = [];

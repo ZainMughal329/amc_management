@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:amc_management/res/components/SessionViewComponents/custom_tetxField.dart';
+import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:amc_management/view/adminView/addFile/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../model/addFile_model/addFile_model.dart';
 import '../../../res/colors.dart';
+import 'components/listofImages/view.dart';
 
 class addFileController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -71,7 +73,7 @@ class addFileController extends GetxController
     getImageUrls().then((urls) => {state.imageUrls = urls});
   }
 
-  void setLoading(bool value) {
+  void setLoading(value) {
     state.loading.value = value;
   }
 
@@ -249,6 +251,7 @@ class addFileController extends GetxController
     final imageUrl;
 
     try {
+      setLoading(true);
       firebase_storage.Reference storageRef =
           firebase_storage.FirebaseStorage.instance.ref('/addFile' + timeStamp);
       firebase_storage.UploadTask uploadTask =
@@ -268,11 +271,20 @@ class addFileController extends GetxController
       ).then((value) {
         print("image no is" + imageId.toString());
         print("image url is" + imageUrl.toString());
+        images = [];
+        Get.offAllNamed(RouteNames.homeview);
+
+        setLoading(false);
+
       }).onError((error, stackTrace) {
         print(error.toString());
+        setLoading(false);
+        
       });
     } catch (e) {
       print(e.toString());
+      setLoading(false);
+
     }
   }
 
@@ -285,6 +297,7 @@ class addFileController extends GetxController
       String recieverName,
       String details) async {
     try {
+      setLoading(true);
       print('inside try');
       await state.ref
           .doc(id)
@@ -300,10 +313,31 @@ class addFileController extends GetxController
               .toJson())
           .then((value) {
         print('inside then');
+        Get.to(() => ListOfFileView(
+          details: state.detailController.text
+              .trim(),
+          date:state.selectedDate,
+          fileNo: state.filenoController.text
+              .trim(),
+          recieverName:
+          state.fromController.text.trim(),
+          FileName:
+          state.nameController.text.trim(),
+          deptName: state.deptName.value,
+        ));
+
+        setLoading(false);
+
       }).onError((error, stackTrace) {
         print("Error" + error.toString());
+
+        setLoading(false);
+
       });
-    } catch (e) {}
+    } catch (e) {
+      setLoading(false);
+
+    }
   }
 
 //   here we manage the section of update the file data

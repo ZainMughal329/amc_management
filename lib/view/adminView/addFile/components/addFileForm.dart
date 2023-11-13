@@ -299,7 +299,7 @@ class addFileForm extends GetView<addFileController> {
                     SizedBox(height: 15.h,),
 
                     // if(controller.state.isFormValid.value)
-                    ReuseButton(
+                    Obx(() => controller.state.loading.value == false ? ReuseButton(
                         tittle: 'Select Images',
                         loading: controller.state.loading.value,
                         onpress: () {
@@ -314,19 +314,11 @@ class addFileForm extends GetView<addFileController> {
                               .trim(), controller.state.fromController.text
                               .trim(), controller.state.detailController.text
                               .trim(),);
-                          Get.to(() => ListOfFileView(
-                                details: controller.state.detailController.text
-                                    .trim(),
-                                date:controller.state.selectedDate,
-                                fileNo: controller.state.filenoController.text
-                                    .trim(),
-                                recieverName:
-                                    controller.state.fromController.text.trim(),
-                                FileName:
-                                    controller.state.nameController.text.trim(),
-                                deptName: controller.state.deptName.value,
-                              ));
-                        }),
+                        }) : Center(
+                      child: CircularProgressIndicator(
+                        color: AppColors.elevatedButtonColour,
+                      ),
+                    ),),
                     // (controller.state.isFormValid.value)?
 
                   ],

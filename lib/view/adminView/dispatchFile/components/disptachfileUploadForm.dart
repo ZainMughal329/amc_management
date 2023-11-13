@@ -9,76 +9,81 @@ import '../../../../res/components/adminViewComponents/detailTextForm.dart';
 import '../../../../utils/custom_Utils.dart';
 import '../index.dart';
 import 'listOfImages/listofimages.dart';
+
 class dispatchFileForm extends GetView<dispatchController> {
-   dispatchFileForm({super.key});
-   Widget dropDownList(){
-     return Obx(()=> Expanded(
-       flex: 0,
-       child: DropdownButton(
-         iconEnabledColor: AppColors.lightActiveIconColor,
-         dropdownColor: AppColors.lightBgColor,
-         style: TextStyle(color: AppColors.lightActiveIconColor),
-         iconSize: 40.0.h,
-         hint: controller.state.deptName.value==""?
-         Text("selectDept",
-           style: TextStyle(color: AppColors.titleTextColor),
-         ):Text(
-           controller.state.deptName.value,
-           style: TextStyle(color: AppColors.subtitleTextColor),
-         ),
-         // value: controller.state.deptName.value,
-         onChanged: (String? value){
-           controller.state.deptName.value = value!;
-         },
-         items: [
-           DropdownMenuItem(
-             value: 'Principle',
-             child: Text('Principle'),
-           ),
-           DropdownMenuItem(
-             value: 'Vice-Principle',
-             child: Text('Vice_Principle'),
-           ),
-           DropdownMenuItem(
-             value: 'Staff',
-             child: Text('Staff'),
-           ),
-           DropdownMenuItem(
-             value: 'IT',
-             child: Text('IT'),
-           ),
-           DropdownMenuItem(
-             value: 'English',
-             child: Text('English'),
-           ),
-           DropdownMenuItem(
-             value: 'Math',
-             child: Text('Math'),
-           ),
-           DropdownMenuItem(
-             value: 'Physics',
-             child: Text('Physics'),
-           ),
-           DropdownMenuItem(
-             value: 'Economics',
-             child: Text('Economics'),
-           ),
-           DropdownMenuItem(
-             value: 'Biology',
-             child: Text('Biology'),
-           ),
-           DropdownMenuItem(
-             value: 'Urdu',
-             child: Text('Urdu'),
-           ),
-           DropdownMenuItem(
-             value: 'Chemistry',
-             child: Text('Chemistry'),
-           ),
-         ],
-       ),
-     ));
-   }
+  dispatchFileForm({super.key});
+
+  Widget dropDownList() {
+    return Obx(() => Expanded(
+          flex: 0,
+          child: DropdownButton(
+            iconEnabledColor: AppColors.lightActiveIconColor,
+            dropdownColor: AppColors.lightBgColor,
+            style: TextStyle(color: AppColors.lightActiveIconColor),
+            iconSize: 40.0.h,
+            hint: controller.state.deptName.value == ""
+                ? Text(
+                    "selectDept",
+                    style: TextStyle(color: AppColors.titleTextColor),
+                  )
+                : Text(
+                    controller.state.deptName.value,
+                    style: TextStyle(color: AppColors.subtitleTextColor),
+                  ),
+            // value: controller.state.deptName.value,
+            onChanged: (String? value) {
+              controller.state.deptName.value = value!;
+            },
+            items: [
+              DropdownMenuItem(
+                value: 'Principle',
+                child: Text('Principle'),
+              ),
+              DropdownMenuItem(
+                value: 'Vice-Principle',
+                child: Text('Vice_Principle'),
+              ),
+              DropdownMenuItem(
+                value: 'Staff',
+                child: Text('Staff'),
+              ),
+              DropdownMenuItem(
+                value: 'IT',
+                child: Text('IT'),
+              ),
+              DropdownMenuItem(
+                value: 'English',
+                child: Text('English'),
+              ),
+              DropdownMenuItem(
+                value: 'Math',
+                child: Text('Math'),
+              ),
+              DropdownMenuItem(
+                value: 'Physics',
+                child: Text('Physics'),
+              ),
+              DropdownMenuItem(
+                value: 'Economics',
+                child: Text('Economics'),
+              ),
+              DropdownMenuItem(
+                value: 'Biology',
+                child: Text('Biology'),
+              ),
+              DropdownMenuItem(
+                value: 'Urdu',
+                child: Text('Urdu'),
+              ),
+              DropdownMenuItem(
+                value: 'Chemistry',
+                child: Text('Chemistry'),
+              ),
+            ],
+          ),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -163,98 +168,97 @@ class dispatchFileForm extends GetView<dispatchController> {
                   height: 15.h,
                 ),
                 customTextField(
-                  focusNode: controller.state.nameFocusNode,
-                  controller: controller.state.nameController,
-                  lableText: 'FileName',
-                  prefixIcon: Icon(Icons.drive_file_rename_outline),
-                    onFiledSubmittedValue: (value){
-                      ReuseableUtils.fieldfocous(context,
+                    focusNode: controller.state.nameFocusNode,
+                    controller: controller.state.nameController,
+                    lableText: 'FileName',
+                    prefixIcon: Icon(Icons.drive_file_rename_outline),
+                    onFiledSubmittedValue: (value) {
+                      ReuseableUtils.fieldfocous(
+                          context,
                           controller.state.nameFocusNode,
                           controller.state.dateFocusNode);
                     },
                     onvalidator: (value) {
                       return value.isEmpty ? 'Please Enter Name.' : null;
-                    }
-                ),
+                    }),
                 SizedBox(
                   height: 10.h,
                 ),
-                GetBuilder<dispatchController>(
-                    builder: (con) {
-                      return customTextField(
-                        keyboardType: TextInputType.datetime,
-                        focusNode:controller.state.dateFocusNode,
-                        controller:con.state.dateController,
-                        hintText: con.state.selectedDate !=null?
-                        DateFormat.yMMMd().format(con.state.selectedDate):
-                        "Select a date",
-                        suffixIcon: Icons.calendar_today_outlined,
-                        onPressSufix: (){
-                          con.getDateFromUser(context);
-                        },
-                          onFiledSubmittedValue: (value){
-                            ReuseableUtils.fieldfocous(context,
-                                controller.state.dateFocusNode,
-                                controller.state.recievedByFocusNode);
-                          },
-                          prefixIcon: Icon(Icons.date_range_outlined),
-
-                          onvalidator: (value) {
-                            return value.isEmpty ? 'Please Enter Date.' : null;
-                          }
-                      );
-                    }
-                ),
+                GetBuilder<dispatchController>(builder: (con) {
+                  return customTextField(
+                      keyboardType: TextInputType.datetime,
+                      focusNode: controller.state.dateFocusNode,
+                      controller: con.state.dateController,
+                      hintText: con.state.selectedDate != null
+                          ? DateFormat.yMMMd().format(con.state.selectedDate)
+                          : "Select a date",
+                      suffixIcon: Icons.calendar_today_outlined,
+                      onPressSufix: () {
+                        con.getDateFromUser(context);
+                      },
+                      onFiledSubmittedValue: (value) {
+                        ReuseableUtils.fieldfocous(
+                            context,
+                            controller.state.dateFocusNode,
+                            controller.state.recievedByFocusNode);
+                      },
+                      prefixIcon: Icon(Icons.date_range_outlined),
+                      onvalidator: (value) {
+                        return value.isEmpty ? 'Please Enter Date.' : null;
+                      });
+                }),
                 SizedBox(
                   height: 10.h,
                 ),
                 customTextField(
-                  focusNode: controller.state.recievedByFocusNode,
-                  controller: controller.state.recievedByController,
-                  lableText: 'recievedBy',
-                  prefixIcon: Icon(Icons.person),
-                    onFiledSubmittedValue: (value){
-                      ReuseableUtils.fieldfocous(context,
+                    focusNode: controller.state.recievedByFocusNode,
+                    controller: controller.state.recievedByController,
+                    lableText: 'recievedBy',
+                    prefixIcon: Icon(Icons.person),
+                    onFiledSubmittedValue: (value) {
+                      ReuseableUtils.fieldfocous(
+                          context,
                           controller.state.recievedByFocusNode,
                           controller.state.notificationToFocusNode);
                     },
                     onvalidator: (value) {
-                      return value.isEmpty ? 'Please Enter Receiver Name.' : null;
-                    }
-                ),
+                      return value.isEmpty
+                          ? 'Please Enter Receiver Name.'
+                          : null;
+                    }),
                 SizedBox(
                   height: 10.h,
                 ),
                 customTextField(
-                  focusNode: controller.state.notificationToFocusNode,
-                  lableText: 'notificationTo',
-                  controller:
-                  controller.state.notificationToController,
-                  prefixIcon: Icon(Icons.person),
-                  onFiledSubmittedValue: (value){
-                    ReuseableUtils.fieldfocous(context,
-                        controller.state.notificationToFocusNode,
-                        controller.state.filenumFocousNode);
-                  },
+                    focusNode: controller.state.notificationToFocusNode,
+                    lableText: 'notificationTo',
+                    controller: controller.state.notificationToController,
+                    prefixIcon: Icon(Icons.person),
+                    onFiledSubmittedValue: (value) {
+                      ReuseableUtils.fieldfocous(
+                          context,
+                          controller.state.notificationToFocusNode,
+                          controller.state.filenumFocousNode);
+                    },
                     onvalidator: (value) {
                       return value.isEmpty ? 'Please Enter  Name.' : null;
-                    }
+                    }),
+                SizedBox(
+                  height: 10.h,
                 ),
-                SizedBox(height: 10.h,),
                 customTextField(
-                  controller: controller.state.fileNumcontroller,
-                  focusNode: controller.state.filenumFocousNode,
-                  hintText: 'Enter File Number',
-                  onFiledSubmittedValue: (value){
-                    ReuseableUtils.fieldfocous(context,
-                        controller.state.filenumFocousNode,
-                        controller.state.detailFocousNode);
-
-                  },
+                    controller: controller.state.fileNumcontroller,
+                    focusNode: controller.state.filenumFocousNode,
+                    hintText: 'Enter File Number',
+                    onFiledSubmittedValue: (value) {
+                      ReuseableUtils.fieldfocous(
+                          context,
+                          controller.state.filenumFocousNode,
+                          controller.state.detailFocousNode);
+                    },
                     onvalidator: (value) {
                       return value.isEmpty ? 'Please Enter File Number.' : null;
-                    }
-                ),
+                    }),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -262,44 +266,45 @@ class dispatchFileForm extends GetView<dispatchController> {
                   controller: controller.state.detailController,
                   focusNode: controller.state.detailFocousNode,
                   hintText: 'Please Enter File Details',
-                  onFiledSubmittedValue: (value){
-
-                  },
+                  onFiledSubmittedValue: (value) {},
                   onvalidator: (value) {
                     return value.isEmpty ? 'Please Enter File Detail.' : null;
                   },
                 ),
-                SizedBox(height: 10.h,),
+                SizedBox(
+                  height: 10.h,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Select Dept'),
-                    dropDownList()
-                  ],
+                  children: [Text('Select Dept'), dropDownList()],
                 ),
-                ReuseButton(
-                    tittle: 'Select Images',
-                    loading: controller.state.loading.value,
-                    onpress: () {
-                      String docId = DateTime.now().millisecondsSinceEpoch.toString();
-                      controller.dispatchfileDataOnFirebase(
-                        controller.state.fileNumcontroller.text.trim(),
-                          controller.documentId,
-                          controller.state.nameController.text.trim(),
-                          controller.state.selectedDate,
-                          controller.state.recievedByController.text.trim(),
-                          controller.state.deptName.value,
-                          controller.state.notificationToController.text.trim(),
-                          controller.state.detailController.text.trim());
-                      Get.to(() => listOfImages(
-                        fileNum: controller.state.fileNumcontroller.text.trim(),
-                          FileName: controller.state.nameController.text.trim(),
-                          date: controller.state.selectedDate,
-                          recievedBy:controller.state.recievedByController.text.trim(),
-                          notificationTo: controller.state.notificationToController.text.trim(),
-                          details: controller.state.detailController.text.trim(),
-                          deptName: controller.state.deptName.value));
-                    }),
+                Obx(
+                  () => controller.state.loading.value == true
+                      ?  Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.elevatedButtonColour,
+                    ),
+                  )
+                      :ReuseButton(
+                      tittle: 'Select Images',
+                      // loading: controller.state.loading.value,
+                      onpress: () {
+                        String docId = DateTime.now()
+                            .millisecondsSinceEpoch
+                            .toString();
+                        controller.dispatchfileDataOnFirebase(
+                            controller.state.fileNumcontroller.text.trim(),
+                            controller.documentId,
+                            controller.state.nameController.text.trim(),
+                            controller.state.selectedDate,
+                            controller.state.recievedByController.text
+                                .trim(),
+                            controller.state.deptName.value,
+                            controller.state.notificationToController.text
+                                .trim(),
+                            controller.state.detailController.text.trim());
+                      }),
+                ),
               ],
             ),
           ),
