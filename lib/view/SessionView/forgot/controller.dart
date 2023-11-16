@@ -16,19 +16,24 @@ class ForgotController extends GetxController{
     state.Emailfocousnode.dispose();
     state.emailcontroller.dispose();
   }
-
+  void setLoading(bool value){
+    state.loading.value = value;
+  }
 
   void forgotPassword(BuildContext context , String email)async{
-
+    setLoading(true);
     try{
       state.auth.sendPasswordResetEmail(email: email).then((value) {
+        setLoading(false);
         Get.toNamed(RouteNames.loginview);
         Get.snackbar('Sucess', 'Check your email to recover your password');
 
       }).onError((error, stackTrace) {
+        setLoading(false);
         Get.snackbar('Error', error.toString());
       });
     }catch(e){
+      setLoading(false);
       Get.snackbar('Error', e.toString());
     }
 

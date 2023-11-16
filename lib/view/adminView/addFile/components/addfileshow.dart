@@ -1,6 +1,7 @@
 import 'package:amc_management/view/adminView/addFile/index.dart';
 import 'package:amc_management/view/adminView/dispatchFile/components/listOfImages/listofimages.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -110,62 +111,153 @@ class addFileShowContainer extends StatelessWidget {
                                   ),
                                 )
                               : Padding(
-                                padding: const EdgeInsets.only(top: 30),
+                                padding: const EdgeInsets.only(top: 10,bottom: 50),
                                 child: Container(
-
                                     child:
-                                        // CarouselSlider.builder(
-                                        //     itemCount:
-                                        //         (controller.fetchedImageUrls.length /
-                                        //                 2)
-                                        //             .round(),
-                                        //     itemBuilder: (context, index, realIdx) {
-                                        //       final int first = index * 2;
-                                        //       final int second = first + 1;
-                                        //       return Row(
-                                        //         mainAxisAlignment:
-                                        //             MainAxisAlignment.center,
-                                        //         crossAxisAlignment:
-                                        //             CrossAxisAlignment.center,
-                                        //         children: [first, second].map((idx) {
-                                        //           return Container(
-                                        //             height: 400,
-                                        //             margin: EdgeInsets.symmetric(
-                                        //                 horizontal: 10),
-                                        //             child: CachedNetworkImage(
-                                        //               imageUrl: controller
-                                        //                   .fetchedImageUrls[index],
-                                        //               placeholder: (context, url) =>
-                                        //                   CircularProgressIndicator(
-                                        //                 color: Colors.white,
-                                        //               ),
-                                        //               errorWidget:
-                                        //                   (context, url, error) =>
-                                        //                       Icon(Icons.error),
-                                        //             ),
-                                        //           );
-                                        //         }).toList(),
-                                        //       );
-                                        //     },
-                                        //     options: CarouselOptions(
-                                        //         aspectRatio: 2.0,
-                                        //         enlargeCenterPage: true,
-                                        //         viewportFraction: 1)),
-                                        GridView.builder(
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 2),
-                                    itemBuilder: (_, index) => Container(
-                                      height: 100,
-                                      width: 100,
-                                      child: Image.network(
-                                        controller.fetchedImageUrls[index],
-                                        height: 100,
-                                        width: 100,
+
+                                    // Column(
+                                    //   children: <Widget>[
+                                    //     Expanded(
+                                    //       child: Swiper(
+                                    //         itemBuilder: (context, index) {
+                                    //           return Image.network(
+                                    //             controller.fetchedImageUrls[index],
+                                    //             fit: BoxFit.fill,
+                                    //           );
+                                    //         },
+                                    //         autoplay: true,
+                                    //         itemCount: controller.fetchedImageUrls.length,
+                                    //         pagination: SwiperPagination(
+                                    //             margin: EdgeInsets.zero,
+                                    //             builder: SwiperCustomPagination(builder: (context, config) {
+                                    //               return ConstrainedBox(
+                                    //                 child: Container(
+                                    //                   color: Colors.white,
+                                    //                   child: Text(
+                                    //                     '${'Hamza'[config.activeIndex]} ${config.activeIndex + 1}/${config.itemCount}',
+                                    //                     style: const TextStyle(fontSize: 20.0),
+                                    //                   ),
+                                    //                 ),
+                                    //                 constraints: const BoxConstraints.expand(height: 50.0),
+                                    //               );
+                                    //             })),
+                                    //         control: const SwiperControl(),
+                                    //       ),
+                                    //     ),
+                                    //     Expanded(
+                                    //       child: Swiper(
+                                    //         itemBuilder: (context, index) {
+                                    //           return Image.network(
+                                    //             controller.fetchedImageUrls[index],
+                                    //             fit: BoxFit.fill,
+                                    //           );
+                                    //         },
+                                    //         autoplay: true,
+                                    //         itemCount: controller.fetchedImageUrls.length,
+                                    //         pagination: SwiperPagination(
+                                    //             margin: EdgeInsets.zero,
+                                    //             builder: SwiperCustomPagination(builder: (context, config) {
+                                    //               return ConstrainedBox(
+                                    //                 child: Row(
+                                    //                   children: <Widget>[
+                                    //                     Text(
+                                    //                       '${'wahab'[config.activeIndex]} ${config.activeIndex + 1}/${config.itemCount}',
+                                    //                       style: const TextStyle(fontSize: 20.0),
+                                    //                     ),
+                                    //                     Expanded(
+                                    //                       child: Align(
+                                    //                         alignment: Alignment.centerRight,
+                                    //                         child: const DotSwiperPaginationBuilder(
+                                    //                             color: Colors.black12,
+                                    //                             activeColor: Colors.black,
+                                    //                             size: 10.0,
+                                    //                             activeSize: 20.0)
+                                    //                             .build(context, config),
+                                    //                       ),
+                                    //                     )
+                                    //                   ],
+                                    //                 ),
+                                    //                 constraints: const BoxConstraints.expand(height: 50.0),
+                                    //               );
+                                    //             })),
+                                    //         control: const SwiperControl(color: Colors.redAccent),
+                                    //       ),
+                                    //     )
+                                    //   ],
+                                    // )
+
+
+
+                                    Swiper(
+                                      // layout: SwiperLayout.CUSTOM,
+                                      //   customLayoutOption: CustomLayoutOption(startIndex: 1,
+                                      //   stateCount: controller.fetchedImageUrls.length
+                                      //   )..addRotate([
+                                      //     90.0/180,
+                                      //     0.0,
+                                      //     45.0/180
+                                      //   ])..addTranslate([
+                                      //     Offset(-370.0, -40.0),
+                                      //     Offset(0.0, 0.0),
+                                      //     Offset(370.0, -40.0)
+                                      //   ]),
+                                      // itemWidth: double.infinity,
+                                      // itemHeight: 558.h,
+                                        itemCount:controller.fetchedImageUrls.length,
+                                      itemBuilder: (context,index){
+                                          return  Image(image: NetworkImage(controller.fetchedImageUrls[index]),
+                                          fit: BoxFit.fill,
+                                          );
+                                          //   CachedNetworkImage(imageUrl: controller.fetchedImageUrls[index],
+                                          //     placeholder: (context, url) =>
+                                          //                 CircularProgressIndicator(
+                                          //               color: Colors.white,
+                                          //             ),
+                                          //             errorWidget:
+                                          //                 (context, url, error) =>
+                                          //                     Icon(Icons.error),
+                                          // );
+                                      },
+
+                                      indicatorLayout: PageIndicatorLayout.COLOR,
+                                      scrollDirection: Axis.vertical,
+                                      // pagination:
+                                      // const SwiperPagination(builder: SwiperPagination.fraction),
+                                      pagination: const SwiperPagination(alignment: Alignment.centerRight,
+                                      // margin: EdgeInsets.all(100.0)
                                       ),
-                                    ),
-                                    itemCount: controller.fetchedImageUrls.length,
-                                  )),
+                                      autoplay: false,
+
+                                      // pagination: const SwiperPagination(),
+                                      control: const SwiperControl(),
+                                      // containerHeight: 100.h,
+                                      // containerWidth: double.infinity,
+                                    )
+
+
+
+
+
+
+
+
+
+                                  //       GridView.builder(
+                                  //   gridDelegate:
+                                  //       SliverGridDelegateWithFixedCrossAxisCount(
+                                  //           crossAxisCount: 2),
+                                  //   itemBuilder: (_, index) => Container(
+                                  //     height: 100,
+                                  //     width: 100,
+                                  //     child: Image.network(
+                                  //       controller.fetchedImageUrls[index],
+                                  //       height: 100,
+                                  //       width: 100,
+                                  //     ),
+                                  //   ),
+                                  //   itemCount: controller.fetchedImageUrls.length,
+                                  // )
+                                ),
                               );
                         }),
                         Obx(
@@ -371,3 +463,28 @@ class ReuseableRow extends StatelessWidget {
     );
   }
 }
+
+class ScaffoldWidget extends StatelessWidget {
+  final Widget child;
+  final String title;
+  final List<Widget>? actions;
+
+  const ScaffoldWidget({
+    Key? key,
+    required this.title,
+    required this.child,
+    this.actions,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+        actions: actions,
+      ),
+      body: child,
+    );
+  }
+}
+

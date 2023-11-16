@@ -66,7 +66,7 @@ class userView extends GetView<userViewController> {
                 if (user.status == "true") {
                   return StreamBuilder<QuerySnapshot>(
                       stream: controller.state.firestoreRef
-                          .where('Dept', isEqualTo: controller.state.dpName)
+                          .where('dept', isEqualTo: controller.state.dpName)
                           .snapshots(),
                       builder: (BuildContext context,
                           AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -114,33 +114,34 @@ class userView extends GetView<userViewController> {
                                                   ),
                                                 ),
                                               )),
-                                          Positioned(
-                                              top: 0,
-                                              left: 30,
-                                              child: Card(
-                                                elevation: 10.0,
-                                                shadowColor: Colors.grey
-                                                    .withOpacity(0.5),
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            15.0)),
-                                                child: Container(
-                                                  height: 200.h,
-                                                  width: 150.w,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10.0),
-                                                      image: DecorationImage(
-                                                        fit: BoxFit.fill,
-                                                        image: NetworkImage(
-                                                            snapshot.data!
-                                                                    .docs[index]
-                                                                ['image']),
-                                                      )),
-                                                ),
-                                              )),
+                                          // Positioned(
+                                          //     top: 0,
+                                          //     left: 30,
+                                          //     child: Card(
+                                          //       elevation: 10.0,
+                                          //       shadowColor: Colors.grey
+                                          //           .withOpacity(0.5),
+                                          //       shape: RoundedRectangleBorder(
+                                          //           borderRadius:
+                                          //               BorderRadius.circular(
+                                          //                   15.0)),
+                                          //       child: Container(
+                                          //         height: 200.h,
+                                          //         width: 150.w,
+                                          //         decoration: BoxDecoration(
+                                          //             borderRadius:
+                                          //                 BorderRadius.circular(
+                                          //                     10.0),
+                                          //             image: DecorationImage(
+                                          //               fit: BoxFit.fill,
+                                          //               image: NetworkImage(
+                                          //                   snapshot.data!
+                                          //                           .docs[index]
+                                          //                       ['image']),
+                                          //             )),
+                                          //       ),
+                                          //     )
+                                          // ),
                                           Positioned(
                                               top: 60,
                                               left: 220,
@@ -163,10 +164,21 @@ class userView extends GetView<userViewController> {
                                                               FontWeight.bold),
                                                     ),
                                                     Text(
-                                                      snapshot
-                                                          .data!
-                                                          .docs[index]
-                                                              ['FileNum']
+                                                      snapshot.data!
+                                                          .docs[index]['Detail']
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Colors.grey,
+                                                          fontWeight:
+                                                          FontWeight.bold),
+                                                    ),
+                                                    Divider(
+                                                      color: Colors.black,
+                                                    ),
+                                                    Text(
+                                                      snapshot.data!
+                                                          .docs[index]['From']
                                                           .toString(),
                                                       style: TextStyle(
                                                           fontSize: 16,
@@ -179,13 +191,13 @@ class userView extends GetView<userViewController> {
                                                     ),
                                                     Text(
                                                       snapshot.data!
-                                                          .docs[index]['Date']
+                                                          .docs[index]['From']
                                                           .toString(),
                                                       style: TextStyle(
                                                           fontSize: 16,
                                                           color: Colors.grey,
                                                           fontWeight:
-                                                              FontWeight.bold),
+                                                          FontWeight.bold),
                                                     ),
                                                   ],
                                                 ),

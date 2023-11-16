@@ -1,3 +1,4 @@
+import 'package:amc_management/res/colors.dart';
 import 'package:amc_management/res/components/adminViewComponents/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -64,11 +65,16 @@ class Forgotview extends GetView<ForgotController> {
               SizedBox(
                 height: 40,
               ),
-              ReuseButton(tittle: 'Recover', onpress: (){
+              Obx(() => controller.state.loading.value ==false? ReuseButton(tittle: 'Recover', onpress: (){
                 if(_formkey.currentState!.validate()){
                   controller.forgotPassword(context, controller.state.emailcontroller.text.trim());
                 }
-              })
+              }):Center(
+                child:CircularProgressIndicator(
+                  color: AppColors.elevatedButtonColour,
+                ),
+              ))
+
             ],
           ),
         ),

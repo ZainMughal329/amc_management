@@ -36,128 +36,131 @@ class FileList extends GetView<dispatchController> {
                         final formattedDate =
                         DateFormat('dd-MM-yy').format(timeInMilli);
                         print('date is : ' + formattedDate.toString());
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Card(
-                            // elevation: 4,
-                            color: AppColors
-                                .elevatedButtonColour, // Add shadow to the card
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  16.0), // Round the corners
-                            ),
-                            margin:
-                            EdgeInsets.all(10.0), // Margin around the card
+                        return Card(
+                          // elevation: 4,
+                          color: AppColors
+                              .elevatedButtonColour, // Add shadow to the card
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                                16.0), // Round the corners
+                          ),
+                          margin:
+                          EdgeInsets.all(10.0), // Margin around the card
 
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.all(16.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Row(
-                                          children: [
-                                            Text(
-                                              snapshot.data!.docs[index]
-                                              ['Name'],
-                                              style: TextStyle(
-                                                  fontSize: 20.0,
-                                                  color: Colors.white),
-                                            ),
-                                            Spacer(),
-                                            Text(
-                                              snapshot.data!.docs[index]
-                                                  ['Dept'],
-                                              style: TextStyle(
-                                                  fontSize: 16.0,
-                                                  color: Colors.white),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Row(
-                                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              snapshot.data!.docs[index]
-                                              ['RecievedBy'],
-                                              style: TextStyle(
-                                                  fontSize: 16.0,
-                                                  color: Colors.white),
-                                            ),
-                                            Spacer(),
-                                            Text(
-                                              snapshot.data!.docs[index]
-                                              ['NotificationTo'],
-                                              style: TextStyle(
-                                                  fontSize: 16.0,
-                                                  color: Colors.white),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 15,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              formattedDate,
-                                              style: TextStyle(
-                                                  fontSize: 16.0,
-                                                  color: Colors.white),
-                                            ),
-                                            Spacer(),
-                                            Container(
-                                              color: Color(0xffBEC3C7),
-                                              width: 80,
-                                              height: 40,
-                                              child: TextButton(
-                                                  onPressed: () {
-                                                    Get.to(() =>
-                                                        dispatchFileShowContainer(
-                                                          date: formattedDate,
-                                                          filenum: snapshot.data!.docs[index]['FileNum'],
-                                                          Dept: snapshot.data!.docs[index]['Dept'],
-                                                          id: snapshot.data!.docs[index]['Id'],
-                                                          recievedBy: snapshot
-                                                              .data!
-                                                              .docs[index]
-                                                          ['RecievedBy'],
-                                                          details: snapshot
-                                                              .data!
-                                                              .docs[index]
-                                                          ['Detail'],
-                                                          // date: formattedDate,
-                                                          name: snapshot.data!
-                                                              .docs[index]
-                                                          ['Name'],
-                                                          notificationTo: snapshot
-                                                              .data!
-                                                              .docs[index][
-                                                          'NotificationTo'],
-                                                        ));
-                                                  },
-                                                  child: Text(
-                                                    'Details',
-                                                    style: TextStyle(
-                                                        color: AppColors
-                                                            .elevatedButtonColour),
-                                                  )),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.all(16.0),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Row(
+                                        children: [
+                                          Text(
+                                            snapshot.data!.docs[index]
+                                            ['Name'],
+                                            style: TextStyle(
+                                                fontSize: 20.0,
+                                                color: Colors.white),
+                                          ),
+                                          Spacer(),
+                                          Text(
+                                            snapshot.data!.docs[index]
+                                                ['Dept'],
+                                            style: TextStyle(
+                                                fontSize: 16.0,
+                                                color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Row(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            snapshot.data!.docs[index]
+                                            ['RecievedBy'],
+                                            style: TextStyle(
+                                                fontSize: 16.0,
+                                                color: Colors.white),
+                                          ),
+                                          Spacer(),
+                                          Text(
+                                            snapshot.data!.docs[index]
+                                            ['NotificationTo'],
+                                            style: TextStyle(
+                                                fontSize: 16.0,
+                                                color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            formattedDate,
+                                            style: TextStyle(
+                                                fontSize: 16.0,
+                                                color: Colors.white),
+                                          ),
+                                          Spacer(),
+                                          IconButton(onPressed: (){
+                                            final id = snapshot.data!.docs[index]['Id'];
+                                            controller.deleteFile(id);
+                                          }, icon: Icon(Icons.delete_forever,color: Colors.white,)),
+                                          Spacer(),
+                                          Container(
+                                            color: Color(0xffBEC3C7),
+                                            width: 80,
+                                            height: 40,
+                                            child: TextButton(
+                                                onPressed: () {
+                                                  Get.to(() =>
+                                                      dispatchFileShowContainer(
+                                                        date: formattedDate,
+                                                        filenum: snapshot.data!.docs[index]['FileNum'],
+                                                        Dept: snapshot.data!.docs[index]['Dept'],
+                                                        id: snapshot.data!.docs[index]['Id'],
+                                                        recievedBy: snapshot
+                                                            .data!
+                                                            .docs[index]
+                                                        ['RecievedBy'],
+                                                        details: snapshot
+                                                            .data!
+                                                            .docs[index]
+                                                        ['Detail'],
+                                                        // date: formattedDate,
+                                                        name: snapshot.data!
+                                                            .docs[index]
+                                                        ['Name'],
+                                                        notificationTo: snapshot
+                                                            .data!
+                                                            .docs[index][
+                                                        'NotificationTo'],
+                                                      ));
+                                                },
+                                                child: Text(
+                                                  'Details',
+                                                  style: TextStyle(
+                                                      color: AppColors
+                                                          .elevatedButtonColour),
+                                                )),
+                                          ),
+
+                                        ],
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         );
@@ -177,7 +180,7 @@ class FileList extends GetView<dispatchController> {
             alignment: Alignment.bottomCenter,
             child: GestureDetector(
               onTap: (){
-                Get.toNamed(RouteNames.searchView);
+                Get.toNamed(RouteNames.disptchsearchView);
               },
               child: Container(
                 height: 60,

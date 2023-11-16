@@ -124,7 +124,7 @@ class userApproval extends GetView<userController> {
             }
 
           }
-          return CircularProgressIndicator(color: Colors.orange,);
+          return CircularProgressIndicator(color: AppColors.elevatedButtonColour,);
 
         }catch(e){
           return Text(

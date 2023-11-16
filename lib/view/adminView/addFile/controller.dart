@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:amc_management/res/components/SessionViewComponents/custom_tetxField.dart';
 import 'package:amc_management/utils/routes/routes_name.dart';
+import 'package:amc_management/view/adminView/addFile/components/addFileForm.dart';
 import 'package:amc_management/view/adminView/addFile/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -228,7 +229,7 @@ class addFileController extends GetxController
     state.filenoController.clear();
     state.deptName.value = "Select";
     state.detailController.clear();
-    state.imageUrls.clear();
+    images=[];
   }
 
   Stream<DocumentSnapshot<Map<String, dynamic>>> getFIleData() {
@@ -271,8 +272,9 @@ class addFileController extends GetxController
       ).then((value) {
         print("image no is" + imageId.toString());
         print("image url is" + imageUrl.toString());
-        images = [];
-        Get.offAllNamed(RouteNames.homeview);
+        clearDateFromScreen();
+        // images = [];
+        Get.toNamed(RouteNames.homeview);
 
         setLoading(false);
 
@@ -488,4 +490,20 @@ class addFileController extends GetxController
         List<String>.from(snapshot.data()!['images']);
     return imageUrls;
   }
+
+//   here we create a function to delelete files
+
+  Future<void> deleteFile(String id)async{
+    try{
+      await state.ref.doc(id).delete().then((value){
+        print('File Deleted');
+      }).onError((error, stackTrace){
+        Get.snackbar('Error', error.toString());
+      });
+    }catch(e){
+      Get.snackbar('error', e.toString());
+    }
+
+  }
+
 }

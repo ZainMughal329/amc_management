@@ -2,6 +2,7 @@
 import 'package:amc_management/res/colors.dart';
 import 'package:amc_management/utils/routes/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../model/services/session_Controller.dart';
 import '../../../res/components/adminViewComponents/custom_container.dart';
@@ -15,7 +16,7 @@ class HomeView extends GetView<HomeController> {
         backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.9),
         centerTitle: true,
         elevation: 0,
         title: Text(
@@ -36,20 +37,7 @@ class HomeView extends GetView<HomeController> {
           padding: EdgeInsets.all(16.0),
           child: ListView(
             children: [
-              SectionCard(
-                onpress: (){
-                  // Get.to(ListOfFileView());
-                },
-                title: "Send File",
-                icon: Icons.send,
-              ),
-              SectionCard(
-                onpress: (){
-                  Get.toNamed(RouteNames.dispatchview);
-                },
-                title: "Dispatch File",
-                icon: Icons.call_split,
-              ),
+              SizedBox(height: 30.h,),
               SectionCard(
                 onpress: (){
                   Get.toNamed(RouteNames.userlistview);
@@ -57,6 +45,14 @@ class HomeView extends GetView<HomeController> {
                 title: "Users",
                 icon: Icons.supervised_user_circle,
               ),
+              SizedBox(height: 15.h,),
+              // SectionCard(
+              //   onpress: (){
+              //     // Get.to(ListOfFileView());
+              //   },
+              //   title: "Send File",
+              //   icon: Icons.send,
+              // ),
               SectionCard(
                 onpress:(){
                   Get.toNamed(RouteNames.addfileview);
@@ -65,6 +61,18 @@ class HomeView extends GetView<HomeController> {
                 title: "Add File",
                 icon: Icons.add,
               ),
+              SizedBox(height: 15.h,),
+
+
+              SectionCard(
+                onpress: (){
+                  Get.toNamed(RouteNames.dispatchview);
+                },
+                title: "Dispatch File",
+                icon: Icons.call_split,
+              ),
+              SizedBox(height: 15.h,),
+
             ],
           ),
         ),

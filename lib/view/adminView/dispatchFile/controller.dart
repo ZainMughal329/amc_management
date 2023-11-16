@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:amc_management/res/colors.dart';
 import 'package:amc_management/utils/routes/routes_name.dart';
+import 'package:amc_management/view/adminView/addFile/components/addFileForm.dart';
+import 'package:amc_management/view/adminView/dispatchFile/components/disptachfileUploadForm.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
@@ -202,7 +204,7 @@ class dispatchController extends GetxController
     state.notificationToController.clear();
     state.deptName = "".obs;
     state.detailController.clear();
-    // imagePath.value="";
+    images =[];
   }
 
   getDateFromUser(BuildContext context) async {
@@ -253,8 +255,9 @@ class dispatchController extends GetxController
       ).then((value) {
         print("image no is" + imageId.toString());
         print("image url is" + imageUrl.toString());
-        images = [];
-        Get.offAllNamed(RouteNames.homeview);
+        clearDateFromScreen();
+        // images = [];
+        Get.toNamed(RouteNames.homeview);
         setLoading(false);
       }).onError((error, stackTrace) {
         print(error.toString());
@@ -444,4 +447,21 @@ class dispatchController extends GetxController
         List<String>.from(snapshot.data()!['images']);
     return imageUrls;
   }
+
+//   here we create a function to delete a function
+Future<void> deleteFile(String id)async{
+    try{
+      await state.ref.doc(id).delete().then((value){
+        print('File Deleted');
+      }).onError((error, stackTrace){
+        Get.snackbar('Error', error.toString());
+      });
+    }catch(e){
+      Get.snackbar('error', e.toString());
+    }
+
+}
+
+
+
 }

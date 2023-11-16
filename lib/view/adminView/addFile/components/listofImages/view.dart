@@ -85,22 +85,24 @@ class ListOfFileView extends StatelessWidget {
                     }
                     con.state.imageNo.value = 0;
                   },
-                  child:  Container(
-
-                    width: double.infinity,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: AppColors.elevatedButtonColour,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Obx(() => Center(
-                      child: con.state.loading.value == false ? Text('Upload Images' , style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20
-                      ),) : CircularProgressIndicator(
-                        color: Colors.white,
+                  child:  Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Container(
+                      width: double.infinity,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: AppColors.elevatedButtonColour,
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                    )),
+                      child: Obx(() => Center(
+                        child: con.state.loading.value == false ? Text('Upload Images' , style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20
+                        ),) : CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )),
+                    ),
                   ),
                 ),
 
@@ -113,15 +115,15 @@ class ListOfFileView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Select Images'),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.arrow_upward),
-            onPressed: () {
-              final images = controller.images;
-              // use these images
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(images.map((e) => e.name).toString())));
-            },
-          ),
+          // IconButton(
+          //   icon: const Icon(Icons.arrow_upward),
+          //   onPressed: () {
+          //     final images = controller.images;
+          //     // use these images
+          //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          //         content: Text(images.map((e) => e.name).toString())));
+          //   },
+          // ),
         ],
       ),
       // floatingActionButton: FloatingActionButton(

@@ -1,9 +1,11 @@
 import 'package:amc_management/utils/routes/routes_name.dart';
+import 'package:amc_management/view/SearchView/dispatchFileSearchView/index.dart';
 import 'package:amc_management/view/scanimages/bindings.dart';
 import 'package:amc_management/view/scanimages/view.dart';
-import 'package:amc_management/view/search/index.dart';
 import 'package:amc_management/view/userView/bindings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import '../../view/SearchView/addFilesearchView/bindings.dart';
+import '../../view/SearchView/addFilesearchView/view.dart';
 import '../../view/SessionView/forgot/bindings.dart';
 import '../../view/SessionView/forgot/view.dart';
 import '../../view/SessionView/login/bindings.dart';
@@ -60,6 +62,9 @@ class AppPages {
         name: RouteNames.searchView,
         page: ()=>SearchView(),
         binding: SearchBindings()
+    ),
+    GetPage(name: RouteNames.disptchsearchView, page: ()=>dispatchSearchView(),
+    binding: dispatchBindings()
     ),
 
     GetPage(

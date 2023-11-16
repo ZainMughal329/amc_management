@@ -40,6 +40,14 @@ class SignUpView extends GetView<SignupController> {
                 child: Text('Principle'),
               ),
               DropdownMenuItem(
+                value: 'Vice-Principle',
+                child: Text('Vice-Principle'),
+              ),
+              DropdownMenuItem(
+                value: 'Staff',
+                child: Text('Staff'),
+              ),
+              DropdownMenuItem(
                 value: 'IT',
                 child: Text('IT'),
               ),

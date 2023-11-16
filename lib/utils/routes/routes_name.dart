@@ -16,5 +16,6 @@ class RouteNames{
   static const chatScreen = '/chatScreen';
   static const userView = '/userView';
   static const searchView = '/search';
+  static const disptchsearchView = '/search';
 
 }

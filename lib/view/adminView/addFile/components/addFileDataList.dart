@@ -114,6 +114,11 @@ class addFileDataList extends GetView<addFileController> {
                                                       color: Colors.white),
                                                 ),
                                                 Spacer(),
+                                                IconButton(onPressed: (){
+                                                  final id = snapshot.data!.docs[index]['Id'];
+                                                  controller.deleteFile(id);
+                                                }, icon: Icon(Icons.delete_forever,color: Colors.white,)),
+                                                Spacer(),
                                                 Container(
                                                   color: Color(0xffBEC3C7),
                                                   width: 80,

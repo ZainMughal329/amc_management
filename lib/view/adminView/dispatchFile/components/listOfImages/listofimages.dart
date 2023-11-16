@@ -51,6 +51,7 @@ class listOfImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
       body: SizedBox(
         width: double.infinity,
         child: Stack(
@@ -93,22 +94,24 @@ class listOfImages extends StatelessWidget {
                     }
                     con.state.imageNo.value = 0;
                   },
-                  child: Container(
-
-                    width: double.infinity,
-                    height: 80,
-                    decoration: BoxDecoration(
-                      color: AppColors.elevatedButtonColour,
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Obx(() => Center(
-                      child: con.state.loading.value == false ? Text('Upload Images' , style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20
-                      ),) : CircularProgressIndicator(
-                        color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 10),
+                    child: Container(
+                      width: double.infinity,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: AppColors.elevatedButtonColour,
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                    )),
+                      child: Obx(() => Center(
+                        child: con.state.loading.value == false ? Text('Upload Images' , style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20
+                        ),) : CircularProgressIndicator(
+                          color: Colors.white,
+                        ),
+                      )),
+                    ),
                   ),
                 ),
 
@@ -118,18 +121,18 @@ class listOfImages extends StatelessWidget {
         ),
       ),
       appBar: AppBar(
-        title: const Text('Multi Image Picker View'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.arrow_upward),
-            onPressed: () {
-              final images = controller.images;
-              // use these images
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(images.map((e) => e.name).toString(),),),);
-            },
-          ),
-        ],
+        title: const Text('Select Images'),
+        // actions: [
+        //   IconButton(
+        //     icon: const Icon(Icons.arrow_upward),
+        //     onPressed: () {
+        //       final images = controller.images;
+        //       // use these images
+        //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        //           content: Text(images.map((e) => e.name).toString(),),),);
+        //     },
+        //   ),
+        // ],
       ),
       // floatingActionButton: FloatingActionButton(
       //   onPressed: () async {
