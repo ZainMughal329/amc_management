@@ -56,6 +56,12 @@ dependencies:
   carousel_slider: ^4.2.1
   cached_network_image:
   card_swiper :
+  line_icons:
+  dio:
+  http:
+  path_provider:
+  gallery_saver:
+
 
 #  document_scanner_flutter: ^0.2.7
 #  flutter_document_scanner: ^0.1.0

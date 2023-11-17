@@ -1,15 +1,10 @@
 import 'package:amc_management/view/adminView/addFile/index.dart';
-import 'package:amc_management/view/adminView/dispatchFile/components/listOfImages/listofimages.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
 import '../../../../res/colors.dart';
-import '../../../../res/components/adminViewComponents/fileShowScreen.dart';
 import '../../../../res/components/adminViewComponents/tab_bar_setting.dart';
 
 class addFileShowContainer extends StatelessWidget {

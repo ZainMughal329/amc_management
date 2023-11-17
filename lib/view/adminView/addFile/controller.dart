@@ -506,4 +506,5 @@ class addFileController extends GetxController
 
   }
 
+
 }

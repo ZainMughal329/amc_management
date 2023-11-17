@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-
+import 'package:path_provider/path_provider.dart';
+import 'package:gallery_saver/gallery_saver.dart';
+import 'package:dio/dio.dart' as dio; // Alias the dio package
 import '../../../model/userModel/user_model.dart';
 import 'index.dart';
 class userViewController extends GetxController{
@@ -24,5 +28,60 @@ class userViewController extends GetxController{
       Get.snackbar('Error', 'Something went wrong');
     }
   }
+
+  List<String> fetchedImageUrls = [];
+  RxBool fetchedLoading = true.obs;
+
+  setFetchLoading(bool val) {
+    fetchedLoading.value = val;
+  }
+
+  Future<List<String>> fetchImageUrls(String docId) async {
+    setFetchLoading(true);
+    final snapshot = await FirebaseFirestore.instance
+        .collection('addFiles')
+        .doc(docId)
+        .get();
+
+    final List<String> imageUrls =
+    List<String>.from(snapshot.data()!['images']);
+    return imageUrls;
+  }
+
+
+// ... other imports ...
+
+  Future<void> downloadImages(List<String> imageUrls) async {
+    dio.Dio dioInstance = dio.Dio(); // Use the aliased dio package
+
+    for (int i = 0; i < imageUrls.length; i++) {
+      try {
+        dio.Response response = await dioInstance.get(
+          imageUrls[i],
+          options: dio.Options(responseType: dio.ResponseType.bytes),
+        );
+
+        // Get the local app directory
+        String directory = (await getApplicationDocumentsDirectory()).path;
+
+        // Save the image to local storage
+        String filePath = '$directory/image_$i.png';
+        await File(filePath).writeAsBytes(response.data!);
+
+        // Save the image to the gallery
+        GallerySaver.saveImage(filePath).then((value) {
+          print('Image saved to gallery: $value');
+        });
+
+        Get.snackbar('Success', 'Image Downloaded');
+      } catch (error) {
+        print('Error downloading image: $error');
+        Get.snackbar('Error', 'Failed to download image');
+      }
+    }
+  }
+
+
+
 }
 

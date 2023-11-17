@@ -1,7 +1,13 @@
+import 'package:amc_management/res/colors.dart';
+import 'package:amc_management/res/components/SessionViewComponents/elevated_button.dart';
+import 'package:amc_management/res/components/adminViewComponents/custom_button.dart';
+import 'package:amc_management/view/userView/detailsScreen/view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:line_icons/line_icon.dart';
 import '../../../model/services/session_Controller.dart';
 import '../../../model/userModel/user_model.dart';
 import '../../../res/components/UserViewComponents/userApprovalPage.dart';
@@ -19,42 +25,41 @@ class userView extends GetView<userViewController> {
     final GlobalKey<ScaffoldState> _scaffoldKey =
         new GlobalKey<ScaffoldState>();
     return Scaffold(
+      backgroundColor: AppColors.scaffoldBgColour,
       appBar: AppBar(
-        title:AnimatedTextKit(
-          animatedTexts: [
-            TypewriterAnimatedText(
-              'GAMC DOC',
-              textStyle: const TextStyle(
-                fontSize: 32.0,
-                fontWeight: FontWeight.bold,
-              ),
-              speed: const Duration(milliseconds: 2000),
-            ),
-          ],
-
-          totalRepeatCount: 4,
-          pause: const Duration(milliseconds: 1000),
-          displayFullTextOnTap: true,
-          stopPauseOnTap: true,
+        backgroundColor: AppColors.appBarBgColour,
+        title: Text('GAMC DOC',
+        style: TextStyle(
+            color: AppColors.tittleColour,
+            fontSize: 24),
         ),
         actions: [
-          IconButton(
-              onPressed: () {
-                Get.toNamed(RouteNames.profileview);
-              },
-              icon: Icon(Icons.person_outline)),
-          IconButton(
-              onPressed: () {
-                // Get.offAllNamed(RouteNames.loginview);
-                controller.state.auth.signOut().then((value){
-                   SessionController().userid='';
-                  Get.offAllNamed(RouteNames.loginview);
-                }).then((value){
-                  Snackbar.showSnackBar('Error','Something went wrong');
-                });
+          CircleAvatar(
+            backgroundColor: AppColors.iconButtonBgColour,
+            child:IconButton(
+                onPressed: () {
+                  Get.toNamed(RouteNames.profileview);
+                },
+                icon: Icon(Icons.person_outline,color: AppColors.iCONColour,)),
+          ),
+          SizedBox(width: 10.w),
+          CircleAvatar(
+            backgroundColor: AppColors.iconButtonBgColour,
+            child: IconButton(
+                onPressed: () {
+                  controller.state.auth.signOut().then((value){
+                    SessionController().userid='';
+                    Get.offAllNamed(RouteNames.loginview);
+                  }).then((value){
+                    Snackbar.showSnackBar('Error','Something went wrong');
+                  });
 
-              },
-              icon: Icon(Icons.logout_outlined))
+                },
+                icon: Icon(Icons.logout_outlined,color: AppColors.iCONColour,)),
+          ),
+          SizedBox(width: 15.w),
+
+
         ],
       ),
       body: SafeArea(
@@ -78,308 +83,126 @@ class userView extends GetView<userViewController> {
                               ? ListView.builder(
                                   itemCount: snapshot.data!.docs.length,
                                   itemBuilder: (context, index) {
+                                    final idFromDb = int.parse(
+                                        snapshot.data!.docs[index]['Id'].toString());
+                                    final timeInMilli =
+                                    DateTime.fromMillisecondsSinceEpoch(idFromDb);
+                                    final formattedDate =
+                                    DateFormat('dd-MM-yy').format(timeInMilli);
+                                    print('date is : ' + formattedDate.toString());
                                     print('length is1' +
                                         snapshot.data!.docs.length.toString());
                                     final tittle = snapshot
                                         .data!.docs[index]['Name']
                                         .toString();
 
-                                    return Container(
-                                      height: 230.h,
-                                      child: Stack(
-                                        children: [
-                                          Positioned(
-                                              top: 35,
-                                              left: 20,
-                                              child: Material(
-                                                child: Container(
-                                                  height: 180.0.h,
-                                                  // width: ,
-                                                  decoration: BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            0.0),
-                                                    boxShadow: [
-                                                      BoxShadow(
-                                                          color: Colors.grey
-                                                              .withOpacity(0.3),
-                                                          offset: Offset(
-                                                              -10.0, 10.0),
-                                                          blurRadius: 20.0,
-                                                          spreadRadius:
-                                                              4.0 // Extent of the shadow
-                                                          ),
+                                    return Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Card(
+                                        color: AppColors.cardBgColour,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              16.0), // Round the corners
+                                        ),
+                                        margin: EdgeInsets.all(10.0),
+                                        child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                          child:Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(padding: EdgeInsets.all(16.0),
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Icon(Icons.file_copy_rounded,color: AppColors.iCONColour,size: 22,),
+                                                      SizedBox(width: 7.w,),
+
+                                                      Text('File Name => ',style: TextStyle(fontSize: 16,color: AppColors.tittleColour),),
+                                                      SizedBox(width: 10.w,),
+                                                      Text(
+                                                        snapshot.data!
+                                                            .docs[index]['Name']
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            color:
+                                                            AppColors.cardTextColourS,
+                                                        ),
+                                                      ),
                                                     ],
                                                   ),
-                                                ),
-                                              )),
-                                          // Positioned(
-                                          //     top: 0,
-                                          //     left: 30,
-                                          //     child: Card(
-                                          //       elevation: 10.0,
-                                          //       shadowColor: Colors.grey
-                                          //           .withOpacity(0.5),
-                                          //       shape: RoundedRectangleBorder(
-                                          //           borderRadius:
-                                          //               BorderRadius.circular(
-                                          //                   15.0)),
-                                          //       child: Container(
-                                          //         height: 200.h,
-                                          //         width: 150.w,
-                                          //         decoration: BoxDecoration(
-                                          //             borderRadius:
-                                          //                 BorderRadius.circular(
-                                          //                     10.0),
-                                          //             image: DecorationImage(
-                                          //               fit: BoxFit.fill,
-                                          //               image: NetworkImage(
-                                          //                   snapshot.data!
-                                          //                           .docs[index]
-                                          //                       ['image']),
-                                          //             )),
-                                          //       ),
-                                          //     )
-                                          // ),
-                                          Positioned(
-                                              top: 60,
-                                              left: 220,
-                                              child: Container(
-                                                height: 150.h,
-                                                width: 160.w,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      snapshot.data!
-                                                          .docs[index]['Name']
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                          fontSize: 20,
-                                                          color:
-                                                              Color(0xFF363f93),
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                    Text(
-                                                      snapshot.data!
-                                                          .docs[index]['Detail']
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                          fontSize: 16,
-                                                          color: Colors.grey,
-                                                          fontWeight:
-                                                          FontWeight.bold),
-                                                    ),
-                                                    Divider(
-                                                      color: Colors.black,
-                                                    ),
-                                                    Text(
-                                                      snapshot.data!
-                                                          .docs[index]['From']
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                          fontSize: 16,
-                                                          color: Colors.grey,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    ),
-                                                    Divider(
-                                                      color: Colors.black,
-                                                    ),
-                                                    Text(
-                                                      snapshot.data!
-                                                          .docs[index]['From']
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                          fontSize: 16,
-                                                          color: Colors.grey,
-                                                          fontWeight:
-                                                          FontWeight.bold),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ))
-                                        ],
+                                                  SizedBox(height: 10.h,),
+                                                  Row(
+                                                    children: [
+                                                      Icon(Icons.person_outline,color: AppColors.iCONColour,size: 22,),
+                                                      SizedBox(width: 7.w,),
+                                                      Text('Received From => ',style: TextStyle(fontSize: 16,color: AppColors.tittleColour),),
+                                                      SizedBox(width: 10.w,),
+                                                      Text(
+                                                        snapshot.data!
+                                                            .docs[index]['From']
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                          fontSize: 12,
+                                                          color: AppColors.cardTextColourS,
+                                                        ),
+                                                      ),
+
+                                                    ],
+                                                  ),
+                                                  SizedBox(height: 10.h,),
+                                                  Row(
+                                                    children: [
+                                                      Icon(Icons.house_outlined,color: AppColors.iCONColour,size: 22,),
+                                                      SizedBox(width: 7.w,),
+                                                      Text('Department => ',style: TextStyle(fontSize: 16,color: AppColors.tittleColour)),
+                                                      SizedBox(width: 10.w,),
+                                                      Text(
+                                                        snapshot.data!.docs[index]['dept'],
+                                                        style: TextStyle(
+                                                            fontSize: 10,color: AppColors.cardTextColourS
+                                                        ),
+                                                      ),
+
+                                                    ],
+                                                  ),
+                                                  SizedBox(height: 10.h,),
+                                                  Row(
+                                                    children: [
+                                                      Icon(Icons.date_range,color: AppColors.iCONColour,size: 22,),
+                                                      SizedBox(width: 7.w,),
+                                                      Text('Date => ',style: TextStyle(fontSize: 16,color: AppColors.tittleColour)),
+                                                      SizedBox(width: 10.w,),
+                                                      Text(
+                                                        formattedDate,
+                                                        style: TextStyle(
+                                                          fontSize: 10,color: AppColors.cardTextColourS
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  SizedBox(height: 10,),
+                                                  ReuseButton(
+                                                      icon: Icons.image_search_outlined,
+                                                      tittle:'images', onpress: (){
+                                                    final id= snapshot.data!.docs[index]['Id'];
+                                                    Get.to( userViewImages(
+                                                      id: id,
+                                                    ));
+                                                  })
+                                                ],
+                                              ),
+                                              )
+                                            ],
+
+                                          )  ),
+                                        // Margin around the card
+
                                       ),
                                     );
-
-                                    // if(controller.state.searchController.text.isEmpty){
-                                    //   return Container(
-                                    //     height: 230.h,
-                                    //     child: Stack(
-                                    //       children: [
-                                    //         Positioned(
-                                    //             top: 35,
-                                    //             left: 20,
-                                    //             child: Material(
-                                    //               child: Container(
-                                    //                 height: 180.0.h,
-                                    //                 // width: ,
-                                    //                 decoration: BoxDecoration(
-                                    //                   color: Colors.white,
-                                    //                   borderRadius: BorderRadius.circular(0.0),
-                                    //                   boxShadow: [
-                                    //                     BoxShadow(
-                                    //                         color: Colors.grey.withOpacity(0.3),
-                                    //                         offset: Offset(-10.0, 10.0),
-                                    //                         blurRadius: 20.0,
-                                    //                         spreadRadius: 4.0 // Extent of the shadow
-                                    //                     ),
-                                    //                   ],
-                                    //
-                                    //                 ),
-                                    //               ),
-                                    //             )),
-                                    //         Positioned(
-                                    //             top: 0,
-                                    //             left: 30,
-                                    //             child:Card(
-                                    //               elevation: 10.0,
-                                    //               shadowColor: Colors.grey.withOpacity(0.5),
-                                    //               shape: RoundedRectangleBorder(
-                                    //                   borderRadius: BorderRadius.circular(15.0)
-                                    //               ),
-                                    //               child: Container(
-                                    //                 height: 200.h,
-                                    //                 width: 150.w,
-                                    //                 decoration: BoxDecoration(
-                                    //                     borderRadius: BorderRadius.circular(10.0),
-                                    //                     image: DecorationImage(
-                                    //                       fit: BoxFit.fill,
-                                    //                       image: AssetImage(snapshot.data!.docs[index]['Image']),)
-                                    //                 ),
-                                    //               ),
-                                    //             ) ),
-                                    //         Positioned(
-                                    //             top: 60,
-                                    //             left: 220,
-                                    //             child: Container(
-                                    //               height: 150.h,
-                                    //               width: 160.w,
-                                    //               child: Column(
-                                    //                 crossAxisAlignment: CrossAxisAlignment.start,
-                                    //                 children: [
-                                    //                   Text(snapshot.data!.docs[index]['Name']
-                                    //                       .toString(),style: TextStyle(
-                                    //                       fontSize: 20,
-                                    //                       color: Color(0xFF363f93),
-                                    //                       fontWeight: FontWeight.bold
-                                    //                   ),),
-                                    //                   Text(
-                                    //                     snapshot.data!.docs[index]['FileNum'].toString(),
-                                    //                     style: TextStyle(
-                                    //                         fontSize: 16,
-                                    //                         color: Colors.grey,
-                                    //                         fontWeight: FontWeight.bold
-                                    //                     ),),
-                                    //                   Divider(color: Colors.black,),
-                                    //                   Text(
-                                    //                     snapshot.data!.docs[index]['Date'].toString(),
-                                    //                     style: TextStyle(
-                                    //                         fontSize: 16,
-                                    //                         color: Colors.grey,
-                                    //                         fontWeight: FontWeight.bold
-                                    //                     ),),
-                                    //
-                                    //                 ],
-                                    //               ),
-                                    //             ))
-                                    //       ],
-                                    //     ),
-                                    //   );
-                                    // }
-                                    // else if(tittle.toLowerCase().contains(controller.state.searchController.text.toLowerCase().toLowerCase())){
-                                    //   return Container(
-                                    //     height: 230.h,
-                                    //     child: Stack(
-                                    //       children: [
-                                    //         Positioned(
-                                    //             top: 35,
-                                    //             left: 20,
-                                    //             child: Material(
-                                    //               child: Container(
-                                    //                 height: 180.0.h,
-                                    //                 // width: ,
-                                    //                 decoration: BoxDecoration(
-                                    //                   color: Colors.white,
-                                    //                   borderRadius: BorderRadius.circular(0.0),
-                                    //                   boxShadow: [
-                                    //                     BoxShadow(
-                                    //                         color: Colors.grey.withOpacity(0.3),
-                                    //                         offset: Offset(-10.0, 10.0),
-                                    //                         blurRadius: 20.0,
-                                    //                         spreadRadius: 4.0 // Extent of the shadow
-                                    //                     ),
-                                    //                   ],
-                                    //
-                                    //                 ),
-                                    //               ),
-                                    //             )),
-                                    //         Positioned(
-                                    //             top: 0,
-                                    //             left: 30,
-                                    //             child:Card(
-                                    //               elevation: 10.0,
-                                    //               shadowColor: Colors.grey.withOpacity(0.5),
-                                    //               shape: RoundedRectangleBorder(
-                                    //                   borderRadius: BorderRadius.circular(15.0)
-                                    //               ),
-                                    //               child: Container(
-                                    //                 height: 200.h,
-                                    //                 width: 150.w,
-                                    //                 decoration: BoxDecoration(
-                                    //                     borderRadius: BorderRadius.circular(10.0),
-                                    //                     image: DecorationImage(
-                                    //                       fit: BoxFit.fill,
-                                    //                       image: AssetImage(""),)
-                                    //                 ),
-                                    //               ),
-                                    //             ) ),
-                                    //         Positioned(
-                                    //             top: 60,
-                                    //             left: 220,
-                                    //             child: Container(
-                                    //               height: 150.h,
-                                    //               width: 160.w,
-                                    //               child: Column(
-                                    //                 crossAxisAlignment: CrossAxisAlignment.start,
-                                    //                 children: [
-                                    //                   Text(snapshot.data!.docs[index]['Name']
-                                    //                       .toString(),style: TextStyle(
-                                    //                       fontSize: 20,
-                                    //                       color: Color(0xFF363f93),
-                                    //                       fontWeight: FontWeight.bold
-                                    //                   ),),
-                                    //                   Text(
-                                    //                     snapshot.data!.docs[index]['FileNum'].toString(),
-                                    //                     style: TextStyle(
-                                    //                         fontSize: 16,
-                                    //                         color: Colors.grey,
-                                    //                         fontWeight: FontWeight.bold
-                                    //                     ),),
-                                    //                   Divider(color: Colors.black,),
-                                    //                   Text(
-                                    //                     snapshot.data!.docs[index]['Date'].toString(),
-                                    //                     style: TextStyle(
-                                    //                         fontSize: 16,
-                                    //                         color: Colors.grey,
-                                    //                         fontWeight: FontWeight.bold
-                                    //                     ),),
-                                    //
-                                    //                 ],
-                                    //               ),
-                                    //             ))
-                                    //       ],
-                                    //     ),
-                                    //   );
-                                    //
-                                    // }
-                                    // else{
-                                    //   return Container()  ;
-                                    // }
                                   })
                               : Center(
                                   child: Icon(
@@ -405,35 +228,10 @@ class userView extends GetView<userViewController> {
               }
             }),
       ),
-      //   Card(
-      //                                               child: ListTile(
-      //                                                 title: Text(
-      //                                                   snapshot.data!.docs[index]['Name']
-      //                                                       .toString(),
-      //                                                   style: TextStyle(
-      //                                                       color: Colors.red,
-      //                                                       fontSize: 15),
-      //                                                 ),
-      //                                                 subtitle: Text(
-      //                                                   snapshot.data!.docs[index]['Date']
-      //                                                       .toString(),
-      //                                                   style: TextStyle(
-      //                                                       color: Colors.purpleAccent,
-      //                                                       fontSize: 15),
-      //                                                 ),
-      //                                                 trailing: Text(
-      //                                                   snapshot
-      //                                                       .data!.docs[index]['FileNum']
-      //                                                       .toString(),
-      //                                                   style: TextStyle(
-      //                                                       color: Colors.greenAccent,
-      //                                                       fontSize: 15),
-      //                                                 ),
-      //                                               ),
-      //                                             )
     );
   }
 }
+
 
 //Column(
 //                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -516,3 +314,311 @@ class userView extends GetView<userViewController> {
 //                           )
 //                             ],
 //                           ))
+
+// Positioned(
+//     top: 0,
+//     left: 30,
+//     child: Card(
+//       elevation: 10.0,
+//       shadowColor: Colors.grey
+//           .withOpacity(0.5),
+//       shape: RoundedRectangleBorder(
+//           borderRadius:
+//               BorderRadius.circular(
+//                   15.0)),
+//       child: Container(
+//         height: 200.h,
+//         width: 150.w,
+//         decoration: BoxDecoration(
+//             borderRadius:
+//                 BorderRadius.circular(
+//                     10.0),
+//             image: DecorationImage(
+//               fit: BoxFit.fill,
+//               image: NetworkImage(
+//                   snapshot.data!
+//                           .docs[index]
+//                       ['image']),
+//             )),
+//       ),
+//     )
+// ),
+
+// if(controller.state.searchController.text.isEmpty){
+//   return Container(
+//     height: 230.h,
+//     child: Stack(
+//       children: [
+//         Positioned(
+//             top: 35,
+//             left: 20,
+//             child: Material(
+//               child: Container(
+//                 height: 180.0.h,
+//                 // width: ,
+//                 decoration: BoxDecoration(
+//                   color: Colors.white,
+//                   borderRadius: BorderRadius.circular(0.0),
+//                   boxShadow: [
+//                     BoxShadow(
+//                         color: Colors.grey.withOpacity(0.3),
+//                         offset: Offset(-10.0, 10.0),
+//                         blurRadius: 20.0,
+//                         spreadRadius: 4.0 // Extent of the shadow
+//                     ),
+//                   ],
+//
+//                 ),
+//               ),
+//             )),
+//         Positioned(
+//             top: 0,
+//             left: 30,
+//             child:Card(
+//               elevation: 10.0,
+//               shadowColor: Colors.grey.withOpacity(0.5),
+//               shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(15.0)
+//               ),
+//               child: Container(
+//                 height: 200.h,
+//                 width: 150.w,
+//                 decoration: BoxDecoration(
+//                     borderRadius: BorderRadius.circular(10.0),
+//                     image: DecorationImage(
+//                       fit: BoxFit.fill,
+//                       image: AssetImage(snapshot.data!.docs[index]['Image']),)
+//                 ),
+//               ),
+//             ) ),
+//         Positioned(
+//             top: 60,
+//             left: 220,
+//             child: Container(
+//               height: 150.h,
+//               width: 160.w,
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(snapshot.data!.docs[index]['Name']
+//                       .toString(),style: TextStyle(
+//                       fontSize: 20,
+//                       color: Color(0xFF363f93),
+//                       fontWeight: FontWeight.bold
+//                   ),),
+//                   Text(
+//                     snapshot.data!.docs[index]['FileNum'].toString(),
+//                     style: TextStyle(
+//                         fontSize: 16,
+//                         color: Colors.grey,
+//                         fontWeight: FontWeight.bold
+//                     ),),
+//                   Divider(color: Colors.black,),
+//                   Text(
+//                     snapshot.data!.docs[index]['Date'].toString(),
+//                     style: TextStyle(
+//                         fontSize: 16,
+//                         color: Colors.grey,
+//                         fontWeight: FontWeight.bold
+//                     ),),
+//
+//                 ],
+//               ),
+//             ))
+//       ],
+//     ),
+//   );
+// }
+// else if(tittle.toLowerCase().contains(controller.state.searchController.text.toLowerCase().toLowerCase())){
+//   return Container(
+//     height: 230.h,
+//     child: Stack(
+//       children: [
+//         Positioned(
+//             top: 35,
+//             left: 20,
+//             child: Material(
+//               child: Container(
+//                 height: 180.0.h,
+//                 // width: ,
+//                 decoration: BoxDecoration(
+//                   color: Colors.white,
+//                   borderRadius: BorderRadius.circular(0.0),
+//                   boxShadow: [
+//                     BoxShadow(
+//                         color: Colors.grey.withOpacity(0.3),
+//                         offset: Offset(-10.0, 10.0),
+//                         blurRadius: 20.0,
+//                         spreadRadius: 4.0 // Extent of the shadow
+//                     ),
+//                   ],
+//
+//                 ),
+//               ),
+//             )),
+//         Positioned(
+//             top: 0,
+//             left: 30,
+//             child:Card(
+//               elevation: 10.0,
+//               shadowColor: Colors.grey.withOpacity(0.5),
+//               shape: RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.circular(15.0)
+//               ),
+//               child: Container(
+//                 height: 200.h,
+//                 width: 150.w,
+//                 decoration: BoxDecoration(
+//                     borderRadius: BorderRadius.circular(10.0),
+//                     image: DecorationImage(
+//                       fit: BoxFit.fill,
+//                       image: AssetImage(""),)
+//                 ),
+//               ),
+//             ) ),
+//         Positioned(
+//             top: 60,
+//             left: 220,
+//             child: Container(
+//               height: 150.h,
+//               width: 160.w,
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   Text(snapshot.data!.docs[index]['Name']
+//                       .toString(),style: TextStyle(
+//                       fontSize: 20,
+//                       color: Color(0xFF363f93),
+//                       fontWeight: FontWeight.bold
+//                   ),),
+//                   Text(
+//                     snapshot.data!.docs[index]['FileNum'].toString(),
+//                     style: TextStyle(
+//                         fontSize: 16,
+//                         color: Colors.grey,
+//                         fontWeight: FontWeight.bold
+//                     ),),
+//                   Divider(color: Colors.black,),
+//                   Text(
+//                     snapshot.data!.docs[index]['Date'].toString(),
+//                     style: TextStyle(
+//                         fontSize: 16,
+//                         color: Colors.grey,
+//                         fontWeight: FontWeight.bold
+//                     ),),
+//
+//                 ],
+//               ),
+//             ))
+//       ],
+//     ),
+//   );
+//
+// }
+// else{
+//   return Container()  ;
+// }
+
+//   Card(
+//                                               child: ListTile(
+//                                                 title: Text(
+//                                                   snapshot.data!.docs[index]['Name']
+//                                                       .toString(),
+//                                                   style: TextStyle(
+//                                                       color: Colors.red,
+//                                                       fontSize: 15),
+//                                                 ),
+//                                                 subtitle: Text(
+//                                                   snapshot.data!.docs[index]['Date']
+//                                                       .toString(),
+//                                                   style: TextStyle(
+//                                                       color: Colors.purpleAccent,
+//                                                       fontSize: 15),
+//                                                 ),
+//                                                 trailing: Text(
+//                                                   snapshot
+//                                                       .data!.docs[index]['FileNum']
+//                                                       .toString(),
+//                                                   style: TextStyle(
+//                                                       color: Colors.greenAccent,
+//                                                       fontSize: 15),
+//                                                 ),
+//                                               ),
+//
+//                                             )
+
+// Container(
+// height: 230.h,
+// child: Stack(
+// children: [
+// Positioned(
+// top: 35,
+// left: 20,
+// child: Material(
+// child: Container(
+// height: 180.0.h,
+// // width: ,
+// decoration: BoxDecoration(
+// color: Colors.white,
+// borderRadius:
+// BorderRadius.circular(
+// 0.0),
+// boxShadow: [
+// BoxShadow(
+// color: Colors.grey
+//     .withOpacity(0.3),
+// offset: Offset(
+// -10.0, 10.0),
+// blurRadius: 20.0,
+// spreadRadius:
+// 4.0 // Extent of the shadow
+// ),
+// ],
+// ),
+// ),
+// )),
+//
+// Positioned(
+// top: 60,
+// left: 220,
+// child: Container(
+// height: 150.h,
+// width: 160.w,
+// child: Column(
+// crossAxisAlignment:
+// CrossAxisAlignment.start,
+// children: [
+
+// Text(
+// snapshot.data!
+//     .docs[index]['Detail']
+//     .toString(),
+// style: TextStyle(
+// fontSize: 16,
+// color: Colors.grey,
+// fontWeight:
+// FontWeight.bold),
+// ),
+// Divider(
+// color: Colors.black,
+// ),
+// Text(
+// snapshot.data!
+//     .docs[index]['From']
+//     .toString(),
+// style: TextStyle(
+// fontSize: 16,
+// color: Colors.grey,
+// fontWeight:
+// FontWeight.bold),
+// ),
+// Divider(
+// color: Colors.black,
+// ),
+
+// ],
+// ),
+// ))
+// ],
+// ),
+// )

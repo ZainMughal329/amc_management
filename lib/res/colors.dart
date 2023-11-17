@@ -6,7 +6,17 @@ class AppColors {
 
    static const Color elevatedButtonColour = Color(0xFF283593);
    static const Color textColour = Color(0xFFFFFFFF);
-   static const Color CircularProgressIndicatorColour = Color(0xFFFFFFFF);
+   static const Color circularProgressIndicatorColour = Color(0xFFFFFFFF);
+   static const Color scaffoldBgColour = Color(0xFFFFFFFF);
+   static const Color appBarBgColour = Color(0xFFFFFFFF);
+   static const Color tittleColour = Color(0xFF2C404E);
+   static const Color iconButtonBgColour = Color(0xFFEDF6F9);
+   static const Color iCONColour = Color(0xFF2C404E);
+   static const Color cardBgColour = Color(0xFFFFE8D2);
+   static const Color cardTextColourS = Color(0xFF1B2932);
+   static const Color reuseAbleButtonColourS = Color(0xFFEDF6F9);
+
+
 
 
 
@@ -17,7 +27,7 @@ class AppColors {
    static const Color primaryBackground = Color(0xFFFFFFFF);
   static const Color iconColor = Color(0xFF27374D);
   static const Color iconsColor = Colors.blue;
-  static const Color cardBgColor = Color(0xff0c3e4f);
+  // static const Color cardBgColor = Color(0xff0c3e4f);
   static const Color activeIconColor = Color(0xff11C3EB);
   static const Color unActiveIconColor = Color(0xFF394867);
   static const Color buttonBgColor = Color(0xFF394867);

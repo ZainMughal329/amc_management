@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
           //   deptName: 'it',
           //   fileNumber: '101',
           // ),
-          initialRoute: RouteNames.homeview,
+          initialRoute: RouteNames.splashview,
           getPages:AppPages.routes,
         );
 

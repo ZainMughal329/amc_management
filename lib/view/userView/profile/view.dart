@@ -14,7 +14,6 @@ class profileView extends GetView<profileController> {
   const profileView({super.key});
   @override
   Widget build(BuildContext context) {
-    // MobileScannerController cameraController = MobileScannerController();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),

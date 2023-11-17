@@ -19,7 +19,7 @@ class elevatedButton extends StatelessWidget {
         backgroundColor: AppColors.elevatedButtonColour
       ),
       onPressed:onpress,
-      child: loading?Center(child: CircularProgressIndicator(color: AppColors.CircularProgressIndicatorColour,)):Text(tittle,style: TextStyle(color:AppColors.textColour),)
+      child: loading?Center(child: CircularProgressIndicator(color: AppColors.circularProgressIndicatorColour,)):Text(tittle,style: TextStyle(color:AppColors.textColour),)
     );
   }
 }

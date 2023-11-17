@@ -7,6 +7,7 @@ class userViewState{
   String? id = "";
   String dpName='';
   FirebaseAuth auth =FirebaseAuth.instance;
+  List<String> imageUrls = [];
   final ref = FirebaseFirestore.instance;
   final searchController = TextEditingController();
   final editController =TextEditingController();
