@@ -172,7 +172,7 @@ class userView extends GetView<userViewController> {
                                                       icon: Icons.image_search_outlined,
                                                       tittle:'images', onpress: (){
                                                     final id= snapshot.data!.docs[index]['Id'];
-                                                    Get.to( userViewImages(
+                                                    Get.to( UserViewImages(
                                                       id: id,
                                                     ));
                                                   })
