@@ -5,16 +5,29 @@ import 'package:flutter/material.dart';
 class AppColors {
 
    static const Color elevatedButtonColour = Color(0xFF283593);
+   // color for normal text
    static const Color textColour = Color(0xFFFFFFFF);
+   // color for circular indicator
    static const Color circularProgressIndicatorColour = Color(0xFFFFFFFF);
+   // color for scaffold background colour for userSection
    static const Color scaffoldBgColour = Color(0xFFFFFFFF);
+   // color for appbar Bg color for user section
    static const Color appBarBgColour = Color(0xFFFFFFFF);
+   //  color for heading or tittle color
    static const Color tittleColour = Color(0xFF2C404E);
+   //  color for iconButton bg color user section
    static const Color iconButtonBgColour = Color(0xFFEDF6F9);
+   //  color for icon color
    static const Color iCONColour = Color(0xFF2C404E);
+   // color for card bg color user section
    static const Color cardBgColour = Color(0xFFFFE8D2);
+   // color for card text colors user section
    static const Color cardTextColourS = Color(0xFF1B2932);
+   // color for reuse button
    static const Color reuseAbleButtonColourS = Color(0xFFEDF6F9);
+  //   color for images border in profile
+   static const Color profileImageBorder = Color(0xFF2C404E);
+
 
 
 

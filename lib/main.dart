@@ -42,16 +42,9 @@ class _MyAppState extends State<MyApp> {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          // home: addFileDisplay(
-          //   receiverName: 'wahab',
-          //   fileName: 'Abcd',
-          //   deptName: 'it',
-          //   fileNumber: '101',
-          // ),
           initialRoute: RouteNames.splashview,
           getPages:AppPages.routes,
         );
-
       },
     );
   }

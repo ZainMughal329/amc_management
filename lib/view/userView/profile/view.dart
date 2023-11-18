@@ -15,8 +15,13 @@ class profileView extends GetView<profileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.scaffoldBgColour,
       appBar: AppBar(
-        title: const Text('Profile'),
+        backgroundColor: AppColors.appBarBgColour,
+        title: const Text('Profile',style: TextStyle(
+          color: AppColors.profileImageBorder,fontSize: 20
+        ),),
+        // centerTitle: true,
       ),
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -29,7 +34,7 @@ class profileView extends GetView<profileController> {
               builder: ( context, snapshot) {
                 if (!snapshot.hasData) {
                   return Center(
-                    child: CircularProgressIndicator(),
+                    child: CircularProgressIndicator(color: AppColors.circularProgressIndicatorColour,),
                   );
                 } else if (snapshot.hasData) {
                   //here we get the daTA in the form of map such as it name email etc
@@ -56,7 +61,7 @@ class profileView extends GetView<profileController> {
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       border: Border.all(
-                                        color: AppColors.lightActiveIconColor,
+                                        color: AppColors.iconButtonBgColour,
                                       )),
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(100),
@@ -104,9 +109,9 @@ class profileView extends GetView<profileController> {
                               },
                               child: CircleAvatar(
                                 radius: 14,
-                                backgroundColor: AppColors.lightActiveIconColor,
+                                backgroundColor: AppColors.iCONColour,
                                 child: Icon(
-                                  Icons.add,size: 18,color: Colors.white,
+                                  Icons.add,size: 16,color: Colors.white,
                                 ),
                               ),
                             )
@@ -122,7 +127,7 @@ class profileView extends GetView<profileController> {
                             // controller.showUserNameDialogAlert(context,map['username']);
 
                           },
-                          child: ReuseableRow(
+                          child: ReusableRow(
                               title: 'UserName',
                               iconData: Icons.drive_file_rename_outline,
                               value: snapshot.data!['UserName'].toString()),
@@ -138,7 +143,7 @@ class profileView extends GetView<profileController> {
                                 // map['email']
                                 );
                           },
-                          child: ReuseableRow(
+                          child: ReusableRow(
                               title: 'Email',
                               iconData: Icons.email_outlined,
                               value:snapshot.data!['Email']
@@ -148,13 +153,9 @@ class profileView extends GetView<profileController> {
                         SizedBox(
                           height: 20.h,
                         ),
-                        Divider(color: AppColors.lightActiveIconColor,
-                        indent: 50,
-                        endIndent:50,
-                          thickness: 1.5,
-                        ),
                         SizedBox(height: 20.h,),
-                        ReuseButton(tittle: 'logout', onpress:(){
+                        ReuseButton(
+                            tittle: 'logout', onpress:(){
                           FirebaseAuth auth =FirebaseAuth.instance;
                           auth.signOut().then((value){
                             //here we logout user and clear its ud
@@ -167,11 +168,6 @@ class profileView extends GetView<profileController> {
                         }),
                         SizedBox(
                           height: 20.h,
-                        ),
-                        Divider(color: AppColors.lightActiveIconColor,
-                          indent: 50,
-                          endIndent:50,
-                          thickness: 1.5,
                         ),
                       ],
                     ),
@@ -191,34 +187,88 @@ class profileView extends GetView<profileController> {
     );
   }
 }
-class ReuseableRow extends StatelessWidget {
+
+
+
+
+class ReusableRow extends StatelessWidget {
   final String title, value;
   final IconData iconData;
-  ReuseableRow(
-      {Key? key,
-        required this.title,
-        required this.iconData,
-        required this.value})
-      : super(key: key);
+
+  ReusableRow({
+    Key? key,
+    required this.title,
+    required this.iconData,
+    required this.value,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          title: Text(
-            title,
-            style: Theme.of(context).textTheme.subtitle2,
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.iconButtonBgColour), // Adjust the color as needed
+        borderRadius: BorderRadius.circular(20.0), // Adjust the radius as needed
+      ),
+      child: ListTile(
+        title: TextField(
+          decoration: InputDecoration(
+            hintText: title,
+            border: InputBorder.none,
           ),
-          leading: Icon(
-            iconData,
-            color: AppColors.lightActiveIconColor,
-          ),
-          trailing: Text(value, style: Theme.of(context).textTheme.subtitle2),
+          style: Theme.of(context).textTheme.subtitle2,
         ),
-        Divider(
-          color: AppColors.buttonBgColor.withOpacity(0.4),
-        )
-      ],
+        leading: Icon(
+          iconData,
+          color: Colors.blue, // Adjust the color as needed
+        ),
+        trailing: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.blue), // Adjust the color as needed
+            borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              value,
+              style: Theme.of(context).textTheme.subtitle2,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
+
+
+// class ReuseableRow extends StatelessWidget {
+//   final String title, value;
+//   final IconData iconData;
+//   ReuseableRow(
+//       {Key? key,
+//         required this.title,
+//         required this.iconData,
+//         required this.value})
+//       : super(key: key);
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         ListTile(
+//
+//           title: Text(
+//             title,
+//             style: Theme.of(context).textTheme.subtitle2,
+//           ),
+//           leading: Icon(
+//             iconData,
+//             color: AppColors.iCONColour,
+//           ),
+//           trailing: Text(value, style: Theme.of(context).textTheme.subtitle2),
+//         ),
+//         // Divider(
+//         //   color: AppColors.buttonBgColor.withOpacity(0.4),
+//         // )
+//       ],
+//     );
+//   }
+// }

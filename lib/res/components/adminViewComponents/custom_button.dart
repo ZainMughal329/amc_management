@@ -32,9 +32,22 @@ class ReuseButton extends StatelessWidget {
             children: [
               Icon(icon,size: 16,color: AppColors.iCONColour,),
               SizedBox(width: 2.w),
-              Text(tittle,
-                style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 14.sp,color: textcolr)
-                ,),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.blue), // Adjust the color as needed
+                  borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    tittle,
+                    style: Theme.of(context).textTheme.subtitle2,
+                  ),
+                ),
+              ),
+              // Text(tittle,
+              //   style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 14.sp,color: textcolr)
+              //   ,),
             ],
           ),
         ),

@@ -106,85 +106,68 @@ class userView extends GetView<userViewController> {
                                         ),
                                         margin: EdgeInsets.all(10.0),
                                         child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
+                                            padding: const EdgeInsets.all(6.0),
                                           child:Column(
                                             crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                             children: [
-                                              Padding(padding: EdgeInsets.all(16.0),
-                                              child: Column(
+                                              Column(
                                                 mainAxisAlignment: MainAxisAlignment.start,
                                                 children: [
-                                                  Row(
-                                                    children: [
-                                                      Icon(Icons.file_copy_rounded,color: AppColors.iCONColour,size: 22,),
-                                                      SizedBox(width: 7.w,),
-
-                                                      Text('File Name => ',style: TextStyle(fontSize: 16,color: AppColors.tittleColour),),
-                                                      SizedBox(width: 10.w,),
-                                                      Text(
-                                                        snapshot.data!
-                                                            .docs[index]['Name']
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            fontSize: 14,
-                                                            color:
-                                                            AppColors.cardTextColourS,
-                                                        ),
+                                                  ListTile(
+                                                    leading: Icon(Icons.file_copy_rounded,color: AppColors.iCONColour,size: 22),
+                                                    title:Text('File Name',style: TextStyle(fontSize: 16,color: AppColors.tittleColour),),
+                                                    trailing: Text(
+                                                      snapshot.data!
+                                                          .docs[index]['Name']
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        color:
+                                                        AppColors.cardTextColourS,
                                                       ),
-                                                    ],
+                                                    ),
                                                   ),
-                                                  SizedBox(height: 10.h,),
-                                                  Row(
-                                                    children: [
-                                                      Icon(Icons.person_outline,color: AppColors.iCONColour,size: 22,),
-                                                      SizedBox(width: 7.w,),
-                                                      Text('Received From => ',style: TextStyle(fontSize: 16,color: AppColors.tittleColour),),
-                                                      SizedBox(width: 10.w,),
-                                                      Text(
-                                                        snapshot.data!
-                                                            .docs[index]['From']
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: AppColors.cardTextColourS,
-                                                        ),
+                                                  ListTile(
+                                                    leading:Icon(Icons.person_outline,color: AppColors.iCONColour,size: 22,),
+                                                    title:Text('Received From',style: TextStyle(fontSize: 16,color: AppColors.tittleColour),),
+                                                    trailing: Text(
+                                                      snapshot.data!
+                                                          .docs[index]['From']
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        color:
+                                                        AppColors.cardTextColourS,
                                                       ),
-
-                                                    ],
+                                                    ),
                                                   ),
-                                                  SizedBox(height: 10.h,),
-                                                  Row(
-                                                    children: [
-                                                      Icon(Icons.house_outlined,color: AppColors.iCONColour,size: 22,),
-                                                      SizedBox(width: 7.w,),
-                                                      Text('Department => ',style: TextStyle(fontSize: 16,color: AppColors.tittleColour)),
-                                                      SizedBox(width: 10.w,),
-                                                      Text(
-                                                        snapshot.data!.docs[index]['dept'],
-                                                        style: TextStyle(
-                                                            fontSize: 10,color: AppColors.cardTextColourS
-                                                        ),
+                                                  // ListTile(
+                                                  //   leading:Icon(Icons.house_outlined,color: AppColors.iCONColour,size: 22,),
+                                                  //   title:Text('Department',style: TextStyle(fontSize: 16,color: AppColors.tittleColour),),
+                                                  //   trailing: Text(
+                                                  //     snapshot.data!
+                                                  //         .docs[index]['dept']
+                                                  //         .toString(),
+                                                  //     style: TextStyle(
+                                                  //       fontSize: 10,
+                                                  //       color:
+                                                  //       AppColors.cardTextColourS,
+                                                  //     ),
+                                                  //   ),
+                                                  // ),
+                                                  ListTile(
+                                                    leading:Icon(Icons.date_range,color: AppColors.iCONColour,size: 22,),
+                                                    title:Text('Date',style: TextStyle(fontSize: 16,color: AppColors.tittleColour),),
+                                                    trailing: Text(
+                                                     formattedDate,
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        color:
+                                                        AppColors.cardTextColourS,
                                                       ),
-
-                                                    ],
+                                                    ),
                                                   ),
-                                                  SizedBox(height: 10.h,),
-                                                  Row(
-                                                    children: [
-                                                      Icon(Icons.date_range,color: AppColors.iCONColour,size: 22,),
-                                                      SizedBox(width: 7.w,),
-                                                      Text('Date => ',style: TextStyle(fontSize: 16,color: AppColors.tittleColour)),
-                                                      SizedBox(width: 10.w,),
-                                                      Text(
-                                                        formattedDate,
-                                                        style: TextStyle(
-                                                          fontSize: 10,color: AppColors.cardTextColourS
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(height: 10,),
                                                   ReuseButton(
                                                       icon: Icons.image_search_outlined,
                                                       tittle:'images', onpress: (){
@@ -194,7 +177,6 @@ class userView extends GetView<userViewController> {
                                                     ));
                                                   })
                                                 ],
-                                              ),
                                               )
                                             ],
 
@@ -223,7 +205,7 @@ class userView extends GetView<userViewController> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [CircularProgressIndicator()],
+                  children: [Center(child: CircularProgressIndicator())],
                 );
               }
             }),
