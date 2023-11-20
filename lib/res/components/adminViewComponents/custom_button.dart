@@ -3,16 +3,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../colors.dart';
 class ReuseButton extends StatelessWidget {
   final String tittle;
-  final Color color,textcolr;
+  final Color color,textcolr,borderColor,iconColor;
   final VoidCallback onpress;
   final IconData? icon;
   final bool loading;
   ReuseButton({super.key,
     this.color=AppColors.reuseAbleButtonColourS,required this.tittle,required this.onpress,
     this.textcolr=AppColors.tittleColour,
+    this.borderColor=AppColors.tittleColour,
+    this.iconColor=AppColors.iCONColour,
      this.icon,
     this.loading=false
-
   });
   @override
   Widget build(BuildContext context) {
@@ -28,13 +29,17 @@ class ReuseButton extends StatelessWidget {
         child: Center(
           child: loading ?Center(child: CircularProgressIndicator(color: Colors.white,)):
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment:
+            icon !=null ?
+            MainAxisAlignment.center:MainAxisAlignment.center,
             children: [
-              Icon(icon,size: 16,color: AppColors.iCONColour,),
-              SizedBox(width: 2.w),
+              if(icon != null ) ...[
+                Icon(icon,size: 18,color: iconColor,),
+              ],
+              SizedBox(width: 4.w),
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue), // Adjust the color as needed
+                  border: Border.all(color: borderColor), // Adjust the color as needed
                   borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
                 ),
                 child: Padding(

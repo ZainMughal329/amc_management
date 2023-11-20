@@ -131,6 +131,7 @@ class UserViewImages extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
             child: ReuseButton(
+              borderColor: Colors.blue,
               icon: Icons.download_outlined,
               tittle: 'Download All',
               onpress: () {

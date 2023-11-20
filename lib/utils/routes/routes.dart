@@ -54,7 +54,7 @@ class AppPages {
 
     GetPage(
         name: RouteNames.profileview,
-        page: ()=>profileView(),
+        page: ()=>ProfileView(),
         binding: profileBindings()
     ),
 

@@ -4,7 +4,19 @@
 import 'package:flutter/material.dart';
 class AppColors {
 
-   static const Color elevatedButtonColour = Color(0xFF283593);
+  // colors for  admin home view cards
+  static const adminhomebackgroundColor = Color(0xFFFFFFFF);
+  static const admincardiconColor = Colors.white;
+  static const admincardtextColor = Colors.white;
+  static const shadowColor = Color(0x40000000); // Adjust the opacity as needed
+  static const gradientStart = Color(0xFF3366CC); // Start color of the gradient
+  static const gradientEnd = Color(0xFF00CCFF);
+  // End color of the gradient
+
+
+
+
+  static const Color elevatedButtonColour = Color(0xFF283593);
    // color for normal text
    static const Color textColour = Color(0xFFFFFFFF);
    // color for circular indicator
@@ -25,6 +37,7 @@ class AppColors {
    static const Color cardTextColourS = Color(0xFF1B2932);
    // color for reuse button
    static const Color reuseAbleButtonColourS = Color(0xFFEDF6F9);
+   static const Color buttonBgColor = Color(0xFF394867);
   //   color for images border in profile
    static const Color profileImageBorder = Color(0xFF2C404E);
 
@@ -43,7 +56,6 @@ class AppColors {
   // static const Color cardBgColor = Color(0xff0c3e4f);
   static const Color activeIconColor = Color(0xff11C3EB);
   static const Color unActiveIconColor = Color(0xFF394867);
-  static const Color buttonBgColor = Color(0xFF394867);
   static const Color errorColor = Color(0xFFED2B2A);
   static const Color activeTabElementColor = Color(0xFF567189);
   static const Color unActiveTabElementColor = Color(0xFF7B8FA1);

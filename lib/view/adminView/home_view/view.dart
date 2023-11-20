@@ -13,10 +13,11 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor: AppColors.adminhomebackgroundColor,
+        // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
         resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer.withOpacity(0.9),
+        backgroundColor: Colors.transparent,
         centerTitle: true,
         elevation: 0,
         title: Text(
@@ -80,7 +81,6 @@ class HomeView extends GetView<HomeController> {
     );
   }
 }
-
 class SectionCard extends StatelessWidget {
   final String title;
   final IconData icon;
@@ -89,51 +89,103 @@ class SectionCard extends StatelessWidget {
   SectionCard({
     required this.title,
     required this.onpress,
-  required this.icon
-});
+    required this.icon,
+  });
 
-@override
-Widget build(BuildContext context) {
-  return InkWell(
-    onTap: onpress,
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onpress,
+      child: Container(
+        margin: EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15.0),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.shadowColor,
+              offset: Offset(0, 3),
+              blurRadius: 6,
+            ),
+          ],
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.gradientStart, // Adjust gradient start color
+              AppColors.gradientEnd,   // Adjust gradient end color
+            ],
+          ),
+        ),
+        child: Column(
+          children: [
+            Icon(icon, size: 64.0, color: AppColors.admincardiconColor),
+            SizedBox(height: 16.0),
+            Text(
+              title,
+              style: TextStyle(fontSize: 24.0, color: AppColors.admincardtextColor),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
-    // transitionsBuilder: (context, animation, secondaryAnimation, child) {
-    //   const begin = Offset(1.0, 0.0);
-    //   const end = Offset.zero;
-    //   const curve = Curves.easeInOut;
-    //   var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
-    //   var offsetAnimation = animation.drive(tween);
-    //   return SlideTransition(position: offsetAnimation, child: child);
-    // },
-    child: Container(
-      margin: EdgeInsets.all(16.0),
-      padding: EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: AppColors.elevatedButtonColour,
-        borderRadius: BorderRadius.circular(10.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 3,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Icon(icon, size: 64.0, color: Colors.white),
-          SizedBox(height: 10.0),
-          Text(
-            title,
-            style: TextStyle(fontSize: 24.0, color: Colors.white),
-          ),
-        ],
-      ),
-    ),
-  );
-}
-}
+
+// class SectionCard extends StatelessWidget {
+//   final String title;
+//   final IconData icon;
+//   final VoidCallback onpress;
+//
+//   SectionCard({
+//     required this.title,
+//     required this.onpress,
+//   required this.icon
+// });
+//
+// @override
+// Widget build(BuildContext context) {
+//   return InkWell(
+//     onTap: onpress,
+//
+//     // transitionsBuilder: (context, animation, secondaryAnimation, child) {
+//     //   const begin = Offset(1.0, 0.0);
+//     //   const end = Offset.zero;
+//     //   const curve = Curves.easeInOut;
+//     //   var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+//     //   var offsetAnimation = animation.drive(tween);
+//     //   return SlideTransition(position: offsetAnimation, child: child);
+//     // },
+//     child: Container(
+//       margin: EdgeInsets.all(16.0),
+//       padding: EdgeInsets.all(16.0),
+//       decoration: BoxDecoration(
+//         color: AppColors.elevatedButtonColour,
+//         borderRadius: BorderRadius.circular(10.0),
+//         boxShadow: [
+//           BoxShadow(
+//             color: Colors.grey.withOpacity(0.5),
+//             spreadRadius: 3,
+//             blurRadius: 7,
+//             offset: Offset(0, 3),
+//           ),
+//         ],
+//       ),
+//       child: Column(
+//         children: [
+//           Icon(icon, size: 64.0, color: Colors.white),
+//           SizedBox(height: 10.0),
+//           Text(
+//             title,
+//             style: TextStyle(fontSize: 24.0, color: Colors.white),
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+// }
+// }
 
 
 //GridView.count(
