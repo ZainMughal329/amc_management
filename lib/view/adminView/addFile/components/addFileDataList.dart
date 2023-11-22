@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+
 import 'package:amc_management/res/components/SessionViewComponents/elevated_button.dart';
 import 'package:amc_management/res/components/adminViewComponents/custom_card_widget.dart';
 import 'package:amc_management/utils/routes/routes_name.dart';
@@ -209,41 +220,3 @@ class addFileDataList extends GetView<addFileController> {
     );
   }
 }
-//
-
-// Card(
-//                         child: Padding(padding: EdgeInsets.all(8.0),
-//                           child: ListTile(
-//                             title:Text(snapshot.data!.docs[index]['Name'].toString()),
-//                             subtitle: Text(
-//                               snapshot.data!.docs[index]['Date'].toString(),
-//                               maxLines: 1,
-//                               overflow: TextOverflow.ellipsis,
-//                               style: TextStyle(
-//                                 fontSize: 16,
-//                                 fontWeight: FontWeight.w600,
-//                               ),
-//                             ),
-//                             // leading: CircleAvatar(
-//                             //   child:Image(image: NetworkImage(controller.imagePath.toString())),
-//                             // ),
-//                             trailing: Text(snapshot.data!.docs[index]['From'].toString(),
-//                     style: TextStyle(
-//                     fontSize: 16,
-//                     fontWeight: FontWeight.w600,
-//                     )
-//                     ),
-//                           ),
-//                       ),
-//                     )
-
-//InkWell(
-
-//                     child: CustomCardWidget(
-//                     // imagePath: snapshot.data!.docs[index]['images'],
-//                      date: snapshot.data!.docs[index]['Date'],
-//                     receiverName: snapshot.data!.docs[index]['From'],
-//                     fileNumber: snapshot.data!.docs[index]['FileNum'],
-//                     fileName: snapshot.data!.docs[index]['Name'],
-//                     deptName: snapshot.data!.docs[index]['Dept'],
-//                     ))

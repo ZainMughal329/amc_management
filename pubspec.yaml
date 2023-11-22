@@ -61,6 +61,7 @@ dependencies:
   http:
   path_provider:
   gallery_saver:
+  google_fonts:
 
 
 #  document_scanner_flutter: ^0.2.7
