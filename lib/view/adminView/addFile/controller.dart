@@ -8,11 +8,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../../model/addFile_model/addFile_model.dart';
 import '../../../res/colors.dart';
 import 'components/listofImages/view.dart';
+import 'package:dio/dio.dart' as dio; // Alias the dio package
 
 class addFileController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -472,14 +475,14 @@ class addFileController extends GetxController
     return imageUrls;
   }
 
-  List<dynamic> fetchedImageUrls = [];
+  List<String> fetchedImageUrls = [];
   RxBool fetchedLoading = true.obs;
 
   setFetchLoading(bool val) {
     fetchedLoading.value = val;
   }
 
-  Future<List<dynamic>> fetchImageUrls(String docId) async {
+  Future<List<String>> fetchImageUrls(String docId) async {
     setFetchLoading(true);
     final snapshot = await FirebaseFirestore.instance
         .collection('addFiles')
@@ -506,5 +509,35 @@ class addFileController extends GetxController
 
   }
 
+//   function to download images
+  Future<void> downloadImages(List<String> imageUrls) async {
+    dio.Dio dioInstance = dio.Dio(); // Use the aliased dio package
+
+    for (int i = 0; i < imageUrls.length; i++) {
+      try {
+        dio.Response response = await dioInstance.get(
+          imageUrls[i],
+          options: dio.Options(responseType: dio.ResponseType.bytes),
+        );
+
+        // Get the local app directory
+        String directory = (await getApplicationDocumentsDirectory()).path;
+
+        // Save the image to local storage
+        String filePath = '$directory/image_$i.png';
+        await File(filePath).writeAsBytes(response.data!);
+
+        // Save the image to the gallery
+        GallerySaver.saveImage(filePath).then((value) {
+          print('Image saved to gallery: $value');
+        });
+
+        Get.snackbar('Success', 'Image Downloaded');
+      } catch (error) {
+        print('Error downloading image: $error');
+        Get.snackbar('Error', 'Failed to download image');
+      }
+    }
+  }
 
 }

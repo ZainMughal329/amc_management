@@ -4,6 +4,16 @@
 import 'package:flutter/material.dart';
 class AppColors {
 
+  // Placeholder colors for containers
+ static const  containerColor1 = Colors.grey; // Green
+ static const  containerColor2 = Colors.grey; // Blue
+ static const  containerColor3 = Colors.grey; // Orange
+ static const  containerColor4 = Colors.grey; // Purple
+
+// Shadow color for all containers
+  static const  ShadowColor = Color(0xFFBDBDBD);
+
+
   // colors for  admin home view cards
   static const adminhomebackgroundColor = Color(0xFFFFFFFF);
   static const admincardiconColor = Colors.white;
