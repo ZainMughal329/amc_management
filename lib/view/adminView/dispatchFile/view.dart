@@ -30,7 +30,7 @@ class dispatchView extends GetView<dispatchController> {
                   child: Align(
                       alignment: Alignment.topLeft,
                       child: CircleAvatar(
-                        backgroundColor: AppColors.elevatedButtonColour,
+                        backgroundColor: AppColors.buttonColour,
                         child: IconButton(
                             onPressed: () {
                               Get.back();

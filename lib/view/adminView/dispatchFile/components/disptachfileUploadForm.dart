@@ -282,7 +282,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                   () => controller.state.loading.value == true
                       ?  Center(
                     child: CircularProgressIndicator(
-                      color: AppColors.elevatedButtonColour,
+                      color: AppColors.buttonColour,
                     ),
                   )
                       :ReuseButton(

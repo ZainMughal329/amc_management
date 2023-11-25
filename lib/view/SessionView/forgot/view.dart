@@ -1,4 +1,5 @@
 import 'package:amc_management/res/colors.dart';
+import 'package:amc_management/res/components/SessionViewComponents/elevated_button.dart';
 import 'package:amc_management/res/components/adminViewComponents/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,6 +14,8 @@ class Forgotview extends GetView<ForgotController> {
     final _formkey = GlobalKey<FormState>();
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
+      appBar: AppBar(),
+      backgroundColor: AppColors.scaffoldBgColour,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: SingleChildScrollView(
@@ -25,7 +28,7 @@ class Forgotview extends GetView<ForgotController> {
               ),
               Text(
                 'Forgot Password',
-                style: Theme.of(context).textTheme.headline3,
+                style: Theme.of(context).textTheme.headline3!.copyWith(color: AppColors.buttonColour),
               ),
               SizedBox(
                 height: height * .01,
@@ -51,7 +54,8 @@ class Forgotview extends GetView<ForgotController> {
                              onFiledSubmittedValue: (value) {},
                             keyboardType: TextInputType.emailAddress,
                             obsecureText: false,
-                            // hint: 'email',
+                            lableText: 'Enter you Email',
+                            prefixIcon: Icon(Icons.password_outlined),
                              onvalidator: (value) {
                                return value.isEmpty ? 'enter email' : null;
                              }
@@ -65,13 +69,13 @@ class Forgotview extends GetView<ForgotController> {
               SizedBox(
                 height: 40,
               ),
-              Obx(() => controller.state.loading.value ==false? ReuseButton(tittle: 'Recover', onpress: (){
+              Obx(() => controller.state.loading.value ==false? elevatedButton(tittle: 'Recover', onpress: (){
                 if(_formkey.currentState!.validate()){
                   controller.forgotPassword(context, controller.state.emailcontroller.text.trim());
                 }
               }):Center(
                 child:CircularProgressIndicator(
-                  color: AppColors.elevatedButtonColour,
+                  color: AppColors.buttonColour,
                 ),
               ))
 

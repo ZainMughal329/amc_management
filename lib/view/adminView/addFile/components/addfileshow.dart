@@ -149,7 +149,7 @@ class addFileShowContainer extends StatelessWidget {
                   () => controller.state.loaded.value == false
                       ? Center(
                           child: CircularProgressIndicator(
-                            color: AppColors.elevatedButtonColour,
+                            color: AppColors.buttonColour,
                           ),
                         )
                       : SingleChildScrollView(

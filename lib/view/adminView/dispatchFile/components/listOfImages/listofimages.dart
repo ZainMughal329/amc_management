@@ -100,7 +100,7 @@ class listOfImages extends StatelessWidget {
                       width: double.infinity,
                       height: 60,
                       decoration: BoxDecoration(
-                        color: AppColors.elevatedButtonColour,
+                        color: AppColors.buttonColour,
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Obx(() => Center(

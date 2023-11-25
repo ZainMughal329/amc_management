@@ -26,7 +26,7 @@ class AppColors {
 
 
 
-  static const Color elevatedButtonColour = Color(0xFF283593);
+  static const Color buttonColour = Color(0xFFFFE8D2);
    // color for normal text
    static const Color textColour = Color(0xFFFFFFFF);
    // color for circular indicator

@@ -316,7 +316,7 @@ class addFileForm extends GetView<addFileController> {
                               .trim(),);
                         }) : Center(
                       child: CircularProgressIndicator(
-                        color: AppColors.elevatedButtonColour,
+                        color: AppColors.buttonColour,
                       ),
                     ),),
                     // (controller.state.isFormValid.value)?

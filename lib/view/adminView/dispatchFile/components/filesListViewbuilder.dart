@@ -39,7 +39,7 @@ class FileList extends GetView<dispatchController> {
                         return Card(
                           // elevation: 4,
                           color: AppColors
-                              .elevatedButtonColour, // Add shadow to the card
+                              .buttonColour, // Add shadow to the card
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
                                 16.0), // Round the corners
@@ -151,7 +151,7 @@ class FileList extends GetView<dispatchController> {
                                                   'Details',
                                                   style: TextStyle(
                                                       color: AppColors
-                                                          .elevatedButtonColour),
+                                                          .buttonColour),
                                                 )),
                                           ),
 
@@ -186,7 +186,7 @@ class FileList extends GetView<dispatchController> {
                 height: 60,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: AppColors.elevatedButtonColour,
+                  color: AppColors.buttonColour,
                   borderRadius: BorderRadius.all(
                     Radius.circular(20),
                     // topRight: Radius.circular(10),

@@ -90,7 +90,7 @@ class SignUpView extends GetView<SignupController> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor:AppColors.scaffoldBgColour,
       body: Form(
           key: _formkey,
           child: SingleChildScrollView(
@@ -98,10 +98,12 @@ class SignUpView extends GetView<SignupController> {
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Column(
                 children: [
-                  const SizedBox(height: 100),
+                  const SizedBox(height: 150),
                   Text(
                     "Register",
-                    style: Theme.of(context).textTheme.headlineLarge,
+                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                      color: AppColors.buttonColour
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Center(
@@ -173,6 +175,7 @@ class SignUpView extends GetView<SignupController> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [Text('Select'), dropDownList()],
                   ),
+                  const SizedBox(height: 30),
                   Obx(
                     () => controller.state.loading.value == false
                         ? elevatedButton(
@@ -203,10 +206,11 @@ class SignUpView extends GetView<SignupController> {
                           )
                         : Center(
                             child: CircularProgressIndicator(
-                              color: AppColors.elevatedButtonColour,
+                              color: AppColors.buttonColour,
                             ),
                           ),
                   ),
+                  SizedBox(height: 5.h,),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                     const Text("Don't have an account?"),
                     TextButton(
@@ -214,7 +218,7 @@ class SignUpView extends GetView<SignupController> {
                           _formkey.currentState?.reset();
                           Get.toNamed(RouteNames.loginview);
                         },
-                        child: const Text("Login"))
+                        child:  Text("Login",style: TextStyle(color: AppColors.buttonColour),))
                   ]),
                 ],
               ),

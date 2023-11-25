@@ -27,7 +27,7 @@ class addFileDisplay extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Card(
         // elevation: 4,
-        color: AppColors.elevatedButtonColour,// Add shadow to the card
+        color: AppColors.buttonColour,// Add shadow to the card
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0), // Round the corners
         ),

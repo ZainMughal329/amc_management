@@ -49,7 +49,7 @@ class addFileDataList extends GetView<addFileController> {
                               print('date is : ' + formattedDate.toString());
                               return Card(
                                 // elevation: 4,
-                                color: AppColors.elevatedButtonColour,
+                                color: AppColors.buttonColour,
                                 // Add shadow to the card
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(
@@ -163,7 +163,7 @@ class addFileDataList extends GetView<addFileController> {
                                                         'Details',
                                                         style: TextStyle(
                                                             color: AppColors
-                                                                .elevatedButtonColour),
+                                                                .buttonColour),
                                                       )),
                                                 ),
                                               ],
@@ -197,7 +197,7 @@ class addFileDataList extends GetView<addFileController> {
                 height: 60,
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  color: AppColors.elevatedButtonColour,
+                  color: AppColors.buttonColour,
                   borderRadius: BorderRadius.all(
                     Radius.circular(20),
                     // topRight: Radius.circular(10),

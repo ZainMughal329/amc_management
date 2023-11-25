@@ -84,7 +84,7 @@ class dispatchSearchView extends GetView<dispatchSearchController> {
                   return Card(
                     // elevation: 4,
                     color: AppColors
-                        .elevatedButtonColour, // Add shadow to the card
+                        .buttonColour, // Add shadow to the card
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(
                           16.0), // Round the corners
@@ -185,7 +185,7 @@ class dispatchSearchView extends GetView<dispatchSearchController> {
                                             'Details',
                                             style: TextStyle(
                                                 color: AppColors
-                                                    .elevatedButtonColour),
+                                                    .buttonColour),
                                           )),
                                     ),
                                   ],

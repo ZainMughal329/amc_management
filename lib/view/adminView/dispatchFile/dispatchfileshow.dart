@@ -58,7 +58,7 @@ class dispatchFileShowContainer extends StatelessWidget {
                   child: Align(
                       alignment: Alignment.topLeft,
                       child: CircleAvatar(
-                        backgroundColor: AppColors.elevatedButtonColour,
+                        backgroundColor: AppColors.buttonColour,
                         child: IconButton(
                             onPressed: () {
                               Get.back();
@@ -170,7 +170,7 @@ class dispatchFileShowContainer extends StatelessWidget {
 
                         ()=>controller.state.loaded.value==false? Center(
                           child: CircularProgressIndicator(
-                            color: AppColors.elevatedButtonColour,
+                            color: AppColors.buttonColour,
                           ),
                         ):SingleChildScrollView(
                           child: Column(

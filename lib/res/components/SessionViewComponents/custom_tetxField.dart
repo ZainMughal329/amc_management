@@ -12,13 +12,16 @@ class ReuseField extends StatelessWidget {
     required this.keyboardType,
     this.obsecureText=true,
     this.onPressSufix,
+    this.lableColor,
     // this.onPressPre,
     this.enable=true,
+    this.iconcolour =Colors.grey,
     required this.onvalidator,
     this.autoFocous=false
   });
   final TextEditingController myController;
   final FocusNode? focusNode;
+   Color? iconcolour,lableColor;
   final  String lableText;
    final FormFieldSetter onFiledSubmittedValue;
   final Icon? prefixIcon;
@@ -48,14 +51,16 @@ class ReuseField extends StatelessWidget {
             decoration: InputDecoration(
               suffixIcon: IconButton(
                 onPressed: onPressSufix,
-                icon: Icon(suffixIcon,color: Colors.grey,),
+                icon: Icon(suffixIcon,color: iconcolour,),
               ),
               prefixIcon: prefixIcon,
               labelText: lableText,
+              labelStyle: TextStyle(
+                color: lableColor
+              ),
               contentPadding: EdgeInsets.all(15),
               // hintText: hint,
               enabled: enable,
-              // hintStyle: Theme.of(context).textTheme.bodyText2!.copyWith(height:0,color: AppColors.lightTextColor.withOpacity(0.8)),
               border: OutlineInputBorder(
                   // borderSide: BorderSide(color: AppColors.errorColor),
                   borderRadius: BorderRadius.circular(10)

@@ -89,7 +89,7 @@ class SearchView extends GetView<SearchBarController> {
                         padding: EdgeInsets.all(8.0),
                         child: Card(
                           // elevation: 4,
-                          color: AppColors.elevatedButtonColour,
+                          color: AppColors.buttonColour,
                           // Add shadow to the card
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(
@@ -180,7 +180,7 @@ class SearchView extends GetView<SearchBarController> {
                                                   'Details',
                                                   style: TextStyle(
                                                       color: AppColors
-                                                          .elevatedButtonColour),
+                                                          .buttonColour),
                                                 )),
                                           ),
                                         ],

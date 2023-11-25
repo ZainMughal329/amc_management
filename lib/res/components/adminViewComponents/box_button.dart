@@ -21,7 +21,7 @@ class box_button extends StatelessWidget {
         ElevatedButton(
           style: ElevatedButton.styleFrom(
             primary: Colors.black, // Background color of the top button
-            onPrimary: AppColors.elevatedButtonColour, // Text color
+            onPrimary: AppColors.buttonColour, // Text color
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30), // Border radius of the top button
             ),

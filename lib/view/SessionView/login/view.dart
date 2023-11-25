@@ -1,3 +1,4 @@
+import 'package:amc_management/res/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,8 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+        backgroundColor: AppColors.scaffoldBgColour,
+        // Theme.of(context).colorScheme.primaryContainer
         // resizeToAvoidBottomInset: false,
         body: Form(
           key: _formKey,
@@ -30,7 +32,9 @@ class LoginView extends GetView<LoginController> {
                   Center(
                     child: Text(
                       "Welcome back",
-                      style: Theme.of(context).textTheme.headlineLarge,
+                      style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                        color: AppColors.buttonColour
+                      ),
 
                     ),
                   ),
@@ -77,7 +81,7 @@ class LoginView extends GetView<LoginController> {
                       onvalidator: (value) {
                         return value.isEmpty ? 'Please Enter Password.' : null;
                       }),
-                  SizedBox(height: 20.h,),
+                  SizedBox(height: 10.h,),
                   InkWell(
                     onTap: () {
                       Get.toNamed(RouteNames.forgotview);
@@ -87,11 +91,13 @@ class LoginView extends GetView<LoginController> {
                       child: Text(
                         'Forgot password',
                         style: Theme.of(context).textTheme.headline2!.copyWith(
-                            fontSize: 15, decoration: TextDecoration.underline),
+                            fontSize: 15,
+                            // decoration: TextDecoration.underline
+                        ),
                       ),
                     ),
                   ),
-                  const SizedBox(height: 60),
+                  const SizedBox(height: 30),
                   Column(
                     children: [
                       Obx(() => elevatedButton(
@@ -119,6 +125,7 @@ class LoginView extends GetView<LoginController> {
                             }
 
                           })),
+                      SizedBox(height: 5.h,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -127,7 +134,9 @@ class LoginView extends GetView<LoginController> {
                               onPressed: (){
                             _formKey.currentState?.reset();
                             Get.toNamed(RouteNames.signupview);
-                          }, child:const Text("SignUp")),
+                          }, child: Text("SignUp",style: TextStyle(
+                            color: AppColors.buttonColour
+                          ),)),
                         ],
                       )
 
