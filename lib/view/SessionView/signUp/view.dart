@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../../model/userModel/user_model.dart';
 import '../../../res/colors.dart';
 import '../../../res/components/SessionViewComponents/custom_tetxField.dart';
+import '../../../res/components/textWidget.dart';
 import '../../../utils/custom_Utils.dart';
 import '../../../utils/routes/routes_name.dart';
 import 'index.dart';
@@ -99,19 +100,12 @@ class SignUpView extends GetView<SignupController> {
               child: Column(
                 children: [
                   const SizedBox(height: 150),
-                  Text(
-                    "Register",
-                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                      color: AppColors.buttonColour
-                    ),
+                  TextWidget(
+                    title: 'Register',
+                    fontSize: 20,
                   ),
                   const SizedBox(height: 10),
-                  Center(
-                    child: Text(
-                      "Create your account",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ),
+                  TextWidget(title: 'Create your account',textColor: AppColors.tittleColour,),
                   const SizedBox(height: 40),
                   ReuseField(
                       myController: controller.state.usernamecontroller,

@@ -11,7 +11,7 @@ class addFileView extends GetView<addFileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor: AppColors.scaffoldBgColour,
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: SafeArea(

@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:dio/dio.dart' as dio; // Alias the dio package
+import 'package:path_provider/path_provider.dart';
 
 import '../../../res/colors.dart';
 import '../../../res/components/adminViewComponents/custom_button.dart';
@@ -13,7 +16,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:dio/dio.dart' as dio;
-
+import 'package:pdf/widgets.dart' as pw;
 import '../controller.dart';
 
 class UserViewImages extends StatelessWidget {
@@ -39,7 +42,14 @@ class UserViewImages extends StatelessWidget {
               controller.downloadImages(controller.fetchedImageUrls);
             },
             icon: Icon(Icons.download_outlined),
-          )
+          ),
+          IconButton(
+            onPressed: () {
+             controller.generatePDF(controller.fetchedImageUrls);
+             print('pdf create');
+            },
+            icon: Icon(Icons.picture_as_pdf),
+          ),
         ],
       ),
       resizeToAvoidBottomInset: false,
@@ -148,95 +158,3 @@ class UserViewImages extends StatelessWidget {
 
 
 
-// import 'package:amc_management/res/colors.dart';
-// import 'package:amc_management/res/components/adminViewComponents/custom_button.dart';
-// import 'package:card_swiper/card_swiper.dart';
-// import 'package:dio/dio.dart' as dio; // Alias the dio package
-// import 'package:flutter/cupertino.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:get/get.dart';
-//
-// import '../controller.dart';
-//
-// class userViewImages extends StatelessWidget {
-//   String id;
-//
-//   userViewImages({
-//     required this.id,
-//   });
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     final controller = Get.put<userViewController>(userViewController());
-//     controller.fetchImageUrls(id).then((urls) {
-//       print("urls" + urls.toString());
-//       controller.fetchedImageUrls = List<String>.from(urls);
-//       controller.setFetchLoading(false);
-//     });
-//     return Scaffold(
-//       appBar: AppBar(
-//         backgroundColor: AppColors.appBarBgColour,
-//         actions: [
-//           IconButton(
-//             onPressed: () {
-//              controller.downloadImages(controller.fetchedImageUrls);
-//             },
-//             icon: Icon(Icons.download_outlined),
-//           )
-//         ],
-//       ),
-//       resizeToAvoidBottomInset: false,
-//       body: Scaffold(
-//         backgroundColor: AppColors.scaffoldBgColour,
-//         body: Column(
-//           children: [
-//             Padding(
-//               padding: const EdgeInsets.all(16.0),
-//               child: Row(
-//                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                 children: [
-//                   Text('IMAGES',style: TextStyle(
-//                     color: AppColors.cardTextColourS,fontSize: 20
-//                   ),),
-//                   Text(controller.fetchedImageUrls.length.toString()),
-//                 ],
-//               ),
-//             ),
-//             SizedBox(height: 15.h,),
-//             Obx(() {
-//               return controller.fetchedLoading.value == true
-//                   ? Container(
-//                 child: Center(
-//                   child: CircularProgressIndicator(
-//                     color: AppColors.appBarBgColour,
-//                   ),
-//                 ),
-//               )
-//                   : Center(
-//                 child: Swiper(
-//                   itemCount: controller.fetchedImageUrls.length,
-//                   itemBuilder: (context, index) {
-//                     return Image(
-//                       image: NetworkImage(controller.fetchedImageUrls[index]),
-//                       fit: BoxFit.fill,
-//                     );
-//                   },
-//                   itemHeight: 550,
-//                   itemWidth: 300.0,
-//                   layout: SwiperLayout.STACK,
-//                 ),
-//               );
-//             }),
-//             SizedBox(height: 30.h,),
-//             ReuseButton(
-//                 icon: Icons.download_outlined,
-//                 tittle: 'Download', onpress: (){
-//               controller.downloadImages(controller.fetchedImageUrls);
-//             })
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }

@@ -3,9 +3,13 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:dio/dio.dart' as dio; // Alias the dio package
+import 'package:pdf/widgets.dart' as pw;
+import 'package:permission_handler/permission_handler.dart';
+import 'dart:typed_data';
 import '../../../model/userModel/user_model.dart';
 import 'index.dart';
 class userViewController extends GetxController{
@@ -81,7 +85,50 @@ class userViewController extends GetxController{
     }
   }
 
+  // ... Other imports ...
 
+// Function to generate PDF from images
+  Future<void> generatePDF(List<String> imageUrls) async {
+    // Check and request permission
+    var status = await Permission.storage.request();
+    if (status.isGranted) {
+      // Permission granted, proceed with PDF generation
+      final pdf = pw.Document();
+
+      for (var imageUrl in imageUrls) {
+        final response = await dio.Dio().get<List<int>>(
+          imageUrl,
+          options: dio.Options(responseType: dio.ResponseType.bytes),
+        );
+
+        final imageBytes = Uint8List.fromList(response.data!);
+        final image = pw.MemoryImage(imageBytes);
+
+        pdf.addPage(
+          pw.Page(
+            build: (pw.Context context) {
+              return pw.Center(
+                child: pw.Image(image),
+              );
+            },
+          ),
+        );
+      }
+
+      final output = await getExternalStorageDirectory();
+      final file = File('${output!.path}/images.pdf');
+      await file.writeAsBytes(await pdf.save());
+
+      print('File Path: ${file.path}');
+
+      // Open the PDF with the default PDF viewer (you can use another PDF viewer package)
+      // This assumes you have a package like 'open_file' to open files
+      OpenFile.open(file.path);
+    } else {
+      // Permission denied
+      print('Permission denied');
+    }
+  }
 
 }
 

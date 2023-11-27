@@ -4,6 +4,7 @@ import 'package:amc_management/view/scanimages/bindings.dart';
 import 'package:amc_management/view/scanimages/view.dart';
 import 'package:amc_management/view/userView/bindings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
 import '../../view/SearchView/addFilesearchView/bindings.dart';
 import '../../view/SearchView/addFilesearchView/view.dart';
 import '../../view/SessionView/forgot/bindings.dart';
@@ -34,47 +35,69 @@ class AppPages {
     GetPage(
         name: RouteNames.splashview,
         page: () => SplashView(),
-        binding: SplashBindings()),
+        binding: SplashBindings(),
+      transition: Transition.zoom,
+
+
+
+    ),
     GetPage(
         name: RouteNames.loginview,
         page: () => LoginView(),
-        binding: LoginBindings()),
+        binding: LoginBindings(),
+      transition: Transition.zoom,
+    ),
     GetPage(
         name: RouteNames.forgotview,
         page: () => Forgotview(),
-        binding: Forgotbindinsg()),
+        binding: Forgotbindinsg(),
+      transition: Transition.zoom,
+    ),
     GetPage(
         name: RouteNames.homeview,
         page: () => HomeView(),
-        binding: HomeBindings()),
+        binding: HomeBindings(),
+      transition: Transition.zoom,
+    ),
+
     GetPage(
         name: RouteNames.signupview,
         page: () => SignUpView(),
-        binding: SignupBindings()),
+        binding: SignupBindings(),
+      transition: Transition.zoom,
+    ),
 
     GetPage(
         name: RouteNames.profileview,
         page: ()=>ProfileView(),
-        binding: profileBindings()
+        binding: profileBindings(),
+      transition: Transition.zoom,
     ),
 
     GetPage(
         name: RouteNames.searchView,
         page: ()=>SearchView(),
-        binding: SearchBindings()
+        binding: SearchBindings(),
+      transition: Transition.zoom,
     ),
     GetPage(name: RouteNames.disptchsearchView, page: ()=>dispatchSearchView(),
-    binding: dispatchBindings()
+    binding: dispatchBindings(),
+      transition: Transition.zoom,
     ),
 
     GetPage(
         name: RouteNames.userlistview,
         page: () => userListView(),
-        binding: userBindings()),
+        binding: userBindings(),
+      transition: Transition.zoom,
+    ),
     GetPage(
         name: RouteNames.addfileview,
         page: () => addFileView(),
-        binding: addFileBindings()),
+        binding: addFileBindings(),
+      transition: Transition.zoom,
+
+    ),
     GetPage(name: RouteNames.addfileshowcontainer, page:()=> addFileShowContainer(
         details: "",
         id: "",
@@ -83,12 +106,15 @@ class AppPages {
         name: "",
         fileNum: "",
         from: ""),
-    binding: addFileBindings()
+    binding: addFileBindings(),
+      transition: Transition.zoom,
     ),
     GetPage(
         name: RouteNames.dispatchview,
         page: () => dispatchView(),
-        binding: dispatchBindings()),
+        binding: dispatchBindings(),
+      transition: Transition.zoom,
+    ),
     GetPage(name: RouteNames.dispatchfileshowcontainer, page: ()=>dispatchFileShowContainer(
       id: "",
      date: "",
@@ -101,25 +127,31 @@ class AppPages {
       // date: "",
       name: "",
     ),
-    binding: dispatchBindings()
+    binding: dispatchBindings(),
+      transition: Transition.zoom,
     ),
     GetPage(
         name: RouteNames.scanImage,
         page: () => ScannImageView(),
-        binding: ScanImageBindings(),),
+        binding: ScanImageBindings(),
+      transition: Transition.zoom,
+    ),
     GetPage(name: RouteNames.chatScreen, page:()=>sendFile(
       name: "",
       img: "",
       recieverId: "",
       email: "",
     ),
-    binding: sendFileBindings()
+    binding: sendFileBindings(),
+      transition: Transition.zoom,
     ),
 
     GetPage(name: RouteNames.userView, page:()=>userView(
       deptName: "",
     ),
-    binding: userViewBindings())
+    binding: userViewBindings(),
+      transition: Transition.zoom,
+    )
   ];
 }
 

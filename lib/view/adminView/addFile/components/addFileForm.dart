@@ -89,7 +89,7 @@ class addFileForm extends GetView<addFileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor: AppColors.scaffoldBgColour,
       resizeToAvoidBottomInset: true,
       body: GetBuilder<addFileController>(
         init: addFileController(),
