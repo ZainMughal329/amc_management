@@ -3,52 +3,38 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class DispatchModel {
   final String id;
   final List<String> images;
-  final String name;
-  final String? detail;
-  final String filenum;
+  // final String name;
+  final String serialNum;
   final   DateTime? date;
+  final String recieverName;
+  final String receiverAddress;
+  final String? subject;
+  final String letterNum;
   final String dept;
-  // final String username;
-  // final String pkgStartDate;
-  final String recievedBy;
-  // final String pkgType;
-  final String notificationTo;
-  // final String address;
-  // final String deviceToken;
-
   DispatchModel({
     required this.id,
     required this.images,
-    this.detail,
+    this.subject,
+    required this.letterNum,
     required this.dept,
-    required this.name,
+    // required this.name,
      this.date,
-    required this.recievedBy,
-    required this.notificationTo,
-    required this.filenum,
-    // required this.pkgEndDate,
-    // required this.pkgType,
-    // required this.password,
-    // required this.address,
-    // required this.deviceToken,
+    required this.recieverName,
+    required this.receiverAddress,
+    required this.serialNum,
   });
 
   toJson() {
     return {
       'Id':id,
-      'Detail':detail,
+      'subject':subject,
       'Image': images,
       'Dept':dept,
-      'Name': name,
-      'FileNum': filenum,
-      'RecievedBy': recievedBy,
-      'NotificationTo': notificationTo,
+      'letterNum':letterNum,
+      'serialNum': serialNum,
+      'recieverName': recieverName,
+      'receiverAddress': receiverAddress,
       'Date': date,
-      // 'pkgEndDate': pkgEndDate,
-      // 'pkgType': pkgType,
-      // 'Password': password,
-      // 'address': address,
-      // 'deviceToken': deviceToken,
     };
   }
 
@@ -57,20 +43,15 @@ class DispatchModel {
     final data = documentSnapshot.data()!;
     return DispatchModel(
       id: data['Id'],
-      detail: data['Detail'],
+      subject: data['subject'],
       dept: data['dept'],
       images:data['image'],
-      name: data['Name'],
-      filenum: data['FileNum'],
-      recievedBy: data['RecievedBy'],
-      notificationTo: data['NotificationTo'],
+      letterNum: data['letterNum'],
+      serialNum: data['serialNum'],
+      recieverName: data['recieverName'],
+      receiverAddress: data['receiverAddress'],
       date: data['Date'],
-      // pkgStartDate: data['pkgStartDate'],
-      // pkgEndDate: data['pkgEndDate'],
-      // pkgType: data['pkgType'],
-      // address: data['address'],
-      // password: data['Password'],
-      // deviceToken: data['deviceToken'],
+
     );
   }
 }

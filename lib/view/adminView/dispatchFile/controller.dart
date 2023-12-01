@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:amc_management/res/colors.dart';
 import 'package:amc_management/utils/routes/routes_name.dart';
-import 'package:amc_management/view/adminView/addFile/components/addFileForm.dart';
 import 'package:amc_management/view/adminView/dispatchFile/components/disptachfileUploadForm.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -25,11 +24,8 @@ class dispatchController extends GetxController
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    state.nameController.dispose();
-    // state.dateController.dispose();
-    state.notificationToController.dispose();
-    state.recievedByController.dispose();
-    state.detailController.dispose();
+    state.serialNumcontroller.dispose();
+    state.subjectController.dispose();
   }
 
   DispatchModel? dispatchModel;
@@ -44,14 +40,15 @@ class dispatchController extends GetxController
       if (documentSnapshot!.exists) {
         dispatchModel = DispatchModel(
             id: id,
+            subject: documentSnapshot!['subject'],
             images: images,
             dept: documentSnapshot!['Dept'],
-            name: documentSnapshot!['Name'],
-            recievedBy: documentSnapshot!['RecievedBy'],
-            notificationTo: documentSnapshot!['NotificationTo'],
-            filenum: documentSnapshot!['FileNum']);
-        state.nameFile.value = documentSnapshot!['Name'];
-        state.fileNum.value = documentSnapshot!['FileNum'];
+            letterNum: documentSnapshot!['letterNum'],
+          serialNum: documentSnapshot!['serialNum'],
+            recieverName: documentSnapshot!['recieverName'],
+            receiverAddress: documentSnapshot!['receiverAddress'],
+            );
+        state.serialNum.value = documentSnapshot!['FileNum'];
         state.loaded.value = true;
       } else {
         print('empty');
@@ -151,22 +148,25 @@ class dispatchController extends GetxController
   }
 
   Future<void> DispatchModelFile(
-      String detail,
-      String timeStamp,
-      String name,
-      String image,
-      String date,
-      String recievedBy,
+      String subject,
       String dept,
-      String notificationTo) async {
+      String timeStamp,
+      String image,
+      String letterNum,
+      String serialNum,
+      String receiverName,
+      String receiverAddress,
+      String date,
+     ) async {
     try {
       await state.ref.doc(timeStamp).set({
-        'Detail': detail,
+        'subject': subject,
         'Image': image,
-        'Name': name,
         'Dept': dept,
-        'RecievedBy': recievedBy,
-        'NotificationTo': notificationTo,
+        'letterNum':letterNum,
+        'serialNum':serialNum,
+        'recieverName':receiverName,
+        'receiverAddress':receiverAddress,
         'Date': date,
       }).then((value) {
         Get.snackbar('Sucess', 'File Uploaded');
@@ -183,15 +183,16 @@ class dispatchController extends GetxController
       String timeStamp,
       DispatchModel dispatch,
       BuildContext context,
-      String detail,
-      String image,
-      String name,
+      String subject,
       String dept,
-      String recievedBy,
-      String notificationTo,
+      String image,
+      String serialNumber,
+      String letterNumber,
+      String receiverName,
+      String receiverAddress,
       String date) async {
-    DispatchModelFile(detail, timeStamp, name, image, dept, date, recievedBy,
-            notificationTo)
+    DispatchModelFile(subject, timeStamp, image, dept,serialNumber,letterNumber,receiverName,receiverAddress, date
+            )
         .then((value) {
       clearDateFromScreen();
     });
@@ -199,11 +200,8 @@ class dispatchController extends GetxController
 
   clearDateFromScreen() {
     state.dateController.clear();
-    state.recievedByController.clear();
-    state.nameController.clear();
-    state.notificationToController.clear();
     state.deptName = "".obs;
-    state.detailController.clear();
+    state.subjectController.clear();
     images =[];
   }
 
@@ -222,11 +220,9 @@ class dispatchController extends GetxController
   }
 
   void validateForm() {
-    state.isFormValid.value = state.nameController.text.isNotEmpty &&
+    state.isFormValid.value =
         state.dateController.text.isNotEmpty &&
-        state.recievedByController.text.isNotEmpty &&
-        state.notificationToController.text.isNotEmpty &&
-        state.detailController.text.isNotEmpty &&
+        state.subjectController.text.isNotEmpty &&
         state.deptName.value.isNotEmpty;
   }
 
@@ -269,14 +265,15 @@ class dispatchController extends GetxController
   }
 
   Future<void> dispatchfileDataOnFirebase(
-      String fileNum,
       String id,
-      String name,
-      final DateTime date,
-      String recievedBy,
+      String subject,
       String deptName,
-      String notificationTo,
-      String details) async {
+      String letterNum,
+      String serialNum,
+      String receiverName,
+      String receiverAddress,
+      final DateTime date,
+      ) async {
     try {
       setLoading(true);
 
@@ -284,27 +281,29 @@ class dispatchController extends GetxController
       await state.ref
           .doc(id)
           .set(DispatchModel(
-                  filenum: fileNum,
+                  serialNum: serialNum,
                   id: id,
+                  letterNum: letterNum,
                   images: [],
-                  name: name,
                   dept: deptName,
                   date: date,
-                  recievedBy: recievedBy,
-                  notificationTo: notificationTo,
-                  detail: details)
+                  recieverName: receiverName,
+                  receiverAddress: receiverAddress,
+                  subject: subject)
               .toJson())
           .then((value) {
         print('inside then');
         Get.to(
           () => listOfImages(
-              fileNum: state.fileNumcontroller.text.trim(),
-              FileName: state.nameController.text.trim(),
+              subject: state.subjectController.text.trim(),
+              deptName: state.deptName.value,
+              serialNum: state.serialNumcontroller.text.trim(),
+              letterNum: state.letterNumController.text.trim(),
               date: state.selectedDate,
-              recievedBy: state.recievedByController.text.trim(),
-              notificationTo: state.notificationToController.text.trim(),
-              details: state.detailController.text.trim(),
-              deptName: state.deptName.value),
+              receiverName: state.receiverNameController.text.trim(),
+              receiverAddress: state.receiverAddressController.text.trim(),
+
+              ),
         );
 
         setLoading(false);
@@ -318,66 +317,66 @@ class dispatchController extends GetxController
   }
 
 //   here we manage the section of update the data
-  Future<void> showFileNameDialogAlert(
-      BuildContext context, String filename, String id) {
-    //this line 104 code mean jo user ka already name ho ga wo show ho
-    state.nameController.text = filename;
-    return showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Center(child: Text('update filename')),
-            content: SingleChildScrollView(
-              child: Column(
-                children: [
-                  ReuseField(
-                      myController: state.nameController,
-                      focusNode: state.nameFocusNode,
-                      lableText: 'Enter your Filename',
-                      onFiledSubmittedValue: (value) {},
-                      keyboardType: TextInputType.emailAddress,
-                      obsecureText: false,
-                      onvalidator: (value) {})
-                ],
-              ),
-            ),
-            actions: [
-              TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    'cancel',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle2!
-                        .copyWith(color: AppColors.warningColor),
-                  )),
-              TextButton(
-                  onPressed: () {
-                    //this  code will update the name in database
-                    state.ref.doc(id).update({
-                      'Name': state.nameController.text.toString()
-                    }).then((value) {
-                      fetchDataOfFile(id);
-                      state.nameController.clear();
-                    });
+//   Future<void> showFileNameDialogAlert(
+//       BuildContext context, String filename, String id) {
+//     //this line 104 code mean jo user ka already name ho ga wo show ho
+//     state.nameController.text = filename;
+//     return showDialog(
+//         context: context,
+//         builder: (context) {
+//           return AlertDialog(
+//             title: Center(child: Text('update filename')),
+//             content: SingleChildScrollView(
+//               child: Column(
+//                 children: [
+//                   ReuseField(
+//                       myController: state.nameController,
+//                       focusNode: state.nameFocusNode,
+//                       lableText: 'Enter your Filename',
+//                       onFiledSubmittedValue: (value) {},
+//                       keyboardType: TextInputType.emailAddress,
+//                       obsecureText: false,
+//                       onvalidator: (value) {})
+//                 ],
+//               ),
+//             ),
+//             actions: [
+//               TextButton(
+//                   onPressed: () {
+//                     Navigator.pop(context);
+//                   },
+//                   child: Text(
+//                     'cancel',
+//                     style: Theme.of(context)
+//                         .textTheme
+//                         .subtitle2!
+//                         .copyWith(color: AppColors.warningColor),
+//                   )),
+//               TextButton(
+//                   onPressed: () {
+//                     //this  code will update the name in database
+//                     state.ref.doc(id).update({
+//                       'Name': state.nameController.text.toString()
+//                     }).then((value) {
+//                       fetchDataOfFile(id);
+//                       state.nameController.clear();
+//                     });
+//
+//                     Navigator.pop(context);
+//                   },
+//                   child: Text(
+//                     'ok',
+//                     style: Theme.of(context).textTheme.subtitle2,
+//                   ))
+//             ],
+//           );
+//         });
+//   }
 
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    'ok',
-                    style: Theme.of(context).textTheme.subtitle2,
-                  ))
-            ],
-          );
-        });
-  }
-
-  Future<void> showFileNumDialogAlert(
-      BuildContext context, String filenum, String id) {
+  Future<void> showserialNumDialogAlert(
+      BuildContext context, String serialNum, String id) {
     //this line 104 code mean jo user ka already name ho ga wo show ho
-    state.nameController.text = filenum;
+    state.serialNumcontroller.text = serialNum;
     return showDialog(
         context: context,
         builder: (context) {
@@ -387,8 +386,8 @@ class dispatchController extends GetxController
               child: Column(
                 children: [
                   ReuseField(
-                      myController: state.nameController,
-                      focusNode: state.nameFocusNode,
+                      myController: state.serialNumcontroller,
+                      focusNode: state.serialnumFocousNode,
                       lableText: 'Enter your FileNum',
                       onFiledSubmittedValue: (value) {},
                       keyboardType: TextInputType.emailAddress,
@@ -413,10 +412,10 @@ class dispatchController extends GetxController
                   onPressed: () {
                     //this  code will update the name in database
                     state.ref.doc(id).update({
-                      'FileNum': state.fileNumcontroller.text.toString()
+                      'serialNum': state.serialNumcontroller.text.toString()
                     }).then((value) {
                       fetchDataOfFile(id);
-                      state.fileNumcontroller.clear();
+                      state.serialNumcontroller.clear();
                     });
                     Navigator.pop(context);
                   },

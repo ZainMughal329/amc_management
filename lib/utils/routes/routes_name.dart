@@ -7,15 +7,21 @@ class RouteNames{
   static const homeview ='/homeview';
   static const profileview = '/profileview';
   static const userlistview ='/userlistview';
-  static const addfileview ='/addfileview';
+  static const receivedfileview ='/receivedfileview';
   static const dispatchview = '/dispatchview';
   static const scanImage = '/ScamImage';
-  static const addFileShow ='/addFileShow';
-  static const addfileshowcontainer ='/addfileshowcontainer';
+  static const receivedFileShow ='/receivedFileShow';
+  static const receivedfileshowcontainer ='/receivedfileshowcontainer';
   static const dispatchfileshowcontainer = '/dispatchfileshowcontainer';
   static const chatScreen = '/chatScreen';
   static const userView = '/userView';
   static const searchView = '/search';
   static const disptchsearchView = '/search';
+
+
+
+//   Diary Number Routes
+
+static const diaryNumView = '/diaryNumView';
 
 }

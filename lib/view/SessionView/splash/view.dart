@@ -2,6 +2,8 @@
 
 
 
+import 'package:amc_management/res/colors.dart';
+import 'package:amc_management/res/components/textWidget.dart';
 import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +17,7 @@ class SplashView extends GetView<SplashController> {
   Widget build(BuildContext context) {
     controller.isLogin();
     return Scaffold(
-      backgroundColor:  Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor:  AppColors.scaffoldBgColour,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -35,15 +37,21 @@ class SplashView extends GetView<SplashController> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Center(
-                        child: Text(
-                          "HELLO",
-                          style: Theme.of(context).textTheme.headlineLarge,
+                        child: TextWidget(
+                          title: 'HELLO',
+                          // style: Theme.of(context).textTheme.headlineLarge,
                         ),
                       ),
-                      Text(
-                        "Welcome To Doc System",
-                        style: Theme.of(context).textTheme.bodyMedium,
+                      Center(
+                        child: TextWidget(
+                          title: 'Welcome To Doc System',
+                          // style: Theme.of(context).textTheme.headlineLarge,
+                        ),
                       ),
+                      // Text(
+                      //   "Welcome To Doc System",
+                      //   style: Theme.of(context).textTheme.bodyMedium,
+                      // ),
                       // SizedBox(height: 10,),
                       // Column(
                       //   children: [

@@ -14,7 +14,9 @@ class Forgotview extends GetView<ForgotController> {
     final _formkey = GlobalKey<FormState>();
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: AppColors.scaffoldBgColour,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -67,7 +69,7 @@ class Forgotview extends GetView<ForgotController> {
                     ),
                   )),
               SizedBox(
-                height: 40,
+                height:25,
               ),
               Obx(() => controller.state.loading.value ==false? elevatedButton(tittle: 'Recover', onpress: (){
                 if(_formkey.currentState!.validate()){

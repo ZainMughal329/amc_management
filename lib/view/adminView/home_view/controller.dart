@@ -49,7 +49,7 @@ class HomeController extends GetxController{
 
     },
         () {
-          Get.toNamed(RouteNames.addfileview);
+          Get.toNamed(RouteNames.receivedfileview);
       print('3');
     },
         () {

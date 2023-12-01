@@ -1,3 +1,4 @@
+import 'package:amc_management/res/components/textWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../colors.dart';
@@ -12,8 +13,7 @@ class ReuseField extends StatelessWidget {
     required this.keyboardType,
     this.obsecureText=true,
     this.onPressSufix,
-    this.lableColor,
-    // this.onPressPre,
+    this.lableColor=AppColors.tittleColour,
     this.enable=true,
     this.iconcolour =Colors.grey,
     required this.onvalidator,
@@ -47,7 +47,9 @@ class ReuseField extends StatelessWidget {
              onFieldSubmitted: onFiledSubmittedValue,
             validator: onvalidator,
             keyboardType: keyboardType,
-              style: Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 15.sp),
+              // textAlign: TextAlign.center,
+              style:
+              Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 15.sp),
             decoration: InputDecoration(
               suffixIcon: IconButton(
                 onPressed: onPressSufix,
@@ -58,6 +60,7 @@ class ReuseField extends StatelessWidget {
               labelStyle: TextStyle(
                 color: lableColor
               ),
+              // contentPadding: EdgeInsets.only(left: 12, right: 20, top: 35, bottom: 15),
               contentPadding: EdgeInsets.all(15),
               // hintText: hint,
               enabled: enable,
@@ -65,18 +68,21 @@ class ReuseField extends StatelessWidget {
                   // borderSide: BorderSide(color: AppColors.errorColor),
                   borderRadius: BorderRadius.circular(10)
               ),
-              // focusedBorder: OutlineInputBorder(
-              //     borderSide: BorderSide(color: AppColors.lightTextColor),
-              //     borderRadius: BorderRadius.all(Radius.circular(8))
-              // ),
+               focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColors.cardBgColour),
+                  borderRadius: BorderRadius.all(Radius.circular(8))
+              ),
               // focusedErrorBorder: OutlineInputBorder(
               //     borderSide: BorderSide(color: AppColors.errorColor),
               //     borderRadius: BorderRadius.all(Radius.circular(8))
               // ),
               enabledBorder: OutlineInputBorder(
+                // borderSide: BorderSide(color: AppColors.cardBgColour),
+
                   // borderSide: BorderSide(color: AppColors.warningColor),
                   borderRadius: BorderRadius.circular(10)
               ),
+              // alignLabelWithHint: true
             ),
           ),
         ],

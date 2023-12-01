@@ -167,17 +167,16 @@ class dispatchSearchView extends GetView<dispatchSearchController> {
                                             Get.to(() =>
                                                 dispatchFileShowContainer(
                                                   date: formattedDate,
-                                                  filenum: item['FileNum'],
+                                                  serialNum: item['serialNum'],
+                                                  letterNum: item['letterNum'],
                                                   Dept: item['Dept'],
                                                   id: item['Id'],
-                                                  recievedBy: item
+                                                  recieverName: item
                                                   ['RecievedBy'],
-                                                  details: item
-                                                  ['Detail'],
                                                   // date: formattedDate,
-                                                  name: item
+                                                  receiverAddress: item
                                                   ['Name'],
-                                                  notificationTo: item[
+                                                  subject: item[
                                                   'NotificationTo'],
                                                 ));
                                           },

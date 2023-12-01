@@ -1,12 +1,13 @@
 import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:amc_management/view/SearchView/dispatchFileSearchView/index.dart';
+import 'package:amc_management/view/adminView/diaryNumRegister/diaryNumView/index.dart';
 import 'package:amc_management/view/scanimages/bindings.dart';
 import 'package:amc_management/view/scanimages/view.dart';
 import 'package:amc_management/view/userView/bindings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
-import '../../view/SearchView/addFilesearchView/bindings.dart';
-import '../../view/SearchView/addFilesearchView/view.dart';
+import '../../view/SearchView/receivedFilesearchView/bindings.dart';
+import '../../view/SearchView/receivedFilesearchView/view.dart';
 import '../../view/SessionView/forgot/bindings.dart';
 import '../../view/SessionView/forgot/view.dart';
 import '../../view/SessionView/login/bindings.dart';
@@ -15,9 +16,9 @@ import '../../view/SessionView/signUp/bindings.dart';
 import '../../view/SessionView/signUp/view.dart';
 import '../../view/SessionView/splash/bindings.dart';
 import '../../view/SessionView/splash/view.dart';
-import '../../view/adminView/addFile/bindings.dart';
-import '../../view/adminView/addFile/components/addfileshow.dart';
-import '../../view/adminView/addFile/view.dart';
+import '../../view/adminView/ReceivedFile/bindings.dart';
+import '../../view/adminView/ReceivedFile/components/receivedfileshow.dart';
+import '../../view/adminView/ReceivedFile/view.dart';
 import '../../view/adminView/dispatchFile/bindings.dart';
 import '../../view/adminView/dispatchFile/dispatchfileshow.dart';
 import '../../view/adminView/dispatchFile/view.dart';
@@ -32,14 +33,15 @@ import '../../view/userView/profile/view.dart';
 import '../../view/userView/view.dart';
 class AppPages {
   static final List<GetPage> routes = [
+
+
+
+    // Session Routes
     GetPage(
         name: RouteNames.splashview,
         page: () => SplashView(),
         binding: SplashBindings(),
       transition: Transition.zoom,
-
-
-
     ),
     GetPage(
         name: RouteNames.loginview,
@@ -54,18 +56,84 @@ class AppPages {
       transition: Transition.zoom,
     ),
     GetPage(
+      name: RouteNames.signupview,
+      page: () => SignUpView(),
+      binding: SignupBindings(),
+      transition: Transition.zoom,
+    ),
+
+    // Admin Routes
+    GetPage(
         name: RouteNames.homeview,
         page: () => HomeView(),
         binding: HomeBindings(),
       transition: Transition.zoom,
     ),
-
+    // dispatch File Routes
     GetPage(
-        name: RouteNames.signupview,
-        page: () => SignUpView(),
-        binding: SignupBindings(),
+      name: RouteNames.dispatchview,
+      page: () => dispatchView(),
+      binding: dispatchBindings(),
       transition: Transition.zoom,
     ),
+    GetPage(name: RouteNames.dispatchfileshowcontainer, page: ()=>dispatchFileShowContainer(
+      id: "",
+      date: "",
+      serialNum: "",
+      Dept: "",
+      letterNum: "",
+      recieverName: "",
+      subject: "",
+      // img: "",
+      // date: "",
+      receiverAddress: "",
+    ),
+      binding: dispatchBindings(),
+      transition: Transition.zoom,
+    ),
+    GetPage(name: RouteNames.disptchsearchView, page: ()=>dispatchSearchView(),
+      binding: dispatchBindings(),
+      transition: Transition.zoom,
+    ),
+    // Received File Routes
+    GetPage(
+      name: RouteNames.receivedfileview,
+      page: () => receivedFileView(),
+      binding: receivedFileBindings(),
+      transition: Transition.zoom,
+
+    ),
+    GetPage(name: RouteNames.receivedfileshowcontainer, page:()=> receivedFileShowContainer(
+        id: "",
+        dept: "",
+        date: "",
+        receiverName: "",
+        receiverAddress: "",
+        serialNum: "",
+        receivedFrom: ""),
+      binding: receivedFileBindings(),
+      transition: Transition.zoom,
+    ),
+    GetPage(
+      name: RouteNames.searchView,
+      page: ()=>SearchView(),
+      binding: SearchBindings(),
+      transition: Transition.zoom,
+    ),
+    // diary Number Routes
+    GetPage(name: RouteNames.diaryNumView, page: ()=>diaryNumView(),
+        binding: diaryNumViewBindings(),
+        transition: Transition.zoom
+    ),
+    //  User Routes
+    GetPage(
+      name: RouteNames.userlistview,
+      page: () => userListView(),
+      binding: userBindings(),
+      transition: Transition.zoom,
+    ),
+
+    // User Routes
 
     GetPage(
         name: RouteNames.profileview,
@@ -73,63 +141,22 @@ class AppPages {
         binding: profileBindings(),
       transition: Transition.zoom,
     ),
-
-    GetPage(
-        name: RouteNames.searchView,
-        page: ()=>SearchView(),
-        binding: SearchBindings(),
-      transition: Transition.zoom,
+    GetPage(name: RouteNames.userView, page:()=>userView(
+      deptName: "",
     ),
-    GetPage(name: RouteNames.disptchsearchView, page: ()=>dispatchSearchView(),
-    binding: dispatchBindings(),
+      binding: userViewBindings(),
       transition: Transition.zoom,
     ),
 
-    GetPage(
-        name: RouteNames.userlistview,
-        page: () => userListView(),
-        binding: userBindings(),
-      transition: Transition.zoom,
-    ),
-    GetPage(
-        name: RouteNames.addfileview,
-        page: () => addFileView(),
-        binding: addFileBindings(),
-      transition: Transition.zoom,
 
-    ),
-    GetPage(name: RouteNames.addfileshowcontainer, page:()=> addFileShowContainer(
-        details: "",
-        id: "",
-        dept: "",
-         date: "",
-        name: "",
-        fileNum: "",
-        from: ""),
-    binding: addFileBindings(),
-      transition: Transition.zoom,
-    ),
-    GetPage(
-        name: RouteNames.dispatchview,
-        page: () => dispatchView(),
-        binding: dispatchBindings(),
-      transition: Transition.zoom,
-    ),
-    GetPage(name: RouteNames.dispatchfileshowcontainer, page: ()=>dispatchFileShowContainer(
-      id: "",
-     date: "",
-     filenum: "",
-     Dept: "",
-     details: '',
-      recievedBy: "",
-      notificationTo: "",
-      // img: "",
-      // date: "",
-      name: "",
-    ),
-    binding: dispatchBindings(),
-      transition: Transition.zoom,
-    ),
+
+
+
+
+
+
+
+
     GetPage(
         name: RouteNames.scanImage,
         page: () => ScannImageView(),
@@ -146,12 +173,11 @@ class AppPages {
       transition: Transition.zoom,
     ),
 
-    GetPage(name: RouteNames.userView, page:()=>userView(
-      deptName: "",
-    ),
-    binding: userViewBindings(),
-      transition: Transition.zoom,
-    )
+
+
+
+
+
   ];
 }
 

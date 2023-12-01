@@ -1,4 +1,4 @@
-import 'package:amc_management/res/components/adminViewComponents/tab_bar_setting.dart';
+import 'package:amc_management/res/components/adminViewComponents/sharedComponents/tab_bar_setting.dart';
 import 'package:amc_management/view/adminView/users/controller.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';

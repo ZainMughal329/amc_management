@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../res/colors.dart';
+import '../../../../res/components/adminViewComponents/custom_button.dart';
 import '../../../../utils/routes/routes_name.dart';
 import '../dispatchfileshow.dart';
 import '../index.dart';
@@ -36,131 +37,76 @@ class FileList extends GetView<dispatchController> {
                         final formattedDate =
                         DateFormat('dd-MM-yy').format(timeInMilli);
                         print('date is : ' + formattedDate.toString());
-                        return Card(
-                          // elevation: 4,
-                          color: AppColors
-                              .buttonColour, // Add shadow to the card
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                16.0), // Round the corners
-                          ),
-                          margin:
-                          EdgeInsets.all(10.0), // Margin around the card
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Card(
+                            color: AppColors.cardBgColour,
+                            shape: RoundedRectangleBorder(
+                              borderRadius:
+                              BorderRadius.circular(16.0),
+                            ),
+                            elevation: 5,
+                            shadowColor:  Color(0xFFE3CBB3),
+                            margin: EdgeInsets.all(10.0),
+                            child: Padding(
+                              padding: const EdgeInsets.all(6.0),
+                              child: Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  _buildListTile(icon: Icons.numbers_outlined, title: 'Serial Number', content:  snapshot.data!.docs[index]
+                                  ['serialNum']),
+                                  _buildListTile(icon: Icons.date_range_outlined, title: 'Date', content:formattedDate),
+                                  _buildListTile(icon: Icons.person_outlined, title: 'Received Name', content: snapshot.data!.docs[index]
+                                  ['receiverName']),
+                                  _buildListTile(icon:Icons.cabin , title: 'Department', content:snapshot.data!.docs[index]
+                                  ['Dept'], ),
+                                  _buildListTile(icon:Icons.cabin , title: 'Letter Num', content:snapshot.data!.docs[index]
+                                  ['letterNum'], ),
 
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.all(16.0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Row(
-                                        children: [
-                                          Text(
-                                            snapshot.data!.docs[index]
-                                            ['Name'],
-                                            style: TextStyle(
-                                                fontSize: 20.0,
-                                                color: Colors.white),
-                                          ),
-                                          Spacer(),
-                                          Text(
-                                            snapshot.data!.docs[index]
-                                                ['Dept'],
-                                            style: TextStyle(
-                                                fontSize: 16.0,
-                                                color: Colors.white),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Row(
-                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            snapshot.data!.docs[index]
-                                            ['RecievedBy'],
-                                            style: TextStyle(
-                                                fontSize: 16.0,
-                                                color: Colors.white),
-                                          ),
-                                          Spacer(),
-                                          Text(
-                                            snapshot.data!.docs[index]
-                                            ['NotificationTo'],
-                                            style: TextStyle(
-                                                fontSize: 16.0,
-                                                color: Colors.white),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 15,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            formattedDate,
-                                            style: TextStyle(
-                                                fontSize: 16.0,
-                                                color: Colors.white),
-                                          ),
-                                          Spacer(),
-                                          IconButton(onPressed: (){
-                                            final id = snapshot.data!.docs[index]['Id'];
-                                            controller.deleteFile(id);
-                                          }, icon: Icon(Icons.delete_forever,color: Colors.white,)),
-                                          Spacer(),
-                                          Container(
-                                            color: Color(0xffBEC3C7),
-                                            width: 80,
-                                            height: 40,
-                                            child: TextButton(
-                                                onPressed: () {
-                                                  Get.to(() =>
-                                                      dispatchFileShowContainer(
-                                                        date: formattedDate,
-                                                        filenum: snapshot.data!.docs[index]['FileNum'],
-                                                        Dept: snapshot.data!.docs[index]['Dept'],
-                                                        id: snapshot.data!.docs[index]['Id'],
-                                                        recievedBy: snapshot
-                                                            .data!
-                                                            .docs[index]
-                                                        ['RecievedBy'],
-                                                        details: snapshot
-                                                            .data!
-                                                            .docs[index]
-                                                        ['Detail'],
-                                                        // date: formattedDate,
-                                                        name: snapshot.data!
-                                                            .docs[index]
-                                                        ['Name'],
-                                                        notificationTo: snapshot
-                                                            .data!
-                                                            .docs[index][
-                                                        'NotificationTo'],
-                                                      ));
-                                                },
-                                                child: Text(
-                                                  'Details',
-                                                  style: TextStyle(
-                                                      color: AppColors
-                                                          .buttonColour),
-                                                )),
-                                          ),
 
-                                        ],
-                                      ),
-                                    ],
+
+                                  Center(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+
+                                        ReuseButton(
+                                            icon: Icons.details_outlined,
+                                            tittle: 'Details', onpress:(){
+                                          Get.to(() =>
+                                              dispatchFileShowContainer(
+                                                  date: formattedDate,
+                                                  recieverName: snapshot.data!.docs[index]['receiverName'],
+                                                  receiverAddress: snapshot.data!.docs[index]['receiverAddress'],
+                                                  id: snapshot.data!.docs[index]
+                                                  ['Id'],
+                                                  letterNum: snapshot.data!.docs[index]['letterNum'],
+                                                  Dept: snapshot
+                                                      .data!
+                                                      .docs[index]
+                                                  ['dept'],
+                                                  subject: snapshot.data!.docs[index]['subject'],
+                                                  serialNum: snapshot
+                                                      .data!
+                                                      .docs[index]
+                                                  ['serialNum'],
+
+
+                                              ));
+                                        } ),
+                                        ReuseButton(
+                                            icon: Icons.delete_forever,
+                                            tittle: 'Delete', onpress: (){
+                                          final id = snapshot.data!.docs[index]['Id'];
+                                          controller.deleteFile(id);
+                                        })
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+
+                                ],
+                              ),
                             ),
                           ),
                         );
@@ -285,3 +231,29 @@ class FileList extends GetView<dispatchController> {
 // ),
 // ),
 // //
+Widget _buildListTile({
+  required IconData icon,
+  required String title,
+  required String content,
+}) {
+  return Column(
+    children: [
+      ListTile(
+        dense: true, // Reduces the height of the ListTile
+        contentPadding: EdgeInsets.symmetric(horizontal: 16),
+        leading: Icon(icon, color: AppColors.iCONColour, size: 22),
+        title: Text(
+          title,
+          style: TextStyle(fontSize: 16, color: AppColors.tittleColour),
+        ),
+        trailing: Text(
+          content,
+          style: TextStyle(fontSize: 14, color: AppColors.cardTextColourS),
+        ),
+      ),
+      SizedBox(height: 4),
+    ],
+  );
+}
+
+

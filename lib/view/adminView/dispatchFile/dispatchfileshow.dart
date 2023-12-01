@@ -7,24 +7,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import '../../../res/colors.dart';
-import '../../../res/components/adminViewComponents/tab_bar_setting.dart';
+import '../../../res/components/adminViewComponents/sharedComponents/tab_bar_setting.dart';
 class dispatchFileShowContainer extends StatelessWidget {
-  String notificationTo;
-  String recievedBy;
+  String subject;
+  String recieverName;
   // String img;
-  String name;
-  String filenum;
+  String receiverAddress;
+  String serialNum;
+  String letterNum;
   String Dept;
   String id;
-  String details;
+
    String date;
    dispatchFileShowContainer({super.key,
      required this.date,
-    required this.name,
-    required this.details,
-     required this.recievedBy,
-     required this.notificationTo,
-     required this.filenum,
+    required this.receiverAddress,
+     required this.recieverName,
+     required this.subject,
+     required this.serialNum,
+     required this.letterNum,
      required this.id,
      required this.Dept
      // required this.img,
@@ -181,17 +182,17 @@ class dispatchFileShowContainer extends StatelessWidget {
                               SizedBox(
                                 height: 15,
                               ),
-                              Obx(
-                                  ()=> GestureDetector(
-                                  onTap: () {
-                                   controller.showFileNameDialogAlert(context, controller.state.nameFile.value.toString(), id);
-                                  },
-                                  child: ReuseableRow(
-                                      title: 'File Name',
-                                      iconData: Icons.drive_file_rename_outline_outlined,
-                                      value: controller.state.nameFile.value.toString()),
-                                ),
-                              ),
+                              // Obx(
+                              //     ()=> GestureDetector(
+                              //     onTap: () {
+                              //      controller.showFileNameDialogAlert(context, controller.state.nameFile.value.toString(), id);
+                              //     },
+                              //     child: ReuseableRow(
+                              //         title: 'File Name',
+                              //         iconData: Icons.drive_file_rename_outline_outlined,
+                              //         value: controller.state.nameFile.value.toString()),
+                              //   ),
+                              // ),
                               SizedBox(
                                 height: 15,
                               ),
@@ -218,12 +219,12 @@ class dispatchFileShowContainer extends StatelessWidget {
                               Obx( ()=>
                                  GestureDetector(
                                   onTap: () {
-                                    controller.showFileNumDialogAlert(context, controller.state.fileNum.value.toString(), id);
+                                    controller.showserialNumDialogAlert(context, controller.state.serialNum.value.toString(), id);
                                   },
                                   child: ReuseableRow(
                                       title: 'File Num',
                                       iconData: Icons.numbers_outlined,
-                                      value: controller.state.fileNum.value.toString()),
+                                      value: controller.state.serialNum.value.toString()),
                                 ),
                               ),
                               SizedBox(
@@ -234,7 +235,7 @@ class dispatchFileShowContainer extends StatelessWidget {
                                 child: ReuseableRow(
                                     title: 'Received By',
                                     iconData: Icons.person_outlined,
-                                    value: recievedBy),
+                                    value: recieverName),
                               ),
                               SizedBox(
                                 height: 15,
@@ -244,18 +245,18 @@ class dispatchFileShowContainer extends StatelessWidget {
                                 child: ReuseableRow(
                                     title: 'Notification To',
                                     iconData: Icons.person_outlined,
-                                    value: notificationTo),
+                                    value: subject),
                               ),
                               SizedBox(
                                 height: 15,
                               ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: ReuseableRow(
-                                    title: 'Details',
-                                    iconData: Icons.details_outlined,
-                                    value: details),
-                              ),
+                              // GestureDetector(
+                              //   onTap: () {},
+                              //   child: ReuseableRow(
+                              //       title: 'Details',
+                              //       iconData: Icons.details_outlined,
+                              //       value: details),
+                              // ),
                               SizedBox(
                                 height: 15,
                               ),

@@ -1,5 +1,4 @@
 import 'package:amc_management/res/colors.dart';
-import 'package:amc_management/view/adminView/addFile/index.dart';
 import 'package:amc_management/view/adminView/dispatchFile/controller.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
@@ -9,19 +8,25 @@ import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 
 
 class listOfImages extends StatelessWidget {
-  String FileName, notificationTo,details,deptName, recievedBy,fileNum;
+  String subject,
+      deptName,
+  letterNum,
+  serialNum,
+  receiverName,
+  receiverAddress;
   final DateTime date;
 
 
   listOfImages({
     Key? key,
-    required this.FileName,
-    required this.fileNum,
+    required this.subject,
+    required this.deptName,
+
+    required this.letterNum,
+    required this.serialNum,
     required this.date,
-    required this.recievedBy,
-    required this.notificationTo,
-    required this.details,
-     required this.deptName,
+    required this.receiverName,
+    required this.receiverAddress,
   }) : super(key: key);
   final con = Get.put<dispatchController>(dispatchController());
 
@@ -34,7 +39,7 @@ class listOfImages extends StatelessWidget {
 
   Future<void> uploadImages(var images) async {
     for (var image in images) {
-      String fileName = image.name;
+      String fileName = image.senderAddress;
       print("File name is" + fileName.toString());
       // Reference ref = storage.ref().child('your_directory_name/$fileName');
       // ByteData byteData = await image.data;
