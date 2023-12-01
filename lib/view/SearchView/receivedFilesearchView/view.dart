@@ -169,7 +169,8 @@ class SearchView extends GetView<SearchBarController> {
                       'No searches yet',
                       style: TextStyle(fontSize: 25),
                     )),
-                  )),
+                  )
+            ),
           ),
         ],
       ),

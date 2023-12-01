@@ -235,7 +235,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                   customTextField(
                       focusNode: controller.state.receiverNameFocousNode,
                       controller: controller.state.receiverNameController,
-                      lableText: 'recieverName',
+                      lableText: 'receiverName',
                       prefixIcon: Icon(Icons.person),
                       onFiledSubmittedValue: (value) {
                         ReuseableUtils.fieldfocous(
@@ -251,7 +251,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                   detailTextFormField(
                     controller: controller.state.receiverAddressController,
                     focusNode: controller.state.receiverAddressFocousNode,
-                    hintText: 'Please Enter Receiver Address',
+                    lableText:'Please Enter Receiver Address' ,
                     onFiledSubmittedValue: (value) {
                       ReuseableUtils.fieldfocous(context,
                           controller.state.receiverAddressFocousNode,
@@ -267,7 +267,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                   detailTextFormField(
                     controller: controller.state.subjectController,
                     focusNode: controller.state.subjectFocousNode,
-                    hintText: 'Please Enter Subject of file',
+                    lableText:'Please Enter Subject of file' ,
                     onFiledSubmittedValue: (value)
                     {},
                     onvalidator: (value) {

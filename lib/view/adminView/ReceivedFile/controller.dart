@@ -254,10 +254,9 @@ class receivedFileController extends GetxController
         state.deptName.value.isNotEmpty;
   }
 
-  Future uploadimagelistonDatabase(
+  Future<void> uploadimagelistonDatabase(
       int imageId, String docId, String timeStamp, var imagePath) async {
     final imageUrl;
-
     try {
       setLoading(true);
       firebase_storage.Reference storageRef =

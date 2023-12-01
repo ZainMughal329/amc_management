@@ -192,7 +192,8 @@ class receivedFileForm extends GetView<receivedFileController> {
                     detailTextFormField(
                       controller: controller.state.receiverAddressController,
                       focusNode: controller.state.receiverAddressFocusNode,
-                      hintText: 'Please Enter Receiver Address',
+                      lableText:'Please Enter Receiver Address' ,
+                     prefixIcon: Icon(Icons.house_outlined),
                       onFiledSubmittedValue: (value) {},
                       onvalidator: (value) {
                         return value.isEmpty

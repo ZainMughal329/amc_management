@@ -23,5 +23,8 @@ class RouteNames{
 //   Diary Number Routes
 
 static const diaryNumView = '/diaryNumView';
+static const dataUplaodForm = '/dataUploadForm';
+static const diarylistOfImages = '/listOfImages';
+static const diarySearchView ='/diarySearchView';
 
 }

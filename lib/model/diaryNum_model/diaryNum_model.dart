@@ -7,23 +7,21 @@ class DiaryNumModel {
   final String serialNum;
   final   DateTime? date;
   final DateTime? fileDispatchDate;
-  final String recieverName;
+  final String receiverName;
   final String senderAddress;
   final String senderName;
   final String? subject;
-  final String letterNum;
   final String dept;
   DiaryNumModel({
     required this.id,
     required this.images,
     this.subject,
-    required this.letterNum,
     required this.dept,
     required this.senderName,
     // required this.name,
     this.date,
     this.fileDispatchDate,
-    required this.recieverName,
+    required this.receiverName,
     required this.senderAddress,
     required this.serialNum,
   });
@@ -34,9 +32,8 @@ class DiaryNumModel {
       'subject':subject,
       'Image': images,
       'Dept':dept,
-      'letterNum':letterNum,
       'serialNum': serialNum,
-      'recieverName': recieverName,
+      'receiverName': receiverName,
       'senderAddress': senderAddress,
       'senderName': senderName,
       'Date': date,
@@ -54,9 +51,8 @@ class DiaryNumModel {
       fileDispatchDate: data['fileDispatchDate'],
       senderName: data['senderName'],
       images:data['image'],
-      letterNum: data['letterNum'],
       serialNum: data['serialNum'],
-      recieverName: data['recieverName'],
+      receiverName: data['receiverName'],
       senderAddress: data['senderAddress'],
       date: data['Date'],
 

@@ -22,5 +22,6 @@ class dataUploadState{
  final receiverNameController = TextEditingController();
  final receiverNameFocus = FocusNode();
  DateTime selectedDate = DateTime.now();
+ DateTime dispatchSelDate = DateTime.now();
  var deptName = 'Select'.obs;
 }

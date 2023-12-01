@@ -19,62 +19,69 @@ class diaryNumView extends GetView<diaryNumberController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.scaffoldBgColour,
-      body: ListView(
-        children: [
-          SizedBox(height: 15.h),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: CircleAvatar(
-                backgroundColor: AppColors.buttonColour,
-                child: IconButton(
-                  onPressed: () {
-                    Get.back();
-                  },
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: Colors.white,
+      resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child:SafeArea(child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 0),
+          child: Column(
+            children: [
+              SizedBox(height: 5.h),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: CircleAvatar(
+                    backgroundColor: AppColors.buttonColour,
+                    child: IconButton(
+                      onPressed: () {
+                        Get.back();
+                      },
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
-          SizedBox(height: 10.h),
-          Align(
-            alignment: Alignment.topLeft,
-            child: TabBar(
-              isScrollable: true,
-              labelPadding: EdgeInsets.only(right: 20, left: 20),
-              indicator: CircleTabIndicator(
-                color: AppColors.lightActiveIconColor,
-                radius: 4,
+              SizedBox(height: 5.h),
+              Align(
+                alignment: Alignment.topLeft,
+                child: TabBar(
+                  isScrollable: true,
+                  labelPadding: EdgeInsets.only(right: 20, left: 20),
+                  indicator: CircleTabIndicator(
+                    color: AppColors.lightActiveIconColor,
+                    radius: 4,
+                  ),
+                  controller: controller.tabController,
+                  labelColor: AppColors.unActiveIconColor,
+                  unselectedLabelColor: Colors.grey,
+                  tabs: [
+                    Tab(
+                      text: 'DiaryNum Form',
+                    ),
+                    Tab(
+                      text: 'Files',
+                    ),
+                  ],
+                ),
               ),
-              controller: controller.tabController,
-              labelColor: AppColors.unActiveIconColor,
-              unselectedLabelColor: Colors.grey,
-              tabs: [
-                Tab(
-                  text: 'DiaryNum Form',
+              Container(
+                height: 598.h,
+                width: double.infinity,
+                child: TabBarView(
+                  controller: controller.tabController,
+                  children: [
+                    diaryNumberForm(),
+                    allFilesView(),
+                  ],
                 ),
-                Tab(
-                  text: 'Files',
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          Container(
-            height: 598.h,
-            width: double.infinity,
-            child: TabBarView(
-              controller: controller.tabController,
-              children: [
-                diaryNumberForm(),
-                allFilesView(),
-              ],
-            ),
-          ),
-        ],
+        ))
+
       ),
     );
   }

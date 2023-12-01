@@ -10,7 +10,6 @@ import '../../../../../res/colors.dart';
 class ListOfFileView extends StatelessWidget {
   String  deptName, details, recieverName, fileNo;
   final DateTime date;
-
   ListOfFileView({
     Key? key,
     // required this.FileName,
@@ -21,8 +20,6 @@ class ListOfFileView extends StatelessWidget {
     required this.deptName,
   }) : super(key: key);
   final con = Get.put<receivedFileController>(receivedFileController());
-
-
   final controller = MultiImagePickerController(
     maxImages: 10,
     withReadStream: true,
@@ -74,7 +71,6 @@ class ListOfFileView extends StatelessWidget {
                   onTap: ()async {
                     String docId = DateTime.now().millisecondsSinceEpoch.toString();
                     int imageId = con.state.imageNo.value;
-
                     for (var data in controller.images) {
                       print(imageId);
                       String timestamp =

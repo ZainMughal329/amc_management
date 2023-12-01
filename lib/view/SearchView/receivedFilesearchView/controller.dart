@@ -8,7 +8,6 @@ import 'index.dart';
 class SearchBarController extends GetxController {
 
   final state = SearchState();
-
   RxList<DocumentSnapshot> allFiles = RxList<DocumentSnapshot>();
   RxList<DocumentSnapshot> filteredFiles = RxList<DocumentSnapshot>();
 

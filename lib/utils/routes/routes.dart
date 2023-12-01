@@ -1,6 +1,7 @@
 import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:amc_management/view/SearchView/dispatchFileSearchView/index.dart';
 import 'package:amc_management/view/adminView/diaryNumRegister/diaryNumView/index.dart';
+import 'package:amc_management/view/adminView/diaryNumRegister/searchView/index.dart';
 import 'package:amc_management/view/scanimages/bindings.dart';
 import 'package:amc_management/view/scanimages/view.dart';
 import 'package:amc_management/view/userView/bindings.dart';
@@ -19,6 +20,10 @@ import '../../view/SessionView/splash/view.dart';
 import '../../view/adminView/ReceivedFile/bindings.dart';
 import '../../view/adminView/ReceivedFile/components/receivedfileshow.dart';
 import '../../view/adminView/ReceivedFile/view.dart';
+import '../../view/adminView/diaryNumRegister/dataUplaodForm/bindings.dart';
+import '../../view/adminView/diaryNumRegister/dataUplaodForm/view.dart';
+import '../../view/adminView/diaryNumRegister/listOfImages/bindings.dart';
+import '../../view/adminView/diaryNumRegister/listOfImages/view.dart';
 import '../../view/adminView/dispatchFile/bindings.dart';
 import '../../view/adminView/dispatchFile/dispatchfileshow.dart';
 import '../../view/adminView/dispatchFile/view.dart';
@@ -125,6 +130,29 @@ class AppPages {
         binding: diaryNumViewBindings(),
         transition: Transition.zoom
     ),
+
+    GetPage(name: RouteNames.dataUplaodForm, page:()=>diaryNumberForm(),
+    binding: dataUplaodBindings(),
+      transition: Transition.zoom
+    ),
+    GetPage(name: RouteNames.diarylistOfImages, page: ()=>listOfImagesView(
+      senderName: "",
+      senderAddress: "",
+      serialNum: "",
+      subjectOfFile: "",
+      deptName: "",
+      receiverName: "",
+    ),
+      binding: listofImagesBindings(),
+      transition: Transition.zoom
+    ),
+    GetPage(name: RouteNames.diarySearchView, page: ()=>diarySearchView(),
+  binding: diarySearchBindings(),
+      transition: Transition.zoom
+  ),
+
+
+
     //  User Routes
     GetPage(
       name: RouteNames.userlistview,

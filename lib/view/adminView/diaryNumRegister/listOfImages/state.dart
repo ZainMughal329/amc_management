@@ -11,7 +11,6 @@ class listOfImagesState{
   DateTime selectedDate = DateTime.now();
   List<String> fetchedImageUrls = [];
   RxBool fetchedLoading = true.obs;
-  String documentId = DateTime.now().millisecondsSinceEpoch.toString();
   List<String> images = [];
 
 }

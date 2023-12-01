@@ -6,6 +6,7 @@ class detailTextFormField extends StatelessWidget {
   final FocusNode? focusNode;
   final TextInputType? keyboardType;
   final String? lableText;
+  final Icon? prefixIcon;
   final FormFieldSetter? onFiledSubmittedValue;
   final FormFieldValidator? onvalidator;
   final bool enable ,autoFocous;
@@ -15,6 +16,7 @@ class detailTextFormField extends StatelessWidget {
         this.hintText,
         this.lableText,
         this.focusNode,
+        this.prefixIcon,
         this.onFiledSubmittedValue,
         this.keyboardType,
         this.enable=true,
@@ -33,6 +35,7 @@ class detailTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         hintText: hintText,
         labelText:lableText,
+        prefixIcon: prefixIcon,
         enabled: enable,
         contentPadding: EdgeInsets.all(15),
         border: OutlineInputBorder(

@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class receivedFileState{
+
  RxInt imageNo = 0.obs;
  final ref = FirebaseFirestore.instance.collection('Received Files');
  final auth = FirebaseAuth.instance;
