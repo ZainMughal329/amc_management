@@ -35,7 +35,7 @@ class receivedFileController extends GetxController
 
   ReceivedFileModel? addFileModel;
   DocumentSnapshot? documentSnapshot;
-
+  // for updation of data
   fetchDataOfFiles(String id) async {
     try{
       documentSnapshot =

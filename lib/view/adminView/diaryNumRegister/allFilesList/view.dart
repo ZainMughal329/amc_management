@@ -9,12 +9,14 @@ import 'package:intl/intl.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/components/adminViewComponents/custom_button.dart';
 import '../../../../utils/routes/routes_name.dart';
+import '../allFileDetails/view.dart';
 
 class allFilesView extends GetView<allFilesController>{
   const allFilesView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final con = Get.put(allFilesController());
     return Scaffold(
       body: Stack(
         children: [
@@ -69,10 +71,27 @@ class allFilesView extends GetView<allFilesController>{
                                          child: Row(
                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                            children: [
-
                                              ReuseButton(
                                                  icon: Icons.details_outlined,
                                                  tittle: 'Details', onpress:(){
+                                                   Get.to(()=>
+                                                   diaryFilesDetailView(
+                                                       serialNum: snapshot.data!.docs[index]
+                                                       ['serialNum'],
+                                                       senderName: snapshot.data!.docs[index]
+                                                       ['senderName'],
+                                                       senderAddress: snapshot.data!.docs[index]
+                                                       ['senderAddress'],
+                                                       receiverName: snapshot.data!.docs[index]
+                                                       ['receiverName'],
+                                                       id: snapshot.data!.docs[index]
+                                                       ['Id'],
+                                                       dept: snapshot.data!.docs[index]
+                                                       ['serialNum'],
+                                                       date: formattedDate,
+                                                       fileDispatchDate:formattedDate,
+                                                   )
+                                                   );
                                                // Get.to(() =>
                                                    // receivedFileShowContainer(
                                                    //     date: formattedDate,

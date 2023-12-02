@@ -16,48 +16,6 @@ class listOfImagesController extends GetxController{
   final uploadFormState = dataUploadState();
   List<String> images = [];
   String documentId = DateTime.now().millisecondsSinceEpoch.toString();
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    // for image list
-    getImageUrls().then((urls) => {state.imageUrls = urls});
-  }
-
-  setFetchLoading(bool val) {
-    state.fetchedLoading.value = val;
-  }
-  void setLoading(value) {
-    state.loading.value = value;
-  }
-
-  Future<List<String>> getImageUrls() async {
-    final QuerySnapshot querySnapshot = await state.ref.get();
-
-    final List<String> imageUrls = [];
-    querySnapshot.docs.forEach((doc) {
-      final data = doc.data() as Map<String, dynamic>;
-      if (data.containsKey('imageUrl')) {
-        final imageUrl = data[
-        'images']; // Assuming 'imageUrl' is the field name where you store image URLs.
-        imageUrls.add(imageUrl);
-      }
-    });
-
-    return imageUrls;
-  }
-
-  Future<List<String>> fetchImageUrls(String docId) async {
-    setFetchLoading(true);
-    final snapshot = await FirebaseFirestore.instance
-        .collection('diaryNumberRegister')
-        .doc(docId)
-        .get();
-
-    final List<String> imageUrls =
-    List<String>.from(snapshot.data()!['images']);
-    return imageUrls;
-  }
 
 
   // Future<void> uploadimagelistonDatabase(
