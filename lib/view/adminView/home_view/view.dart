@@ -8,6 +8,7 @@ import '../../../model/services/session_Controller.dart';
 import '../../../res/components/adminViewComponents/custom_container.dart';
 import '../../../res/components/adminViewComponents/homeViewComponents/sectionCard.dart';
 import '../../../utils/routes/routes_name.dart';
+import '../../scanimages/view.dart';
 import 'index.dart';
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -50,7 +51,7 @@ class HomeView extends GetView<HomeController> {
               SizedBox(height: 15.h,),
               // SectionCard(
               //   onpress: (){
-              //     // Get.to(ListOfFileView());
+              //     Get.to(()=>MultiSelectDropdown());
               //   },
               //   title: "Send File",
               //   icon: Icons.send,

@@ -1,37 +1,70 @@
-
-import 'dart:io';
-
-// import 'package:document_scanner_flutter/configs/configs.dart';
-// import 'package:document_scanner_flutter/document_scanner_flutter.dart';
+// multi_select_bottom_sheet.dart
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class ScannImageView extends GetView<ScannImageView> {
-   ScannImageView({Key? key}) : super(key: key);
+import 'controller.dart';
+
+// multi_select_bottom_sheet.dart
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class MultiSelectBottomSheet extends StatelessWidget {
+  final List<String> items;
+  final RxList<String> selectedItems;
+
+  MultiSelectBottomSheet(this.items, this.selectedItems);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();// return Scaffold(
-    //   body: SafeArea(
-    //     child: Center(
-    //       child: TextButton(
-    //         onPressed: () async{
-    //           try {
-    //             File? scannedDoc = await DocumentScannerFlutter.launchForPdf(context, source: ScannerFileSource.CAMERA);
-    //             if(scannedDoc!=null){
-    //               print(scannedDoc.absolute.toString());
-    //             }
-    //             // Or ScannerFileSource.GALLERY
-    //             // `scannedDoc` will be the PDF file generated from scanner
-    //           } on PlatformException {
-    //             // 'Failed to get document path or operation cancelled!';
-    //           }
-    //         },
-    //         child: Text("Scan"),
-    //       ),
-    //     ),
-    //   ),
-    // );
+    return Container(
+      height: 300,
+      child: Obx(() {
+        return ListView(
+          children: items.map((item) {
+            return CheckboxListTile(
+              title: Text(item),
+              value: selectedItems.contains(item),
+              onChanged: (value) {
+                if (value!) {
+                  selectedItems.add(item);
+                } else {
+                  selectedItems.remove(item);
+                }
+              },
+            );
+          }).toList(),
+        );
+      }),
+    );
   }
+}
+// multi_select_dropdown.dart
+
+class MultiSelectDropdown extends StatelessWidget {
+  final MultiSelectDropdownController controller = Get.put(MultiSelectDropdownController());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          ListTile(
+            title: Text("Select Depts"),
+            trailing: Icon(Icons.arrow_drop_down),
+            onTap: () => controller.showMultiSelectBottomSheet(),
+          ),
+          SizedBox(height: 10),
+          Obx(
+                () => Text("Selected Items: ${controller.selectedItems.join(', ')}"),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: MultiSelectDropdown(),
+  ));
 }

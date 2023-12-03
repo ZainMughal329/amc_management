@@ -267,12 +267,25 @@ class diaryNumberForm extends GetView<dataUplaodController> {
                         },
                       ),
                       SizedBox(
-                        height: 10.h,
+                        height: 5.h,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [Text('Select Dept'), dropDownList()],
+                      Column(
+                        children: [
+                          ListTile(
+                            title: Text("Select Depts"),
+                            trailing: Icon(Icons.arrow_drop_down),
+                            onTap: () => controller.showMultiSelectBottomSheet(),
+                          ),
+                          SizedBox(height: 5.h),
+                          Obx(
+                                () => Text("Sel Depts: ${controller.state.selectedDepartments.join(', ')}"),
+                          ),
+                        ],
                       ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [Text('Select Dept'), dropDownList()],
+                      // ),
                       SizedBox(height: 10.h,),
                       Obx(
                         () => controller.state.loading.value == false
@@ -306,6 +319,38 @@ class diaryNumberForm extends GetView<dataUplaodController> {
           );
         },
       ),
+    );
+  }
+}
+
+
+class MultiSelectBottomSheet extends StatelessWidget {
+  final List<String> items;
+  final RxList<String> selectedItems;
+
+  MultiSelectBottomSheet(this.items, this.selectedItems);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 300,
+      child: Obx(() {
+        return ListView(
+          children: items.map((item) {
+            return CheckboxListTile(
+              title: Text(item),
+              value: selectedItems.contains(item),
+              onChanged: (value) {
+                if (value!) {
+                  selectedItems.add(item);
+                } else {
+                  selectedItems.remove(item);
+                }
+              },
+            );
+          }).toList(),
+        );
+      }),
     );
   }
 }

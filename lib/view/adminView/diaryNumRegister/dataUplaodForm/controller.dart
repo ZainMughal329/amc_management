@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:amc_management/view/adminView/diaryNumRegister/dataUplaodForm/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import '../../../../model/diaryNum_model/diaryNum_model.dart';
+import '../../../scanimages/controller.dart';
 import '../listOfImages/state.dart';
 import '../listOfImages/view.dart';
 
@@ -143,6 +143,37 @@ class dataUplaodController extends GetxController{
     st.images=[];
   }
 
+
+//   for multiple selected departments
+
+  // void showMultiSelectBottomSheet() async {
+  //   List<String> selectedValues = await Get.bottomSheet(
+  //
+  //     MultiSelectBottomSheet(state.departments, state.selectedDepartments),
+  //   );
+  //
+  //   if (selectedValues != null) {
+  //     state.selectedDepartments.assignAll(selectedValues);
+  //     // Send the list to the database or perform any other action here
+  //     print('Selected Items: $state.selectedDepartments');
+  //   }
+  // }
+  void showMultiSelectBottomSheet() async {
+    List<String> selectedDepartments = await Get.bottomSheet(
+      Container(
+        decoration: BoxDecoration(
+          color: Colors.white.withOpacity(0.9),
+        ),
+        child: MultiSelectBottomSheet(state.departments, state.selectedDepartments),
+      ),
+    );
+
+    if (selectedDepartments != null) {
+      state.selectedDepartments.assignAll(selectedDepartments);
+      // Send the list to the database or perform any other action here
+      print('Selected Items: $state.selectedDepartments');
+    }
+  }
 
 
 }

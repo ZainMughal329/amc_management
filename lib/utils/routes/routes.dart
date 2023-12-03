@@ -185,12 +185,12 @@ class AppPages {
 
 
 
-    GetPage(
-        name: RouteNames.scanImage,
-        page: () => ScannImageView(),
-        binding: ScanImageBindings(),
-      transition: Transition.zoom,
-    ),
+    // GetPage(
+    //     name: RouteNames.scanImage,
+    //     page: () => ScannImageView(),
+    //     binding: ScanImageBindings(),
+    //   transition: Transition.zoom,
+    // ),
     GetPage(name: RouteNames.chatScreen, page:()=>sendFile(
       name: "",
       img: "",

@@ -24,4 +24,21 @@ class dataUploadState{
  DateTime selectedDate = DateTime.now();
  DateTime dispatchSelDate = DateTime.now();
  var deptName = 'Select'.obs;
+
+//  for to upload a list of departments
+ RxList<String> selectedDepartments = <String>[].obs;
+ List<String> departments = [
+  'Principle',
+  'Vice_Principle',
+  'Staff',
+  'IT',
+  'English',
+  'Math',
+  'Physics',
+  'Economics',
+  'Biology',
+  'Urdu',
+  'Chemistry',
+ ];
+
 }

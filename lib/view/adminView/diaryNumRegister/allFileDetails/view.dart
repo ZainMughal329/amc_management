@@ -59,26 +59,7 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Column(
           children: [
-            SizedBox(height: 20.h),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CircleAvatar(
-                    backgroundColor: Colors.grey,
-                    child: IconButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+
             SizedBox(height: 10.h),
             // Images Section
             Expanded(
@@ -154,19 +135,21 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
                               ),
                               child: Column(
                                 children: [
-                                  reusebaleTextFields(
-                                    onpress: () {
+                                  GestureDetector(
+                                    onTap:(){
                                       controller.showserialNumDialogAlert(
-                                        context,
-                                        controller.state.serialNum.value
-                                            .toString(),
-                                        id,
-                                      );
-                                    },
-                                    title: 'SerialNum',
-                                    iconData: Icons.format_list_numbered,
-                                    value: controller.state.serialNum.value
-                                        .toString(),
+                                          context,
+                                          controller.state.serialNum.value
+                                              .toString(),
+                                      id);
+                            },
+                                    child: reusebaleTextFields(
+
+                                      title: 'SerialNum',
+                                      iconData: Icons.format_list_numbered,
+                                      value: controller.state.serialNum.value
+                                          .toString(),
+                                    ),
                                   ),
                                   SizedBox(height: 15),
                                   GestureDetector(

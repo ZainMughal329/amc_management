@@ -1,6 +1,7 @@
 import 'package:amc_management/res/components/adminViewComponents/addFileDisplay.dart';
 import 'package:amc_management/utils/routes/routes.dart';
 import 'package:amc_management/utils/routes/routes_name.dart';
+import 'package:amc_management/view/scanimages/view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -42,6 +43,7 @@ class _MyAppState extends State<MyApp> {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
+          // home: MultiSelectDropdown(),
           initialRoute: RouteNames.homeview,
           getPages:AppPages.routes,
         );

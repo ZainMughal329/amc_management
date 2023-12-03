@@ -87,7 +87,7 @@ class allFilesView extends GetView<allFilesController>{
                                                        id: snapshot.data!.docs[index]
                                                        ['Id'],
                                                        dept: snapshot.data!.docs[index]
-                                                       ['serialNum'],
+                                                       ['Dept'],
                                                        date: formattedDate,
                                                        fileDispatchDate:formattedDate,
                                                    )
