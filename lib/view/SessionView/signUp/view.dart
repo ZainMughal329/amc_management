@@ -23,13 +23,13 @@ class SignUpView extends GetView<SignupController> {
             style: TextStyle(color: AppColors.lightActiveIconColor),
             iconSize: 40.0.h,
             hint: controller.state.deptName.value == ""
-                ? Text(
-                    "selectDept",
-                    style: TextStyle(color: AppColors.titleTextColor),
+                ? TextWidget(
+                  title: "selectDept",
+                    textColor: AppColors.titleTextColor,
                   )
-                : Text(
-                    controller.state.deptName.value,
-                    style: TextStyle(color: AppColors.subtitleTextColor),
+                : TextWidget(
+                    title: controller.state.deptName.value,
+                    textColor: AppColors.sessionPageTextColor,
                   ),
             // value: controller.state.deptName.value,
             onChanged: (String? value) {
@@ -91,7 +91,7 @@ class SignUpView extends GetView<SignupController> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
-      backgroundColor:AppColors.scaffoldBgColour,
+      backgroundColor: AppColors.sessionPageBgColor,
       body: Form(
           key: _formkey,
           child: SingleChildScrollView(
@@ -102,10 +102,16 @@ class SignUpView extends GetView<SignupController> {
                   const SizedBox(height: 150),
                   TextWidget(
                     title: 'Register',
-                    fontSize: 20,
+                    fontSize: 28,
+                    textColor: AppColors.sessionPageTextColor,
+                    fontWeight: FontWeight.bold,
                   ),
                   const SizedBox(height: 10),
-                  TextWidget(title: 'Create your account',textColor: AppColors.tittleColour,),
+                  TextWidget(
+                    title: 'Create your account',
+                    textColor: AppColors.tittleColour,
+                    fontSize: 16,
+                  ),
                   const SizedBox(height: 40),
                   ReuseField(
                       myController: controller.state.usernamecontroller,
@@ -153,6 +159,10 @@ class SignUpView extends GetView<SignupController> {
                       lableText: 'Password',
                       prefixIcon: Icon(Icons.password_outlined),
                       suffixIcon: Icons.visibility_off,
+                      onPressSufix: (){
+                        controller.togglePasswordVisibility();
+
+                      },
                       onFiledSubmittedValue: (value) {},
                       keyboardType: TextInputType.emailAddress,
                       obsecureText: true,
@@ -167,12 +177,19 @@ class SignUpView extends GetView<SignupController> {
                   const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('Select'), dropDownList()],
+                    children: [
+                      TextWidget(
+                        title: 'Select',
+                        textColor: AppColors.titleTextColor,
+                      ),
+                      dropDownList()
+                    ],
                   ),
                   const SizedBox(height: 30),
                   Obx(
                     () => controller.state.loading.value == false
                         ? elevatedButton(
+                            bgColor: AppColors.sessionPageButtonColor,
                             tittle: 'Register',
                             // loading: controller.state.loading.value,
                             onpress: () {
@@ -204,15 +221,23 @@ class SignUpView extends GetView<SignupController> {
                             ),
                           ),
                   ),
-                  SizedBox(height: 5.h,),
+                  SizedBox(
+                    height: 5.h,
+                  ),
                   Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    const Text("Don't have an account?"),
+                    const TextWidget(
+                      title: "Don't have an account?",
+                      textColor: AppColors.tittleColour,
+                      fontSize: 12,
+                    ),
                     TextButton(
                         onPressed: () {
                           _formkey.currentState?.reset();
                           Get.toNamed(RouteNames.loginview);
                         },
-                        child:  Text("Login",style: TextStyle(color: AppColors.buttonColour),))
+                        child: TextWidget(
+                          title: "Login",
+                        ))
                   ]),
                 ],
               ),

@@ -7,6 +7,7 @@ class SignupState{
   final dbFireStore = FirebaseFirestore.instance.collection('users');
   final loading = false.obs;
   var deptName = 'Select'.obs;
+  var isPasswordVisible = false.obs;
   final emailcontroller = TextEditingController();
   final passwordcontroller= TextEditingController();
   final usernamecontroller=TextEditingController();

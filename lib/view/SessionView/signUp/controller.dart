@@ -87,6 +87,11 @@ class SignupController extends GetxController
   }
 
 
+  void togglePasswordVisibility() {
+    state.isPasswordVisible.value = !state.isPasswordVisible.value;
+  }
+
+
 
 
 

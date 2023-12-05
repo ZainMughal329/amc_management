@@ -1,6 +1,7 @@
 import 'package:amc_management/res/components/textWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../colors.dart';
 class ReuseField extends StatelessWidget {
   ReuseField({super.key,
@@ -52,13 +53,19 @@ class ReuseField extends StatelessWidget {
               Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 15.sp),
             decoration: InputDecoration(
               suffixIcon: IconButton(
-                onPressed: onPressSufix,
+                onPressed: () {
+                  if (onPressSufix != null) {
+                    onPressSufix!();
+                  }
+                },
                 icon: Icon(suffixIcon,color: iconcolour,),
               ),
               prefixIcon: prefixIcon,
               labelText: lableText,
-              labelStyle: TextStyle(
-                color: lableColor
+              labelStyle: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                    color: lableColor
+                ),
               ),
               // contentPadding: EdgeInsets.only(left: 12, right: 20, top: 35, bottom: 15),
               contentPadding: EdgeInsets.all(15),

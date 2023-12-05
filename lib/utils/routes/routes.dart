@@ -56,7 +56,7 @@ class AppPages {
     ),
     GetPage(
         name: RouteNames.forgotview,
-        page: () => Forgotview(),
+        page: () => ForgotView(),
         binding: Forgotbindinsg(),
       transition: Transition.zoom,
     ),

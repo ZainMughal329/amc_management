@@ -1,10 +1,12 @@
 import 'package:amc_management/res/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 class elevatedButton extends StatelessWidget {
   final String tittle;
   final Color bgColor,textColor;
   final VoidCallback onpress;
   final bool loading;
+
   elevatedButton({super.key,
     this.textColor=AppColors.tittleColour,
     this.bgColor = AppColors.buttonColour,
@@ -22,7 +24,14 @@ class elevatedButton extends StatelessWidget {
         backgroundColor: bgColor
       ),
       onPressed:onpress,
-      child: loading?Center(child: CircularProgressIndicator(color: AppColors.circularProgressIndicatorColour,)):Text(tittle,style: TextStyle(color:textColor),)
+      child: loading?Center(child: CircularProgressIndicator(color: AppColors.circularProgressIndicatorColour,)):Text(tittle,
+        style:GoogleFonts.poppins(
+          textStyle: TextStyle(
+            fontSize: 16,
+              color:textColor
+          )
+        )
+      )
     );
   }
 }

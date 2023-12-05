@@ -3,6 +3,12 @@
 
 import 'package:flutter/material.dart';
 class AppColors {
+
+ // colors for session View
+ static const  sessionPageTextColor = Colors.white;
+ static const sessionPageBgColor = Colors.blueGrey;
+ static const  sessionPageButtonColor = Colors.white;
+
  static const Color primaryColor = Color(0xFF007AFF);
   // Placeholder colors for containers
  static const  containerColor1 = Colors.grey; // Green
