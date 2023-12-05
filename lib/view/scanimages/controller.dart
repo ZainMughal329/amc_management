@@ -19,15 +19,15 @@ class MultiSelectDropdownController extends GetxController {
     'Chemistry',
   ];
 
-  void showMultiSelectBottomSheet() async {
-    List<String> selectedValues = await Get.bottomSheet(
-      MultiSelectBottomSheet(items, selectedItems),
-    );
-
-    if (selectedValues != null) {
-      selectedItems.assignAll(selectedValues);
-      // Send the list to the database or perform any other action here
-      print('Selected Items: $selectedItems');
-    }
-  }
+  // void showMultiSelectBottomSheet() async {
+  //   List<String> selectedValues = await Get.bottomSheet(
+  //     MultiSelectBottomSheet(items, selectedItems),
+  //   );
+  //
+  //   if (selectedValues != null) {
+  //     selectedItems.assignAll(selectedValues);
+  //     // Send the list to the database or perform any other action here
+  //     print('Selected Items: $selectedItems');
+  //   }
+  // }
 }

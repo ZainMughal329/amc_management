@@ -49,13 +49,13 @@ class HomeView extends GetView<HomeController> {
                 icon: Icons.supervised_user_circle,
               ),
               SizedBox(height: 15.h,),
-              // SectionCard(
-              //   onpress: (){
-              //     Get.to(()=>MultiSelectDropdown());
-              //   },
-              //   title: "Send File",
-              //   icon: Icons.send,
-              // ),
+              SectionCard(
+                onpress: (){
+                  Get.to(()=>DastakFoodApp());
+                },
+                title: "Send File",
+                icon: Icons.send,
+              ),
               SectionCard(
                 onpress:(){
                   Get.toNamed(RouteNames.receivedfileview);

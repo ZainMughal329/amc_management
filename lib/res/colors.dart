@@ -3,7 +3,7 @@
 
 import 'package:flutter/material.dart';
 class AppColors {
-
+ static const Color primaryColor = Color(0xFF007AFF);
   // Placeholder colors for containers
  static const  containerColor1 = Colors.grey; // Green
  static const  containerColor2 = Colors.grey; // Blue

@@ -7,7 +7,8 @@ import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 import '../../../../res/colors.dart';
 
 class listOfImagesView extends GetView<listOfImagesController> {
-  String serialNum,subjectOfFile,senderName,senderAddress,receiverName,deptName;
+  String serialNum,subjectOfFile,senderName,senderAddress,receiverName;
+  List<String> deptName;
    DateTime? date;
    DateTime? filedispatchDate;
   listOfImagesView({super.key,

@@ -63,7 +63,7 @@ class dataUplaodController extends GetxController{
       await state.ref.doc(id).set(DiaryNumModel(
           id: id,
           images: [],
-          dept: dept,
+          dept: state.selectedDepartments.toList(),
           date: date,
           fileDispatchDate: filedispatchdate,
           subject: subjectOfFile,
@@ -79,7 +79,7 @@ class dataUplaodController extends GetxController{
                 receiverName: receiverName,
                 date: state.selectedDate,
                 filedispatchDate: state.dispatchSelDate,
-                deptName: state.deptName.value)
+                deptName: state.selectedDepartments.toList())
             );
             setLoading(false);
       }).onError((error, stackTrace) {
@@ -117,7 +117,7 @@ class dataUplaodController extends GetxController{
         print("image url is" + imageUrl.toString());
         clearDateFromScreen();
         // images = [];
-        Get.toNamed(RouteNames.homeview);
+        Get.offAllNamed(RouteNames.homeview);
 
         setLoading(false);
 
@@ -146,18 +146,6 @@ class dataUplaodController extends GetxController{
 
 //   for multiple selected departments
 
-  // void showMultiSelectBottomSheet() async {
-  //   List<String> selectedValues = await Get.bottomSheet(
-  //
-  //     MultiSelectBottomSheet(state.departments, state.selectedDepartments),
-  //   );
-  //
-  //   if (selectedValues != null) {
-  //     state.selectedDepartments.assignAll(selectedValues);
-  //     // Send the list to the database or perform any other action here
-  //     print('Selected Items: $state.selectedDepartments');
-  //   }
-  // }
   void showMultiSelectBottomSheet() async {
     List<String> selectedDepartments = await Get.bottomSheet(
       Container(

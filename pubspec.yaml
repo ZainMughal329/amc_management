@@ -54,6 +54,7 @@ dependencies:
   image_gallery_saver:
   multi_image_picker_view:
   carousel_slider: ^4.2.1
+  flutter_staggered_grid_view:
   cached_network_image:
   card_swiper :
   line_icons:

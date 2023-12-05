@@ -4,6 +4,7 @@ import 'package:amc_management/res/components/adminViewComponents/custom_button.
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../res/components/SessionViewComponents/custom_tetxField.dart';
 import 'index.dart';
@@ -17,7 +18,9 @@ class Forgotview extends GetView<ForgotController> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      backgroundColor: AppColors.scaffoldBgColour,
+      backgroundColor: Colors.blueGrey, // Use a more appealing background color
+
+      // backgroundColor: AppColors.scaffoldBgColour,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         child: SingleChildScrollView(
@@ -30,7 +33,13 @@ class Forgotview extends GetView<ForgotController> {
               ),
               Text(
                 'Forgot Password',
-                style: Theme.of(context).textTheme.headline3!.copyWith(color: AppColors.buttonColour),
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontSize: 28,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               SizedBox(
                 height: height * .01,
@@ -38,7 +47,13 @@ class Forgotview extends GetView<ForgotController> {
               Text(
                 'Enter your email address \nto recover your password',
                 textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle1,
+                style:GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white, // Change the color
+                  ),
+                )
+
               ),
               SizedBox(
                 height: height * .01,
@@ -71,7 +86,11 @@ class Forgotview extends GetView<ForgotController> {
               SizedBox(
                 height:25,
               ),
-              Obx(() => controller.state.loading.value ==false? elevatedButton(tittle: 'Recover', onpress: (){
+              Obx(
+
+                      () => controller.state.loading.value ==false? elevatedButton(
+                          bgColor: Colors.white,
+                          tittle: 'Recover', onpress: (){
                 if(_formkey.currentState!.validate()){
                   controller.forgotPassword(context, controller.state.emailcontroller.text.trim());
                 }

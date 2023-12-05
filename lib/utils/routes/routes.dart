@@ -135,12 +135,14 @@ class AppPages {
     binding: dataUplaodBindings(),
       transition: Transition.zoom
     ),
-    GetPage(name: RouteNames.diarylistOfImages, page: ()=>listOfImagesView(
+    GetPage(
+        name: RouteNames.diarylistOfImages,
+        page: ()=>listOfImagesView(
       senderName: "",
       senderAddress: "",
       serialNum: "",
       subjectOfFile: "",
-      deptName: "",
+      deptName: [],
       receiverName: "",
     ),
       binding: listofImagesBindings(),

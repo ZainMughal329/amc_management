@@ -11,7 +11,7 @@ class DiaryNumModel {
   final String senderAddress;
   final String senderName;
   final String? subject;
-  final String dept;
+  List<String> dept;
   DiaryNumModel({
     required this.id,
     required this.images,

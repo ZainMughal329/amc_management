@@ -43,7 +43,7 @@ class userViewController extends GetxController{
   Future<List<String>> fetchImageUrls(String docId) async {
     setFetchLoading(true);
     final snapshot = await FirebaseFirestore.instance
-        .collection('addFiles')
+        .collection('diaryNumberRegister')
         .doc(docId)
         .get();
 

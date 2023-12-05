@@ -11,6 +11,6 @@ class userViewState{
   final ref = FirebaseFirestore.instance;
   final searchController = TextEditingController();
   final editController =TextEditingController();
-  final firestoreRef = FirebaseFirestore.instance.collection('addFiles');
-  final getDataRef = FirebaseFirestore.instance.collection('addFiles').snapshots();
+  final firestoreRef = FirebaseFirestore.instance.collection('diaryNumberRegister');
+  final getDataRef = FirebaseFirestore.instance.collection('diaryNumberRegister').snapshots();
 }

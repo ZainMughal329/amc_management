@@ -74,7 +74,10 @@ class userView extends GetView<userViewController> {
                 if (user.status == "true") {
                   return StreamBuilder<QuerySnapshot>(
                       stream: controller.state.firestoreRef
-                          .where('dept', isEqualTo: controller.state.dpName)
+                          .where('Dept',
+                          arrayContains: controller.state.dpName
+                          // isEqualTo: controller.state.dpName
+                      )
                           .snapshots(),
                       builder: (BuildContext context,
                           AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -86,21 +89,21 @@ class userView extends GetView<userViewController> {
                               ? ListView.builder(
                                   itemCount: snapshot.data!.docs.length,
                                   itemBuilder: (context, index) {
-                                    final idFromDb = int.parse(snapshot
-                                        .data!.docs[index]['Id']
-                                        .toString());
-                                    final timeInMilli =
-                                        DateTime.fromMillisecondsSinceEpoch(
-                                            idFromDb);
-                                    final formattedDate = DateFormat('dd-MM-yy')
-                                        .format(timeInMilli);
-                                    print('date is : ' +
-                                        formattedDate.toString());
-                                    print('length is1' +
-                                        snapshot.data!.docs.length.toString());
-                                    final tittle = snapshot
-                                        .data!.docs[index]['Name']
-                                        .toString();
+                                    // final idFromDb = int.parse(snapshot
+                                    //     .data!.docs[index]['Id']
+                                    //     .toString());
+                                    // final timeInMilli =
+                                    //     DateTime.fromMillisecondsSinceEpoch(
+                                    //         idFromDb);
+                                    // final formattedDate = DateFormat('dd-MM-yy')
+                                    //     .format(timeInMilli);
+                                    // print('date is : ' +
+                                    //     formattedDate.toString());
+                                    // print('length is1' +
+                                    //     snapshot.data!.docs.length.toString());
+                                    // final tittle = snapshot
+                                    //     .data!.docs[index]['Name']
+                                    //     .toString();
 
                                     return Padding(
                                       padding: const EdgeInsets.all(8.0),
@@ -121,23 +124,23 @@ class userView extends GetView<userViewController> {
                                             children: [
                                               _buildListTile(
                                                 icon: Icons.file_copy_rounded,
-                                                title: 'File Name',
+                                                title: 'Serial Number',
                                                 content: snapshot
-                                                    .data!.docs[index]['Name']
+                                                    .data!.docs[index]['serialNum']
                                                     .toString(),
                                               ),
                                               _buildListTile(
                                                 icon: Icons.person_outline,
-                                                title: 'Received From',
+                                                title: 'sender Name',
                                                 content: snapshot
-                                                    .data!.docs[index]['From']
+                                                    .data!.docs[index]['senderName']
                                                     .toString(),
                                               ),
-                                              _buildListTile(
-                                                icon: Icons.date_range,
-                                                title: 'Date',
-                                                content: formattedDate,
-                                              ),
+                                              // _buildListTile(
+                                              //   icon: Icons.date_range,
+                                              //   title: 'Date',
+                                              //   content: formattedDate,
+                                              // ),
                                               Center(
                                                 child: ReuseButton(
                                                   icon:

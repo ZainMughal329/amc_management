@@ -13,25 +13,27 @@ class TextWidget extends StatelessWidget {
   final Color decorationColor;
   final FontStyle fontStyle;
   final TextAlign? textAlign;
+  final TextStyle? style; // Add this line
 
-  const TextWidget(
-      {super.key,
-        required this.title,
-        this.textColor = AppColors.buttonColour,
-        this.fontSize = 16,
-        this.fontWeight = FontWeight.normal,
-        this.decoration = TextDecoration.none,
-        this.decorationColor = AppColors.buttonColour,
-        this.fontStyle = FontStyle.normal,
-        this.textAlign,
-      });
+  const TextWidget({
+    Key? key, // Fix the key parameter
+    required this.title,
+    this.textColor = AppColors.buttonColour,
+    this.fontSize = 16,
+    this.fontWeight = FontWeight.normal,
+    this.decoration = TextDecoration.none,
+    this.decorationColor = AppColors.buttonColour,
+    this.fontStyle = FontStyle.normal,
+    this.textAlign,
+    this.style, // Add this line
+  }) : super(key: key); // Fix the key parameter
 
   @override
   Widget build(BuildContext context) {
     return Text(
       title,
       textAlign: textAlign,
-      style: GoogleFonts.poppins(
+      style: style ?? GoogleFonts.poppins( // Use custom style if provided, otherwise use GoogleFonts.poppins
         decoration: decoration,
         decorationColor: decorationColor,
         color: textColor,
@@ -42,3 +44,51 @@ class TextWidget extends StatelessWidget {
     );
   }
 }
+
+
+
+
+// import 'package:flutter/material.dart';
+// import 'package:flutter_screenutil/flutter_screenutil.dart';
+// import 'package:google_fonts/google_fonts.dart';
+//
+// import '../colors.dart';
+//
+// class TextWidget extends StatelessWidget {
+//   final String title;
+//   final Color textColor;
+//   final double fontSize;
+//   final FontWeight fontWeight;
+//   final TextDecoration decoration;
+//   final Color decorationColor;
+//   final FontStyle fontStyle;
+//   final TextAlign? textAlign;
+//
+//   const TextWidget(
+//       {super.key,
+//         required this.title,
+//         this.textColor = AppColors.buttonColour,
+//         this.fontSize = 16,
+//         this.fontWeight = FontWeight.normal,
+//         this.decoration = TextDecoration.none,
+//         this.decorationColor = AppColors.buttonColour,
+//         this.fontStyle = FontStyle.normal,
+//         this.textAlign,
+//       });
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Text(
+//       title,
+//       textAlign: textAlign,
+//       style: GoogleFonts.poppins(
+//         decoration: decoration,
+//         decorationColor: decorationColor,
+//         color: textColor,
+//         fontSize: fontSize,
+//         fontWeight: fontWeight,
+//         fontStyle: fontStyle,
+//       ),
+//     );
+//   }
+// }
