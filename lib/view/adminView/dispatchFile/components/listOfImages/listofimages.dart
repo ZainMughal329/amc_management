@@ -9,7 +9,7 @@ import 'package:multi_image_picker_view/multi_image_picker_view.dart';
 
 class listOfImages extends StatelessWidget {
   String subject,
-      deptName,
+      // deptName,
   letterNum,
   serialNum,
   receiverName,
@@ -20,7 +20,7 @@ class listOfImages extends StatelessWidget {
   listOfImages({
     Key? key,
     required this.subject,
-    required this.deptName,
+    // required this.deptName,
 
     required this.letterNum,
     required this.serialNum,

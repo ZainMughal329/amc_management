@@ -8,7 +8,9 @@ import '../../../../../res/colors.dart';
 
 
 class ListOfFileView extends StatelessWidget {
-  String  deptName, details, recieverName, fileNo;
+  String
+  // deptName,
+      details, recieverName, fileNo;
   final DateTime date;
   ListOfFileView({
     Key? key,
@@ -17,7 +19,7 @@ class ListOfFileView extends StatelessWidget {
     required this.details,
     required this.date,
     required this.recieverName,
-    required this.deptName,
+    // required this.deptName,
   }) : super(key: key);
   final con = Get.put<receivedFileController>(receivedFileController());
   final controller = MultiImagePickerController(

@@ -113,14 +113,14 @@ class dispatchSearchView extends GetView<dispatchSearchController> {
                                           color: Colors.white),
                                     ),
                                     Spacer(),
-                                    Text(
-
-                                      item
-                                      ['Dept'],
-                                      style: TextStyle(
-                                          fontSize: 16.0,
-                                          color: Colors.white),
-                                    ),
+                                    // Text(
+                                    //
+                                    //   item
+                                    //   ['Dept'],
+                                    //   style: TextStyle(
+                                    //       fontSize: 16.0,
+                                    //       color: Colors.white),
+                                    // ),
                                   ],
                                 ),
                                 SizedBox(
@@ -169,7 +169,7 @@ class dispatchSearchView extends GetView<dispatchSearchController> {
                                                   date: formattedDate,
                                                   serialNum: item['serialNum'],
                                                   letterNum: item['letterNum'],
-                                                  Dept: item['Dept'],
+                                                  // Dept: item['Dept'],
                                                   id: item['Id'],
                                                   recieverName: item
                                                   ['RecievedBy'],

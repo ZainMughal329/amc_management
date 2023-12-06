@@ -42,7 +42,7 @@ class dispatchController extends GetxController
             id: id,
             subject: documentSnapshot!['subject'],
             images: images,
-            dept: documentSnapshot!['Dept'],
+            // dept: documentSnapshot!['Dept'],
             letterNum: documentSnapshot!['letterNum'],
           serialNum: documentSnapshot!['serialNum'],
             recieverName: documentSnapshot!['recieverName'],
@@ -149,7 +149,7 @@ class dispatchController extends GetxController
 
   Future<void> DispatchModelFile(
       String subject,
-      String dept,
+      // String dept,
       String timeStamp,
       String image,
       String letterNum,
@@ -162,7 +162,7 @@ class dispatchController extends GetxController
       await state.ref.doc(timeStamp).set({
         'subject': subject,
         'Image': image,
-        'Dept': dept,
+        // 'Dept': dept,
         'letterNum':letterNum,
         'serialNum':serialNum,
         'recieverName':receiverName,
@@ -184,14 +184,16 @@ class dispatchController extends GetxController
       DispatchModel dispatch,
       BuildContext context,
       String subject,
-      String dept,
+      // String dept,
       String image,
       String serialNumber,
       String letterNumber,
       String receiverName,
       String receiverAddress,
       String date) async {
-    DispatchModelFile(subject, timeStamp, image, dept,serialNumber,letterNumber,receiverName,receiverAddress, date
+    DispatchModelFile(subject, timeStamp, image,
+        // dept,
+        serialNumber,letterNumber,receiverName,receiverAddress, date
             )
         .then((value) {
       clearDateFromScreen();
@@ -200,7 +202,7 @@ class dispatchController extends GetxController
 
   clearDateFromScreen() {
     state.dateController.clear();
-    state.deptName = "".obs;
+    // state.deptName = "".obs;
     state.subjectController.clear();
     images =[];
   }
@@ -222,8 +224,8 @@ class dispatchController extends GetxController
   void validateForm() {
     state.isFormValid.value =
         state.dateController.text.isNotEmpty &&
-        state.subjectController.text.isNotEmpty &&
-        state.deptName.value.isNotEmpty;
+        state.subjectController.text.isNotEmpty;
+        // state.deptName.value.isNotEmpty;
   }
 
   Future uploadimagelistonDatabase(
@@ -267,7 +269,7 @@ class dispatchController extends GetxController
   Future<void> dispatchfileDataOnFirebase(
       String id,
       String subject,
-      String deptName,
+      // String deptName,
       String letterNum,
       String serialNum,
       String receiverName,
@@ -285,7 +287,7 @@ class dispatchController extends GetxController
                   id: id,
                   letterNum: letterNum,
                   images: [],
-                  dept: deptName,
+                  // dept: deptName,
                   date: date,
                   recieverName: receiverName,
                   receiverAddress: receiverAddress,
@@ -296,7 +298,7 @@ class dispatchController extends GetxController
         Get.to(
           () => listOfImages(
               subject: state.subjectController.text.trim(),
-              deptName: state.deptName.value,
+              // deptName: state.deptName.value,
               serialNum: state.serialNumcontroller.text.trim(),
               letterNum: state.letterNumController.text.trim(),
               date: state.selectedDate,

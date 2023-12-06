@@ -61,7 +61,6 @@ dependencies:
   dio:
   http:
   path_provider:
-  simple_responsive_grid:
   gallery_saver:
   google_fonts:
   pdf:

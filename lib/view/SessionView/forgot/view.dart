@@ -31,8 +31,9 @@ class ForgotView extends GetView<ForgotController> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: 80.h,
+                height: 50,
               ),
+              Image(image: AssetImage('assets/images/AMC.png')),
               TextWidget(
                 title: 'Forgot Password',
                 fontSize: 28,

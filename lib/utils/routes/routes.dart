@@ -85,7 +85,7 @@ class AppPages {
       id: "",
       date: "",
       serialNum: "",
-      Dept: "",
+      // Dept: "",
       letterNum: "",
       recieverName: "",
       subject: "",
@@ -110,7 +110,7 @@ class AppPages {
     ),
     GetPage(name: RouteNames.receivedfileshowcontainer, page:()=> receivedFileShowContainer(
         id: "",
-        dept: "",
+        // dept: "",
         date: "",
         receiverName: "",
         receiverAddress: "",

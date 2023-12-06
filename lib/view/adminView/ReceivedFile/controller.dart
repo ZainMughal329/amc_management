@@ -46,7 +46,7 @@ class receivedFileController extends GetxController
         addFileModel = ReceivedFileModel(
             id: id,
             // name: documentSnapshot!['Name'],
-            dept: documentSnapshot!['dept'],
+            // dept: documentSnapshot!['dept'],
             receivereName: documentSnapshot!['receiverName'],
             receivedAddress: documentSnapshot!['receivedAddress'],
             receivedFrom: documentSnapshot!['From'],
@@ -156,7 +156,7 @@ class receivedFileController extends GetxController
   Future<void> uploadReceivedFileOnFirebase(
 
     String timeStamp,
-    String dept,
+    // String dept,
     String image,
     String date,
     String serialNum,
@@ -168,7 +168,7 @@ class receivedFileController extends GetxController
     try {
       await state.ref.doc(timeStamp).set({
 
-        'Dept': dept,
+        // 'Dept': dept,
         // 'Name': name,
         'receivedFrom': receivedfrom,
         'receivedAddress':receivereAddress,
@@ -193,7 +193,7 @@ class receivedFileController extends GetxController
     ReceivedFileModel addFile,
     BuildContext context,
     // String name,
-    String dept,
+    // String dept,
       String image,
       String date,
       String serialNum,
@@ -202,7 +202,9 @@ class receivedFileController extends GetxController
       String receivereName,
   ) async {
     setLoading(true);
-    uploadReceivedFileOnFirebase( timeStamp, dept, image, date, serialNum, receivedfrom,receiverAddress,receivereName)
+    uploadReceivedFileOnFirebase( timeStamp,
+        // dept,
+        image, date, serialNum, receivedfrom,receiverAddress,receivereName)
         .then((value) {
       uploadimageonDatabase(timeStamp);
       setLoading(false);
@@ -232,7 +234,7 @@ class receivedFileController extends GetxController
     state.receivedfromController.clear();
     // state.nameController.clear();
     state.serialNumController.clear();
-    state.deptName.value = "Select";
+    // state.deptName.value = "Select";
     state.detailController.clear();
     state.receiverAddressController.clear();
     state.receiverNameController.clear();
@@ -250,8 +252,8 @@ class receivedFileController extends GetxController
         state.dateController.text.isNotEmpty &&
         state.serialNumController.text.isNotEmpty &&
         state.receivedfromController.text.isNotEmpty &&
-        state.detailController.text.isNotEmpty &&
-        state.deptName.value.isNotEmpty;
+        state.detailController.text.isNotEmpty ;
+        // state.deptName.value.isNotEmpty;
   }
 
   Future<void> uploadimagelistonDatabase(
@@ -301,7 +303,7 @@ class receivedFileController extends GetxController
       // String name,
       final DateTime date,
       String serialNum,
-      String deptName,
+      // String deptName,
       String receiverName,
       String receiverAddress,
       String recieverFrom,
@@ -315,7 +317,7 @@ class receivedFileController extends GetxController
                   id: id,
                   images: [],
                   // name: name,
-                  dept: deptName,
+                  // dept: deptName,
                   date: date,
                   receivedAddress: receiverAddress,
                   receivereName: receiverName,
@@ -335,7 +337,7 @@ class receivedFileController extends GetxController
           state.receivedfromController.text.trim(),
           // FileName:
           // state.nameController.text.trim(),
-          deptName: state.deptName.value,
+          // deptName: state.deptName.value,
         ));
 
         setLoading(false);

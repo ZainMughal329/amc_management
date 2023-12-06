@@ -20,14 +20,22 @@ class AppColors {
   static const  ShadowColor = Color(0xFFBDBDBD);
 
 
-  // colors for  admin home view cards
+  // colors for  admin home view & cards
   static const adminhomebackgroundColor = Color(0xFFFFFFFF);
-  static const admincardiconColor = Colors.white;
-  static const admincardtextColor = Colors.white;
-  static const shadowColor = Color(0x40000000); // Adjust the opacity as needed
-  static const gradientStart = Color(0xFF3366CC); // Start color of the gradient
-  static const gradientEnd = Color(0xFF00CCFF);
+  static const homeViewcardIconColor = Colors.white;
+  static const homeCardTextColor = Colors.white;
+  static const shadowColor = Color(0x40000000);
+ //  homeView card linear color
+ static const gradientEnd = Color(0xFFA4B7D1);   // Lighter grey-blue color
+ static const gradientStart = Color(0xFF6C7B8B); // Grey-blue color
+//   static const gradientStart = Color(0xFF3366CC); // Start color of the gradient
+//   static const gradientEnd = Color(0xFF00CCFF);
   // End color of the gradient
+
+  // colors for files Section
+ static const fileTabBarIconButtonColor = Colors.blueGrey;
+
+
 
 
 

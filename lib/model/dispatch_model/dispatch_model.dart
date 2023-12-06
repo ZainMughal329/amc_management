@@ -10,13 +10,13 @@ class DispatchModel {
   final String receiverAddress;
   final String? subject;
   final String letterNum;
-  final String dept;
+  // final String dept;
   DispatchModel({
     required this.id,
     required this.images,
     this.subject,
     required this.letterNum,
-    required this.dept,
+    // required this.dept,
     // required this.name,
      this.date,
     required this.recieverName,
@@ -29,7 +29,7 @@ class DispatchModel {
       'Id':id,
       'subject':subject,
       'Image': images,
-      'Dept':dept,
+      // 'Dept':dept,
       'letterNum':letterNum,
       'serialNum': serialNum,
       'recieverName': recieverName,
@@ -44,7 +44,7 @@ class DispatchModel {
     return DispatchModel(
       id: data['Id'],
       subject: data['subject'],
-      dept: data['dept'],
+      // dept: data['dept'],
       images:data['image'],
       letterNum: data['letterNum'],
       serialNum: data['serialNum'],

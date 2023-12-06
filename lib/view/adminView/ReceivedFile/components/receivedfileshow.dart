@@ -17,7 +17,7 @@ class receivedFileShowContainer extends StatelessWidget {
   String receiverName;
   String receiverAddress;
   String id;
-  String dept;
+  // String dept;
    receivedFileShowContainer({
     super.key,
     required this.serialNum,
@@ -26,7 +26,7 @@ class receivedFileShowContainer extends StatelessWidget {
      required this.receiverAddress,
      required this.receiverName,
     required this.date,
-    required this.dept,
+    // required this.dept,
   });
 
   // ... Your existing class definition ...
@@ -170,14 +170,19 @@ class receivedFileShowContainer extends StatelessWidget {
                                 ),
                                 child: Column(
                                   children: [
-                                    GestureDetector(
-                                      onTap: () {},
-                                      child: reusebleRow(
-                                        title: 'Dept',
-                                        iconData: Icons.place_outlined,
-                                        value: dept,
-                                      ),
+                                    reusebleRow(
+                                      title: 'Date',
+                                      iconData: Icons.calendar_today_outlined,
+                                      value: date,
                                     ),
+                                    // GestureDetector(
+                                    //   onTap: () {},
+                                    //   child: reusebleRow(
+                                    //     title: 'Dept',
+                                    //     iconData: Icons.place_outlined,
+                                    //     value: dept,
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ),
@@ -237,11 +242,7 @@ class receivedFileShowContainer extends StatelessWidget {
                                           .toString(),
                                     ),
                                     SizedBox(height: 15),
-                                    reusebleRow(
-                                      title: 'Date',
-                                      iconData: Icons.calendar_today_outlined,
-                                      value: date,
-                                    ),
+
                                   ],
                                 ),
                               ),

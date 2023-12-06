@@ -14,7 +14,7 @@ class receivedFileState{
  RxInt imageNo = 0.obs;
  final ref = FirebaseFirestore.instance.collection('Received Files');
  final auth = FirebaseAuth.instance;
- var deptName = 'Select'.obs;
+ // var deptName = 'Select'.obs;
  final loading = false.obs;
  final detailController = TextEditingController();
  final detailFocusNode = FocusNode();

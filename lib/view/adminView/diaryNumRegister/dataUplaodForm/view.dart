@@ -103,7 +103,7 @@ class diaryNumberForm extends GetView<dataUplaodController> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 30.h,
+                        height: 20.h,
                       ),
                       customTextField(
                         keyboardType: TextInputType.number,

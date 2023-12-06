@@ -32,6 +32,9 @@ class allFilesView extends GetView<allFilesController>{
                        ListView.builder(
                            itemCount: snapshot.data!.docs.length,
                            itemBuilder: (context,index){
+                             final Timestamp fileDispatchDateTimestamp = snapshot.data!.docs[index]['fileDispatchDate'];
+                             final DateTime fileDispatchDate = fileDispatchDateTimestamp.toDate();
+                             final formattedDate2 = DateFormat('dd-MM-yy').format(fileDispatchDate);
                              final idFromDb = int.parse(
                                  snapshot.data!.docs[index]['Id'].toString());
                              final timeInMilli =
@@ -39,6 +42,7 @@ class allFilesView extends GetView<allFilesController>{
                              final formattedDate =
                              DateFormat('dd-MM-yy').format(timeInMilli);
                              print('date is : ' + formattedDate.toString());
+                             print('Date 1: $formattedDate, Date 2: $formattedDate2');
                              return Padding(
                                padding: const EdgeInsets.all(8.0),
                                child: Card(
@@ -59,9 +63,9 @@ class allFilesView extends GetView<allFilesController>{
                                        _buildListTile(icon: Icons.numbers_outlined, title: 'Serial Number', content:  snapshot.data!.docs[index]
                                        ['serialNum']),
                                        _buildListTile(icon: Icons.date_range_outlined, title: 'Date', content:formattedDate),
-                                       _buildListTile(icon: Icons.date_range_outlined, title: 'File Dispatch Date', content:formattedDate),
-                                       _buildListTile(icon:Icons.cabin , title: 'Department', content:snapshot.data!.docs[index]
-                                       ['Dept'], ),
+                                       _buildListTile(icon: Icons.date_range_outlined, title: 'File Dispatch Date', content:formattedDate2),
+                                       // _buildListTileForDept(icon:Icons.cabin , title: 'Department', content: snapshot.data!.docs[index]
+                                       // ['Dept']),
                                        _buildListTile(icon: Icons.person_outlined, title: 'Sender Name', content: snapshot.data!.docs[index]
                                        ['senderName']),
                                        _buildListTile(icon: Icons.person_outlined, title: 'Receiver Name', content: snapshot.data!.docs[index]
@@ -89,27 +93,10 @@ class allFilesView extends GetView<allFilesController>{
                                                        dept: snapshot.data!.docs[index]
                                                        ['Dept'],
                                                        date: formattedDate,
-                                                       fileDispatchDate:formattedDate,
+                                                       fileDispatchDate:formattedDate2,
                                                    )
                                                    );
-                                               // Get.to(() =>
-                                                   // receivedFileShowContainer(
-                                                   //     date: formattedDate,
-                                                   //     receiverName: snapshot.data!.docs[index]['receiverName'],
-                                                   //     receiverAddress: snapshot.data!.docs[index]['receivedAddress'],
-                                                   //     id: snapshot.data!.docs[index]
-                                                   //     ['Id'],
-                                                   //     dept: snapshot
-                                                   //         .data!
-                                                   //         .docs[index]
-                                                   //     ['dept'],
-                                                   //     serialNum: snapshot
-                                                   //         .data!
-                                                   //         .docs[index]
-                                                   //     ['serialNum'],
-                                                   //     receivedFrom: snapshot
-                                                   //         .data!
-                                                   //         .docs[index]['receivedFrom']));
+
                                              }
                                              ),
                                              ReuseButton(
@@ -202,4 +189,37 @@ Widget _buildListTile({
     ],
   );
 }
-
+Widget _buildListTileForDept({
+  required IconData icon,
+  required String title,
+  required dynamic content, // Use dynamic or List<dynamic>
+}) {
+  return Column(
+    children: [
+      ListTile(
+        dense: true,
+        contentPadding: EdgeInsets.symmetric(horizontal: 16),
+        leading: Icon(icon, color: AppColors.iCONColour, size: 22),
+        title: Text(
+          title,
+          style: TextStyle(fontSize: 16, color: AppColors.tittleColour),
+        ),
+        trailing: content is List<dynamic>
+            ? Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: content
+              .map((item) => Text(
+            item.toString(),
+            style: TextStyle(fontSize: 16, color: AppColors.tittleColour),
+          ))
+              .toList(),
+        )
+            : Text(
+          content.toString(),
+          style: TextStyle(fontSize: 16, color: AppColors.tittleColour),
+        ),
+      ),
+      SizedBox(height: 4),
+    ],
+  );
+}

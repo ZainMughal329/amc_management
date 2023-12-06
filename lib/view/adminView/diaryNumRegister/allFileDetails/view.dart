@@ -9,7 +9,8 @@ import 'controller.dart';
 
 class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
   String serialNum, senderName, senderAddress, receiverName;
-  String id, dept;
+  String id;
+     List<dynamic> dept;
   String date, fileDispatchDate;
   diaryFilesDetailView(
       {super.key,
@@ -154,10 +155,10 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
                                   SizedBox(height: 15),
                                   GestureDetector(
                                     onTap: () {},
-                                    child: reusebaleTextFields(
+                                    child: ReusableTextFieldsForDept(
                                       title: 'Dept',
                                       iconData: Icons.place_outlined,
-                                      value: dept,
+                                      values: dept,
                                     ),
                                   ),
                                 ],
@@ -351,3 +352,87 @@ class reusebaleTextFields extends StatelessWidget {
     );
   }
 }
+
+class ReusableTextFieldsForDept extends StatelessWidget {
+  final String title;
+  final List<dynamic> values;
+  final Color? iconColor;
+  final VoidCallback? onPressed;
+  final IconData iconData;
+
+  ReusableTextFieldsForDept({
+    Key? key,
+    required this.title,
+    required this.values,
+    this.iconColor,
+    this.onPressed,
+    required this.iconData,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.iconButtonBgColour),
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: ListTile(
+        title: GestureDetector(
+          onTap: onPressed,
+          child: AbsorbPointer(
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: title,
+                border: InputBorder.none,
+              ),
+              style: Theme.of(context).textTheme.subtitle2,
+            ),
+          ),
+        ),
+        leading: Icon(
+          iconData,
+          color: iconColor,
+        ),
+        trailing: values.length == 1
+            ? Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.buttonBgColor),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              values.first,
+              style: TextStyle(
+                color: iconColor,
+              ),
+            ),
+          ),
+        )
+            : Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            for (String value in values)
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.buttonBgColor),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                margin: EdgeInsets.only(right: 8.0),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                  child: Text(
+                    value,
+                    style: TextStyle(
+                      color: iconColor,
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+

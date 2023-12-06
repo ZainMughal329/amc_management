@@ -4,7 +4,7 @@ class ReceivedFileModel {
   final String id;
   // final String name;
   final  DateTime? date;
-  final String dept;
+  // final String dept;
   // final String? detail;
   final String receivedFrom;
   final String receivedAddress;
@@ -19,7 +19,7 @@ class ReceivedFileModel {
     required this.receivedAddress,
     required this.receivereName,
     // required this.name,
-    required this.dept,
+    // required this.dept,
     this.date,
     required this.receivedFrom,
     required this.SerialNum,
@@ -32,7 +32,7 @@ class ReceivedFileModel {
       // 'Detail':detail,
       'receivedAddress':receivedAddress,
       'receiverName':receivereName,
-      'dept':dept,
+      // 'dept':dept,
       // 'Name': name,
       'receivedFrom': receivedFrom,
       'serialNum': SerialNum,
@@ -47,7 +47,7 @@ class ReceivedFileModel {
     return ReceivedFileModel(
        id: data['Id'],
       // detail: data['Detail'],
-      dept: data['dept'],
+      // dept: data['dept'],
       // name: data['Name'],
       receivedFrom: data['receivedFrom'],
       SerialNum: data['serialNum'],

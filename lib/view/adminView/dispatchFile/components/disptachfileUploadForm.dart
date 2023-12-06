@@ -13,76 +13,76 @@ import 'listOfImages/listofimages.dart';
 class dispatchFileForm extends GetView<dispatchController> {
   dispatchFileForm({super.key});
 
-  Widget dropDownList() {
-    return Obx(() => Expanded(
-          flex: 0,
-          child: DropdownButton(
-            iconEnabledColor: AppColors.lightActiveIconColor,
-            dropdownColor: AppColors.lightBgColor,
-            style: TextStyle(color: AppColors.lightActiveIconColor),
-            iconSize: 40.0.h,
-            hint: controller.state.deptName.value == ""
-                ? Text(
-                    "selectDept",
-                    style: TextStyle(color: AppColors.titleTextColor),
-                  )
-                : Text(
-                    controller.state.deptName.value,
-                    style: TextStyle(color: AppColors.subtitleTextColor),
-                  ),
-            // value: controller.state.deptName.value,
-            onChanged: (String? value) {
-              controller.state.deptName.value = value!;
-            },
-            items: [
-              DropdownMenuItem(
-                value: 'Principle',
-                child: Text('Principle'),
-              ),
-              DropdownMenuItem(
-                value: 'Vice-Principle',
-                child: Text('Vice_Principle'),
-              ),
-              DropdownMenuItem(
-                value: 'Staff',
-                child: Text('Staff'),
-              ),
-              DropdownMenuItem(
-                value: 'IT',
-                child: Text('IT'),
-              ),
-              DropdownMenuItem(
-                value: 'English',
-                child: Text('English'),
-              ),
-              DropdownMenuItem(
-                value: 'Math',
-                child: Text('Math'),
-              ),
-              DropdownMenuItem(
-                value: 'Physics',
-                child: Text('Physics'),
-              ),
-              DropdownMenuItem(
-                value: 'Economics',
-                child: Text('Economics'),
-              ),
-              DropdownMenuItem(
-                value: 'Biology',
-                child: Text('Biology'),
-              ),
-              DropdownMenuItem(
-                value: 'Urdu',
-                child: Text('Urdu'),
-              ),
-              DropdownMenuItem(
-                value: 'Chemistry',
-                child: Text('Chemistry'),
-              ),
-            ],
-          ),
-        ));
-  }
+  // Widget dropDownList() {
+  //   return Obx(() => Expanded(
+  //         flex: 0,
+  //         child: DropdownButton(
+  //           iconEnabledColor: AppColors.lightActiveIconColor,
+  //           dropdownColor: AppColors.lightBgColor,
+  //           style: TextStyle(color: AppColors.lightActiveIconColor),
+  //           iconSize: 40.0.h,
+  //           hint: controller.state.deptName.value == ""
+  //               ? Text(
+  //                   "selectDept",
+  //                   style: TextStyle(color: AppColors.titleTextColor),
+  //                 )
+  //               : Text(
+  //                   controller.state.deptName.value,
+  //                   style: TextStyle(color: AppColors.subtitleTextColor),
+  //                 ),
+  //           // value: controller.state.deptName.value,
+  //           onChanged: (String? value) {
+  //             controller.state.deptName.value = value!;
+  //           },
+  //           items: [
+  //             DropdownMenuItem(
+  //               value: 'Principle',
+  //               child: Text('Principle'),
+  //             ),
+  //             DropdownMenuItem(
+  //               value: 'Vice-Principle',
+  //               child: Text('Vice_Principle'),
+  //             ),
+  //             DropdownMenuItem(
+  //               value: 'Staff',
+  //               child: Text('Staff'),
+  //             ),
+  //             DropdownMenuItem(
+  //               value: 'IT',
+  //               child: Text('IT'),
+  //             ),
+  //             DropdownMenuItem(
+  //               value: 'English',
+  //               child: Text('English'),
+  //             ),
+  //             DropdownMenuItem(
+  //               value: 'Math',
+  //               child: Text('Math'),
+  //             ),
+  //             DropdownMenuItem(
+  //               value: 'Physics',
+  //               child: Text('Physics'),
+  //             ),
+  //             DropdownMenuItem(
+  //               value: 'Economics',
+  //               child: Text('Economics'),
+  //             ),
+  //             DropdownMenuItem(
+  //               value: 'Biology',
+  //               child: Text('Biology'),
+  //             ),
+  //             DropdownMenuItem(
+  //               value: 'Urdu',
+  //               child: Text('Urdu'),
+  //             ),
+  //             DropdownMenuItem(
+  //               value: 'Chemistry',
+  //               child: Text('Chemistry'),
+  //             ),
+  //           ],
+  //         ),
+  //       ));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -275,11 +275,11 @@ class dispatchFileForm extends GetView<dispatchController> {
                     },
                   ),
                   SizedBox(height: 10.h,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [Text('Select Dept'), dropDownList()],
-                  ),
-                  SizedBox(height: 10.h,),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [Text('Select Dept'), dropDownList()],
+                  // ),
+                  // SizedBox(height: 10.h,),
                   Obx(
                     () => controller.state.loading.value == true
                         ?  Center(
@@ -296,7 +296,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                               .toString();
                           controller.dispatchfileDataOnFirebase(controller.documentId,
                               controller.state.subjectController.text.trim(),
-                              controller.state.deptName.value.trim(),
+                              // controller.state.deptName.value.trim(),
                               controller.state.letterNumController.text.trim(),
                               controller.state.serialNumcontroller.text.trim(),
                               controller.state.receiverNameController.text.trim(),

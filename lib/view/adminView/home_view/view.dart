@@ -20,31 +20,7 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      // appBar: AppBar(
-      //   backgroundColor: Colors.transparent,
-      //   centerTitle: true,
-      //   elevation: 0,
-      //   title: Text(
-      //     'HomeView',
-      //     style: TextStyle(
-      //       fontWeight: FontWeight.bold,
-      //       color: AppColors.buttonBgColor,
-      //     ),
-      //   ),
-      //   actions: [
-      //     IconButton(
-      //       onPressed: () {
-      //         Get.offNamed(RouteNames.loginview);
-      //       },
-      //       icon: Icon(Icons.login_outlined),
-      //     )
-      //   ],
-      // ),
       body:
-
-
-
-
       Stack(
         children: [
           Container(
@@ -54,12 +30,42 @@ class HomeView extends GetView<HomeController> {
           ClipPath(
             clipper: CustomCurveClipper(),
             child: Container(
-              height: 300.h,
-              color: AppColors.sessionPageBgColor, // Bottom color
+              height: 150.h,
+              color: AppColors.sessionPageBgColor,
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 30),
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Image.asset(
+                        "assets/images/AMC DOC.png",
+                        width: 250,
+                        height: 250,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 40,
+                    right: 1,
+                    child: IconButton(
+                      color: AppColors.sessionPageTextColor,
+                      icon: Icon(Icons.login_outlined),
+                      onPressed: () {
+                         Get.offNamed(RouteNames.loginview);
+
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
+
+
+      SizedBox(height: 20,),
           Padding(
-            padding: EdgeInsets.only(top: 30.h),
+            padding: EdgeInsets.only(top: 100.h),
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: ListView(
@@ -72,14 +78,15 @@ class HomeView extends GetView<HomeController> {
                     title: "Users",
                     icon: Icons.supervised_user_circle,
                   ),
+                  // SizedBox(height: 15.h),
+                  // SectionCard(
+                  //   onpress: () {
+                  //     Get.to(() => DastakFoodApp());
+                  //   },
+                  //   title: "Send File",
+                  //   icon: Icons.send,
+                  // ),
                   SizedBox(height: 15.h),
-                  SectionCard(
-                    onpress: () {
-                      Get.to(() => DastakFoodApp());
-                    },
-                    title: "Send File",
-                    icon: Icons.send,
-                  ),
                   SectionCard(
                     onpress: () {
                       Get.toNamed(RouteNames.receivedfileview);
@@ -108,6 +115,11 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
           ),
+
+
+
+
+
         ],
       ),
     );
@@ -129,91 +141,6 @@ class CustomCurveClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }
-
-// import 'package:amc_management/res/colors.dart';
-// import 'package:amc_management/utils/routes/routes.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:get/get.dart';
-// import '../../../model/services/session_Controller.dart';
-// import '../../../res/components/adminViewComponents/custom_container.dart';
-// import '../../../res/components/adminViewComponents/homeViewComponents/sectionCard.dart';
-// import '../../../utils/routes/routes_name.dart';
-// import '../../scanimages/view.dart';
-// import 'index.dart';
-// class HomeView extends GetView<HomeController> {
-//   const HomeView({super.key});
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: AppColors.adminhomebackgroundColor,
-//         // backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-//         resizeToAvoidBottomInset: false,
-//       appBar: AppBar(
-//         backgroundColor: Colors.transparent,
-//         centerTitle: true,
-//         elevation: 0,
-//         title: Text(
-//           'HomeView',
-//           style: TextStyle(fontWeight: FontWeight.bold,
-//           color: AppColors.buttonBgColor
-//           ),
-//         ),
-//         actions: [
-//            IconButton(onPressed: (){
-//              Get.offNamed(RouteNames.loginview);
-//           }, icon: Icon(Icons.login_outlined))
-//         ],
-//       ),
-//       body: Padding(
-//         padding: EdgeInsets.symmetric(horizontal: 10 , vertical: 15),
-//         child: Padding(
-//           padding: EdgeInsets.all(16.0),
-//           child: ListView(
-//             children: [
-//               SizedBox(height: 30.h,),
-//               SectionCard(
-//                 onpress: (){
-//                   Get.toNamed(RouteNames.userlistview);
-//                 },
-//                 title: "Users",
-//                 icon: Icons.supervised_user_circle,
-//               ),
-//               SizedBox(height: 15.h,),
-//               SectionCard(
-//                 onpress: (){
-//                   Get.to(()=>DastakFoodApp());
-//                 },
-//                 title: "Send File",
-//                 icon: Icons.send,
-//               ),
-//               SectionCard(
-//                 onpress:(){
-//                   Get.toNamed(RouteNames.receivedfileview);
-//                 },
-//                 title: "Received File",
-//                 icon: Icons.add,
-//               ),
-//               SizedBox(height: 15.h,),
-//
-//               SectionCard(
-//                 onpress: (){
-//                   Get.toNamed(RouteNames.dispatchview);
-//                 },
-//                 title: "Dispatch File",
-//                 icon: Icons.call_split,
-//               ),
-//               SizedBox(height: 15.h,),
-//               SectionCard(title: 'Diary Num Register', onpress: (){
-//                 Get.toNamed(RouteNames.diaryNumView);
-//               }, icon: Icons.book_online_outlined)
-//             ],
-//           ),
-//         ),
-//       )
-//     );
-//   }
-// }
 
 
 

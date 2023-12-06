@@ -20,7 +20,7 @@ class dispatchState {
   final dateFocusNode = FocusNode();
   DateTime selectedDate = DateTime.now();
   final ref = FirebaseFirestore.instance.collection('dispatchFile');
-  var deptName = 'Select'.obs;
+  // var deptName = 'Select'.obs;
   RxInt imageNo = 0.obs;
   RxBool loading = false.obs;
   final auth = FirebaseAuth.instance;

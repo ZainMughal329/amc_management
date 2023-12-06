@@ -15,7 +15,7 @@ class dispatchFileShowContainer extends StatelessWidget {
   String receiverAddress;
   String serialNum;
   String letterNum;
-  String Dept;
+  // String Dept;
   String id;
 
    String date;
@@ -27,7 +27,7 @@ class dispatchFileShowContainer extends StatelessWidget {
      required this.serialNum,
      required this.letterNum,
      required this.id,
-     required this.Dept
+     // required this.Dept
      // required this.img,
   });
 
@@ -196,13 +196,13 @@ class dispatchFileShowContainer extends StatelessWidget {
                               SizedBox(
                                 height: 15,
                               ),
-                              GestureDetector(
-                                onTap: () {},
-                                child: ReuseableRow(
-                                    title: 'Dept',
-                                    iconData: Icons.place_outlined,
-                                    value: Dept),
-                              ),
+                              // GestureDetector(
+                              //   onTap: () {},
+                              //   child: ReuseableRow(
+                              //       title: 'Dept',
+                              //       iconData: Icons.place_outlined,
+                              //       value: Dept),
+                              // ),
                               SizedBox(
                                 height: 15,
                               ),

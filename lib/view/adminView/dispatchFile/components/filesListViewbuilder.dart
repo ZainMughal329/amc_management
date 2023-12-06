@@ -82,10 +82,10 @@ class FileList extends GetView<dispatchController> {
                                                   id: snapshot.data!.docs[index]
                                                   ['Id'],
                                                   letterNum: snapshot.data!.docs[index]['letterNum'],
-                                                  Dept: snapshot
-                                                      .data!
-                                                      .docs[index]
-                                                  ['dept'],
+                                                  // Dept: snapshot
+                                                  //     .data!
+                                                  //     .docs[index]
+                                                  // ['dept'],
                                                   subject: snapshot.data!.docs[index]['subject'],
                                                   serialNum: snapshot
                                                       .data!

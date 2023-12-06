@@ -90,10 +90,10 @@ class receivedFileDataList extends GetView<receivedFileController> {
                                                         receiverAddress: snapshot.data!.docs[index]['receivedAddress'],
                                                         id: snapshot.data!.docs[index]
                                                         ['Id'],
-                                                        dept: snapshot
-                                                            .data!
-                                                            .docs[index]
-                                                        ['dept'],
+                                                        // dept: snapshot
+                                                        //     .data!
+                                                        //     .docs[index]
+                                                        // ['dept'],
                                                         serialNum: snapshot
                                                             .data!
                                                             .docs[index]

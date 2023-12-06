@@ -99,7 +99,10 @@ class SignUpView extends GetView<SignupController> {
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Column(
                 children: [
-                  const SizedBox(height: 150),
+                  const SizedBox(
+                    height: 70,
+                  ),
+                  Image(image: AssetImage('assets/images/AMC.png')),
                   TextWidget(
                     title: 'Register',
                     fontSize: 28,

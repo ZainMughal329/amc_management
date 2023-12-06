@@ -27,15 +27,14 @@ class LoginView extends GetView<LoginController> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 150,
+                  height: 70,
                 ),
-                Center(
-                    child: TextWidget(
-                      title: "Welcome back",
-                      textColor:AppColors.sessionPageTextColor,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                    )
+                Image(image: AssetImage('assets/images/AMC.png')),
+                TextWidget(
+                  title: "Welcome back",
+                  textColor:AppColors.sessionPageTextColor,
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
                 ),
                 // FadeIn(
                 //     duration: Duration(milliseconds: 1200),

@@ -31,7 +31,7 @@ class diaryNumView extends GetView<diaryNumberController> {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: CircleAvatar(
-                    backgroundColor: AppColors.buttonColour,
+                    backgroundColor: AppColors.fileTabBarIconButtonColor,
                     child: IconButton(
                       onPressed: () {
                         Get.back();

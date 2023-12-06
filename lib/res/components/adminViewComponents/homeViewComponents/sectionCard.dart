@@ -41,11 +41,11 @@ class SectionCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Icon(icon, size: 64.0, color: AppColors.admincardiconColor),
+            Icon(icon, size: 64.0, color: AppColors.homeViewcardIconColor),
             SizedBox(height: 16.0),
             Text(
               title,
-              style: TextStyle(fontSize: 24.0, color: AppColors.admincardtextColor),
+              style: TextStyle(fontSize: 24.0, color: AppColors.homeCardTextColor),
             ),
           ],
         ),

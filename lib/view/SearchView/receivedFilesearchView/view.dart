@@ -126,8 +126,8 @@ class SearchView extends GetView<SearchBarController> {
                                                 ['Id'],
                                                 receiverAddress: item['receivedAddress'],
                                                 receiverName: item['receiverName'],
-                                                dept: item
-                                                ['dept'],
+                                                // dept: item
+                                                // ['dept'],
                                                 serialNum: item
                                                 ['FileNum'],
                                                 receivedFrom: item['From']));
