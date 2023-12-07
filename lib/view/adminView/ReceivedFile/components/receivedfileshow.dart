@@ -128,14 +128,6 @@ class receivedFileShowContainer extends StatelessWidget {
                           itemHeight: 270.h,
                           itemWidth: 250.w,
                           layout: SwiperLayout.STACK,
-                          //   indicatorLayout: PageIndicatorLayout.COLOR,
-                          //   scrollDirection: Axis.vertical,
-                          //   pagination: const SwiperPagination(
-                          // alignment: Alignment.centerRight,
-                          //
-                          //   ),
-                          //   autoplay: false,
-                          //   control: const SwiperControl(),
                         );
                 }),
               ),
@@ -144,7 +136,7 @@ class receivedFileShowContainer extends StatelessWidget {
               // File Details Section
               Expanded(
                 child: Obx(
-                  () => controller.state.loaded.value == false
+                  () => controller.state.loaded.value == true
                       ? Center(
                           child: CircularProgressIndicator(
                             color: AppColors.buttonColour,
@@ -175,19 +167,11 @@ class receivedFileShowContainer extends StatelessWidget {
                                       iconData: Icons.calendar_today_outlined,
                                       value: date,
                                     ),
-                                    // GestureDetector(
-                                    //   onTap: () {},
-                                    //   child: reusebleRow(
-                                    //     title: 'Dept',
-                                    //     iconData: Icons.place_outlined,
-                                    //     value: dept,
-                                    //   ),
-                                    // ),
                                   ],
                                 ),
                               ),
                               SizedBox(height: 15),
-                              // Container for ReceivedFrom
+                              // // Container for ReceivedFrom
                               Container(
                                 padding: EdgeInsets.all(16),
                                 decoration: BoxDecoration(
@@ -227,19 +211,22 @@ class receivedFileShowContainer extends StatelessWidget {
                                 ),
                                 child: Column(
                                   children: [
-                                    reusebleRow(
-                                      onpress: () {
+                                    GestureDetector(
+                                      onTap:(){
                                         controller.showserialNumDialogAlert(
                                           context,
                                           controller.state.serialNum.value
                                               .toString(),
                                           id,
                                         );
-                                      },
-                                      title: 'SerialNum',
-                                      iconData: Icons.format_list_numbered,
-                                      value: controller.state.serialNum.value
-                                          .toString(),
+
+                              },
+                                      child: reusebleRow(
+                                        title: 'SerialNum',
+                                        iconData: Icons.format_list_numbered,
+                                        value: controller.state.serialNum.value
+                                            .toString(),
+                                      ),
                                     ),
                                     SizedBox(height: 15),
 
@@ -285,7 +272,6 @@ class receivedFileShowContainer extends StatelessWidget {
                         ),
                 ),
               ),
-
             ],
           ),
         ),

@@ -18,10 +18,11 @@ class diaryNumView extends GetView<diaryNumberController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldBgColour,
+      backgroundColor: AppColors.sessionPageBgColor,
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
-        child:SafeArea(child: Padding(
+        child:SafeArea(
+            child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 0),
           child: Column(
             children: [
@@ -31,19 +32,28 @@ class diaryNumView extends GetView<diaryNumberController> {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: CircleAvatar(
-                    backgroundColor: AppColors.fileTabBarIconButtonColor,
+                    backgroundColor: AppColors.sessionPageTextColor,
                     child: IconButton(
                       onPressed: () {
                         Get.back();
                       },
                       icon: Icon(
                         Icons.arrow_back,
-                        color: Colors.white,
+                        color: AppColors.tittleColour,
                       ),
                     ),
                   ),
                 ),
               ),
+              // Padding(
+              //   padding: const EdgeInsets.only(bottom: 30),
+              //   child: Align(
+              //     alignment: Alignment.topCenter,
+              //     child: Image(
+              //       image: AssetImage('assets/images/AMC.png'),height: 30,fit: BoxFit.fitHeight,
+              //     ),
+              //   ),
+              // ),
               SizedBox(height: 5.h),
               Align(
                 alignment: Alignment.topLeft,
@@ -59,15 +69,24 @@ class diaryNumView extends GetView<diaryNumberController> {
                   unselectedLabelColor: Colors.grey,
                   tabs: [
                     Tab(
-                      text: 'DiaryNum Form',
+                      child: Text(
+                        'DiaryNum Form',
+                    style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.sessionPageTextColor),
+                      ),
+                      // text: 'DiaryNum Form',
                     ),
                     Tab(
-                      text: 'Files',
+                      child: Text('Files',
+                        style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.sessionPageTextColor),
+
+                      ),
+                      // text: 'Files',
                     ),
                   ],
                 ),
               ),
               Container(
+                // color: Colors.red,
                 height: 598.h,
                 width: double.infinity,
                 child: TabBarView(
@@ -86,3 +105,4 @@ class diaryNumView extends GetView<diaryNumberController> {
     );
   }
 }
+
