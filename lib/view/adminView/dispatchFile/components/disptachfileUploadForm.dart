@@ -87,7 +87,7 @@ class dispatchFileForm extends GetView<dispatchController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldBgColour,
+      backgroundColor: AppColors.filesBgColour,
       resizeToAvoidBottomInset: true,
       body: SingleChildScrollView(
         child: Form(

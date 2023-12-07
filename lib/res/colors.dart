@@ -34,6 +34,7 @@ class AppColors {
 
   // colors for files Section
  static const fileTabBarIconButtonColor = Colors.blueGrey;
+ static const Color filesBgColour = Color(0xFFFFFFFF);
 
 
 

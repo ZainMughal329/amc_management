@@ -18,7 +18,7 @@ class ProfileView extends GetView<profileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldBgColour,
+      backgroundColor: AppColors.filesBgColour,
       appBar: AppBar(
         backgroundColor: AppColors.appBarBgColour,
         title: const Text(

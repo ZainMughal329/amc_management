@@ -53,7 +53,7 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
           ),
         ],
       ),
-      backgroundColor: AppColors.scaffoldBgColour,
+      backgroundColor: AppColors.filesBgColour,
       resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: Padding(

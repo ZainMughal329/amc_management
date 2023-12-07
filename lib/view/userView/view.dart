@@ -26,7 +26,7 @@ class userView extends GetView<userViewController> {
     final GlobalKey<ScaffoldState> _scaffoldKey =
         new GlobalKey<ScaffoldState>();
     return Scaffold(
-      backgroundColor: AppColors.scaffoldBgColour,
+      backgroundColor: AppColors.filesBgColour,
       appBar: AppBar(
         backgroundColor: AppColors.appBarBgColour,
         title: Text(

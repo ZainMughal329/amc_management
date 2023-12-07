@@ -88,7 +88,7 @@ class diaryNumberForm extends GetView<dataUplaodController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldBgColour,
+      backgroundColor: AppColors.filesBgColour,
       resizeToAvoidBottomInset: true,
       body: GetBuilder<dataUplaodController>(
         init: dataUplaodController(),

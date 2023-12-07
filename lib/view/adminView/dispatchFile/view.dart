@@ -16,7 +16,7 @@ class dispatchView extends GetView<dispatchController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldBgColour,
+      backgroundColor: AppColors.filesBgColour,
       body: ListView(
         children: [
           SizedBox(height: 15.h),

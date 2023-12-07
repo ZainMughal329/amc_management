@@ -4,6 +4,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+import '../../../colors.dart';
 class customTextField extends StatelessWidget {
   final String? hintText;
   final TextEditingController? controller;
@@ -15,6 +18,7 @@ class customTextField extends StatelessWidget {
   final IconData? suffixIcon;
   final VoidCallback? onPressSufix;
   final FormFieldValidator? onvalidator;
+  Color? lableColor;
   final bool enable ,autoFocous;
   customTextField(
       {super.key,
@@ -22,6 +26,7 @@ class customTextField extends StatelessWidget {
         this.lableText,
         this.hintText,
         this.focusNode,
+        this.lableColor=AppColors.tittleColour,
         this.suffixIcon,
         this.prefixIcon,
         this.onFiledSubmittedValue,
@@ -52,6 +57,11 @@ class customTextField extends StatelessWidget {
               hintText: hintText,
               prefixIcon: prefixIcon,
               labelText: lableText,
+              labelStyle: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                    color: lableColor
+                ),
+              ),
               enabled: enable,
               contentPadding: EdgeInsets.all(15),
               border: OutlineInputBorder(
