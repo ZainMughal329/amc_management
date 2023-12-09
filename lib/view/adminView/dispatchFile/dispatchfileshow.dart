@@ -36,7 +36,7 @@ class dispatchFileShowContainer extends StatelessWidget {
 
     final controller = Get.put<dispatchController>(dispatchController());
     controller.fetchDataOfFile(id);
-    controller.fetchImageUrls(id).then((urls) {
+    controller.FetchImageUrls(id).then((urls) {
       print("urls" + urls.toString());
       controller.fetchedImageUrls = urls;
       controller.setFetchLoading(false);

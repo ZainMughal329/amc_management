@@ -58,11 +58,10 @@ class FileList extends GetView<dispatchController> {
                                   ['serialNum']),
                                   _buildListTile(icon: Icons.date_range_outlined, title: 'Date', content:formattedDate),
                                   _buildListTile(icon: Icons.person_outlined, title: 'Received Name', content: snapshot.data!.docs[index]
-                                  ['receiverName']),
-                                  _buildListTile(icon:Icons.cabin , title: 'Department', content:snapshot.data!.docs[index]
-                                  ['Dept'], ),
+                                  ['recieverName']),
                                   _buildListTile(icon:Icons.cabin , title: 'Letter Num', content:snapshot.data!.docs[index]
                                   ['letterNum'], ),
+
 
 
 

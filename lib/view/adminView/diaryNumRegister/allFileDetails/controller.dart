@@ -31,8 +31,6 @@ class diaryFilesDetailController extends GetxController {
     // for image list
     getImageUrls().then((urls) => {state.imageUrls = urls});
   }
-
-
   List<String> images = [];
   String documentId = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -46,27 +44,57 @@ class diaryFilesDetailController extends GetxController {
   List<String> fetchedImageUrls = [];
   RxBool fetchedLoading = true.obs;
 
-
   Future<List<String>> fetchImageUrls(String docId) async {
     setFetchLoading(true);
-    final snapshot = await FirebaseFirestore.instance
-        .collection('diaryNumberRegister')
-        .doc(docId)
-        .get();
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('diaryNumberRegister')
+          .doc(docId)
+          .get();
+      print("Firestore Snapshot: ${snapshot.data()}");
 
-    final List<String> imageUrls =
-    List<String>.from(snapshot.data()!['images']);
-    return imageUrls;
+      if (snapshot.exists) {
+        final dynamic imagesData = snapshot.data()!['images'];
+
+        if (imagesData is List<dynamic>) {
+          final List<String> imageUrls = List<String>.from(imagesData.map((e) => e.toString()));
+          return imageUrls;
+        } else {
+          return [];
+        }
+      } else {
+        print('Document does not exist');
+        return [];
+      }
+    } catch (e) {
+      print('Error fetching data: $e');
+      return [];
+    }
+
+    // final List<dynamic> dynamicImageUrls = snapshot.data()!['images'];
+    // final List<String> imageUrls = List<String>.from(dynamicImageUrls.map((e) => e.toString()));
+    // return imageUrls;
   }
+
+  // Future<List<String>> fetchImageUrls(String docId) async {
+  //   setFetchLoading(true);
+  //   final snapshot = await FirebaseFirestore.instance
+  //       .collection('diaryNumberRegister')
+  //       .doc(docId)
+  //       .get();
+  //
+  //   final List<String> imageUrls =
+  //   List<String>.from(snapshot.data()!['images']);
+  //   return imageUrls;
+  // }
   Future<List<String>> getImageUrls() async {
     final QuerySnapshot querySnapshot = await state.ref.get();
-
     final List<String> imageUrls = [];
     querySnapshot.docs.forEach((doc) {
       final data = doc.data() as Map<String, dynamic>;
       if (data.containsKey('imageUrl')) {
         final imageUrl = data[
-        'images']; // Assuming 'imageUrl' is the field name where you store image URLs.
+        'images'];
         imageUrls.add(imageUrl);
       }
     });
@@ -82,6 +110,8 @@ class diaryFilesDetailController extends GetxController {
  // for updation of data
   fetchDataOfFiles(String id) async {
     try{
+      setFetchLoading(true);
+
       documentSnapshot =
       await FirebaseFirestore.instance.collection('diaryNumberRegister').doc(id).get();
       if (documentSnapshot!.exists) {
@@ -109,6 +139,8 @@ class diaryFilesDetailController extends GetxController {
       }
     } catch(e){
       print('exception : ' + e.toString());
+    }finally{
+      setFetchLoading(false);
     }
 
   }

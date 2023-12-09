@@ -7,8 +7,6 @@ import 'package:amc_management/view/scanimages/view.dart';
 import 'package:amc_management/view/userView/bindings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
-import '../../view/SearchView/receivedFilesearchView/bindings.dart';
-import '../../view/SearchView/receivedFilesearchView/view.dart';
 import '../../view/SessionView/forgot/bindings.dart';
 import '../../view/SessionView/forgot/view.dart';
 import '../../view/SessionView/login/bindings.dart';
@@ -17,9 +15,11 @@ import '../../view/SessionView/signUp/bindings.dart';
 import '../../view/SessionView/signUp/view.dart';
 import '../../view/SessionView/splash/bindings.dart';
 import '../../view/SessionView/splash/view.dart';
-import '../../view/adminView/ReceivedFile/bindings.dart';
-import '../../view/adminView/ReceivedFile/components/receivedfileshow.dart';
-import '../../view/adminView/ReceivedFile/view.dart';
+import '../../view/adminView/ReceivedFile/receivedFileDetails/view.dart';
+import '../../view/adminView/ReceivedFile/receivedFileSearchView/bindings.dart';
+import '../../view/adminView/ReceivedFile/receivedFileSearchView/view.dart';
+import '../../view/adminView/ReceivedFile/receivedFileView/bindings.dart';
+import '../../view/adminView/ReceivedFile/receivedFileView/view.dart';
 import '../../view/adminView/diaryNumRegister/dataUplaodForm/bindings.dart';
 import '../../view/adminView/diaryNumRegister/dataUplaodForm/view.dart';
 import '../../view/adminView/diaryNumRegister/listOfImages/bindings.dart';
@@ -108,7 +108,7 @@ class AppPages {
       transition: Transition.zoom,
 
     ),
-    GetPage(name: RouteNames.receivedfileshowcontainer, page:()=> receivedFileShowContainer(
+    GetPage(name: RouteNames.receivedfileshowcontainer, page:()=> receivedFileDetailsView(
         id: "",
         // dept: "",
         date: "",

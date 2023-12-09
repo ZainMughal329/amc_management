@@ -18,7 +18,7 @@ class diaryNumView extends GetView<diaryNumberController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.sessionPageBgColor,
+      backgroundColor: AppColors.filesBgColour,
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child:SafeArea(
@@ -32,14 +32,14 @@ class diaryNumView extends GetView<diaryNumberController> {
                 child: Align(
                   alignment: Alignment.topLeft,
                   child: CircleAvatar(
-                    backgroundColor: AppColors.sessionPageTextColor,
+                    backgroundColor: AppColors.filesIconButtonBgColour,
                     child: IconButton(
                       onPressed: () {
                         Get.back();
                       },
                       icon: Icon(
                         Icons.arrow_back,
-                        color: AppColors.tittleColour,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -54,7 +54,7 @@ class diaryNumView extends GetView<diaryNumberController> {
               //     ),
               //   ),
               // ),
-              SizedBox(height: 5.h),
+              SizedBox(height: 10.h),
               Align(
                 alignment: Alignment.topLeft,
                 child: TabBar(
@@ -71,13 +71,16 @@ class diaryNumView extends GetView<diaryNumberController> {
                     Tab(
                       child: Text(
                         'DiaryNum Form',
-                    style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.sessionPageTextColor),
+                    style: TextStyle(fontWeight: FontWeight.bold,
+                    ),
                       ),
                       // text: 'DiaryNum Form',
                     ),
                     Tab(
                       child: Text('Files',
-                        style: TextStyle(fontWeight: FontWeight.bold, color: AppColors.sessionPageTextColor),
+                        style: TextStyle(fontWeight: FontWeight.bold,
+                            // color: AppColors.sessionPageTextColor
+                        ),
 
                       ),
                       // text: 'Files',

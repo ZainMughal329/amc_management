@@ -437,7 +437,7 @@ class dispatchController extends GetxController
     fetchedLoading.value = val;
   }
 
-  Future<List<dynamic>> fetchImageUrls(String docId) async {
+  Future<List<dynamic>> FetchImageUrls(String docId) async {
     setFetchLoading(true);
     final snapshot = await FirebaseFirestore.instance
         .collection('dispatchFile')

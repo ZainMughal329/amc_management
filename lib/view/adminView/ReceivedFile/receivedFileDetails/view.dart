@@ -7,9 +7,8 @@ import '../../../../res/colors.dart';
 import 'controller.dart';
 import 'state.dart';
 
-// ... Your existing imports ...
 
-class receivedFileDetailsView extends GetView<receivedFileDetailController> {
+class receivedFileDetailsView extends StatelessWidget {
   String serialNum;
   String date;
   String receivedFrom;
@@ -32,12 +31,13 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
 
   @override
   Widget build(BuildContext context) {
+    final controller =receivedFileDetailController();
     final state = receivedFilesDetailState();
     CarouselController buttonCarouselController = CarouselController();
     controller.fetchDataOfFiles(id);
-    controller.fetchImageUrls(id).then((urls) {
+    controller.fetchimageUrls(id).then((urls) {
       print("urls" + urls.toString());
-      controller.fetchImageUrls = urls;
+      // controller.fetchImageUrls = urls;
       controller.setFetchLoading(false);
     });
     // ... Your existing build method ...
@@ -75,7 +75,7 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
                       backgroundColor: Colors.grey,
                       child: IconButton(
                         onPressed: () {
-                          controller.downloadImages(controller.fetchedImageUrls);
+                          // controller.downloadImages(controller.fetchedImageUrls);
                         },
                         icon: Icon(
                           Icons.download_outlined,
@@ -209,23 +209,23 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
                           ),
                           child: Column(
                             children: [
-                              GestureDetector(
-                                onTap:(){
-                                  controller.showserialNumDialogAlert(
-                                    context,
-                                    controller.state.serialNum.value
-                                        .toString(),
-                                    id,
-                                  );
-
-                                },
-                                child: reusebleRow(
-                                  title: 'SerialNum',
-                                  iconData: Icons.format_list_numbered,
-                                  value: controller.state.serialNum.value
-                                      .toString(),
-                                ),
-                              ),
+                              // GestureDetector(
+                              //   onTap:(){
+                              //     // controller.showserialNumDialogAlert(
+                              //     //   context,
+                              //     //   controller.state.serialNum.value
+                              //     //       .toString(),
+                              //     //   id,
+                              //     // );
+                              //
+                              //   },
+                              //   child: reusebleRow(
+                              //     title: 'SerialNum',
+                              //     iconData: Icons.format_list_numbered,
+                              //     // value: state.serialNum.value
+                              //     //     .toString(),
+                              //   ),
+                              // ),
                               SizedBox(height: 15),
 
                             ],

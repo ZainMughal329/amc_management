@@ -12,78 +12,6 @@ import 'listOfImages/listofimages.dart';
 
 class dispatchFileForm extends GetView<dispatchController> {
   dispatchFileForm({super.key});
-
-  // Widget dropDownList() {
-  //   return Obx(() => Expanded(
-  //         flex: 0,
-  //         child: DropdownButton(
-  //           iconEnabledColor: AppColors.lightActiveIconColor,
-  //           dropdownColor: AppColors.lightBgColor,
-  //           style: TextStyle(color: AppColors.lightActiveIconColor),
-  //           iconSize: 40.0.h,
-  //           hint: controller.state.deptName.value == ""
-  //               ? Text(
-  //                   "selectDept",
-  //                   style: TextStyle(color: AppColors.titleTextColor),
-  //                 )
-  //               : Text(
-  //                   controller.state.deptName.value,
-  //                   style: TextStyle(color: AppColors.subtitleTextColor),
-  //                 ),
-  //           // value: controller.state.deptName.value,
-  //           onChanged: (String? value) {
-  //             controller.state.deptName.value = value!;
-  //           },
-  //           items: [
-  //             DropdownMenuItem(
-  //               value: 'Principle',
-  //               child: Text('Principle'),
-  //             ),
-  //             DropdownMenuItem(
-  //               value: 'Vice-Principle',
-  //               child: Text('Vice_Principle'),
-  //             ),
-  //             DropdownMenuItem(
-  //               value: 'Staff',
-  //               child: Text('Staff'),
-  //             ),
-  //             DropdownMenuItem(
-  //               value: 'IT',
-  //               child: Text('IT'),
-  //             ),
-  //             DropdownMenuItem(
-  //               value: 'English',
-  //               child: Text('English'),
-  //             ),
-  //             DropdownMenuItem(
-  //               value: 'Math',
-  //               child: Text('Math'),
-  //             ),
-  //             DropdownMenuItem(
-  //               value: 'Physics',
-  //               child: Text('Physics'),
-  //             ),
-  //             DropdownMenuItem(
-  //               value: 'Economics',
-  //               child: Text('Economics'),
-  //             ),
-  //             DropdownMenuItem(
-  //               value: 'Biology',
-  //               child: Text('Biology'),
-  //             ),
-  //             DropdownMenuItem(
-  //               value: 'Urdu',
-  //               child: Text('Urdu'),
-  //             ),
-  //             DropdownMenuItem(
-  //               value: 'Chemistry',
-  //               child: Text('Chemistry'),
-  //             ),
-  //           ],
-  //         ),
-  //       ));
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -248,6 +176,8 @@ class dispatchFileForm extends GetView<dispatchController> {
                             ? 'Please Enter Receiver Name.'
                             : null;
                       }),
+                  SizedBox(height: 10.h,),
+
                   detailTextFormField(
                     controller: controller.state.receiverAddressController,
                     focusNode: controller.state.receiverAddressFocousNode,
@@ -262,7 +192,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                       return value.isEmpty ? 'Please Enter Receiver Address.' : null;
                     },
                   ),
-                  SizedBox(height: 10.h,),
+                  SizedBox(height: 15.h,),
 
                   detailTextFormField(
                     controller: controller.state.subjectController,
@@ -274,7 +204,7 @@ class dispatchFileForm extends GetView<dispatchController> {
                       return value.isEmpty ? 'Please Enter Subject of File.' : null;
                     },
                   ),
-                  SizedBox(height: 10.h,),
+                  SizedBox(height: 30.h,),
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   //   children: [Text('Select Dept'), dropDownList()],

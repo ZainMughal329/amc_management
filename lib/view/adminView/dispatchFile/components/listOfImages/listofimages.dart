@@ -56,7 +56,7 @@ class listOfImages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.primaryContainer,
+      backgroundColor: Colors.white,
       body: SizedBox(
         width: double.infinity,
         child: Stack(

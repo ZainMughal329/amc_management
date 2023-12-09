@@ -22,7 +22,8 @@ class ListOfFileView extends GetView<listOfImagesController> {
     required this.recieverName,
     // required this.deptName,
   }) : super(key: key);
-  final uploadFormCon=dataUplaodController();
+  final controller = listOfImagesController();
+  final uploadFormCon=uploadFormController();
   final con = MultiImagePickerController(
     maxImages: 10,
     withReadStream: true,

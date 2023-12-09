@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:amc_management/res/components/adminViewComponents/box_button.dart';
 import 'package:amc_management/utils/custom_Utils.dart';
+import 'package:amc_management/view/adminView/ReceivedFile/receivedFileUploadForm/controller.dart';
+import 'package:amc_management/view/adminView/ReceivedFile/receivedFileUploadForm/state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -9,17 +11,18 @@ import '../../../../res/colors.dart';
 import '../../../../res/components/adminViewComponents/sharedComponents/custom_addordispatchfields.dart';
 import '../../../../res/components/adminViewComponents/custom_button.dart';
 import '../../../../res/components/adminViewComponents/sharedComponents/detailTextForm.dart';
-import 'controller.dart';
 
-class receivedFileForm extends GetView<dataUplaodController> {
+class receivedFileForm extends GetView<uploadFormController> {
   receivedFileForm({super.key});
+  final state=dataUploadState();
+  final uplaodFormController = uploadFormController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.filesBgColour,
       resizeToAvoidBottomInset: true,
-      body: GetBuilder<dataUplaodController>(
-        init: dataUplaodController(),
+      body: GetBuilder<uploadFormController>(
+        init: uploadFormController(),
         builder: (controller) {
           return SingleChildScrollView(
             child: Padding(
@@ -42,8 +45,8 @@ class receivedFileForm extends GetView<dataUplaodController> {
                           onFiledSubmittedValue: (value) {
                             ReuseableUtils.fieldfocous(
                                 context,
-                                controller.state.serialNumFocusNode,
-                                controller.state.dateFocusNode);
+                                controller. state.serialNumFocusNode,
+                                controller. state.dateFocusNode);
                           },
                           onvalidator: (value) {
                             return value.isEmpty
@@ -53,10 +56,10 @@ class receivedFileForm extends GetView<dataUplaodController> {
                       SizedBox(
                         height: 10.h,
                       ),
-                      GetBuilder<dataUplaodController>(builder: (con) {
+                      GetBuilder<uploadFormController>(builder: (con) {
                         return customTextField(
                             keyboardType: TextInputType.datetime,
-                            focusNode: controller.state.dateFocusNode,
+                            focusNode:controller. state.dateFocusNode,
                             controller: con.state.dateController,
                             prefixIcon: Icon(Icons.date_range_outlined),
                             hintText:con.state.selectedDate !=null?
@@ -69,8 +72,8 @@ class receivedFileForm extends GetView<dataUplaodController> {
                             onFiledSubmittedValue: (value) {
                               ReuseableUtils.fieldfocous(
                                   context,
-                                  controller.state.dateFocusNode,
-                                  controller.state.receivedFromFocusNode);
+                                  controller. state.dateFocusNode,
+                                  controller. state.receivedFromFocusNode);
                             },
                             onvalidator: (value) {
                               return value.isEmpty ? 'Please Enter Date.' : null;
@@ -82,13 +85,13 @@ class receivedFileForm extends GetView<dataUplaodController> {
 
                       customTextField(
                         lableText: 'Received From',
-                        focusNode: controller.state.receivedFromFocusNode,
-                        controller: controller.state.receivedfromController,
+                        focusNode:controller. state.receivedFromFocusNode,
+                        controller:controller. state.receivedfromController,
                         onFiledSubmittedValue: (value) {
                           ReuseableUtils.fieldfocous(
                               context,
-                              controller.state.receivedFromFocusNode,
-                              controller.state.receiverNameFocusNode);
+                              controller. state.receivedFromFocusNode,
+                              controller.  state.receiverNameFocusNode);
                         },
                         onvalidator: (value) {
                           return value.isEmpty
@@ -102,13 +105,13 @@ class receivedFileForm extends GetView<dataUplaodController> {
                       ),
                       customTextField(
                         lableText: 'Receiver Name',
-                        focusNode: controller.state.receiverNameFocusNode,
-                        controller: controller.state.receiverNameController,
+                        focusNode:controller.state.receiverNameFocusNode,
+                        controller:controller. state.receiverNameController,
                         prefixIcon: Icon(Icons.person_outlined),
                         onFiledSubmittedValue: (value){
                           ReuseableUtils.fieldfocous(context,
-                              controller.state.receiverNameFocusNode,
-                              controller.state.receiverAddressFocusNode);
+                              controller. state.receiverNameFocusNode,
+                              controller. state.receiverAddressFocusNode);
                         },
                         onvalidator: (value){
                           return value.isEmpty
@@ -139,19 +142,19 @@ class receivedFileForm extends GetView<dataUplaodController> {
                       SizedBox(height: 30.h,),
 
                       // if(controller.state.isFormValid.value)
-                      Obx(() => controller.state.loading.value == false ? ReuseButton(
+                      Obx(() => state.loading.value == false ? ReuseButton(
                           tittle: 'Select Images',
-                          loading: controller.state.loading.value,
+                          loading: state.loading.value,
                           onpress: () {
                             String docId = DateTime.now().millisecondsSinceEpoch.toString();
                             controller.uploadReceivedFileDataOnFirebase(
                               controller.documentId,
-                              controller.state.selectedDate,
-                              controller.state.serialNumController.text.trim(),
+                              controller. state.selectedDate,
+                              controller. state.serialNumController.text.trim(),
                               // controller.state.deptName.value.trim(),
-                              controller.state.receiverNameController.text.trim(),
-                              controller.state.receiverAddressController.text.trim(),
-                              controller.state.receivedfromController.text
+                              controller.  state.receiverNameController.text.trim(),
+                              controller. state.receiverAddressController.text.trim(),
+                              controller. state.receivedfromController.text
                                   .trim(),
                             );
                           }) : Center(

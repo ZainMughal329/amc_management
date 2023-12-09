@@ -1,5 +1,12 @@
+
+
+
+
+
 import 'dart:io';
 
+import 'package:amc_management/view/adminView/ReceivedFile/listOfImages/state.dart';
+import 'package:amc_management/view/adminView/ReceivedFile/listOfImages/view.dart';
 import 'package:amc_management/view/adminView/ReceivedFile/receivedFileUploadForm/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -7,30 +14,24 @@ import 'package:get/get.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import '../../../../model/ReceivedFile_model/ReceivedFile_model.dart';
 import '../../../../utils/routes/routes_name.dart';
-import '../listOfImages/state.dart';
-import '../listOfImages/view.dart';
 
-class dataUplaodController extends GetxController{
+class uploadFormController extends GetxController{
   final state = dataUploadState();
-  String documentId = DateTime.now().millisecondsSinceEpoch.toString();
   final st = listOfImagestate();
+  String documentId = DateTime.now().millisecondsSinceEpoch.toString();
   void setLoading(value) {
     state.loading.value = value;
   }
-  // @override
-  // void dispose() {
-  //   // TODO: implement dispose
-  //   super.dispose();
-  //   state.dateController.dispose();
-  //   state.serialNumController.dispose();
-  //   state.receivedfromController.dispose();
-  //   state.detailFocusNode.dispose();
-  // }
 
-
-
-
-
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    state.dateController.dispose();
+    state.serialNumController.dispose();
+    state.receivedfromController.dispose();
+    state.detailFocusNode.dispose();
+  }
 
   getDateFromUser(BuildContext context) async {
     DateTime? pickerDate = await showDatePicker(
@@ -45,7 +46,6 @@ class dataUplaodController extends GetxController{
       print('select a date ');
     }
   }
-
 
   Future<void> uploadReceivedFileDataOnFirebase(
       String id,
@@ -125,7 +125,7 @@ class dataUplaodController extends GetxController{
       ).then((value) {
         print("image no is" + imageId.toString());
         print("image url is" + imageUrl.toString());
-        // clearDateFromScreen();
+         clearDateFromScreen();
         // images = [];
         Get.toNamed(RouteNames.homeview);
 
@@ -143,22 +143,19 @@ class dataUplaodController extends GetxController{
     }
   }
 
+clearDateFromScreen() {
 
+  state.dateController.clear();
+  state.receivedfromController.clear();
+  // state.nameController.clear();
+  state.serialNumController.clear();
+  // state.deptName.value = "Select";
+  state.detailController.clear();
+  state.receiverAddressController.clear();
+  state.receiverNameController.clear();
+  st.images=[];
 }
 
 
-
-  // clearDateFromScreen() {
-  //
-  //   state.dateController.clear();
-  //   state.receivedfromController.clear();
-  //   // state.nameController.clear();
-  //   state.serialNumController.clear();
-  //   // state.deptName.value = "Select";
-  //   state.detailController.clear();
-  //   state.receiverAddressController.clear();
-  //   state.receiverNameController.clear();
-  //   images=[];
-  // }
 
 }

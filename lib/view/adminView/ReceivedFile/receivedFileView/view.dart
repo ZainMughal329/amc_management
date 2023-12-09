@@ -34,7 +34,7 @@ class receivedFileView extends GetView<receivedFileController> {
                         )),
                       )),
                 ),
-                SizedBox(height: 5.h,),
+                SizedBox(height: 10.h,),
                 Container(
                   child: Align(
                     alignment: Alignment.topLeft,

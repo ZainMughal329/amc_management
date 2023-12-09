@@ -23,7 +23,8 @@ import '../receivedFileDetails/view.dart';
 import 'controller.dart';
 
 class receivedFileDataList extends GetView<receivedFilesListController> {
-  const receivedFileDataList({super.key});
+   receivedFileDataList({super.key});
+  final controller = receivedFilesListController();
 
   @override
   Widget build(BuildContext context) {

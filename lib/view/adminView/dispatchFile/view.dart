@@ -25,14 +25,14 @@ class dispatchView extends GetView<dispatchController> {
             child: Align(
               alignment: Alignment.topLeft,
               child: CircleAvatar(
-                backgroundColor: AppColors.buttonColour,
+                backgroundColor: AppColors.fileTabBarIconButtonColor,
                 child: IconButton(
                   onPressed: () {
                     Get.back();
                   },
                   icon: Icon(
                     Icons.arrow_back,
-                    color: Colors.white,
+                    color: AppColors.tittleColour,
                   ),
                 ),
               ),
@@ -49,7 +49,7 @@ class dispatchView extends GetView<dispatchController> {
                 radius: 4,
               ),
               controller: controller.tabController,
-              labelColor: AppColors.unActiveIconColor,
+              labelColor: AppColors.unActiveTabElementColor,
               unselectedLabelColor: Colors.grey,
               tabs: [
                 Tab(

@@ -39,7 +39,7 @@ class receivedFileDetailController extends GetxController{
    state.fetchedLoading.value = val;
   }
 
-  Future<List<String>> fetchImageUrls(String docId) async {
+  Future<List<String>> fetchimageUrls(String docId) async {
     setFetchLoading(true);
     final snapshot = await FirebaseFirestore.instance
         .collection('Received Files')

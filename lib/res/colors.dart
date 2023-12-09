@@ -35,6 +35,12 @@ class AppColors {
   // colors for files Section
  static const fileTabBarIconButtonColor = Colors.blueGrey;
  static const Color filesBgColour = Color(0xFFFFFFFF);
+ static const Color filesCardTextColour = Color(0xFFFFFFFF);
+ static const Color filesCardBgColour = Colors.blueGrey;
+ static const Color filesIconButtonBgColour = Colors.blueGrey;
+
+
+
 
 
 

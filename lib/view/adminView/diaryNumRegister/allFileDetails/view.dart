@@ -25,14 +25,19 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
 
   @override
   Widget build(BuildContext context) {
-    final con = Get.put(diaryFilesDetailController());
+    final controller = Get.put(diaryFilesDetailController());
     CarouselController buttonCarouselController = CarouselController();
-    controller.fetchDataOfFiles(id);
     controller.fetchImageUrls(id).then((urls) {
       print("urls" + urls.toString());
       controller.fetchedImageUrls = urls;
       controller.setFetchLoading(false);
     });
+    // controller.fetchDataOfFiles(id);
+    // controller.fetchImageUrls(id).then((urls) {
+    //   print("urls" + urls.toString());
+    //   controller.fetchedImageUrls = urls;
+    //   controller.setFetchLoading(false);
+    // });
 
     return Scaffold(
       appBar: AppBar(
@@ -68,7 +73,9 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
                 return controller.fetchedLoading.value == true
                     ? Container(
                         child: Center(
-                          child: CircularProgressIndicator(),
+                          child: CircularProgressIndicator(
+                            color: AppColors.sessionPageBgColor,
+                          ),
                         ),
                       )
                     : Swiper(

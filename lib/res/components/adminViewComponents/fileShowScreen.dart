@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import '../../../view/adminView/ReceivedFile/state.dart';
+import '../../../view/adminView/ReceivedFile/receivedFileView/state.dart';
+
 class BeautifulCard extends StatelessWidget {
    //  String? imagePath;
    // String? date;

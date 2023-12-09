@@ -4,6 +4,7 @@ import 'package:amc_management/view/adminView/diaryNumRegister/allFilesList/cont
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../res/colors.dart';
@@ -46,7 +47,7 @@ class allFilesView extends GetView<allFilesController>{
                              return Padding(
                                padding: const EdgeInsets.all(8.0),
                                child: Card(
-                                 color: AppColors.cardBgColour,
+                                 color: AppColors.filesCardBgColour.withOpacity(0.8),
                                  shape: RoundedRectangleBorder(
                                    borderRadius:
                                    BorderRadius.circular(16.0),
@@ -138,7 +139,7 @@ class allFilesView extends GetView<allFilesController>{
                   height: 60,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: AppColors.buttonColour,
+                    color: AppColors.filesIconButtonBgColour.withOpacity(0.8),
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
                       // topRight: Radius.circular(10),
@@ -147,10 +148,12 @@ class allFilesView extends GetView<allFilesController>{
                   child: Center(
                     child: Text(
                       'Search files',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 23,
-                          fontWeight: FontWeight.w500),
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 23,
+                            fontWeight: FontWeight.w500)
+                      ),
                     ),
                   ),
                 ),
@@ -175,14 +178,16 @@ Widget _buildListTile({
       ListTile(
         dense: true, // Reduces the height of the ListTile
         contentPadding: EdgeInsets.symmetric(horizontal: 16),
-        leading: Icon(icon, color: AppColors.iCONColour, size: 22),
+        leading: Icon(icon, color: AppColors.filesCardTextColour, size: 22),
         title: Text(
           title,
-          style: TextStyle(fontSize: 16, color: AppColors.tittleColour),
+          style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 16, color: AppColors.filesCardTextColour)),
         ),
         trailing: Text(
           content,
-          style: TextStyle(fontSize: 14, color: AppColors.cardTextColourS),
+          style: GoogleFonts.poppins(
+            textStyle: TextStyle(fontSize: 14, color: AppColors.filesCardTextColour)
+          ),
         ),
       ),
       SizedBox(height: 4),
@@ -202,7 +207,7 @@ Widget _buildListTileForDept({
         leading: Icon(icon, color: AppColors.iCONColour, size: 22),
         title: Text(
           title,
-          style: TextStyle(fontSize: 16, color: AppColors.tittleColour),
+          style: TextStyle(fontSize: 16, color: AppColors.sessionPageTextColor),
         ),
         trailing: content is List<dynamic>
             ? Column(
@@ -210,13 +215,13 @@ Widget _buildListTileForDept({
           children: content
               .map((item) => Text(
             item.toString(),
-            style: TextStyle(fontSize: 16, color: AppColors.tittleColour),
+            style: TextStyle(fontSize: 16, color: AppColors.sessionPageTextColor),
           ))
               .toList(),
         )
             : Text(
           content.toString(),
-          style: TextStyle(fontSize: 16, color: AppColors.tittleColour),
+          style: TextStyle(fontSize: 16, color: AppColors.sessionPageTextColor),
         ),
       ),
       SizedBox(height: 4),
