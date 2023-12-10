@@ -83,7 +83,7 @@ class uploadFormController extends GetxController{
           fileNo: state.serialNumController.text
               .trim(),
           recieverName:
-          state.receivedfromController.text.trim(),
+          state.receivedfromController.text.trim(), id: id,
           // FileName:
           // state.nameController.text.trim(),
           // deptName: state.deptName.value,
@@ -107,15 +107,15 @@ class uploadFormController extends GetxController{
     try {
       setLoading(true);
       firebase_storage.Reference storageRef =
-      firebase_storage.FirebaseStorage.instance.ref('/Received Files' + timeStamp);
+      firebase_storage.FirebaseStorage.instance.ref('/ReceivedFiles' + timeStamp);
       firebase_storage.UploadTask uploadTask =
       storageRef.putFile(File(imagePath).absolute);
       await Future.value(uploadTask);
       imageUrl = await storageRef.getDownloadURL();
       // List<String> imageUrls = imageUrl;
       print('img 12' + imageUrl.toString());
-      print('id Is : ' + documentId);
-      await state.ref.doc(documentId).update(
+      print('id Is : ' + docId);
+      await state.ref.doc(docId).update(
         {
           'images': FieldValue.arrayUnion([imageUrl]),
           // imageId.toString() : imageUrl,

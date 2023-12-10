@@ -12,10 +12,12 @@ class ListOfFileView extends GetView<listOfImagesController> {
   String
   // deptName,
   details, recieverName, fileNo;
+  final String id;
   final DateTime date;
-  ListOfFileView({
+  ListOfFileView( {
     Key? key,
     // required this.FileName,
+    required this.id,
     required this.fileNo,
     required this.details,
     required this.date,
@@ -79,7 +81,7 @@ class ListOfFileView extends GetView<listOfImagesController> {
                       print(imageId);
                       String timestamp =
                       DateTime.timestamp().microsecondsSinceEpoch.toString();
-                      uploadFormCon.uploadimagelistonDatabase(imageId, docId, timestamp, data.path);
+                      uploadFormCon.uploadimagelistonDatabase(imageId, id, timestamp, data.path);
                       print(imageId.toString() + "after code");
                       controller.state.imageNo.value++;
                     }

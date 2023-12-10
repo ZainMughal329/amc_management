@@ -27,9 +27,9 @@ class diaryFilesDetailController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
+    getImageUrls().then((urls) => {state.imageUrls = urls});
     super.onInit();
     // for image list
-    getImageUrls().then((urls) => {state.imageUrls = urls});
   }
   List<String> images = [];
   String documentId = DateTime.now().millisecondsSinceEpoch.toString();
@@ -56,12 +56,14 @@ class diaryFilesDetailController extends GetxController {
       if (snapshot.exists) {
         final dynamic imagesData = snapshot.data()!['images'];
 
-        if (imagesData is List<dynamic>) {
-          final List<String> imageUrls = List<String>.from(imagesData.map((e) => e.toString()));
-          return imageUrls;
-        } else {
-          return [];
-        }
+
+        print('data:'+imagesData.toString());
+
+        final List<String> imageUrls =
+        List<String>.from(snapshot.data()!['images']);
+        print(imageUrls.length.toString());
+        return imageUrls;
+
       } else {
         print('Document does not exist');
         return [];
@@ -120,13 +122,14 @@ class diaryFilesDetailController extends GetxController {
         diaryFileModel = DiaryNumModel(
             id: id,
             // subject: documentSnapshot![''],
-            images: images,
+            images: [],
             dept: documentSnapshot!['Dept'],
             senderName:  documentSnapshot!['senderName'],
             receiverName:  documentSnapshot!['receiverName'],
             senderAddress:  documentSnapshot!['senderAddress'],
             serialNum:  documentSnapshot!['serialNum']
         );
+        print('name is:'+documentSnapshot!['Dept'].toString(),);
          state.serialNum.value = documentSnapshot!['serialNum'];
         state.senderAddress.value = documentSnapshot!['senderAddress'];
         state.receiverName.value = documentSnapshot!['receiverName'];

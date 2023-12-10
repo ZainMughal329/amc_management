@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class dataUploadState{
-  final ref = FirebaseFirestore.instance.collection('Received Files');
+  final ref = FirebaseFirestore.instance.collection('ReceivedFiles');
   final detailController = TextEditingController();
   final detailFocusNode = FocusNode();
   final receiverNameController =TextEditingController();
