@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import '../../../res/colors.dart';
@@ -17,6 +18,7 @@ class dispatchView extends GetView<dispatchController> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.filesBgColour,
+      resizeToAvoidBottomInset: false,
       body: ListView(
         children: [
           SizedBox(height: 15.h),
@@ -32,7 +34,7 @@ class dispatchView extends GetView<dispatchController> {
                   },
                   icon: Icon(
                     Icons.arrow_back,
-                    color: AppColors.tittleColour,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -49,14 +51,24 @@ class dispatchView extends GetView<dispatchController> {
                 radius: 4,
               ),
               controller: controller.tabController,
-              labelColor: AppColors.unActiveTabElementColor,
+              labelColor: AppColors.unActiveIconColor,
               unselectedLabelColor: Colors.grey,
               tabs: [
                 Tab(
-                  text: 'dispatchFile',
+                  child: Text(
+                      'dispatchFile',
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(fontWeight: FontWeight.bold,)
+                      )
+                  ),
                 ),
                 Tab(
-                  text: 'Files',
+                  child: Text(
+                      'Files',
+                      style: GoogleFonts.poppins(
+                          textStyle: TextStyle(fontWeight: FontWeight.bold,)
+                      )
+                  ),
                 ),
               ],
             ),

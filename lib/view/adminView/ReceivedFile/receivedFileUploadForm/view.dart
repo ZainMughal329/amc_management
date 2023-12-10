@@ -159,7 +159,7 @@ class receivedFileForm extends GetView<uploadFormController> {
                             );
                           }) : Center(
                         child: CircularProgressIndicator(
-                          color: AppColors.buttonColour,
+                          color: AppColors.filesCircularProgessIndicatorColour,
                         ),
                       ),),
                       // (controller.state.isFormValid.value)?

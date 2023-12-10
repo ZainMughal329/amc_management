@@ -38,6 +38,8 @@ class AppColors {
  static const Color filesCardTextColour = Color(0xFFFFFFFF);
  static const Color filesCardBgColour = Colors.blueGrey;
  static const Color filesIconButtonBgColour = Colors.blueGrey;
+ static const Color filesCircularProgessIndicatorColour = Colors.blueGrey;
+
 
 
 

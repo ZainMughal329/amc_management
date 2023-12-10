@@ -278,7 +278,7 @@ class diaryNumberForm extends GetView<dataUplaodController> {
                           ),
                           SizedBox(height: 5.h),
                           Obx(
-                                () => Text("Sel Depts: ${controller.state.selectedDepartments.join(', ')}"),
+                                () => Text("Departments: ${controller.state.selectedDepartments.join(', ')}"),
                           ),
                         ],
                       ),
@@ -307,7 +307,7 @@ class diaryNumberForm extends GetView<dataUplaodController> {
                         })
                             : Center(
                                 child: CircularProgressIndicator(
-                                  color: AppColors.buttonColour,
+                                  color: AppColors.filesCircularProgessIndicatorColour,
                                 ),
                               ),
                       )

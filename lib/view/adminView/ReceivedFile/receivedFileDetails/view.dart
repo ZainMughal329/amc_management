@@ -45,48 +45,30 @@ class receivedFileDetailsView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.filesBgColour,
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        backgroundColor: AppColors.appBarBgColour,
+        actions: [
+          IconButton(
+            onPressed: () {
+              // controller.downloadImages(controller.fetchedImageUrls);
+            },
+            icon: Icon(Icons.download_outlined),
+          ),
+          IconButton(
+            onPressed: () {
+              // controller.generatePDF(controller.fetchedImageUrls);
+              print('pdf create');
+            },
+            icon: Icon(Icons.picture_as_pdf),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
-              SizedBox(height: 20.h),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.grey,
-                      child: IconButton(
-                        onPressed: () {
-                          Get.back();
-                        },
-                        icon: Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.grey,
-                      child: IconButton(
-                        onPressed: () {
-                          // controller.downloadImages(controller.fetchedImageUrls);
-                        },
-                        icon: Icon(
-                          Icons.download_outlined,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
 
-                ],
-              ),
               SizedBox(height: 10.h),
               // Images Section
               Expanded(

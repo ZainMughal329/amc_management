@@ -93,7 +93,7 @@ class ListOfFileView extends GetView<listOfImagesController> {
                       width: double.infinity,
                       height: 60,
                       decoration: BoxDecoration(
-                        color: AppColors.buttonColour,
+                        color: AppColors.filesCardBgColour.withOpacity(0.8),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Obx(() => Center(

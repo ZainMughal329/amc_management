@@ -53,7 +53,7 @@ class receivedFileDataList extends GetView<receivedFilesListController> {
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Card(
-                                color: AppColors.cardBgColour,
+                                color: AppColors.filesCardBgColour.withOpacity(0.8),
                                 shape: RoundedRectangleBorder(
                                   borderRadius:
                                   BorderRadius.circular(16.0),
@@ -140,7 +140,7 @@ class receivedFileDataList extends GetView<receivedFilesListController> {
                   height: 60,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: AppColors.buttonColour,
+                    color: AppColors.filesIconButtonBgColour.withOpacity(0.8),
                     borderRadius: BorderRadius.all(
                       Radius.circular(20),
                       // topRight: Radius.circular(10),
@@ -175,14 +175,14 @@ Widget _buildListTile({
       ListTile(
         dense: true, // Reduces the height of the ListTile
         contentPadding: EdgeInsets.symmetric(horizontal: 16),
-        leading: Icon(icon, color: AppColors.iCONColour, size: 22),
+        leading: Icon(icon, color: AppColors.filesCardTextColour, size: 22),
         title: Text(
           title,
-          style: TextStyle(fontSize: 16, color: AppColors.tittleColour),
+          style: TextStyle(fontSize: 16, color: AppColors.filesCardTextColour),
         ),
         trailing: Text(
           content,
-          style: TextStyle(fontSize: 14, color: AppColors.cardTextColourS),
+          style: TextStyle(fontSize: 14, color: AppColors.filesCardTextColour),
         ),
       ),
       SizedBox(height: 4),

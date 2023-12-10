@@ -2,6 +2,7 @@ import 'package:amc_management/res/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../res/components/adminViewComponents/sharedComponents/tab_bar_setting.dart';
 import '../receivedFileUploadForm/view.dart';
 import '../receivedFilesList/view.dart';
@@ -30,7 +31,7 @@ class receivedFileView extends GetView<receivedFileController> {
                             onPressed: (){
                               Get.back();
                             }, icon: Icon(Icons.arrow_back,
-                          color: AppColors.tittleColour,
+                          color: Colors.white,
                         )),
                       )),
                 ),
@@ -44,14 +45,23 @@ class receivedFileView extends GetView<receivedFileController> {
                       EdgeInsets.only(right: 20,left: 20),
                       indicator: CircleTabIndicator(color: AppColors.lightActiveIconColor,radius: 4),
                       controller: controller.tabController,
-                      labelColor: AppColors.unActiveTabElementColor,
+                      labelColor: AppColors.unActiveIconColor,
                       unselectedLabelColor: Colors.grey,
                       tabs: [
                         Tab(
-                          text: 'UploadFile',
+                          child: Text('UploadFile',
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(fontWeight: FontWeight.bold,)
+                      )
+                          ),
                         ),
                         Tab(
-                          text: 'UploadedFiles',
+                          child: Text('UploadedFiles',
+                              style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(fontWeight: FontWeight.bold,)
+                              )
+                          ),
+
                         )
                       ],
                     ),
