@@ -32,9 +32,10 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
     print('length of : ' + controller.fetchImageUrls(id).toString());
     controller.fetchImageUrls(id).then((urls) {
       print("urls" + urls.toString());
-      controller.fetchedImageUrls = List<String>.from(urls);
+      controller.fetchedImageUrls.value = List<String>.from(urls);
       print('fetch:'+controller.fetchedImageUrls.length.toString());
       controller.setFetchLoading(false);
+
     });
     // controller.fetchDataOfFiles(id);
     // controller.fetchImageUrls(id).then((urls) {
@@ -84,8 +85,11 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
                         ),
                       )
                     : Swiper(
-                        itemCount: controller.fetchedImageUrls.length,
+                        itemCount: controller.fetchedImageUrls.value.length,
                         itemBuilder: (context, index) {
+                          print('length is:'+ controller.fetchedImageUrls.value.length.toString());
+                          print('length without value is:'+ controller.fetchedImageUrls.length.toString());
+
                           return Container(
                             margin: EdgeInsets.all(10.w),
                             decoration: BoxDecoration(
@@ -103,7 +107,7 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
                               borderRadius: BorderRadius.circular(15.0),
                               child: Image(
                                 image: NetworkImage(
-                                    controller.fetchedImageUrls[index]),
+                                    controller.fetchedImageUrls.value[index]),
                                 fit: BoxFit.fill,
                               ),
                             ),

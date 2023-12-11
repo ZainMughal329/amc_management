@@ -35,13 +35,15 @@ class diaryFilesDetailController extends GetxController {
   String documentId = DateTime.now().millisecondsSinceEpoch.toString();
 
   setFetchLoading(bool val) {
+
     state.fetchedLoading.value = val;
+
   }
   void setLoading(value) {
     state.loading.value = value;
   }
 
-  List<String> fetchedImageUrls = [];
+  RxList<String> fetchedImageUrls = <String>[].obs;
   RxBool fetchedLoading = true.obs;
 
   Future<List<String>> fetchImageUrls(String docId) async {
@@ -62,16 +64,23 @@ class diaryFilesDetailController extends GetxController {
         final List<String> imageUrls =
         List<String>.from(snapshot.data()!['images']);
         print(imageUrls.length.toString());
+
+
         return imageUrls;
 
       } else {
         print('Document does not exist');
+
+
         return [];
       }
     } catch (e) {
       print('Error fetching data: $e');
+
+
       return [];
     }
+
 
     // final List<dynamic> dynamicImageUrls = snapshot.data()!['images'];
     // final List<String> imageUrls = List<String>.from(dynamicImageUrls.map((e) => e.toString()));

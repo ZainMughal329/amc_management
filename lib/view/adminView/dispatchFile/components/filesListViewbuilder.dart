@@ -240,14 +240,14 @@ Widget _buildListTile({
       ListTile(
         dense: true, // Reduces the height of the ListTile
         contentPadding: EdgeInsets.symmetric(horizontal: 16),
-        leading: Icon(icon, color: AppColors.filesCardBgColour.withOpacity(0.8), size: 22),
+        leading: Icon(icon, color: AppColors.filesCardTextColour.withOpacity(0.8), size: 22),
         title: Text(
           title,
-          style: TextStyle(fontSize: 16, color: AppColors.filesCardBgColour.withOpacity(0.8)),
+          style: TextStyle(fontSize: 16, color: AppColors.filesCardTextColour.withOpacity(0.8)),
         ),
         trailing: Text(
           content,
-          style: TextStyle(fontSize: 14, color: AppColors.filesCardBgColour.withOpacity(0.8)),
+          style: TextStyle(fontSize: 14, color: AppColors.filesCardTextColour.withOpacity(0.8)),
         ),
       ),
       SizedBox(height: 4),

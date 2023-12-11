@@ -70,8 +70,8 @@ class receivedFileDataList extends GetView<receivedFilesListController> {
                                       _buildListTile(icon: Icons.numbers_outlined, title: 'Serial Number', content:  snapshot.data!.docs[index]
                                       ['serialNum']),
                                       _buildListTile(icon: Icons.date_range_outlined, title: 'Date', content:formattedDate),
-                                      _buildListTile(icon:Icons.cabin , title: 'Department', content:snapshot.data!.docs[index]
-                                      ['dept'], ),
+                                      // _buildListTile(icon:Icons.cabin , title: 'Department', content:snapshot.data!.docs[index]
+                                      // ['dept'], ),
                                       _buildListTile(icon: Icons.person_outlined, title: 'Received From', content: snapshot.data!.docs[index]
                                       ['receivedFrom']),
 

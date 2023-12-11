@@ -74,9 +74,9 @@ class SearchView extends GetView<SearchBarController> {
                 ? ListView.builder(
               itemCount: controller.filteredFiles.length,
               itemBuilder: (context, index) {
-                final item = controller.filteredFiles[index];
+                final data = controller.filteredFiles[index];
                 final timeDate = int.parse(
-                  item['Id'].toString(),
+                  data['Id'].toString(),
                 );
                 final now = DateTime.fromMillisecondsSinceEpoch(timeDate);
                 final formattedDate = DateFormat('dd-MM-yy').format(now);
@@ -98,12 +98,12 @@ class SearchView extends GetView<SearchBarController> {
                         crossAxisAlignment:
                         CrossAxisAlignment.start,
                         children: [
-                          _buildListTile(icon: Icons.numbers_outlined, title: 'Serial Number', content: item
+                          _buildListTile(icon: Icons.numbers_outlined, title: 'Serial Number', content: data
                           ['serialNum']),
                           _buildListTile(icon: Icons.date_range_outlined, title: 'Date', content:formattedDate),
-                          _buildListTile(icon:Icons.cabin , title: 'Department', content:item
+                          _buildListTile(icon:Icons.cabin , title: 'Department', content:data
                           ['dept'], ),
-                          _buildListTile(icon: Icons.person_outlined, title: 'Received From', content: item
+                          _buildListTile(icon: Icons.person_outlined, title: 'Received From', content: data
                           ['receivedFrom']),
 
                           Center(
@@ -117,20 +117,20 @@ class SearchView extends GetView<SearchBarController> {
                                   Get.to(() =>
                                       receivedFileDetailsView(
                                           date: formattedDate,
-                                          id: item
+                                          id: data
                                           ['Id'],
-                                          receiverAddress: item['receivedAddress'],
-                                          receiverName: item['receiverName'],
+                                          receiverAddress: data['receivedAddress'],
+                                          receiverName: data['receiverName'],
                                           // dept: item
                                           // ['dept'],
-                                          serialNum: item
+                                          serialNum: data
                                           ['FileNum'],
-                                          receivedFrom: item['From']));
+                                          receivedFrom: data['From']));
                                 } ),
                                 ReuseButton(
                                     icon: Icons.delete_forever,
                                     tittle: 'Delete', onpress: (){
-                                  final id =item['Id'];
+                                  final id =data['Id'];
                                   controller.deleteFile(id);
                                 })
                               ],

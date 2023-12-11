@@ -8,7 +8,7 @@ import 'controller.dart';
 import 'state.dart';
 
 
-class receivedFileDetailsView extends StatelessWidget {
+class receivedFileDetailsView extends GetView<receivedFileDetailController> {
   String serialNum;
   String date;
   String receivedFrom;
@@ -32,15 +32,15 @@ class receivedFileDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller =receivedFileDetailController();
-    final state = receivedFilesDetailState();
     CarouselController buttonCarouselController = CarouselController();
     controller.fetchDataOfFiles(id);
-    controller.fetchimageUrls(id).then((urls) {
+    controller.fetchImageUrls(id).then((urls) {
       print("urls" + urls.toString());
-      // controller.fetchImageUrls = urls;
+      controller.state.fetchedImageUrls.value = List<String>.from(urls);
+      print('fetch:'+controller.state.fetchedImageUrls.length.toString());
       controller.setFetchLoading(false);
+
     });
-    // ... Your existing build method ...
 
     return Scaffold(
       backgroundColor: AppColors.filesBgColour,
@@ -49,14 +49,20 @@ class receivedFileDetailsView extends StatelessWidget {
         backgroundColor: AppColors.appBarBgColour,
         actions: [
           IconButton(
-            onPressed: () {
-              // controller.downloadImages(controller.fetchedImageUrls);
+            onPressed: () async{
+              String docId = id;
+              List<String> imageUrls = await controller.fetchImageUrls(docId);
+              await controller.downloadImages(imageUrls);
+              // controller.downloadImages(controller.fetchimageUrls);
             },
             icon: Icon(Icons.download_outlined),
           ),
           IconButton(
-            onPressed: () {
-              // controller.generatePDF(controller.fetchedImageUrls);
+            onPressed: () async{
+              String docId = id;
+              List<String> imageUrls = await controller.fetchImageUrls(docId);
+              await controller.generatePDF(imageUrls);
+              // controller.generatePDF(controller.fetchimageUrls);
               print('pdf create');
             },
             icon: Icon(Icons.picture_as_pdf),
@@ -82,6 +88,7 @@ class receivedFileDetailsView extends StatelessWidget {
                       : Swiper(
                     itemCount: controller.state.fetchedImageUrls.length,
                     itemBuilder: (context, index) {
+                      print('length:'+controller.state.fetchedImageUrls.length.toString());
                       return Container(
                         margin: EdgeInsets.all(10.w),
                         decoration: BoxDecoration(
@@ -99,7 +106,7 @@ class receivedFileDetailsView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(15.0),
                           child: Image(
                             image: NetworkImage(
-                                controller.state.fetchedImageUrls[index]),
+                                controller.state.fetchedImageUrls.value[index]),
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -176,44 +183,44 @@ class receivedFileDetailsView extends StatelessWidget {
                         ),
                         SizedBox(height: 15),
                         // Container for FileNum and Date
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.containerColor3,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.shadowColor,
-                                blurRadius: 4,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              // GestureDetector(
-                              //   onTap:(){
-                              //     // controller.showserialNumDialogAlert(
-                              //     //   context,
-                              //     //   controller.state.serialNum.value
-                              //     //       .toString(),
-                              //     //   id,
-                              //     // );
-                              //
-                              //   },
-                              //   child: reusebleRow(
-                              //     title: 'SerialNum',
-                              //     iconData: Icons.format_list_numbered,
-                              //     // value: state.serialNum.value
-                              //     //     .toString(),
-                              //   ),
-                              // ),
-                              SizedBox(height: 15),
-
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 15),
+                        // Container(
+                        //   padding: EdgeInsets.all(16),
+                        //   decoration: BoxDecoration(
+                        //     color: AppColors.containerColor3,
+                        //     borderRadius: BorderRadius.circular(12),
+                        //     boxShadow: [
+                        //       BoxShadow(
+                        //         color: AppColors.shadowColor,
+                        //         blurRadius: 4,
+                        //         offset: Offset(0, 2),
+                        //       ),
+                        //     ],
+                        //   ),
+                        //   child: Column(
+                        //     children: [
+                        //       // GestureDetector(
+                        //       //   onTap:(){
+                        //       //     // controller.showserialNumDialogAlert(
+                        //       //     //   context,
+                        //       //     //   controller.state.serialNum.value
+                        //       //     //       .toString(),
+                        //       //     //   id,
+                        //       //     // );
+                        //       //
+                        //       //   },
+                        //       //   child: reusebleRow(
+                        //       //     title: 'SerialNum',
+                        //       //     iconData: Icons.format_list_numbered,
+                        //       //     // value: state.serialNum.value
+                        //       //     //     .toString(),
+                        //       //   ),
+                        //       // ),
+                        //       SizedBox(height: 15),
+                        //
+                        //     ],
+                        //   ),
+                        // ),
+                        // SizedBox(height: 15),
                         // Container for Department, Received From, and Details
                         Container(
                           padding: EdgeInsets.all(16),

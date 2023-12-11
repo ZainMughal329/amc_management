@@ -1,16 +1,20 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
+import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../model/ReceivedFile_model/ReceivedFile_model.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/components/SessionViewComponents/custom_tetxField.dart';
 import '../receivedFileUploadForm/state.dart';
 import 'state.dart';
+import 'package:pdf/widgets.dart' as pw;
 import 'package:dio/dio.dart' as dio;
 
 
@@ -38,18 +42,53 @@ class receivedFileDetailController extends GetxController{
   setFetchLoading(bool val) {
    state.fetchedLoading.value = val;
   }
-
-  Future<List<String>> fetchimageUrls(String docId) async {
+  Future<List<String>> fetchImageUrls(String docId) async {
     setFetchLoading(true);
-    final snapshot = await FirebaseFirestore.instance
-        .collection('Received Files')
-        .doc(docId)
-        .get();
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('ReceivedFiles')
+          .doc(docId)
+          .get();
+      print("Firestore Snapshot: ${snapshot.data()}");
 
-    final List<String> imageUrls =
-    List<String>.from(snapshot.data()!['images']);
-    return imageUrls;
+      if (snapshot.exists) {
+        final dynamic imagesData = snapshot.data()!['images'];
+
+
+        print('data:'+imagesData.toString());
+
+        final List<String> imageUrls =
+        List<String>.from(snapshot.data()!['images']);
+        print(imageUrls.length.toString());
+
+
+        return imageUrls;
+
+      } else {
+        print('Document does not exist');
+
+
+        return [];
+      }
+    } catch (e) {
+      print('Error fetching data: $e');
+
+
+      return [];
+    }
+
   }
+  // Future<List<String>> fetchImageUrls(String docId) async {
+  //   setFetchLoading(true);
+  //   final snapshot = await FirebaseFirestore.instance
+  //       .collection('ReceivedFiles')
+  //       .doc(docId)
+  //       .get();
+  //
+  //   final List<String> imageUrls =
+  //   List<String>.from(snapshot.data()!['images']);
+  //   return imageUrls;
+  // }
 
 
   Future<List<String>> getImageUrls() async {
@@ -67,6 +106,79 @@ class receivedFileDetailController extends GetxController{
 
     return imageUrls;
   }
+
+
+  //   function to download images
+  Future<void> downloadImages(List<String> imageUrls) async {
+    dio.Dio dioInstance = dio.Dio(); // Use the aliased dio package
+
+    for (int i = 0; i < imageUrls.length; i++) {
+      try {
+        dio.Response response = await dioInstance.get(
+          imageUrls[i],
+          options: dio.Options(responseType: dio.ResponseType.bytes),
+        );
+
+        // Get the local app directory
+        String directory = (await getApplicationDocumentsDirectory()).path;
+
+        // Save the image to local storage
+        String filePath = '$directory/image_$i.png';
+        await File(filePath).writeAsBytes(response.data!);
+
+        // Save the image to the gallery
+        GallerySaver.saveImage(filePath).then((value) {
+          print('Image saved to gallery: $value');
+        });
+
+        Get.snackbar('Success', 'Image Downloaded');
+      } catch (error) {
+        print('Error downloading image: $error');
+        Get.snackbar('Error', 'Failed to download image');
+      }
+    }
+  }
+  Future<void> generatePDF(List<String> imageUrls) async {
+    // Check and request permission
+    var status = await Permission.storage.request();
+    if (status.isGranted) {
+      // Permission granted, proceed with PDF generation
+      final pdf = pw.Document();
+
+      for (var imageUrl in imageUrls) {
+        final response = await dio.Dio().get<List<int>>(
+          imageUrl,
+          options: dio.Options(responseType: dio.ResponseType.bytes),
+        );
+
+        final imageBytes = Uint8List.fromList(response.data!);
+        final image = pw.MemoryImage(imageBytes);
+
+        pdf.addPage(
+          pw.Page(
+            build: (pw.Context context) {
+              return pw.Center(
+                child: pw.Image(image),
+              );
+            },
+          ),
+        );
+      }
+
+      final output = await getExternalStorageDirectory();
+      final file = File('${output!.path}/images.pdf');
+      await file.writeAsBytes(await pdf.save());
+
+      print('File Path: ${file.path}');
+      // Open the PDF with the default PDF viewer (you can use another PDF viewer package)
+      // This assumes you have a package like 'open_file' to open files
+      OpenFile.open(file.path);
+    } else {
+      // Permission denied
+      print('Permission denied');
+    }
+  }
+
 
 
   // for updation of data
