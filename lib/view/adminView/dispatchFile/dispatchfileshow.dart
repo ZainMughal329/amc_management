@@ -18,7 +18,6 @@ class dispatchFileShowContainer extends StatelessWidget {
   String letterNum;
   // String Dept;
   String id;
-
    String date;
    dispatchFileShowContainer({super.key,
      required this.date,
@@ -56,13 +55,13 @@ class dispatchFileShowContainer extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              // controller.downloadImages(controller.fetchedImageUrls);
+              controller.downloadImages(controller.fetchedImageUrls);
             },
             icon: Icon(Icons.download_outlined),
           ),
           IconButton(
             onPressed: () {
-              // controller.generatePDF(controller.fetchedImageUrls);
+              controller.generatePDF(controller.fetchedImageUrls);
               print('pdf create');
             },
             icon: Icon(Icons.picture_as_pdf),
@@ -89,7 +88,7 @@ class dispatchFileShowContainer extends StatelessWidget {
                             ),
                           ),
                         ):Swiper(
-                            itemCount:controller.fetchedImageUrls.length,
+                            itemCount:controller.fetchedImageUrls.value.length,
                           itemBuilder: (context, index){
                               return Container(
                                 margin: EdgeInsets.all(10.w),
@@ -108,7 +107,7 @@ class dispatchFileShowContainer extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(15.0),
                                   child: Image(
                                     image: NetworkImage(
-                                      controller.fetchedImageUrls[index],
+                                      controller.fetchedImageUrls.value[index],
 
                                     ),
                                     fit: BoxFit.fill,
@@ -129,145 +128,145 @@ class dispatchFileShowContainer extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              // Obx(
-              //
-              //       ()=>controller.state.loaded.value==false? Center(
-              //     child: CircularProgressIndicator(
-              //       color: AppColors.buttonColour,
-              //     ),
-              //   ):SingleChildScrollView(
-              //     child: Column(
-              //       children: [
-              //         SizedBox(
-              //           height: 20.h,
-              //         ),
-              //         SizedBox(
-              //           height: 15,
-              //         ),
-              //         // Obx(
-              //         //     ()=> GestureDetector(
-              //         //     onTap: () {
-              //         //      controller.showFileNameDialogAlert(context, controller.state.nameFile.value.toString(), id);
-              //         //     },
-              //         //     child: ReuseableRow(
-              //         //         title: 'File Name',
-              //         //         iconData: Icons.drive_file_rename_outline_outlined,
-              //         //         value: controller.state.nameFile.value.toString()),
-              //         //   ),
-              //         // ),
-              //         SizedBox(
-              //           height: 15,
-              //         ),
-              //         // GestureDetector(
-              //         //   onTap: () {},
-              //         //   child: ReuseableRow(
-              //         //       title: 'Dept',
-              //         //       iconData: Icons.place_outlined,
-              //         //       value: Dept),
-              //         // ),
-              //         SizedBox(
-              //           height: 15,
-              //         ),
-              //         GestureDetector(
-              //           onTap: () {},
-              //           child: ReuseableRow(
-              //               title: 'Date',
-              //               iconData: Icons.calendar_today_outlined,
-              //               value: date),
-              //         ),
-              //         SizedBox(
-              //           height: 15,
-              //         ),
-              //         Obx( ()=>
-              //             GestureDetector(
-              //               onTap: () {
-              //                 controller.showserialNumDialogAlert(context, controller.state.serialNum.value.toString(), id);
-              //               },
-              //               child: ReuseableRow(
-              //                   title: 'File Num',
-              //                   iconData: Icons.numbers_outlined,
-              //                   value: controller.state.serialNum.value.toString()),
-              //             ),
-              //         ),
-              //         SizedBox(
-              //           height: 15,
-              //         ),
-              //         GestureDetector(
-              //           onTap: () {},
-              //           child: ReuseableRow(
-              //               title: 'Received By',
-              //               iconData: Icons.person_outlined,
-              //               value: recieverName),
-              //         ),
-              //         SizedBox(
-              //           height: 15,
-              //         ),
-              //         GestureDetector(
-              //           onTap: () {},
-              //           child: ReuseableRow(
-              //               title: 'Notification To',
-              //               iconData: Icons.person_outlined,
-              //               value: subject),
-              //         ),
-              //         SizedBox(
-              //           height: 15,
-              //         ),
-              //         // GestureDetector(
-              //         //   onTap: () {},
-              //         //   child: ReuseableRow(
-              //         //       title: 'Details',
-              //         //       iconData: Icons.details_outlined,
-              //         //       value: details),
-              //         // ),
-              //         SizedBox(
-              //           height: 15,
-              //         ),
-              //       ],
-              //     ),
-              //   ),
-              // ),
+              Obx(
+
+                    ()=>controller.state.loaded.value==false? Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.buttonColour,
+                  ),
+                ):SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: AppColors.containerColor1,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.shadowColor,
+                              blurRadius: 4,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap:(){
+                                controller.showserialNumDialogAlert(
+                                    context,
+                                    controller.state.serialNum.value
+                                        .toString(),
+                                    id);
+                              },
+                              child: reusebaleTextFields(
+
+                                title: 'SerialNum',
+                                iconData: Icons.format_list_numbered,
+                                value: controller.state.serialNum.value
+                                    .toString(),
+                              ),
+                            ),
+                            SizedBox(height: 15),
+                            GestureDetector(
+                              onTap: () {},
+                              child: reusebaleTextFields(
+                                title: 'Letter Number',
+                                iconData: Icons.person_outlined,
+                                value:letterNum,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                      Container(
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: AppColors.containerColor1,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.shadowColor,
+                              blurRadius: 4,
+                              offset: Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            GestureDetector(
+                              onTap: () {},
+                              child: reusebaleTextFields(
+                                  title: 'Date',
+                                  iconData: Icons.calendar_today_outlined,
+                                  value: date),
+                            ),
+                            SizedBox(height: 15),
+                            GestureDetector(
+                              onTap: () {},
+                              child: reusebaleTextFields(
+                                title: 'Receiver Name',
+                                iconData: Icons.person_outlined,
+                                value:recieverName,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 15),
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.containerColor1,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.shadowColor,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {},
+                                child: reusebaleTextFieldsforAddressandSubject(
+                                    title: 'Receiver Address',
+                                    iconData: Icons.house_outlined,
+                                    value: receiverAddress),
+                              ),
+                              SizedBox(height: 15),
+                              GestureDetector(
+                                onTap: () {},
+                                child: reusebaleTextFieldsforAddressandSubject(
+                                  title: 'Subject of File',
+                                  iconData: Icons.person_outlined,
+                                  value:subject,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      SizedBox(
+                        height: 15,
+                      ),
+
+                    ],
+                  ),
+                ),
+              ),
 
 
             ],
           ),
         ),
       )
-    );
-  }
-}
-class ReuseableRow extends StatelessWidget {
-  final String title, value;
-  final IconData iconData;
-
-  ReuseableRow(
-      {Key? key,
-        required this.title,
-        required this.iconData,
-        required this.value})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          ListTile(
-            title: Text(
-              title,
-              style: Theme.of(context).textTheme.subtitle2,
-            ),
-            leading: Icon(
-              iconData,
-              color: AppColors.lightActiveIconColor,
-            ),
-            trailing: Text(value, style: Theme.of(context).textTheme.subtitle2),
-          ),
-          Divider(
-            color: AppColors.buttonBgColor.withOpacity(0.4),
-          )
-        ],
-      ),
     );
   }
 }
@@ -332,21 +331,20 @@ class reusebaleTextFields extends StatelessWidget {
     );
   }
 }
-
-class ReusableTextFieldsForDept extends StatelessWidget {
-  final String title;
-  final List<dynamic> values;
-  final Color? iconColor;
-  final VoidCallback? onPressed;
+class reusebaleTextFieldsforAddressandSubject extends StatelessWidget {
+  final String title, value;
+  final Color? iconColor, valueColor;
+  final VoidCallback? onpress;
   final IconData iconData;
 
-  ReusableTextFieldsForDept({
+  reusebaleTextFieldsforAddressandSubject({
     Key? key,
     required this.title,
-    required this.values,
     this.iconColor,
-    this.onPressed,
+    this.onpress,
+    this.valueColor,
     required this.iconData,
+    required this.value,
   }) : super(key: key);
 
   @override
@@ -358,7 +356,9 @@ class ReusableTextFieldsForDept extends StatelessWidget {
       ),
       child: ListTile(
         title: GestureDetector(
-          onTap: onPressed,
+          onTap: () {
+            onpress;
+          },
           child: AbsorbPointer(
             child: TextField(
               decoration: InputDecoration(
@@ -373,8 +373,7 @@ class ReusableTextFieldsForDept extends StatelessWidget {
           iconData,
           color: iconColor,
         ),
-        trailing: values.length == 1
-            ? Container(
+        subtitle: Container(
           decoration: BoxDecoration(
             border: Border.all(color: AppColors.buttonBgColor),
             borderRadius: BorderRadius.circular(10.0),
@@ -382,38 +381,18 @@ class ReusableTextFieldsForDept extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              values.first,
+              value,
               style: TextStyle(
-                color: iconColor,
+                color: valueColor,
               ),
             ),
           ),
-        )
-            : Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (String value in values)
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.buttonBgColor),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                margin: EdgeInsets.only(right: 8.0),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text(
-                    value,
-                    style: TextStyle(
-                      color: iconColor,
-                    ),
-                  ),
-                ),
-              ),
-          ],
         ),
       ),
     );
   }
 }
+
+
 
 

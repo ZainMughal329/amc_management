@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:amc_management/res/colors.dart';
 import 'package:amc_management/utils/routes/routes_name.dart';
@@ -6,11 +7,17 @@ import 'package:amc_management/view/adminView/dispatchFile/components/disptachfi
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../../res/components/SessionViewComponents/custom_tetxField.dart';
 import 'components/listOfImages/listofimages.dart';
 import 'index.dart';
+import 'package:dio/dio.dart' as dio; // Alias the dio package
+import 'package:pdf/widgets.dart' as pw;
+import 'package:permission_handler/permission_handler.dart';
 import 'package:amc_management/model/dispatch_model/dispatch_model.dart';
 
 class dispatchController extends GetxController
@@ -462,6 +469,81 @@ Future<void> deleteFile(String id)async{
     }
 
 }
+  //   function to download images
+  Future<void> downloadImages(List<String> imageUrls) async {
+    dio.Dio dioInstance = dio.Dio(); // Use the aliased dio package
+
+    for (int i = 0; i < imageUrls.length; i++) {
+      try {
+        dio.Response response = await dioInstance.get(
+          imageUrls[i],
+          options: dio.Options(responseType: dio.ResponseType.bytes),
+        );
+
+        // Get the local app directory
+        String directory = (await getApplicationDocumentsDirectory()).path;
+
+        // Save the image to local storage
+        String filePath = '$directory/image_$i.png';
+        await File(filePath).writeAsBytes(response.data!);
+
+        // Save the image to the gallery
+        GallerySaver.saveImage(filePath).then((value) {
+          print('Image saved to gallery: $value');
+        });
+
+        Get.snackbar('Success', 'Image Downloaded');
+      } catch (error) {
+        print('Error downloading image: $error');
+        Get.snackbar('Error', 'Failed to download image');
+      }
+    }
+  }
+
+  // Function to generate PDF from images
+  Future<void> generatePDF(List<String> imageUrls) async {
+    // Check and request permission
+    var status = await Permission.storage.request();
+    if (status.isGranted) {
+      // Permission granted, proceed with PDF generation
+      final pdf = pw.Document();
+
+      for (var imageUrl in imageUrls) {
+        final response = await dio.Dio().get<List<int>>(
+          imageUrl,
+          options: dio.Options(responseType: dio.ResponseType.bytes),
+        );
+
+        final imageBytes = Uint8List.fromList(response.data!);
+        final image = pw.MemoryImage(imageBytes);
+
+        pdf.addPage(
+          pw.Page(
+            build: (pw.Context context) {
+              return pw.Center(
+                child: pw.Image(image),
+              );
+            },
+          ),
+        );
+      }
+
+      final output = await getExternalStorageDirectory();
+      final file = File('${output!.path}/images.pdf');
+      await file.writeAsBytes(await pdf.save());
+
+      print('File Path: ${file.path}');
+
+      // Open the PDF with the default PDF viewer (you can use another PDF viewer package)
+      // This assumes you have a package like 'open_file' to open files
+      OpenFile.open(file.path);
+    } else {
+      // Permission denied
+      print('Permission denied');
+    }
+  }
+
+
 
 
 

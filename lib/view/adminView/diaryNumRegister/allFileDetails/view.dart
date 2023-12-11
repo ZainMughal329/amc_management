@@ -133,171 +133,171 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
                         ),
                       )
                     :
-                    Text('serial num' + controller.state.serialNum.value),
-                // Column(
-                //       children: [
-                //         SizedBox(height: 20.h),
-                //         // Container for FileName and Dept
-                //         Container(
-                //           padding: EdgeInsets.all(16),
-                //           decoration: BoxDecoration(
-                //             color: AppColors.containerColor1,
-                //             borderRadius: BorderRadius.circular(12),
-                //             boxShadow: [
-                //               BoxShadow(
-                //                 color: AppColors.shadowColor,
-                //                 blurRadius: 4,
-                //                 offset: Offset(0, 2),
-                //               ),
-                //             ],
-                //           ),
-                //           child: Column(
-                //             children: [
-                //               GestureDetector(
-                //                 onTap:(){
-                //                   controller.showserialNumDialogAlert(
-                //                       context,
-                //                       controller.state.serialNum.value
-                //                           .toString(),
-                //                   id);
-                //         },
-                //                 child: reusebaleTextFields(
-                //
-                //                   title: 'SerialNum',
-                //                   iconData: Icons.format_list_numbered,
-                //                   value: controller.state.serialNum.value
-                //                       .toString(),
-                //                 ),
-                //               ),
-                //               SizedBox(height: 15),
-                //               GestureDetector(
-                //                 onTap: () {},
-                //                 child: ReusableTextFieldsForDept(
-                //                   title: 'Dept',
-                //                   iconData: Icons.place_outlined,
-                //                   values: dept,
-                //                 ),
-                //               ),
-                //             ],
-                //           ),
-                //         ),
-                //         SizedBox(height: 15),
-                //         // Container for ReceivedFrom
-                //         Container(
-                //           padding: EdgeInsets.all(16),
-                //           decoration: BoxDecoration(
-                //             color: AppColors.containerColor2,
-                //             borderRadius: BorderRadius.circular(12),
-                //             boxShadow: [
-                //               BoxShadow(
-                //                 color: AppColors.shadowColor,
-                //                 blurRadius: 4,
-                //                 offset: Offset(0, 2),
-                //               ),
-                //             ],
-                //           ),
-                //           child: GestureDetector(
-                //             onTap: () {},
-                //             child: reusebaleTextFields(
-                //               title: 'File Dispatch Date',
-                //               iconData: Icons.person_outlined,
-                //               value: fileDispatchDate,
-                //             ),
-                //           ),
-                //         ),
-                //         SizedBox(height: 15),
-                //         // Container for FileNum and Date
-                //         Container(
-                //           padding: EdgeInsets.all(16),
-                //           decoration: BoxDecoration(
-                //             color: AppColors.containerColor3,
-                //             borderRadius: BorderRadius.circular(12),
-                //             boxShadow: [
-                //               BoxShadow(
-                //                 color: AppColors.shadowColor,
-                //                 blurRadius: 4,
-                //                 offset: Offset(0, 2),
-                //               ),
-                //             ],
-                //           ),
-                //           child: Column(
-                //             children: [
-                //               reusebaleTextFields(
-                //                 onpress: () {
-                //                   controller.senderAddressDialogAlert(
-                //                     context,
-                //                     controller.state.senderAddress.value
-                //                         .toString(),
-                //                     id,
-                //                   );
-                //                 },
-                //                 title: 'Sender Address',
-                //                 iconData: Icons.format_list_numbered,
-                //                 value: controller.state.senderAddress.value
-                //                     .toString(),
-                //               ),
-                //               SizedBox(height: 15),
-                //               reusebaleTextFields(
-                //                 title: 'Date',
-                //                 iconData: Icons.calendar_today_outlined,
-                //                 value: date,
-                //               ),
-                //             ],
-                //           ),
-                //         ),
-                //         SizedBox(height: 15),
-                //         // Container for Department, Received From, and Details
-                //         Container(
-                //           padding: EdgeInsets.all(16),
-                //           decoration: BoxDecoration(
-                //             color: AppColors.containerColor4,
-                //             borderRadius: BorderRadius.circular(12),
-                //             boxShadow: [
-                //               BoxShadow(
-                //                 color: AppColors.shadowColor,
-                //                 blurRadius: 4,
-                //                 offset: Offset(0, 2),
-                //               ),
-                //             ],
-                //           ),
-                //           child: Column(
-                //             children: [
-                //               reusebaleTextFields(
-                //                 onpress: () {
-                //                   controller.senderNameDialogAlert(
-                //                     context,
-                //                     controller.state.senderName.value
-                //                         .toString(),
-                //                     id,
-                //                   );
-                //                 },
-                //                 title: 'Sender Name',
-                //                 iconData: Icons.work_outline,
-                //                 value: controller.state.senderName.value
-                //                     .toString(),
-                //               ),
-                //               SizedBox(height: 15),
-                //               reusebaleTextFields(
-                //                 onpress: () {
-                //                   controller.receiverNameDialogAlert(
-                //                     context,
-                //                     controller.state.receiverName.value
-                //                         .toString(),
-                //                     id,
-                //                   );
-                //                 },
-                //                 title: 'Receiver Name',
-                //                 iconData: Icons.person_outlined,
-                //                 value: controller.state.receiverName.value
-                //                     .toString(),
-                //               ),
-                //               SizedBox(height: 15),
-                //             ],
-                //           ),
-                //         ),
-                //         SizedBox(height: 15),
-                //       ],
-                //     ),
+                    // Text('serial num' + controller.state.serialNum.value),
+                Column(
+                      children: [
+                        SizedBox(height: 20.h),
+                        // Container for FileName and Dept
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.containerColor1,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.shadowColor,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                onTap:(){
+                                  controller.showserialNumDialogAlert(
+                                      context,
+                                      controller.state.serialNum.value
+                                          .toString(),
+                                  id);
+                        },
+                                child: reusebaleTextFields(
+
+                                  title: 'SerialNum',
+                                  iconData: Icons.format_list_numbered,
+                                  value: controller.state.serialNum.value
+                                      .toString(),
+                                ),
+                              ),
+                              SizedBox(height: 15),
+                              // GestureDetector(
+                              //   onTap: () {},
+                              //   child: ReusableTextFieldsForDept(
+                              //     title: 'Dept',
+                              //     iconData: Icons.place_outlined,
+                              //     values: dept,
+                              //   ),
+                              // ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        // Container for ReceivedFrom
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.containerColor2,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.shadowColor,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: GestureDetector(
+                            onTap: () {},
+                            child: reusebaleTextFields(
+                              title: 'File Dispatch Date',
+                              iconData: Icons.person_outlined,
+                              value: fileDispatchDate,
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        // Container for FileNum and Date
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.containerColor3,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.shadowColor,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              reusebaleTextFields(
+                                onpress: () {
+                                  controller.senderAddressDialogAlert(
+                                    context,
+                                    controller.state.senderAddress.value
+                                        .toString(),
+                                    id,
+                                  );
+                                },
+                                title: 'Sender Address',
+                                iconData: Icons.format_list_numbered,
+                                value: controller.state.senderAddress.value
+                                    .toString(),
+                              ),
+                              SizedBox(height: 15),
+                              reusebaleTextFields(
+                                title: 'Date',
+                                iconData: Icons.calendar_today_outlined,
+                                value: date,
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        // Container for Department, Received From, and Details
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.containerColor4,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.shadowColor,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              reusebaleTextFields(
+                                onpress: () {
+                                  controller.senderNameDialogAlert(
+                                    context,
+                                    controller.state.senderName.value
+                                        .toString(),
+                                    id,
+                                  );
+                                },
+                                title: 'Sender Name',
+                                iconData: Icons.work_outline,
+                                value: controller.state.senderName.value
+                                    .toString(),
+                              ),
+                              SizedBox(height: 15),
+                              reusebaleTextFields(
+                                onpress: () {
+                                  controller.receiverNameDialogAlert(
+                                    context,
+                                    controller.state.receiverName.value
+                                        .toString(),
+                                    id,
+                                  );
+                                },
+                                title: 'Receiver Name',
+                                iconData: Icons.person_outlined,
+                                value: controller.state.receiverName.value
+                                    .toString(),
+                              ),
+                              SizedBox(height: 15),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                      ],
+                    ),
               ),
             ),
           ],
