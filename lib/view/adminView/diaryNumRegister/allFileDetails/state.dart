@@ -8,7 +8,7 @@ class diaryNumFileDetailsState{
   final loading = false.obs;
   RxBool loaded = false.obs;
   final ref = FirebaseFirestore.instance.collection('diaryNumberRegister');
-  List<String> fetchedImageUrls = [];
+  RxList<String> fetchedImageUrls = <String>[].obs;
   RxBool fetchedLoading = true.obs;
   List<String> images = [];
   RxString serialNum = ''.obs;

@@ -430,7 +430,7 @@ class dispatchController extends GetxController
         });
   }
 
-  List<dynamic> fetchedImageUrls = [];
+  RxList<String> fetchedImageUrls = <String>[].obs;
   RxBool fetchedLoading = true.obs;
 
   setFetchLoading(bool val) {

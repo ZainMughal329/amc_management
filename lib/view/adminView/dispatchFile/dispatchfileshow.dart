@@ -39,9 +39,15 @@ class dispatchFileShowContainer extends StatelessWidget {
     controller.fetchDataOfFile(id);
     controller.FetchImageUrls(id).then((urls) {
       print("urls" + urls.toString());
-      controller.fetchedImageUrls = urls;
+      controller.fetchedImageUrls.value = List<String>.from(urls);
+      print('fetch:'+controller.fetchedImageUrls.length.toString());
       controller.setFetchLoading(false);
     });
+    // controller.FetchImageUrls(id).then((urls) {
+    //   print("urls" + urls.toString());
+    //   controller.fetchedImageUrls.value = urls;
+    //   controller.setFetchLoading(false);
+    // });
     return  Scaffold(
         backgroundColor: AppColors.filesBgColour,
         resizeToAvoidBottomInset: false,
@@ -123,103 +129,103 @@ class dispatchFileShowContainer extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Obx(
-
-                    ()=>controller.state.loaded.value==false? Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.buttonColour,
-                  ),
-                ):SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      // Obx(
-                      //     ()=> GestureDetector(
-                      //     onTap: () {
-                      //      controller.showFileNameDialogAlert(context, controller.state.nameFile.value.toString(), id);
-                      //     },
-                      //     child: ReuseableRow(
-                      //         title: 'File Name',
-                      //         iconData: Icons.drive_file_rename_outline_outlined,
-                      //         value: controller.state.nameFile.value.toString()),
-                      //   ),
-                      // ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      // GestureDetector(
-                      //   onTap: () {},
-                      //   child: ReuseableRow(
-                      //       title: 'Dept',
-                      //       iconData: Icons.place_outlined,
-                      //       value: Dept),
-                      // ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: ReuseableRow(
-                            title: 'Date',
-                            iconData: Icons.calendar_today_outlined,
-                            value: date),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Obx( ()=>
-                          GestureDetector(
-                            onTap: () {
-                              controller.showserialNumDialogAlert(context, controller.state.serialNum.value.toString(), id);
-                            },
-                            child: ReuseableRow(
-                                title: 'File Num',
-                                iconData: Icons.numbers_outlined,
-                                value: controller.state.serialNum.value.toString()),
-                          ),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: ReuseableRow(
-                            title: 'Received By',
-                            iconData: Icons.person_outlined,
-                            value: recieverName),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: ReuseableRow(
-                            title: 'Notification To',
-                            iconData: Icons.person_outlined,
-                            value: subject),
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      // GestureDetector(
-                      //   onTap: () {},
-                      //   child: ReuseableRow(
-                      //       title: 'Details',
-                      //       iconData: Icons.details_outlined,
-                      //       value: details),
-                      // ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              // Obx(
+              //
+              //       ()=>controller.state.loaded.value==false? Center(
+              //     child: CircularProgressIndicator(
+              //       color: AppColors.buttonColour,
+              //     ),
+              //   ):SingleChildScrollView(
+              //     child: Column(
+              //       children: [
+              //         SizedBox(
+              //           height: 20.h,
+              //         ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //         // Obx(
+              //         //     ()=> GestureDetector(
+              //         //     onTap: () {
+              //         //      controller.showFileNameDialogAlert(context, controller.state.nameFile.value.toString(), id);
+              //         //     },
+              //         //     child: ReuseableRow(
+              //         //         title: 'File Name',
+              //         //         iconData: Icons.drive_file_rename_outline_outlined,
+              //         //         value: controller.state.nameFile.value.toString()),
+              //         //   ),
+              //         // ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //         // GestureDetector(
+              //         //   onTap: () {},
+              //         //   child: ReuseableRow(
+              //         //       title: 'Dept',
+              //         //       iconData: Icons.place_outlined,
+              //         //       value: Dept),
+              //         // ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //         GestureDetector(
+              //           onTap: () {},
+              //           child: ReuseableRow(
+              //               title: 'Date',
+              //               iconData: Icons.calendar_today_outlined,
+              //               value: date),
+              //         ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //         Obx( ()=>
+              //             GestureDetector(
+              //               onTap: () {
+              //                 controller.showserialNumDialogAlert(context, controller.state.serialNum.value.toString(), id);
+              //               },
+              //               child: ReuseableRow(
+              //                   title: 'File Num',
+              //                   iconData: Icons.numbers_outlined,
+              //                   value: controller.state.serialNum.value.toString()),
+              //             ),
+              //         ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //         GestureDetector(
+              //           onTap: () {},
+              //           child: ReuseableRow(
+              //               title: 'Received By',
+              //               iconData: Icons.person_outlined,
+              //               value: recieverName),
+              //         ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //         GestureDetector(
+              //           onTap: () {},
+              //           child: ReuseableRow(
+              //               title: 'Notification To',
+              //               iconData: Icons.person_outlined,
+              //               value: subject),
+              //         ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //         // GestureDetector(
+              //         //   onTap: () {},
+              //         //   child: ReuseableRow(
+              //         //       title: 'Details',
+              //         //       iconData: Icons.details_outlined,
+              //         //       value: details),
+              //         // ),
+              //         SizedBox(
+              //           height: 15,
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
 
 
             ],
@@ -409,3 +415,5 @@ class ReusableTextFieldsForDept extends StatelessWidget {
     );
   }
 }
+
+
