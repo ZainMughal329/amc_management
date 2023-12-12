@@ -26,6 +26,7 @@ class userList extends GetView<userController> {
               itemBuilder: (context, index) {
                 return Card(
                   elevation: 3,
+                  color: AppColors.filesCardBgColour,
                   margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                   child: ListTile(
                     title: Row(
@@ -33,9 +34,12 @@ class userList extends GetView<userController> {
                       children:[
                         Text(
                           snapshot.data!.docs[index]['UserName'].toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
+                          style: GoogleFonts.aboreto(
+                            textStyle: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: AppColors.filesCardTextColour
+                            )
                           ),
                         ),
                         // Text(
@@ -48,7 +52,12 @@ class userList extends GetView<userController> {
                     ),
                     subtitle: Text(
                       snapshot.data!.docs[index]['Email'].toString(),
-                      style: TextStyle(fontSize: 12),
+                      style: GoogleFonts.poppins(
+                        textStyle: TextStyle(fontSize: 12,
+                            color: AppColors.filesCardTextColour
+                        )
+                      ),
+
                     ),
                     trailing: IconButton(
                       onPressed: () {
@@ -68,7 +77,7 @@ class userList extends GetView<userController> {
                         border: Border.all(color: AppColors.lightActiveIconColor),
                       ),
                       child: snapshot.data!.docs[index]['profile'].toString() == ""
-                          ? Icon(Icons.person_2_outlined, color: AppColors.iCONColour)
+                          ? Icon(Icons.person_2_outlined, color: AppColors.filesCardTextColour)
                           : ClipRRect(
                         borderRadius: BorderRadius.circular(50),
                         child: Image(
