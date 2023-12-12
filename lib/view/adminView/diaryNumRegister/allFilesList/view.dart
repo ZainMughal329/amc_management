@@ -89,6 +89,7 @@ class allFilesView extends GetView<allFilesController>{
                                                        ['senderAddress'],
                                                        receiverName: snapshot.data!.docs[index]
                                                        ['receiverName'],
+                                                       subject: snapshot.data!.docs[index]['subject'],
                                                        id: snapshot.data!.docs[index]
                                                        ['Id'],
                                                        dept: snapshot.data!.docs[index]

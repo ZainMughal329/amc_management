@@ -30,7 +30,7 @@ class HomeView extends GetView<HomeController> {
           ClipPath(
             clipper: CustomCurveClipper(),
             child: Container(
-              height: 150.h,
+              height: 170.h,
               color: AppColors.sessionPageBgColor,
               child: Stack(
                 children: [
@@ -65,7 +65,7 @@ class HomeView extends GetView<HomeController> {
 
       SizedBox(height: 20,),
           Padding(
-            padding: EdgeInsets.only(top: 100.h),
+            padding: EdgeInsets.only(top:80.h),
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: ListView(
@@ -78,15 +78,6 @@ class HomeView extends GetView<HomeController> {
                     title: "Users",
                     icon: Icons.supervised_user_circle,
                   ),
-                  // SizedBox(height: 15.h),
-                  // SectionCard(
-                  //   onpress: () {
-                  //     Get.to(() => DastakFoodApp());
-                  //   },
-                  //   title: "Send File",
-                  //   icon: Icons.send,
-                  // ),
-                  SizedBox(height: 15.h),
                   SectionCard(
                     onpress: () {
                       Get.toNamed(RouteNames.receivedfileview);
@@ -94,8 +85,6 @@ class HomeView extends GetView<HomeController> {
                     title: "Received File",
                     icon: Icons.add,
                   ),
-                  SizedBox(height: 15.h),
-
                   SectionCard(
                     onpress: () {
                       Get.toNamed(RouteNames.dispatchview);
@@ -103,7 +92,7 @@ class HomeView extends GetView<HomeController> {
                     title: "Dispatch File",
                     icon: Icons.call_split,
                   ),
-                  SizedBox(height: 15.h),
+                  // SizedBox(height: 5.h),
                   SectionCard(
                     title: 'Diary Num Register',
                     onpress: () {
@@ -115,11 +104,6 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
           ),
-
-
-
-
-
         ],
       ),
     );

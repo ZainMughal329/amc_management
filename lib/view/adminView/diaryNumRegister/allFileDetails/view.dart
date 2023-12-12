@@ -7,7 +7,7 @@ import '../../../../res/colors.dart';
 import 'controller.dart';
 
 class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
-  String serialNum, senderName, senderAddress, receiverName;
+  String serialNum, senderName, senderAddress, receiverName,subject;
   String id;
      List<dynamic> dept;
   String date, fileDispatchDate;
@@ -17,6 +17,7 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
       required this.senderName,
       required this.senderAddress,
       required this.receiverName,
+        required this.subject,
       required this.id,
       required this.dept,
       required this.date,
@@ -134,170 +135,226 @@ class diaryFilesDetailView extends GetView<diaryFilesDetailController> {
                       )
                     :
                     // Text('serial num' + controller.state.serialNum.value),
-                Column(
-                      children: [
-                        SizedBox(height: 20.h),
-                        // Container for FileName and Dept
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.containerColor1,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.shadowColor,
-                                blurRadius: 4,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              GestureDetector(
-                                onTap:(){
-                                  controller.showserialNumDialogAlert(
-                                      context,
-                                      controller.state.serialNum.value
-                                          .toString(),
-                                  id);
-                        },
-                                child: reusebaleTextFields(
-
-                                  title: 'SerialNum',
-                                  iconData: Icons.format_list_numbered,
-                                  value: controller.state.serialNum.value
-                                      .toString(),
+                SingleChildScrollView(
+                  child: Column(
+                        children: [
+                          SizedBox(height: 10.h),
+                          // Container for FileName and Dept
+                          Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppColors.containerColor1,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.shadowColor,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
                                 ),
-                              ),
-                              SizedBox(height: 15),
-                              // GestureDetector(
-                              //   onTap: () {},
-                              //   child: ReusableTextFieldsForDept(
-                              //     title: 'Dept',
-                              //     iconData: Icons.place_outlined,
-                              //     values: dept,
-                              //   ),
-                              // ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 15),
-                        // Container for ReceivedFrom
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.containerColor2,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.shadowColor,
-                                blurRadius: 4,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: GestureDetector(
-                            onTap: () {},
-                            child: reusebaleTextFields(
-                              title: 'File Dispatch Date',
-                              iconData: Icons.person_outlined,
-                              value: fileDispatchDate,
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                GestureDetector(
+                                  onTap:(){
+                                    controller.showserialNumDialogAlert(
+                                        context,
+                                        controller.state.serialNum.value
+                                            .toString(),
+                                    id);
+                          },
+                                  child: reusebaleTextFields(
+
+                                    title: 'SerialNum',
+                                    iconData: Icons.format_list_numbered,
+                                    value: controller.state.serialNum.value
+                                        .toString(),
+                                  ),
+                                ),
+                                SizedBox(height: 15),
+                                // GestureDetector(
+                                //   onTap: () {},
+                                //   child: reusebaleTextFieldsforAddressandSubject(
+                                //     title: 'Dept',
+                                //     iconData: Icons.place_outlined,
+                                //     value: dept,
+                                //   ),
+                                // ),
+                              ],
                             ),
                           ),
-                        ),
-                        SizedBox(height: 15),
-                        // Container for FileNum and Date
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.containerColor3,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.shadowColor,
-                                blurRadius: 4,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              reusebaleTextFields(
-                                onpress: () {
-                                  controller.senderAddressDialogAlert(
-                                    context,
-                                    controller.state.senderAddress.value
-                                        .toString(),
-                                    id,
-                                  );
-                                },
-                                title: 'Sender Address',
-                                iconData: Icons.format_list_numbered,
-                                value: controller.state.senderAddress.value
-                                    .toString(),
-                              ),
-                              SizedBox(height: 15),
-                              reusebaleTextFields(
-                                title: 'Date',
-                                iconData: Icons.calendar_today_outlined,
-                                value: date,
-                              ),
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 15),
-                        // Container for Department, Received From, and Details
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            color: AppColors.containerColor4,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: [
-                              BoxShadow(
-                                color: AppColors.shadowColor,
-                                blurRadius: 4,
-                                offset: Offset(0, 2),
-                              ),
-                            ],
-                          ),
-                          child: Column(
-                            children: [
-                              reusebaleTextFields(
-                                onpress: () {
-                                  controller.senderNameDialogAlert(
-                                    context,
-                                    controller.state.senderName.value
-                                        .toString(),
-                                    id,
-                                  );
-                                },
-                                title: 'Sender Name',
-                                iconData: Icons.work_outline,
-                                value: controller.state.senderName.value
-                                    .toString(),
-                              ),
-                              SizedBox(height: 15),
-                              reusebaleTextFields(
-                                onpress: () {
-                                  controller.receiverNameDialogAlert(
-                                    context,
-                                    controller.state.receiverName.value
-                                        .toString(),
-                                    id,
-                                  );
-                                },
-                                title: 'Receiver Name',
+                          SizedBox(height: 15),
+                          // Container for ReceivedFrom
+                          Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppColors.containerColor2,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.shadowColor,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: GestureDetector(
+                              onTap: () {},
+                              child: reusebaleTextFields(
+                                title: 'File Dispatch Date',
                                 iconData: Icons.person_outlined,
-                                value: controller.state.receiverName.value
-                                    .toString(),
+                                value: fileDispatchDate,
                               ),
-                              SizedBox(height: 15),
-                            ],
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 15),
-                      ],
-                    ),
+                          SizedBox(height: 15),
+                          // // Container for FileNum and Date
+                          Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppColors.containerColor3,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.shadowColor,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+
+                                SizedBox(height: 15),
+                                reusebaleTextFields(
+                                  title: 'Date',
+                                  iconData: Icons.calendar_today_outlined,
+                                  value: date,
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                          // // Container for Department, Received From, and Details
+                          Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppColors.containerColor4,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.shadowColor,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                reusebaleTextFields(
+                                  onpress: () {
+                                    controller.senderNameDialogAlert(
+                                      context,
+                                      controller.state.senderName.value
+                                          .toString(),
+                                      id,
+                                    );
+                                  },
+                                  title: 'Sender Name',
+                                  iconData: Icons.work_outline,
+                                  value: controller.state.senderName.value
+                                      .toString(),
+                                ),
+                                SizedBox(height: 15),
+                                reusebaleTextFields(
+                                  onpress: () {
+                                    controller.receiverNameDialogAlert(
+                                      context,
+                                      controller.state.receiverName.value
+                                          .toString(),
+                                      id,
+                                    );
+                                  },
+                                  title: 'Receiver Name',
+                                  iconData: Icons.person_outlined,
+                                  value: controller.state.receiverName.value
+                                      .toString(),
+                                ),
+                                SizedBox(height: 15),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                          Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppColors.containerColor4,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.shadowColor,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                reusebaleTextFieldsforAddressandSubject(
+                                  onpress: () {
+                                    controller.senderAddressDialogAlert(
+                                      context,
+                                      controller.state.senderAddress.value
+                                          .toString(),
+                                      id,
+                                    );
+                                  },
+                                  title: 'Sender Address',
+                                  iconData: Icons.format_list_numbered,
+                                  value: controller.state.senderAddress.value
+                                      .toString(),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                          Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppColors.containerColor4,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.shadowColor,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                reusebaleTextFieldsforAddressandSubject(
+                                  onpress: () {
+                                    // controller.senderNameDialogAlert(
+                                    //   context,
+                                    //   controller.state.senderName.value
+                                    //       .toString(),
+                                    //   id,
+                                    // );
+                                  },
+                                  title: 'Subject Of File',
+                                  iconData: Icons.subject,
+                                  value:subject
+                                  // controller.state.senderName.value
+                                  //     .toString(),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                        ],
+                      ),
+                ),
               ),
             ),
           ],
@@ -369,20 +426,20 @@ class reusebaleTextFields extends StatelessWidget {
   }
 }
 
-class ReusableTextFieldsForDept extends StatelessWidget {
-  final String title;
-  final List<dynamic> values;
-  final Color? iconColor;
-  final VoidCallback? onPressed;
+class reusebaleTextFieldsforAddressandSubject extends StatelessWidget {
+  final String title, value;
+  final Color? iconColor, valueColor;
+  final VoidCallback? onpress;
   final IconData iconData;
 
-  ReusableTextFieldsForDept({
+  reusebaleTextFieldsforAddressandSubject({
     Key? key,
     required this.title,
-    required this.values,
     this.iconColor,
-    this.onPressed,
+    this.onpress,
+    this.valueColor,
     required this.iconData,
+    required this.value,
   }) : super(key: key);
 
   @override
@@ -394,7 +451,9 @@ class ReusableTextFieldsForDept extends StatelessWidget {
       ),
       child: ListTile(
         title: GestureDetector(
-          onTap: onPressed,
+          onTap: () {
+            onpress;
+          },
           child: AbsorbPointer(
             child: TextField(
               decoration: InputDecoration(
@@ -409,8 +468,7 @@ class ReusableTextFieldsForDept extends StatelessWidget {
           iconData,
           color: iconColor,
         ),
-        trailing: values.length == 1
-            ? Container(
+        subtitle: Container(
           decoration: BoxDecoration(
             border: Border.all(color: AppColors.buttonBgColor),
             borderRadius: BorderRadius.circular(10.0),
@@ -418,34 +476,12 @@ class ReusableTextFieldsForDept extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              values.first,
+              value,
               style: TextStyle(
-                color: iconColor,
+                color: valueColor,
               ),
             ),
           ),
-        )
-            : Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            for (String value in values)
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.buttonBgColor),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                margin: EdgeInsets.only(right: 8.0),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: Text(
-                    value,
-                    style: TextStyle(
-                      color: iconColor,
-                    ),
-                  ),
-                ),
-              ),
-          ],
         ),
       ),
     );

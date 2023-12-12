@@ -76,7 +76,7 @@ class FileList extends GetView<dispatchController> {
                                           Get.to(() =>
                                               dispatchFileShowContainer(
                                                   date: formattedDate,
-                                                  recieverName: snapshot.data!.docs[index]['receiverName'],
+                                                  recieverName: snapshot.data!.docs[index]['recieverName'],
                                                   receiverAddress: snapshot.data!.docs[index]['receiverAddress'],
                                                   id: snapshot.data!.docs[index]
                                                   ['Id'],

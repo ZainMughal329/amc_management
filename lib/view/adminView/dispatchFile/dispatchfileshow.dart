@@ -81,7 +81,7 @@ class dispatchFileShowContainer extends StatelessWidget {
               Expanded(child:
                   Obx(
                       (){
-                        return controller.fetchedLoading.value==false?Container(
+                        return controller.fetchedLoading.value==true?Container(
                           child: Center(
                             child: CircularProgressIndicator(
                               color: AppColors.sessionPageBgColor,
@@ -128,97 +128,126 @@ class dispatchFileShowContainer extends StatelessWidget {
               SizedBox(
                 height: 10,
               ),
-              Obx(
+              Expanded(
+                child: Obx(
+                      ()=>controller.state.loaded.value==true? Center(
+                    child: CircularProgressIndicator(
+                      color: AppColors.buttonColour,
+                    ),
+                  ):SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.containerColor1,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.shadowColor,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                onTap:(){
+                                  controller.showserialNumDialogAlert(
+                                      context,
+                                      controller.state.serialNum.value
+                                          .toString(),
+                                      id);
+                                },
+                                child: reusebaleTextFields(
 
-                    ()=>controller.state.loaded.value==false? Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.buttonColour,
-                  ),
-                ):SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.containerColor1,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.shadowColor,
-                              blurRadius: 4,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            GestureDetector(
-                              onTap:(){
-                                controller.showserialNumDialogAlert(
-                                    context,
-                                    controller.state.serialNum.value
-                                        .toString(),
-                                    id);
-                              },
-                              child: reusebaleTextFields(
-
-                                title: 'SerialNum',
-                                iconData: Icons.format_list_numbered,
-                                value: controller.state.serialNum.value
-                                    .toString(),
+                                  title: 'SerialNum',
+                                  iconData: Icons.format_list_numbered,
+                                  value: serialNum
+                                  // controller.state.serialNum.value
+                                  //     .toString(),
+                                ),
                               ),
-                            ),
-                            SizedBox(height: 15),
-                            GestureDetector(
-                              onTap: () {},
-                              child: reusebaleTextFields(
-                                title: 'Letter Number',
-                                iconData: Icons.person_outlined,
-                                value:letterNum,
+                              SizedBox(height: 15),
+                              GestureDetector(
+                                onTap: () {},
+                                child: reusebaleTextFields(
+                                  title: 'Letter Number',
+                                  iconData: Icons.person_outlined,
+                                  value:letterNum,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 15),
-                      Container(
-                        padding: EdgeInsets.all(16),
-                        decoration: BoxDecoration(
-                          color: AppColors.containerColor1,
-                          borderRadius: BorderRadius.circular(12),
-                          boxShadow: [
-                            BoxShadow(
-                              color: AppColors.shadowColor,
-                              blurRadius: 4,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            GestureDetector(
-                              onTap: () {},
-                              child: reusebaleTextFields(
-                                  title: 'Date',
-                                  iconData: Icons.calendar_today_outlined,
-                                  value: date),
-                            ),
-                            SizedBox(height: 15),
-                            GestureDetector(
-                              onTap: () {},
-                              child: reusebaleTextFields(
-                                title: 'Receiver Name',
-                                iconData: Icons.person_outlined,
-                                value:recieverName,
+                        SizedBox(height: 15),
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.containerColor1,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.shadowColor,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              GestureDetector(
+                                onTap: () {},
+                                child: reusebaleTextFields(
+                                    title: 'Date',
+                                    iconData: Icons.calendar_today_outlined,
+                                    value: date),
+                              ),
+                              SizedBox(height: 15),
+                              GestureDetector(
+                                onTap: () {},
+                                child: reusebaleTextFields(
+                                  title: 'Receiver Name',
+                                  iconData: Icons.person_outlined,
+                                  value:recieverName,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 15),
+                        SizedBox(height: 15),
+                          Container(
+                            padding: EdgeInsets.all(16),
+                            decoration: BoxDecoration(
+                              color: AppColors.containerColor1,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: AppColors.shadowColor,
+                                  blurRadius: 4,
+                                  offset: Offset(0, 2),
+                                ),
+                              ],
+                            ),
+                            child: Column(
+                              children: [
+                                GestureDetector(
+                                  onTap: () {},
+                                  child: reusebaleTextFieldsforAddressandSubject(
+                                      title: 'Receiver Address',
+                                      iconData: Icons.house_outlined,
+                                      value: receiverAddress),
+                                ),
+                              ],
+                            ),
+                          ),
+                        SizedBox(
+                          height: 15,
+                        ),
                         Container(
                           padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
@@ -237,14 +266,6 @@ class dispatchFileShowContainer extends StatelessWidget {
                               GestureDetector(
                                 onTap: () {},
                                 child: reusebaleTextFieldsforAddressandSubject(
-                                    title: 'Receiver Address',
-                                    iconData: Icons.house_outlined,
-                                    value: receiverAddress),
-                              ),
-                              SizedBox(height: 15),
-                              GestureDetector(
-                                onTap: () {},
-                                child: reusebaleTextFieldsforAddressandSubject(
                                   title: 'Subject of File',
                                   iconData: Icons.person_outlined,
                                   value:subject,
@@ -253,11 +274,10 @@ class dispatchFileShowContainer extends StatelessWidget {
                             ],
                           ),
                         ),
-                      SizedBox(
-                        height: 15,
-                      ),
 
-                    ],
+
+                      ],
+                    ),
                   ),
                 ),
               ),

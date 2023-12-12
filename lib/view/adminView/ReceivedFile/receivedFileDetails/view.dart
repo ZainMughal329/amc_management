@@ -254,6 +254,30 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
                           ),
                         ),
                         SizedBox(height: 15),
+                        Container(
+                          padding: EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: AppColors.containerColor4,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.shadowColor,
+                                blurRadius: 4,
+                                offset: Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              reusebaleTextFieldsforAddressandSubject(
+                                title: 'Receiver Address',
+                                iconData: Icons.work_outline,
+                                value: receiverAddress,
+                              ),
+                            ],
+                          ),
+                        ),
+
                       ],
                     ),
                   ),
@@ -353,4 +377,70 @@ class ScaffoldWidget extends StatelessWidget {
     );
   }
 }
+class reusebaleTextFieldsforAddressandSubject extends StatelessWidget {
+  final String title, value;
+  final Color? iconColor, valueColor;
+  final VoidCallback? onpress;
+  final IconData iconData;
+
+  reusebaleTextFieldsforAddressandSubject({
+    Key? key,
+    required this.title,
+    this.iconColor,
+    this.onpress,
+    this.valueColor,
+    required this.iconData,
+    required this.value,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.iconButtonBgColour),
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: ListTile(
+        title: GestureDetector(
+          onTap: () {
+            onpress;
+          },
+          child: AbsorbPointer(
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: title,
+                border: InputBorder.none,
+              ),
+              style: Theme.of(context).textTheme.subtitle2,
+            ),
+          ),
+        ),
+        leading: Icon(
+          iconData,
+          color: iconColor,
+        ),
+        subtitle: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.buttonBgColor),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+              value,
+              style: TextStyle(
+                color: valueColor,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
 
