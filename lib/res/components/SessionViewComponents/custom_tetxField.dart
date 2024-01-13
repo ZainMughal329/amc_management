@@ -51,6 +51,7 @@ class ReuseField extends StatelessWidget {
               // textAlign: TextAlign.center,
               style:
               Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 15.sp),
+            onTapOutside: (e) => FocusScope.of(context).unfocus(),
             decoration: InputDecoration(
               suffixIcon: IconButton(
                 onPressed: () {

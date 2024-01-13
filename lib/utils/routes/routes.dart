@@ -46,25 +46,25 @@ class AppPages {
         name: RouteNames.splashview,
         page: () => SplashView(),
         binding: SplashBindings(),
-      transition: Transition.zoom,
+      transition: Transition.upToDown,
     ),
     GetPage(
         name: RouteNames.loginview,
         page: () => LoginView(),
         binding: LoginBindings(),
-      transition: Transition.zoom,
+      transition: Transition.downToUp,
     ),
     GetPage(
         name: RouteNames.forgotview,
         page: () => ForgotView(),
         binding: Forgotbindinsg(),
-      transition: Transition.zoom,
+      transition: Transition.upToDown,
     ),
     GetPage(
       name: RouteNames.signupview,
       page: () => SignUpView(),
       binding: SignupBindings(),
-      transition: Transition.zoom,
+      transition: Transition.upToDown,
     ),
 
     // Admin Routes
@@ -160,7 +160,7 @@ class AppPages {
       name: RouteNames.userlistview,
       page: () => userListView(),
       binding: userBindings(),
-      transition: Transition.zoom,
+      transition: Transition.upToDown,
     ),
 
     // User Routes

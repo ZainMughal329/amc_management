@@ -286,7 +286,7 @@ class diaryNumberForm extends GetView<dataUplaodController> {
                       //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       //   children: [Text('Select Dept'), dropDownList()],
                       // ),
-                      SizedBox(height: 10.h,),
+                      SizedBox(height: 5.h,),
                       Obx(
                         () => controller.state.loading.value == false
                             ? ReuseButton(

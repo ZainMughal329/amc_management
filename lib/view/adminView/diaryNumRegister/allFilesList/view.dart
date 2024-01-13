@@ -11,6 +11,7 @@ import '../../../../res/colors.dart';
 import '../../../../res/components/adminViewComponents/custom_button.dart';
 import '../../../../utils/routes/routes_name.dart';
 import '../allFileDetails/view.dart';
+import '../searchView/controller.dart';
 
 class allFilesView extends GetView<allFilesController>{
   const allFilesView({super.key});
@@ -18,6 +19,7 @@ class allFilesView extends GetView<allFilesController>{
   @override
   Widget build(BuildContext context) {
     final con = Get.put(allFilesController());
+    final con1 = Get.put(diaryFilesSearchController());
     return Scaffold(
       body: Stack(
         children: [

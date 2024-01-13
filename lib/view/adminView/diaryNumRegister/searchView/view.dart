@@ -60,6 +60,7 @@ class diarySearchView extends GetView<diaryFilesSearchController> {
   }
   @override
   Widget build(BuildContext context) {
+    final con = Get.put(diaryFilesSearchController());
     return Scaffold(
       appBar: AppBar(
         title: _searchBar(),

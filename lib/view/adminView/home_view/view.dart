@@ -37,7 +37,7 @@ class HomeView extends GetView<HomeController> {
               child: Stack(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(bottom: 30),
+                    padding: const EdgeInsets.only(bottom: 10),
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Image.asset(
@@ -48,26 +48,35 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ),
                   Positioned(
-                    top: 40,
-                    right: 1,
-                    child: IconButton(
-                      color: AppColors.sessionPageTextColor,
-                      icon: Icon(Icons.login_outlined),
-                      onPressed: () {
-                         Get.offNamed(RouteNames.loginview);
-
-                      },
-                    ),
+                    top: 73,
+                    right: 10,
+                    child:
+                      InkWell(
+                        onTap: (){
+                          Get.offNamed(RouteNames.loginview);
+                        },
+                        child: CircleAvatar(
+                          backgroundColor: Colors.blueGrey,
+                          child: Image.asset('assets/images/logout.png',height: 25,),
+                        ),
+                      )
+                    // IconButton(
+                    //   color: AppColors.sessionPageTextColor,
+                    //   icon: Icon(Icons.login_outlined),
+                    //   onPressed: () {
+                    //      Get.offNamed(RouteNames.loginview);
+                    //
+                    //   },
+                    // ),
                   ),
                 ],
               ),
             ),
           ),
 
-
-      SizedBox(height: 20,),
+      SizedBox(height: 10,),
           Padding(
-            padding: EdgeInsets.only(top:80.h),
+            padding: EdgeInsets.only(top:100.h),
             child: Padding(
               padding: EdgeInsets.all(16.0),
               child: ListView(
@@ -78,21 +87,24 @@ class HomeView extends GetView<HomeController> {
                       Get.toNamed(RouteNames.userlistview);
                     },
                     title: "Users",
-                    icon: Icons.supervised_user_circle,
+                    lottie: 'assets/animations/userList.json',
+                    // icon: Icons.supervised_user_circle,
                   ),
                   SectionCard(
                     onpress: () {
                       Get.toNamed(RouteNames.receivedfileview);
                     },
                     title: "Received File",
-                    icon: Icons.add,
+                    lottie: 'assets/animations/Recievd.json',
+                    // icon: Icons.add,
                   ),
                   SectionCard(
                     onpress: () {
                       Get.toNamed(RouteNames.dispatchview);
                     },
                     title: "Dispatch File",
-                    icon: Icons.call_split,
+                    lottie: 'assets/animations/dispatchFile.json',
+                    // icon: Icons.call_split,
                   ),
                   // SizedBox(height: 5.h),
                   SectionCard(
@@ -100,7 +112,8 @@ class HomeView extends GetView<HomeController> {
                     onpress: () {
                       Get.toNamed(RouteNames.diaryNumView);
                     },
-                    icon: Icons.book_online_outlined,
+                    lottie: 'assets/animations/addFile.json',
+                    // icon: Icons.book_online_outlined,
                   ),
                 ],
               ),

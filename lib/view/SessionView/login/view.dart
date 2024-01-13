@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import '../../../res/components/SessionViewComponents/custom_tetxField.dart';
 import '../../../res/components/SessionViewComponents/elevated_button.dart';
 import '../../../utils/custom_Utils.dart';
@@ -16,6 +17,7 @@ class LoginView extends GetView<LoginController> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final con = Get.put(LoginController());
     final height = MediaQuery.of(context).size.height * 1;
     return Scaffold(
       backgroundColor: AppColors.sessionPageBgColor, // Use a more appealing background color
@@ -29,6 +31,7 @@ class LoginView extends GetView<LoginController> {
                 const SizedBox(
                   height: 70,
                 ),
+                // Lottie.asset('assets/animations/Login1.json'),
                 Image(image: AssetImage('assets/images/AMC.png')),
                 TextWidget(
                   title: "Welcome back",
@@ -52,6 +55,7 @@ class LoginView extends GetView<LoginController> {
                 ),
                 ReuseField(
                   // Customize your text field
+
                   myController: controller.state.emailController,
                   keyboardType: TextInputType.emailAddress,
                   focusNode: controller.state.Emailfocousnode,
