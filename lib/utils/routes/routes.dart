@@ -160,7 +160,7 @@ class AppPages {
       name: RouteNames.userlistview,
       page: () => userListView(),
       binding: userBindings(),
-      transition: Transition.zoom,
+      transition: Transition.upToDown,
     ),
 
     // User Routes
