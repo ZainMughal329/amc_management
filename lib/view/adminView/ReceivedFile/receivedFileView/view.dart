@@ -20,7 +20,7 @@ class receivedFileView extends GetView<receivedFileController> {
             padding: const EdgeInsets.symmetric(horizontal: 0),
             child:Column(
               children: [
-                SizedBox(height: 15.h,),
+                SizedBox(height: 10.h,),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Align(
@@ -35,7 +35,7 @@ class receivedFileView extends GetView<receivedFileController> {
                         )),
                       )),
                 ),
-                SizedBox(height: 10.h,),
+                SizedBox(height: 5.h,),
                 Container(
                   child: Align(
                     alignment: Alignment.topLeft,

@@ -129,7 +129,7 @@ class receivedFileDataList extends GetView<receivedFilesListController> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 40,bottom: 40,left: 40,right: 40),
+            padding: const EdgeInsets.only(top: 40,bottom: 45,left: 40,right: 40),
             child: Align(
               alignment: Alignment.bottomCenter,
               child: GestureDetector(

@@ -62,6 +62,7 @@ class SearchView extends GetView<SearchBarController> {
 
   @override
   Widget build(BuildContext context) {
+    final Con1=Get.put(SearchBarController());
     return Scaffold(
       appBar: AppBar(
         title: _searchBar(),

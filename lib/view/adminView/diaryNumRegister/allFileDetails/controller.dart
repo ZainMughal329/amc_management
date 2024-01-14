@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:amc_management/res/components/adminViewComponents/sharedComponents/detailTextForm.dart';
+import 'package:amc_management/res/components/textWidget.dart';
 import 'package:amc_management/view/adminView/diaryNumRegister/allFileDetails/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -167,7 +168,9 @@ class diaryFilesDetailController extends GetxController {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Center(child: Text('update serial Number')),
+            backgroundColor: Colors.white,
+            elevation: 0,
+            title: Center(child: TextWidget(title: 'update serial Number',textColor: AppColors.tittleColour,)),
             content: SingleChildScrollView(
               child: Column(
                 children: [
@@ -221,6 +224,8 @@ class diaryFilesDetailController extends GetxController {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Colors.white,
+            elevation: 0,
             title: Center(child: Text('update sender Name')),
             content: SingleChildScrollView(
               child: Column(
@@ -274,9 +279,12 @@ class diaryFilesDetailController extends GetxController {
     //this line 104 code mean jo user ka already name ho ga wo show ho
     uplaodFormState.receiverNameController.text = receiverName;
     return showDialog(
+
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Colors.white,
+            elevation: 0,
             title: Center(child: Text('update receiver Name')),
             content: SingleChildScrollView(
               child: Column(
@@ -333,6 +341,8 @@ class diaryFilesDetailController extends GetxController {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Colors.white,
+            elevation: 0,
             title: Center(child: Text('update sender Address')),
             content: SingleChildScrollView(
               child: Column(

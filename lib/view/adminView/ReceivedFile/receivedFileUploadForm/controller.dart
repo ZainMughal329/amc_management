@@ -125,12 +125,9 @@ class uploadFormController extends GetxController{
       ).then((value) {
         print("image no is" + imageId.toString());
         print("image url is" + imageUrl.toString());
-         clearDateFromScreen();
-        // images = [];
+        clearDateFromScreen();
         Get.toNamed(RouteNames.homeview);
-
         setLoading(false);
-
       }).onError((error, stackTrace) {
         print(error.toString());
         setLoading(false);

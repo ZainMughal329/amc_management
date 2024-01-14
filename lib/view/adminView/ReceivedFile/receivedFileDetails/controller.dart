@@ -191,8 +191,6 @@ class receivedFileDetailController extends GetxController{
 
         addFileModel = ReceivedFileModel(
             id: id,
-            // name: documentSnapshot!['Name'],
-            // dept: documentSnapshot!['dept'],
             receivereName: documentSnapshot!['receiverName'],
             receivedAddress: documentSnapshot!['receivedAddress'],
             receivedFrom: documentSnapshot!['From'],
@@ -244,23 +242,23 @@ class receivedFileDetailController extends GetxController{
 
 
 
-    Future<void> showserialNumDialogAlert(
-        BuildContext context, String filenum, String id) {
+    Future<void> showrecievednameDialogAlert(
+        BuildContext context, String recievedName, String id) {
       //this line 104 code mean jo user ka already name ho ga wo show ho
-      uplaodFormState.serialNumController.text = filenum;
+      uplaodFormState.receiverNameController.text = recievedName;
       return showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
-              title: Center(child: Text('update serial Number')),
+              title: Center(child: Text('update Receiver Name')),
               content: SingleChildScrollView(
                 child: Column(
                   children: [
                     ReuseField(
-                        myController: uplaodFormState.serialNumController,
+                        myController: uplaodFormState.receiverNameController,
                         focusNode:
-                            uplaodFormState.serialNumFocusNode,
-                        lableText: 'Enter your Serial Num',
+                            uplaodFormState.receiverNameFocusNode,
+                        lableText: 'Enter your reciver name',
                         onFiledSubmittedValue: (value) {},
                         keyboardType: TextInputType.emailAddress,
                         obsecureText: false,
@@ -284,11 +282,11 @@ class receivedFileDetailController extends GetxController{
                     onPressed: () {
                       //this  code will update the name in database
                       state.ref.doc(id).update({
-                        'serialNum':
-                            uplaodFormState.serialNumController.text.toString()
+                        'receiverName':
+                            uplaodFormState.receiverNameController.text.toString()
                       }).then((value) {
                         fetchDataOfFiles(id);
-                        uplaodFormState.serialNumController.clear();
+                        uplaodFormState.receiverNameController.clear();
                       });
 
                       Navigator.pop(context);
@@ -301,6 +299,66 @@ class receivedFileDetailController extends GetxController{
             );
           });
     }
+
+
+
+    Future<void> showrecievedfromDialogAlert(
+        BuildContext context, String recievedFrom, String id) {
+      //this line 104 code mean jo user ka already name ho ga wo show ho
+      uplaodFormState.receivedfromController.text = recievedFrom;
+      return showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: Center(child: Text('update Receiver From')),
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ReuseField(
+                        myController: uplaodFormState.receivedfromController,
+                        focusNode:
+                        uplaodFormState.receivedFromFocusNode,
+                        lableText: 'Enter your ReceiverFrom Name',
+                        onFiledSubmittedValue: (value) {},
+                        keyboardType: TextInputType.emailAddress,
+                        obsecureText: false,
+                        onvalidator: (value) {})
+                  ],
+                ),
+              ),
+              actions: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'cancel',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .copyWith(color: AppColors.warningColor),
+                    )),
+                TextButton(
+                    onPressed: () {
+                      //this  code will update the name in database
+                      state.ref.doc(id).update({
+                        'From':
+                        uplaodFormState.receivedfromController.text.toString()
+                      }).then((value) {
+                        fetchDataOfFiles(id);
+                        uplaodFormState.receivedfromController.clear();
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      'ok',
+                      style: Theme.of(context).textTheme.subtitle2,
+                    ))
+              ],
+            );
+          });
+    }
+
 
 
 

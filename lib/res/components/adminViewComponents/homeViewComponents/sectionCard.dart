@@ -59,7 +59,7 @@ class SectionCard extends StatelessWidget {
           animatedTexts: [
             TypewriterAnimatedText(
                 title,textStyle: GoogleFonts.poppins(
-                fontSize: 17, color: AppColors.tittleColour
+                fontSize: 15, color: AppColors.tittleColour
             ),
                 speed: const Duration(milliseconds: 100)
             ),

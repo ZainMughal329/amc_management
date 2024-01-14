@@ -1,3 +1,4 @@
+import 'package:amc_management/res/components/textWidget.dart';
 import 'package:amc_management/view/adminView/ReceivedFile/receivedFileUploadForm/controller.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
@@ -115,7 +116,10 @@ class ListOfFileView extends GetView<listOfImagesController> {
         ),
       ),
       appBar: AppBar(
-        title: const Text('Select Images'),
+        title:  TextWidget(
+          title: 'Select Images',
+          textColor: AppColors.tittleColour,
+        ),
         actions: [
           // IconButton(
           //   icon: const Icon(Icons.arrow_upward),

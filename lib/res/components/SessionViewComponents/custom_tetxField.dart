@@ -77,7 +77,7 @@ class ReuseField extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10)
               ),
                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.cardBgColour),
+                  borderSide: BorderSide(color: AppColors.cardTextColourS),
                   borderRadius: BorderRadius.all(Radius.circular(8))
               ),
               // focusedErrorBorder: OutlineInputBorder(
@@ -85,6 +85,7 @@ class ReuseField extends StatelessWidget {
               //     borderRadius: BorderRadius.all(Radius.circular(8))
               // ),
               enabledBorder: OutlineInputBorder(
+
                 // borderSide: BorderSide(color: AppColors.cardBgColour),
 
                   // borderSide: BorderSide(color: AppColors.warningColor),

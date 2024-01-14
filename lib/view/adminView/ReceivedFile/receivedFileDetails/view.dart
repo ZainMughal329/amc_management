@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../../res/colors.dart';
+import '../receivedFileSearchView/controller.dart';
 import 'controller.dart';
 import 'state.dart';
 
@@ -31,6 +32,7 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
 
   @override
   Widget build(BuildContext context) {
+    final Con1 =Get.put(SearchBarController());
     final controller =receivedFileDetailController();
     CarouselController buttonCarouselController = CarouselController();
     controller.fetchDataOfFiles(id);
@@ -238,6 +240,11 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
                           child: Column(
                             children: [
                               reusebleRow(
+                                // onpress: (){
+                                //   controller.showrecievednameDialogAlert(
+                                //     context,controller.state.
+                                //   );
+                                // },
                                 title: 'Receiver Name',
                                 iconData: Icons.work_outline,
                                 value: receiverName,
