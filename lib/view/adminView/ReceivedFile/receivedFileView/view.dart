@@ -1,4 +1,5 @@
 import 'package:amc_management/res/colors.dart';
+import 'package:amc_management/res/components/textWidget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,9 @@ class receivedFileView extends GetView<receivedFileController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: TextWidget(title: 'Received Files',fontSize: 20,textColor: AppColors.tittleColour,),
+      ),
       backgroundColor: AppColors.filesBgColour,
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
@@ -21,21 +25,21 @@ class receivedFileView extends GetView<receivedFileController> {
             child:Column(
               children: [
                 SizedBox(height: 10.h,),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Align(
-                      alignment: Alignment.topLeft,
-                      child: CircleAvatar(
-                        backgroundColor: AppColors.fileTabBarIconButtonColor,
-                        child: IconButton(
-                            onPressed: (){
-                              Get.back();
-                            }, icon: Icon(Icons.arrow_back,
-                          color: Colors.white,
-                        )),
-                      )),
-                ),
-                SizedBox(height: 5.h,),
+                // Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: Align(
+                //       alignment: Alignment.topLeft,
+                //       child: CircleAvatar(
+                //         backgroundColor: AppColors.fileTabBarIconButtonColor,
+                //         child: IconButton(
+                //             onPressed: (){
+                //               Get.back();
+                //             }, icon: Icon(Icons.arrow_back,
+                //           color: Colors.white,
+                //         )),
+                //       )),
+                // ),
+                // SizedBox(height: 5.h,),
                 Container(
                   child: Align(
                     alignment: Alignment.topLeft,

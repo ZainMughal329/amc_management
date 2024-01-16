@@ -74,10 +74,6 @@ class ForgotView extends GetView<ForgotController> {
                         onvalidator: (value) {
                           return value.isEmpty ? 'Enter your email' : null;
                         },
-                      //   TextStyle(
-                        //                         fontSize: 18,
-                        //                         color: Colors.white,
-                        //                       ),
                       ),
                       SizedBox(
                         height: height * .01,

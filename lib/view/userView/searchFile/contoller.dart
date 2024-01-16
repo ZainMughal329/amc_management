@@ -1,12 +1,13 @@
 
 
-import 'package:amc_management/view/SearchView/dispatchFileSearchView/index.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-class dispatchSearchController extends GetxController{
+import 'state.dart';
 
-  final state = dispatchSearchState();
+class userSerachController extends GetxController{
+  final state = UserSearchState();
   RxList<DocumentSnapshot> allFiles = RxList<DocumentSnapshot>();
   RxList<DocumentSnapshot> filteredFiles = RxList<DocumentSnapshot>();
 
@@ -17,7 +18,7 @@ class dispatchSearchController extends GetxController{
     fetchAllFiles();
   }
   void fetchAllFiles()async{
-    final querySnapshot = await FirebaseFirestore.instance.collection('dispatchFile').get();
+    final querySnapshot = await FirebaseFirestore.instance.collection('diaryNumberRegister').get();
     print('length : ' + querySnapshot.docs.length.toString());
     allFiles.assignAll(querySnapshot.docs);
   }
@@ -29,12 +30,9 @@ class dispatchSearchController extends GetxController{
         results =[];
       }else{
         results = allFiles.where((data) =>
-        data['FileNum'].toString().toLowerCase().contains(lowerCaseQuery) ||
-            data['NotificationTo'].toString().toLowerCase().contains(lowerCaseQuery) ||
-            data['Name'].toString().toLowerCase().contains(lowerCaseQuery) ||
-            data['Dept'].toString().toLowerCase().contains(lowerCaseQuery)
+        data['senderName'].toString().toLowerCase().contains(lowerCaseQuery) ||
+            data['serialNum'].toString().toLowerCase().contains(lowerCaseQuery)
         ).toList();
-
       }
       filteredFiles.value = results;
       update();

@@ -1,6 +1,8 @@
-import 'package:flutter/cupertino.dart';
 
-class dispatchSearchState {
+
+import 'package:flutter/material.dart';
+
+class UserSearchState {
   TextEditingController searchController = TextEditingController();
 
 }

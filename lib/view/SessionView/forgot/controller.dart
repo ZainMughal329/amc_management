@@ -2,6 +2,7 @@
 
 import 'package:amc_management/utils/routes/routes_name.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'index.dart';
@@ -26,15 +27,15 @@ class ForgotController extends GetxController{
       state.auth.sendPasswordResetEmail(email: email).then((value) {
         setLoading(false);
         Get.toNamed(RouteNames.loginview);
-        Get.snackbar('Sucess', 'Check your email to recover your password');
+        Get.snackbar('Sucess','Check your email to recover your password',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
 
       }).onError((error, stackTrace) {
         setLoading(false);
-        Get.snackbar('Error', error.toString());
+        Get.snackbar('Error',error.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
       });
     }catch(e){
       setLoading(false);
-      Get.snackbar('Error', e.toString());
+      Get.snackbar('Error', e.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
     }
 
 

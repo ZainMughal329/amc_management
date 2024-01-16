@@ -18,91 +18,83 @@ class diaryNumView extends GetView<diaryNumberController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Diary number register'),
+        backgroundColor: Colors.white,
+      ),
       backgroundColor: AppColors.filesBgColour,
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
-        child:SafeArea(
-            child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 0),
-          child: Column(
-            children: [
-              SizedBox(height: 5.h),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: CircleAvatar(
-                    backgroundColor: AppColors.filesIconButtonBgColour,
-                    child: IconButton(
-                      onPressed: () {
-                        Get.back();
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
+        child:Column(
+        children: [
+        // Padding(
+        //   padding: const EdgeInsets.all(8.0),
+        //   child: Align(
+        //     alignment: Alignment.topLeft,
+        //     child: CircleAvatar(
+        //       backgroundColor: AppColors.filesIconButtonBgColour,
+        //       child: IconButton(
+        //         onPressed: () {
+        //           Get.back();
+        //         },
+        //         icon: Icon(
+        //           Icons.arrow_back,
+        //           color: Colors.white,
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        // SizedBox(height: 10.h),
+        Align(
+          alignment: Alignment.topLeft,
+          child: TabBar(
+            isScrollable: true,
+            labelPadding: EdgeInsets.only(right: 20, left: 20),
+            indicator: CircleTabIndicator(
+              color: AppColors.lightActiveIconColor,
+              radius: 4,
+            ),
+            controller: controller.tabController,
+            labelColor: AppColors.unActiveIconColor,
+            unselectedLabelColor: Colors.grey,
+            tabs: [
+              Tab(
+                child: Text(
+                  'DiaryNum Form',
+              style: TextStyle(fontWeight: FontWeight.bold,
               ),
-              // Padding(
-              //   padding: const EdgeInsets.only(bottom: 30),
-              //   child: Align(
-              //     alignment: Alignment.topCenter,
-              //     child: Image(
-              //       image: AssetImage('assets/images/AMC.png'),height: 30,fit: BoxFit.fitHeight,
-              //     ),
-              //   ),
-              // ),
-              SizedBox(height: 10.h),
-              Align(
-                alignment: Alignment.topLeft,
-                child: TabBar(
-                  isScrollable: true,
-                  labelPadding: EdgeInsets.only(right: 20, left: 20),
-                  indicator: CircleTabIndicator(
-                    color: AppColors.lightActiveIconColor,
-                    radius: 4,
+                ),
+                // text: 'DiaryNum Form',
+              ),
+              Tab(
+                child: Text('Files',
+                  style: TextStyle(fontWeight: FontWeight.bold,
+                      // color: AppColors.sessionPageTextColor
                   ),
-                  controller: controller.tabController,
-                  labelColor: AppColors.unActiveIconColor,
-                  unselectedLabelColor: Colors.grey,
-                  tabs: [
-                    Tab(
-                      child: Text(
-                        'DiaryNum Form',
-                    style: TextStyle(fontWeight: FontWeight.bold,
-                    ),
-                      ),
-                      // text: 'DiaryNum Form',
-                    ),
-                    Tab(
-                      child: Text('Files',
-                        style: TextStyle(fontWeight: FontWeight.bold,
-                            // color: AppColors.sessionPageTextColor
-                        ),
 
-                      ),
-                      // text: 'Files',
-                    ),
-                  ],
                 ),
-              ),
-              Container(
-                // color: Colors.red,
-                height: 598.h,
-                width: double.infinity,
-                child: TabBarView(
-                  controller: controller.tabController,
-                  children: [
-                    diaryNumberForm(),
-                    allFilesView(),
-                  ],
-                ),
+                // text: 'Files',
               ),
             ],
           ),
-        ))
+        ),
+        SizedBox(height: 20,),
+
+        Container(
+          // color: Colors.red,
+          height: 590,
+          width: double.infinity,
+          child: TabBarView(
+            controller: controller.tabController,
+            children: [
+              diaryNumberForm(),
+              allFilesView(),
+            ],
+          ),
+        ),
+        ],
+        )
 
       ),
     );

@@ -1,24 +1,12 @@
-import 'dart:io';
 
+import 'package:amc_management/res/components/textWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:card_swiper/card_swiper.dart';
-import 'package:dio/dio.dart' as dio; // Alias the dio package
-import 'package:path_provider/path_provider.dart';
-
 import '../../../res/colors.dart';
 import '../../../res/components/adminViewComponents/custom_button.dart';
 import '../controller.dart';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
-import 'package:card_swiper/card_swiper.dart';
-import 'package:dio/dio.dart' as dio;
-import 'package:pdf/widgets.dart' as pw;
-import '../controller.dart';
-
 class UserViewImages extends StatelessWidget {
   final String id;
 
@@ -35,22 +23,23 @@ class UserViewImages extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        title: TextWidget(title: 'IMAGES',textColor: AppColors.tittleColour,fontSize: 24,),
         backgroundColor: AppColors.appBarBgColour,
-        actions: [
-          IconButton(
-            onPressed: () {
-              controller.downloadImages(controller.fetchedImageUrls);
-            },
-            icon: Icon(Icons.download_outlined),
-          ),
-          IconButton(
-            onPressed: () {
-             controller.generatePDF(controller.fetchedImageUrls);
-             print('pdf create');
-            },
-            icon: Icon(Icons.picture_as_pdf),
-          ),
-        ],
+        // actions: [
+        //   IconButton(
+        //     onPressed: () {
+        //       controller.downloadImages(controller.fetchedImageUrls);
+        //     },
+        //     icon: Icon(Icons.download_outlined),
+        //   ),
+        //   IconButton(
+        //     onPressed: () {
+        //      controller.generatePDF(controller.fetchedImageUrls);
+        //      print('pdf create');
+        //     },
+        //     icon: Icon(Icons.picture_as_pdf),
+        //   ),
+        // ],
       ),
       resizeToAvoidBottomInset: false,
       body: Column(
@@ -64,7 +53,7 @@ class UserViewImages extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.image,
-                      color: Colors.blue, // Set your desired color
+                      color: Colors.black, // Set your desired color
                       size: 20.sp,
                     ),
                     SizedBox(width: 5.w),
@@ -78,7 +67,7 @@ class UserViewImages extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.photo,
-                      color: Colors.blue, // Set your desired color
+                      color: Colors.black, // Set your desired color
                       size: 20.sp,
                     ),
                     SizedBox(width: 5.w),
@@ -141,7 +130,7 @@ class UserViewImages extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 20),
             child: ReuseButton(
-              borderColor: Colors.blue,
+              borderColor: Colors.black,
               icon: Icons.download_outlined,
               tittle: 'Download All',
               onpress: () {

@@ -7,7 +7,7 @@ class listOfImagestate{
   List<String> imageUrls = [];
   RxInt imageNo = 0.obs;
   final loading = false.obs;
-  final ref = FirebaseFirestore.instance.collection('Received Files');
+  final ref = FirebaseFirestore.instance.collection('ReceivedFiles');
   final auth = FirebaseAuth.instance;
   List<String> fetchedImageUrls = [];
   RxBool fetchedLoading = true.obs;

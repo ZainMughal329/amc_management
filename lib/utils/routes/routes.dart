@@ -1,9 +1,6 @@
 import 'package:amc_management/utils/routes/routes_name.dart';
-import 'package:amc_management/view/SearchView/dispatchFileSearchView/index.dart';
 import 'package:amc_management/view/adminView/diaryNumRegister/diaryNumView/index.dart';
 import 'package:amc_management/view/adminView/diaryNumRegister/searchView/index.dart';
-import 'package:amc_management/view/scanimages/bindings.dart';
-import 'package:amc_management/view/scanimages/view.dart';
 import 'package:amc_management/view/userView/bindings.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
@@ -24,9 +21,10 @@ import '../../view/adminView/diaryNumRegister/dataUplaodForm/bindings.dart';
 import '../../view/adminView/diaryNumRegister/dataUplaodForm/view.dart';
 import '../../view/adminView/diaryNumRegister/listOfImages/bindings.dart';
 import '../../view/adminView/diaryNumRegister/listOfImages/view.dart';
-import '../../view/adminView/dispatchFile/bindings.dart';
-import '../../view/adminView/dispatchFile/dispatchfileshow.dart';
-import '../../view/adminView/dispatchFile/view.dart';
+import '../../view/adminView/dispatchFile/dispatchFileSerachView/view.dart';
+import '../../view/adminView/dispatchFile/dispatchFileView/bindings.dart';
+import '../../view/adminView/dispatchFile/dispatchFileDetails/dispatchfileshow.dart';
+import '../../view/adminView/dispatchFile/dispatchFileView/view.dart';
 import '../../view/adminView/home_view/bindings.dart';
 import '../../view/adminView/home_view/view.dart';
 import '../../view/adminView/sendFile/bindings.dart';
@@ -52,7 +50,7 @@ class AppPages {
         name: RouteNames.loginview,
         page: () => LoginView(),
         binding: LoginBindings(),
-      transition: Transition.downToUp,
+      transition: Transition.upToDown,
     ),
     GetPage(
         name: RouteNames.forgotview,

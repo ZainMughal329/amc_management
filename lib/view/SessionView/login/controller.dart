@@ -1,10 +1,12 @@
 import 'package:amc_management/view/SessionView/login/state.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../model/services/session_Controller.dart';
 import '../../../utils/routes/routes.dart';
+import '../../../utils/snackBar.dart';
 import '../../userView/view.dart';
 class LoginController extends GetxController{
   @override
@@ -36,7 +38,9 @@ class LoginController extends GetxController{
          state.emailController.clear();
          state.passwordController.clear();
       }).onError((error, stackTrace){
-        Get.snackbar('Error',error.toString());
+        // CustomSnackbar.showSnackbar(context, error.toString());
+        // Snackbar2.showSnackBar('Error', error.toString());
+        Get.snackbar('Error',error.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
         setLoading(false);
         // state.loading.value=false;
       });

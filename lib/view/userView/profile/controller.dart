@@ -80,12 +80,13 @@ return FirebaseFirestore.instance.collection('users').doc(state.auth.currentUser
       ({
       'profile':newUrl.toString()
     }).then((value){
+      Get.snackbar('Success','Profile Update',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
       // state.loading.value;
       // Utils.toatMesage('Profile update');
       _image=null;
     }).onError((error, stackTrace){
       state.loading.value;
-      Get.snackbar('Error', error.toString());
+      Get.snackbar('Error', error.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
     });
   }
 
@@ -96,6 +97,8 @@ return FirebaseFirestore.instance.collection('users').doc(state.auth.currentUser
     state.namecontroller.text=name;
     return showDialog(context: context, builder: (context){
       return AlertDialog(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title:Center(child: Text('update username')) ,
         content: SingleChildScrollView(
           child: Column(
@@ -142,6 +145,8 @@ return FirebaseFirestore.instance.collection('users').doc(state.auth.currentUser
    state.emailcontroller.text=email;
     return showDialog(context: context, builder: (context){
       return AlertDialog(
+        backgroundColor: Colors.white,
+        elevation: 0,
         title:Center(child: Text('update email')) ,
         content: SingleChildScrollView(
           child: Column(

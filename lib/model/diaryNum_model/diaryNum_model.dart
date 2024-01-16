@@ -18,7 +18,6 @@ class DiaryNumModel {
     this.subject,
     required this.dept,
     required this.senderName,
-    // required this.name,
     this.date,
     this.fileDispatchDate,
     required this.receiverName,

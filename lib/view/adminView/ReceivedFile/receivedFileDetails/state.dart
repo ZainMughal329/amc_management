@@ -7,10 +7,16 @@ class receivedFilesDetailState{
   RxInt imageNo = 0.obs;
   final loading = false.obs;
   RxBool loaded = false.obs;
-  final ref = FirebaseFirestore.instance.collection('Received Files');
+  final ref = FirebaseFirestore.instance.collection('ReceivedFiles');
   RxList<String> fetchedImageUrls = <String>[].obs;
   RxBool fetchedLoading = true.obs;
   List<String> images = [];
+  RxString serialNum = ''.obs;
+  RxString receiverFrom = ''.obs;
+  RxString receiverAddress = ''.obs;
+  RxString receiverName = ''.obs;
+
+
 
 
 

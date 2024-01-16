@@ -1,9 +1,10 @@
 import 'package:amc_management/res/colors.dart';
-import 'package:amc_management/view/adminView/dispatchFile/controller.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
+
+import '../dispatchFileView/controller.dart';
 
 
 
@@ -127,41 +128,8 @@ class listOfImages extends StatelessWidget {
       ),
       appBar: AppBar(
         title: const Text('Select Images'),
-        // actions: [
-        //   IconButton(
-        //     icon: const Icon(Icons.arrow_upward),
-        //     onPressed: () {
-        //       final images = controller.images;
-        //       // use these images
-        //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        //           content: Text(images.map((e) => e.name).toString(),),),);
-        //     },
-        //   ),
-        // ],
+
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () async {
-      //     String docId = DateTime.now().millisecondsSinceEpoch.toString();
-      //     int imageId = con.state.imageNo.value;
-      //     // uploadImages(controller.images);
-      //     // print(controller.images.length.toString());
-      //     print('object213');
-      //     // await con.addFileDataOnFirebase(
-      //     //     docId, FileName, date, fileNo, deptName, recieverName, details);
-      //     print('object265413');
-      //
-      //     for (var data in controller.images) {
-      //       print(imageId);
-      //       String timestamp =
-      //       DateTime.timestamp().microsecondsSinceEpoch.toString();
-      //       con.uploadimagelistonDatabase(imageId, docId, timestamp, data.path);
-      //       print(imageId.toString() + "after code");
-      //       con.state.imageNo.value++;
-      //     }
-      //     con.state.imageNo.value = 0;
-      //   },
-      //   child: Icon(Icons.add),
-      // ),
     );
   }
 }

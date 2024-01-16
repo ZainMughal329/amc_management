@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'package:amc_management/res/components/adminViewComponents/box_button.dart';
 import 'package:amc_management/utils/custom_Utils.dart';
 import 'package:amc_management/view/adminView/ReceivedFile/receivedFileUploadForm/controller.dart';
 import 'package:amc_management/view/adminView/ReceivedFile/receivedFileUploadForm/state.dart';
@@ -11,13 +9,13 @@ import '../../../../res/colors.dart';
 import '../../../../res/components/adminViewComponents/sharedComponents/custom_addordispatchfields.dart';
 import '../../../../res/components/adminViewComponents/custom_button.dart';
 import '../../../../res/components/adminViewComponents/sharedComponents/detailTextForm.dart';
-
 class receivedFileForm extends GetView<uploadFormController> {
   receivedFileForm({super.key});
   final state=dataUploadState();
-  final uplaodFormController = uploadFormController();
+  final uplaodFormController = Get.put(uploadFormController());
   @override
   Widget build(BuildContext context) {
+     // controller.clearDateFromScreen();
     return Scaffold(
       backgroundColor: AppColors.filesBgColour,
       resizeToAvoidBottomInset: true,
@@ -148,7 +146,7 @@ class receivedFileForm extends GetView<uploadFormController> {
                           onpress: () {
                             String docId = DateTime.now().millisecondsSinceEpoch.toString();
                             controller.uploadReceivedFileDataOnFirebase(
-                              controller.documentId,
+                              docId,
                               controller. state.selectedDate,
                               controller. state.serialNumController.text.trim(),
                               // controller.state.deptName.value.trim(),

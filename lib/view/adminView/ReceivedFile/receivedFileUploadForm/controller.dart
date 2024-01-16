@@ -82,8 +82,10 @@ class uploadFormController extends GetxController{
           date:state.selectedDate,
           fileNo: state.serialNumController.text
               .trim(),
+          receivedfrom: state.receivedfromController.text.trim(),
+          receiveraddress: state.receiverAddressController.text.trim(),
           recieverName:
-          state.receivedfromController.text.trim(), id: id,
+          state.receiverNameController.text.trim(), id: id,
           // FileName:
           // state.nameController.text.trim(),
           // deptName: state.deptName.value,
@@ -127,6 +129,7 @@ class uploadFormController extends GetxController{
         print("image url is" + imageUrl.toString());
         clearDateFromScreen();
         Get.toNamed(RouteNames.homeview);
+        // clearDateFromScreen();
         setLoading(false);
       }).onError((error, stackTrace) {
         print(error.toString());
@@ -141,7 +144,6 @@ class uploadFormController extends GetxController{
   }
 
 clearDateFromScreen() {
-
   state.dateController.clear();
   state.receivedfromController.clear();
   // state.nameController.clear();

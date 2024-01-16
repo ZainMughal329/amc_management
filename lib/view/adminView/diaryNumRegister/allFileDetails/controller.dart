@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:amc_management/res/components/adminViewComponents/sharedComponents/detailTextForm.dart';
 import 'package:amc_management/res/components/textWidget.dart';
 import 'package:amc_management/view/adminView/diaryNumRegister/allFileDetails/state.dart';
@@ -10,7 +9,6 @@ import 'package:gallery_saver/gallery_saver.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-
 import '../../../../model/diaryNum_model/diaryNum_model.dart';
 import '../../../../res/colors.dart';
 import '../../../../res/components/SessionViewComponents/custom_tetxField.dart';
@@ -18,9 +16,6 @@ import '../dataUplaodForm/state.dart';
 import 'package:dio/dio.dart' as dio; // Alias the dio package
 import 'package:pdf/widgets.dart' as pw;
 import 'package:permission_handler/permission_handler.dart';
-
-
-
 class diaryFilesDetailController extends GetxController {
   final state=diaryNumFileDetailsState();
 
@@ -82,23 +77,7 @@ class diaryFilesDetailController extends GetxController {
       return [];
     }
 
-
-    // final List<dynamic> dynamicImageUrls = snapshot.data()!['images'];
-    // final List<String> imageUrls = List<String>.from(dynamicImageUrls.map((e) => e.toString()));
-    // return imageUrls;
   }
-
-  // Future<List<String>> fetchImageUrls(String docId) async {
-  //   setFetchLoading(true);
-  //   final snapshot = await FirebaseFirestore.instance
-  //       .collection('diaryNumberRegister')
-  //       .doc(docId)
-  //       .get();
-  //
-  //   final List<String> imageUrls =
-  //   List<String>.from(snapshot.data()!['images']);
-  //   return imageUrls;
-  // }
   Future<List<String>> getImageUrls() async {
     final QuerySnapshot querySnapshot = await state.ref.get();
     final List<String> imageUrls = [];
@@ -131,7 +110,7 @@ class diaryFilesDetailController extends GetxController {
 
         diaryFileModel = DiaryNumModel(
             id: id,
-            // subject: documentSnapshot![''],
+            subject: documentSnapshot!['subject'],
             images: [],
             dept: documentSnapshot!['Dept'],
             senderName:  documentSnapshot!['senderName'],
@@ -140,13 +119,12 @@ class diaryFilesDetailController extends GetxController {
             serialNum:  documentSnapshot!['serialNum']
         );
         print('name is:'+documentSnapshot!['Dept'].toString(),);
+        state.subject.value=documentSnapshot!['subject'];
          state.serialNum.value = documentSnapshot!['serialNum'];
         state.senderAddress.value = documentSnapshot!['senderAddress'];
         state.receiverName.value = documentSnapshot!['receiverName'];
-        // state.dept.value = documentSnapshot!['Dept'];
         state.senderName.value = documentSnapshot!['senderName'];
         state.loaded.value = true;
-        // print('value of file number : ' +state.serialNum.value.toString(),);
       } else {
         print('empty');
       }
@@ -375,10 +353,68 @@ class diaryFilesDetailController extends GetxController {
                   onPressed: () {
                     //this  code will update the name in database
                     state.ref.doc(id).update({
-                      'serialNum': uplaodFormState.senderAddressController.text.toString()
+                      'senderAddress': uplaodFormState.senderAddressController.text.toString()
                     }).then((value) {
                       fetchDataOfFiles(id);
                       uplaodFormState.senderAddressController.clear();
+                    });
+
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'ok',
+                    style: Theme.of(context).textTheme.subtitle2,
+                  ))
+            ],
+          );
+        });
+  }
+  Future<void> fileSubjectDialogAlert(
+      BuildContext context, String fileSubject, String id) {
+    //this line 104 code mean jo user ka already name ho ga wo show ho
+    uplaodFormState.fileSubjectController.text = fileSubject;
+    return showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            title: Center(child: Text('update file subject')),
+            content: SingleChildScrollView(
+              child: Column(
+                children: [
+                  detailTextFormField(
+                      controller: uplaodFormState.fileSubjectController,
+                      focusNode: uplaodFormState.fileSubjectFocus,
+                      lableText: 'Enter your subject of file',
+                      onFiledSubmittedValue: (value) {},
+                      keyboardType: TextInputType.emailAddress,
+                      onvalidator: (value) {}
+                  )
+
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text(
+                    'cancel',
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle2!
+                        .copyWith(color: AppColors.warningColor),
+                  )),
+              TextButton(
+                  onPressed: () {
+                    //this  code will update the name in database
+                    state.ref.doc(id).update({
+                      'subject': uplaodFormState.fileSubjectController.text.toString()
+                    }).then((value) {
+                      fetchDataOfFiles(id);
+                      uplaodFormState.fileSubjectController.clear();
                     });
 
                     Navigator.pop(context);
@@ -414,10 +450,10 @@ class diaryFilesDetailController extends GetxController {
           print('Image saved to gallery: $value');
         });
 
-        Get.snackbar('Success', 'Image Downloaded');
+        Get.snackbar('Success', 'Image Downloaded',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
       } catch (error) {
         print('Error downloading image: $error');
-        Get.snackbar('Error', 'Failed to download image');
+        Get.snackbar('Error', 'Failed to download image',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
       }
     }
   }

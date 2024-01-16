@@ -15,7 +15,9 @@ class diaryNumFileDetailsState{
   RxString dept = ''.obs;
   RxString senderName = ''.obs;
   RxString senderAddress = ''.obs;
+  RxString subject =''.obs;
   RxString receiverName = ''.obs;
+  final length= 0.obs ;
 
 
 }

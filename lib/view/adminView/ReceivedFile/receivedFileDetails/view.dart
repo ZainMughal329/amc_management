@@ -1,12 +1,12 @@
+import 'package:amc_management/view/adminView/ReceivedFile/receivedFileDetails/controller.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../res/colors.dart';
 import '../receivedFileSearchView/controller.dart';
-import 'controller.dart';
-import 'state.dart';
 
 
 class receivedFileDetailsView extends GetView<receivedFileDetailController> {
@@ -43,32 +43,33 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
       controller.setFetchLoading(false);
 
     });
-
     return Scaffold(
       backgroundColor: AppColors.filesBgColour,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: AppColors.appBarBgColour,
         actions: [
-          IconButton(
-            onPressed: () async{
-              String docId = id;
-              List<String> imageUrls = await controller.fetchImageUrls(docId);
-              await controller.downloadImages(imageUrls);
-              // controller.downloadImages(controller.fetchimageUrls);
-            },
-            icon: Icon(Icons.download_outlined),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              onPressed: () async{
+                String docId = id;
+                List<String> imageUrls = await controller.fetchImageUrls(docId);
+                await controller.downloadImages(imageUrls);
+              },
+              icon: Icon(Icons.download_outlined),
+            ),
           ),
-          IconButton(
-            onPressed: () async{
-              String docId = id;
-              List<String> imageUrls = await controller.fetchImageUrls(docId);
-              await controller.generatePDF(imageUrls);
-              // controller.generatePDF(controller.fetchimageUrls);
-              print('pdf create');
-            },
-            icon: Icon(Icons.picture_as_pdf),
-          ),
+          // IconButton(
+          //   onPressed: () async{
+          //     String docId = id;
+          //     List<String> imageUrls = await controller.fetchImageUrls(docId);
+          //     await controller.generatePDF(imageUrls);
+          //     // controller.generatePDF(controller.fetchimageUrls);
+          //     print('pdf create');
+          //   },
+          //   icon: Icon(Icons.picture_as_pdf),
+          // ),
         ],
       ),
       body: SafeArea(
@@ -139,7 +140,7 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
                         Container(
                           padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: AppColors.containerColor1,
+                            color: Colors.blueGrey.withOpacity(.8),
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
@@ -151,7 +152,7 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
                           ),
                           child: Column(
                             children: [
-                              reusebleRow(
+                              reusebaleTextFields(
                                 title: 'Date',
                                 iconData: Icons.calendar_today_outlined,
                                 value: date,
@@ -164,7 +165,7 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
                         Container(
                           padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: AppColors.containerColor2,
+                            color: Colors.blueGrey.withOpacity(.8),
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
@@ -175,59 +176,23 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
                             ],
                           ),
                           child: GestureDetector(
-                            onTap: () {},
-                            child: reusebleRow(
-                              title: 'ReceivedFrom',
-                              iconData: Icons.person_outlined,
-                              value: receivedFrom,
+                            onTap: () {
+                              controller.showserialNumDialogAlert(
+                                  context,controller.state.serialNum.value.toString(),id
+                              );
+                            },
+                            child: reusebaleTextFields(
+                              title: 'serial number',
+                              iconData: Icons.numbers_outlined,
+                              value: controller.state.serialNum.value.toString(),
                             ),
                           ),
                         ),
                         SizedBox(height: 15),
-                        // Container for FileNum and Date
-                        // Container(
-                        //   padding: EdgeInsets.all(16),
-                        //   decoration: BoxDecoration(
-                        //     color: AppColors.containerColor3,
-                        //     borderRadius: BorderRadius.circular(12),
-                        //     boxShadow: [
-                        //       BoxShadow(
-                        //         color: AppColors.shadowColor,
-                        //         blurRadius: 4,
-                        //         offset: Offset(0, 2),
-                        //       ),
-                        //     ],
-                        //   ),
-                        //   child: Column(
-                        //     children: [
-                        //       // GestureDetector(
-                        //       //   onTap:(){
-                        //       //     // controller.showserialNumDialogAlert(
-                        //       //     //   context,
-                        //       //     //   controller.state.serialNum.value
-                        //       //     //       .toString(),
-                        //       //     //   id,
-                        //       //     // );
-                        //       //
-                        //       //   },
-                        //       //   child: reusebleRow(
-                        //       //     title: 'SerialNum',
-                        //       //     iconData: Icons.format_list_numbered,
-                        //       //     // value: state.serialNum.value
-                        //       //     //     .toString(),
-                        //       //   ),
-                        //       // ),
-                        //       SizedBox(height: 15),
-                        //
-                        //     ],
-                        //   ),
-                        // ),
-                        // SizedBox(height: 15),
-                        // Container for Department, Received From, and Details
                         Container(
                           padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: AppColors.containerColor4,
+                            color: Colors.blueGrey.withOpacity(.8),
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
@@ -239,21 +204,28 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
                           ),
                           child: Column(
                             children: [
-                              reusebleRow(
-                                // onpress: (){
-                                //   controller.showrecievednameDialogAlert(
-                                //     context,controller.state.
-                                //   );
-                                // },
-                                title: 'Receiver Name',
-                                iconData: Icons.work_outline,
-                                value: receiverName,
+                              GestureDetector(
+                                onTap:(){
+                          controller.showrecievednameDialogAlert(
+                              context,controller.state.receiverName.value.toString(),id
+                          );
+                        },
+                                child: reusebaleTextFields(
+                                  title: 'Receiver Name',
+                                  iconData: Icons.work_outline,
+                                  value: controller.state.receiverName.value.toString(),
+                                ),
                               ),
                               SizedBox(height: 15),
-                              reusebleRow(
-                                title: 'Received From',
-                                iconData: Icons.person_outlined,
-                                value: receivedFrom,
+                              GestureDetector(
+                                onTap: (){
+                                  controller.showrecievedfromDialogAlert(context, controller.state.receiverFrom.value.toString(), id);
+                                },
+                                child: reusebaleTextFields(
+                                  title: 'Received From',
+                                  iconData: Icons.person_outlined,
+                                  value: controller.state.receiverFrom.value.toString(),
+                                ),
                               ),
                               SizedBox(height: 15),
 
@@ -264,7 +236,7 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
                         Container(
                           padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: AppColors.containerColor4,
+                            color: Colors.blueGrey.withOpacity(.8),
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
@@ -276,10 +248,17 @@ class receivedFileDetailsView extends GetView<receivedFileDetailController> {
                           ),
                           child: Column(
                             children: [
-                              reusebaleTextFieldsforAddressandSubject(
-                                title: 'Receiver Address',
-                                iconData: Icons.work_outline,
-                                value: receiverAddress,
+                              GestureDetector(
+                                onTap:(){
+                                 controller.showreceiverAddressDialogAlert (
+                                    context,controller.state.receiverAddress.value.toString(),id
+                                  );
+                        },
+                                child: reusebaleTextFieldsforAddressandSubject(
+                                  title: 'Receiver Address',
+                                  iconData: Icons.work_outline,
+                                  value: controller.state.receiverAddress.value.toString(),
+                                ),
                               ),
                             ],
                           ),
@@ -384,6 +363,135 @@ class ScaffoldWidget extends StatelessWidget {
     );
   }
 }
+// class reusebaleTextFieldsforAddressandSubject extends StatelessWidget {
+//   final String title, value;
+//   final Color? iconColor, valueColor;
+//   final VoidCallback? onpress;
+//   final IconData iconData;
+//
+//   reusebaleTextFieldsforAddressandSubject({
+//     Key? key,
+//     required this.title,
+//     this.iconColor,
+//     this.onpress,
+//     this.valueColor,
+//     required this.iconData,
+//     required this.value,
+//   }) : super(key: key);
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         border: Border.all(color: AppColors.iconButtonBgColour),
+//         borderRadius: BorderRadius.circular(20.0),
+//       ),
+//       child: ListTile(
+//         title: GestureDetector(
+//           onTap: () {
+//             onpress;
+//           },
+//           child: AbsorbPointer(
+//             child: TextField(
+//               decoration: InputDecoration(
+//                 hintText: title,
+//                 border: InputBorder.none,
+//               ),
+//               style: Theme.of(context).textTheme.subtitle2,
+//             ),
+//           ),
+//         ),
+//         leading: Icon(
+//           iconData,
+//           color: iconColor,
+//         ),
+//         subtitle: Container(
+//           decoration: BoxDecoration(
+//             border: Border.all(color: AppColors.buttonBgColor),
+//             borderRadius: BorderRadius.circular(10.0),
+//           ),
+//           child: Padding(
+//             padding: const EdgeInsets.symmetric(horizontal: 8.0),
+//             child: Text(
+//               value,
+//               style: TextStyle(
+//                 color: valueColor,
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+class reusebaleTextFields extends StatelessWidget {
+  final String title, value;
+  final Color? iconColor, valueColor;
+  final VoidCallback? onpress;
+  final IconData iconData;
+
+  reusebaleTextFields({
+    Key? key,
+    required this.title,
+    this.iconColor,
+    this.onpress,
+    this.valueColor,
+    required this.iconData,
+    required this.value,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: AppColors.iconButtonBgColour),
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      child: ListTile(
+        title: GestureDetector(
+          onTap: () {
+            onpress;
+          },
+          child: AbsorbPointer(
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: title,
+                hintStyle: GoogleFonts.poppins(
+                    textStyle:TextStyle(
+                        color: AppColors.iconButtonBgColour
+                    )
+                ),
+                border: InputBorder.none,
+              ),
+              style: Theme.of(context).textTheme.subtitle2,
+            ),
+          ),
+        ),
+        leading: Icon(
+          iconData,
+          color: AppColors.iconButtonBgColour,
+        ),
+        trailing: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: AppColors.iconButtonBgColour),
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text(
+                value,
+                style: GoogleFonts.poppins(
+                    textStyle:TextStyle(
+                        color: AppColors.iconButtonBgColour
+                    )
+                )
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 class reusebaleTextFieldsforAddressandSubject extends StatelessWidget {
   final String title, value;
   final Color? iconColor, valueColor;
@@ -416,6 +524,12 @@ class reusebaleTextFieldsforAddressandSubject extends StatelessWidget {
             child: TextField(
               decoration: InputDecoration(
                 hintText: title,
+                hintStyle: GoogleFonts.poppins(
+                    textStyle:TextStyle(
+                        color: AppColors.iconButtonBgColour
+                    )
+                ),
+
                 border: InputBorder.none,
               ),
               style: Theme.of(context).textTheme.subtitle2,
@@ -424,20 +538,22 @@ class reusebaleTextFieldsforAddressandSubject extends StatelessWidget {
         ),
         leading: Icon(
           iconData,
-          color: iconColor,
+          color: AppColors.iconButtonBgColour,
         ),
         subtitle: Container(
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.buttonBgColor),
+            border: Border.all(color: AppColors.iconButtonBgColour),
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
-              value,
-              style: TextStyle(
-                color: valueColor,
-              ),
+                value,
+                style: GoogleFonts.poppins(
+                    textStyle:TextStyle(
+                        color: AppColors.iconButtonBgColour
+                    )
+                )
             ),
           ),
         ),

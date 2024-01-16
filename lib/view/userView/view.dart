@@ -1,27 +1,30 @@
 import 'package:amc_management/res/colors.dart';
-import 'package:amc_management/res/components/SessionViewComponents/elevated_button.dart';
 import 'package:amc_management/res/components/adminViewComponents/custom_button.dart';
+import 'package:amc_management/res/components/textWidget.dart';
 import 'package:amc_management/view/userView/detailsScreen/view.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:line_icons/line_icon.dart';
 import '../../../model/services/session_Controller.dart';
 import '../../../model/userModel/user_model.dart';
 import '../../../res/components/UserViewComponents/userApprovalPage.dart';
 import '../../../utils/routes/routes_name.dart';
 import '../../../utils/snackBar.dart';
 import 'index.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
-
+import 'searchFile/contoller.dart';
+import 'searchFile/view.dart';
+import 'package:flutter/services.dart';
 class userView extends GetView<userViewController> {
   String deptName;
   userView({super.key, required this.deptName});
   final controller = Get.put<userViewController>(userViewController());
+  final con = Get.put(userSerachController());
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     controller.state.dpName = deptName;
     final GlobalKey<ScaffoldState> _scaffoldKey =
         new GlobalKey<ScaffoldState>();
@@ -29,11 +32,22 @@ class userView extends GetView<userViewController> {
       backgroundColor: AppColors.filesBgColour,
       appBar: AppBar(
         backgroundColor: AppColors.appBarBgColour,
-        title: Text(
-          'GAMC DOC',
-          style: TextStyle(color: AppColors.tittleColour, fontSize: 24),
+        title: TextWidget(
+          style: TextStyle(color: AppColors.tittleColour, fontSize: 24), title: 'GAMC DOC',
         ),
         actions: [
+          CircleAvatar(
+            backgroundColor: AppColors.iconButtonBgColour,
+            child: IconButton(
+                onPressed: () {
+                  Get.to(()=>userSearchView());
+                },
+                icon: Icon(
+                  Icons.search_outlined,
+                  color: AppColors.iCONColour,
+                )),
+          ),
+          SizedBox(width: 10.w),
           CircleAvatar(
             backgroundColor: AppColors.iconButtonBgColour,
             child: IconButton(
@@ -54,7 +68,8 @@ class userView extends GetView<userViewController> {
                     SessionController().userid = '';
                     Get.offAllNamed(RouteNames.loginview);
                   }).then((value) {
-                    Snackbar.showSnackBar('Error', 'Something went wrong');
+                    Get.snackbar('Error','Something went wrong',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
+
                   });
                 },
                 icon: Icon(
@@ -89,26 +104,16 @@ class userView extends GetView<userViewController> {
                               ? ListView.builder(
                                   itemCount: snapshot.data!.docs.length,
                                   itemBuilder: (context, index) {
-                                    // final idFromDb = int.parse(snapshot
-                                    //     .data!.docs[index]['Id']
-                                    //     .toString());
-                                    // final timeInMilli =
-                                    //     DateTime.fromMillisecondsSinceEpoch(
-                                    //         idFromDb);
-                                    // final formattedDate = DateFormat('dd-MM-yy')
-                                    //     .format(timeInMilli);
-                                    // print('date is : ' +
-                                    //     formattedDate.toString());
-                                    // print('length is1' +
-                                    //     snapshot.data!.docs.length.toString());
-                                    // final tittle = snapshot
-                                    //     .data!.docs[index]['Name']
-                                    //     .toString();
-
+                                    final idFromDb = int.parse(
+                                        snapshot.data!.docs[index]['Id'].toString());
+                                    final timeInMilli =
+                                    DateTime.fromMillisecondsSinceEpoch(idFromDb);
+                                    final formattedDate =
+                                    DateFormat('dd-MM-yy').format(timeInMilli);
                                     return Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Card(
-                                        color: AppColors.cardBgColour,
+                                        color: AppColors.filesCardBgColour.withOpacity(0.8),
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(16.0),
@@ -123,6 +128,11 @@ class userView extends GetView<userViewController> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               _buildListTile(
+                                                icon: Icons.date_range_outlined,
+                                                title: 'Date',
+                                                content: formattedDate
+                                              ),
+                                              _buildListTile(
                                                 icon: Icons.file_copy_rounded,
                                                 title: 'Serial Number',
                                                 content: snapshot
@@ -136,11 +146,7 @@ class userView extends GetView<userViewController> {
                                                     .data!.docs[index]['senderName']
                                                     .toString(),
                                               ),
-                                              // _buildListTile(
-                                              //   icon: Icons.date_range,
-                                              //   title: 'Date',
-                                              //   content: formattedDate,
-                                              // ),
+
                                               Center(
                                                 child: ReuseButton(
                                                   icon:
@@ -170,7 +176,7 @@ class userView extends GetView<userViewController> {
                                   ),
                                 );
                         } else if (snapshot.hasError) {
-                          return CircularProgressIndicator();
+                          return CircularProgressIndicator(color: Colors.blueGrey.withOpacity(.8),);
                         } else {
                           return Container();
                         }
@@ -182,7 +188,7 @@ class userView extends GetView<userViewController> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [Center(child: CircularProgressIndicator())],
+                  children: [Center(child: CircularProgressIndicator(color: Colors.blueGrey.withOpacity(.8),))],
                 );
               }
             }),
@@ -201,18 +207,19 @@ Widget _buildListTile({
       ListTile(
         dense: true, // Reduces the height of the ListTile
         contentPadding: EdgeInsets.symmetric(horizontal: 16),
-        leading: Icon(icon, color: AppColors.iCONColour, size: 22),
+        leading: Icon(icon, color: AppColors.filesCardTextColour, size: 22),
         title: Text(
           title,
-          style: TextStyle(fontSize: 16, color: AppColors.tittleColour),
+          style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 16, color: AppColors.filesCardTextColour)),
         ),
         trailing: Text(
           content,
-          style: TextStyle(fontSize: 14, color: AppColors.cardTextColourS),
+          style: GoogleFonts.poppins(
+              textStyle: TextStyle(fontSize: 14, color: AppColors.filesCardTextColour)
+          ),
         ),
       ),
       SizedBox(height: 4),
     ],
   );
 }
-

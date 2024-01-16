@@ -41,7 +41,7 @@ class userListView extends GetView<userController> {
                 ),
               ),
             ),
-            SizedBox(height: 20,),
+              SizedBox(height: 20,),
             Container(
               height: 590,
               width: double.infinity,

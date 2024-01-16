@@ -7,8 +7,8 @@ import '../../../../res/components/adminViewComponents/sharedComponents/custom_a
 import '../../../../res/components/adminViewComponents/custom_button.dart';
 import '../../../../res/components/adminViewComponents/sharedComponents/detailTextForm.dart';
 import '../../../../utils/custom_Utils.dart';
-import '../index.dart';
-import 'listOfImages/listofimages.dart';
+import '../dispatchFileView/controller.dart';
+import '../listOfImages/listofimages.dart';
 
 class dispatchFileForm extends GetView<dispatchController> {
   dispatchFileForm({super.key});

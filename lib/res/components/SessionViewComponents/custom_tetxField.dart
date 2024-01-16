@@ -48,7 +48,6 @@ class ReuseField extends StatelessWidget {
              onFieldSubmitted: onFiledSubmittedValue,
             validator: onvalidator,
             keyboardType: keyboardType,
-              // textAlign: TextAlign.center,
               style:
               Theme.of(context).textTheme.bodyText2!.copyWith(height: 0,fontSize: 15.sp),
             onTapOutside: (e) => FocusScope.of(context).unfocus(),
@@ -61,6 +60,8 @@ class ReuseField extends StatelessWidget {
                 },
                 icon: Icon(suffixIcon,color: iconcolour,),
               ),
+              // filled: true,
+              // fillColor: AppColors.sessionPageTextColor,
               prefixIcon: prefixIcon,
               labelText: lableText,
               labelStyle: GoogleFonts.poppins(
@@ -73,11 +74,11 @@ class ReuseField extends StatelessWidget {
               // hintText: hint,
               enabled: enable,
               border: OutlineInputBorder(
-                  // borderSide: BorderSide(color: AppColors.errorColor),
+                  borderSide: BorderSide(color: AppColors.sessionPageTextColor),
                   borderRadius: BorderRadius.circular(10)
               ),
                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.cardTextColourS),
+                  borderSide: BorderSide(color: AppColors.sessionPageTextColor),
                   borderRadius: BorderRadius.all(Radius.circular(8))
               ),
               // focusedErrorBorder: OutlineInputBorder(

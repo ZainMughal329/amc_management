@@ -2,12 +2,15 @@
 
 
 import 'package:amc_management/view/adminView/diaryNumRegister/searchView/controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../res/colors.dart';
 import '../../../../res/components/adminViewComponents/custom_button.dart';
+import '../allFileDetails/view.dart';
 
 class diarySearchView extends GetView<diaryFilesSearchController> {
    diarySearchView({super.key});
@@ -68,22 +71,26 @@ class diarySearchView extends GetView<diaryFilesSearchController> {
       body: Column(
         children: [
           Expanded(child:
-
           Obx(()=>controller.filteredFiles.length != 0?
           ListView.builder(
             itemCount: controller.filteredFiles.length,
             itemBuilder: (context, index) {
               final item = controller.filteredFiles[index];
-              final timeDate = int.parse(
-                item['Id'].toString(),
-              );
-              final now = DateTime.fromMillisecondsSinceEpoch(timeDate);
-              final formattedDate = DateFormat('dd-MM-yy').format(now);
-              print('date:' + formattedDate.toString());
+              final Timestamp fileDispatchDateTimestamp = item['fileDispatchDate'];
+              final DateTime fileDispatchDate = fileDispatchDateTimestamp.toDate();
+              final formattedDate2 = DateFormat('dd-MM-yy').format(fileDispatchDate);
+              final idFromDb = int.parse(
+                  item['Id'].toString());
+              final timeInMilli =
+              DateTime.fromMillisecondsSinceEpoch(idFromDb);
+              final formattedDate =
+              DateFormat('dd-MM-yy').format(timeInMilli);
+              print('date is : ' + formattedDate.toString());
+              print('Date 1: $formattedDate, Date 2: $formattedDate2');
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
-                  color: AppColors.cardBgColour,
+                  color: AppColors.filesCardBgColour.withOpacity(0.8),
                   shape: RoundedRectangleBorder(
                     borderRadius:
                     BorderRadius.circular(16.0),
@@ -100,9 +107,9 @@ class diarySearchView extends GetView<diaryFilesSearchController> {
                         _buildListTile(icon: Icons.numbers_outlined, title: 'Serial Number', content:  item
                         ['serialNum']),
                         _buildListTile(icon: Icons.date_range_outlined, title: 'Date', content:formattedDate),
-                        _buildListTile(icon: Icons.date_range_outlined, title: 'File Dispatch Date', content:formattedDate),
-                        _buildListTile(icon:Icons.cabin , title: 'Department', content:item
-                        ['Dept'], ),
+                        _buildListTile(icon: Icons.date_range_outlined, title: 'File Dispatch Date', content:formattedDate2),
+                        // _buildListTileForDept(icon:Icons.cabin , title: 'Department', content: snapshot.data!.docs[index]
+                        // ['Dept']),
                         _buildListTile(icon: Icons.person_outlined, title: 'Sender Name', content: item
                         ['senderName']),
                         _buildListTile(icon: Icons.person_outlined, title: 'Receiver Name', content: item
@@ -112,47 +119,40 @@ class diarySearchView extends GetView<diaryFilesSearchController> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-
                               ReuseButton(
                                   icon: Icons.details_outlined,
                                   tittle: 'Details', onpress:(){
-                                // Get.to(() =>
-                                //     receivedFileShowContainer(
-                                //         date: formattedDate,
-                                //         id: item
-                                //         ['Id'],
-                                //         receiverAddress: item['receivedAddress'],
-                                //         receiverName: item['receiverName'],
-                                //         dept: item
-                                //         ['dept'],
-                                //         serialNum: item
-                                //         ['FileNum'],
-                                //         receivedFrom: item['From']));
-                              } ),
+                                Get.to(()=>
+                                    diaryFilesDetailView(
+                                      serialNum: item
+                                      ['serialNum'],
+                                      senderName: item
+                                      ['senderName'],
+                                      senderAddress: item
+                                      ['senderAddress'],
+                                      receiverName: item
+                                      ['receiverName'],
+                                      subject: item['subject'],
+                                      id: item
+                                      ['Id'],
+                                      dept: item
+                                      ['Dept'],
+                                      date: formattedDate,
+                                      fileDispatchDate:formattedDate2,
+                                    )
+                                );
+
+                              }
+                              ),
                               ReuseButton(
                                   icon: Icons.delete_forever,
                                   tittle: 'Delete', onpress: (){
-                                final id =item['Id'];
+                                final id = item['Id'];
                                 controller.deleteFile(id);
                               })
                             ],
                           ),
                         ),
-                        // Container(
-                        //   color: Color(0xffBEC3C7),
-                        //   width: 80,
-                        //   height: 40,
-                        //   child: TextButton(
-                        //       onPressed: () {
-                        //
-                        //       },
-                        //       child: Text(
-                        //         'Details',
-                        //         style: TextStyle(
-                        //             color: AppColors
-                        //                 .buttonColour),
-                        //       )),
-                        // ),
                       ],
                     ),
                   ),
@@ -175,27 +175,29 @@ class diarySearchView extends GetView<diaryFilesSearchController> {
   }
 
 
-  Widget _buildListTile({
-    required IconData icon,
-    required String title,
-    required String content,
-  }) {
-    return Column(
-      children: [
-        ListTile(
-          dense: true, // Reduces the height of the ListTile
-          contentPadding: EdgeInsets.symmetric(horizontal: 16),
-          leading: Icon(icon, color: AppColors.iCONColour, size: 22),
-          title: Text(
-            title,
-            style: TextStyle(fontSize: 16, color: AppColors.tittleColour),
-          ),
-          trailing: Text(
-            content,
-            style: TextStyle(fontSize: 14, color: AppColors.cardTextColourS),
-          ),
-        ),
-        SizedBox(height: 4),
-      ],
-    );
-  }}
+   Widget _buildListTile({
+     required IconData icon,
+     required String title,
+     required String content,
+   }) {
+     return Column(
+       children: [
+         ListTile(
+           dense: true, // Reduces the height of the ListTile
+           contentPadding: EdgeInsets.symmetric(horizontal: 16),
+           leading: Icon(icon, color: AppColors.filesCardTextColour, size: 22),
+           title: Text(
+             title,
+             style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 16, color: AppColors.filesCardTextColour)),
+           ),
+           trailing: Text(
+             content,
+             style: GoogleFonts.poppins(
+                 textStyle: TextStyle(fontSize: 14, color: AppColors.filesCardTextColour)
+             ),
+           ),
+         ),
+         SizedBox(height: 4),
+       ],
+     );
+   }}

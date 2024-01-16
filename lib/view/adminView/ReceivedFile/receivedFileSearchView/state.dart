@@ -4,5 +4,5 @@ import 'package:flutter/cupertino.dart';
 
 class SearchState{
   TextEditingController searchController = TextEditingController();
-  final ref = FirebaseFirestore.instance.collection('Received Files');
+  final ref = FirebaseFirestore.instance.collection('ReceivedFiles');
 }

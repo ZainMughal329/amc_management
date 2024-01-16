@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
@@ -77,10 +78,11 @@ class userViewController extends GetxController{
           print('Image saved to gallery: $value');
         });
 
-        Get.snackbar('Success', 'Image Downloaded');
+        Get.snackbar('Success', 'Image Downloaded',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
       } catch (error) {
         print('Error downloading image: $error');
-        Get.snackbar('Error', 'Failed to download image');
+
+        Get.snackbar('Error', 'Failed to download image',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
       }
     }
   }

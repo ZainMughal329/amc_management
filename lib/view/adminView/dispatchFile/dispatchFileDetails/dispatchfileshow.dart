@@ -1,14 +1,15 @@
 
 
 import 'package:amc_management/res/components/adminViewComponents/fileShowScreen.dart';
-import 'package:amc_management/view/adminView/dispatchFile/index.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import '../../../res/colors.dart';
-import '../../../res/components/adminViewComponents/sharedComponents/tab_bar_setting.dart';
+import '../../../../res/colors.dart';
+import '../../../../res/components/adminViewComponents/sharedComponents/tab_bar_setting.dart';
+import '../dispatchFileView/controller.dart';
 class dispatchFileShowContainer extends StatelessWidget {
   String subject;
   String recieverName;
@@ -53,19 +54,22 @@ class dispatchFileShowContainer extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.appBarBgColour,
         actions: [
-          IconButton(
-            onPressed: () {
-              controller.downloadImages(controller.fetchedImageUrls);
-            },
-            icon: Icon(Icons.download_outlined),
+          Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              onPressed: () {
+                controller.downloadImages(controller.fetchedImageUrls);
+              },
+              icon: Icon(Icons.download_outlined),
+            ),
           ),
-          IconButton(
-            onPressed: () {
-              controller.generatePDF(controller.fetchedImageUrls);
-              print('pdf create');
-            },
-            icon: Icon(Icons.picture_as_pdf),
-          ),
+          // IconButton(
+          //   onPressed: () {
+          //     controller.generatePDF(controller.fetchedImageUrls);
+          //     print('pdf create');
+          //   },
+          //   icon: Icon(Icons.picture_as_pdf),
+          // ),
         ],
       ),
 
@@ -87,39 +91,43 @@ class dispatchFileShowContainer extends StatelessWidget {
                               color: AppColors.sessionPageBgColor,
                             ),
                           ),
-                        ):Swiper(
-                            itemCount:controller.fetchedImageUrls.value.length,
-                          itemBuilder: (context, index){
-                              return Container(
-                                margin: EdgeInsets.all(10.w),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 2,
-                                      blurRadius: 7,
-                                      offset: Offset(0, 3),
+                        ):Column(
+                          children: [
+                            Swiper(
+                                itemCount:controller.fetchedImageUrls.value.length,
+                              itemBuilder: (context, index){
+                                  return Container(
+                                    margin: EdgeInsets.all(10.w),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 2,
+                                          blurRadius: 7,
+                                          offset: Offset(0, 3),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  child: Image(
-                                    image: NetworkImage(
-                                      controller.fetchedImageUrls.value[index],
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      child: Image(
+                                        image: NetworkImage(
+                                          controller.fetchedImageUrls.value[index],
+
+                                        ),
+                                        fit: BoxFit.fill,
+                                      ),
 
                                     ),
-                                    fit: BoxFit.fill,
-                                  ),
+                                  );
 
-                                ),
-                              );
-
-                          },
-                          itemHeight: 270.h,
-                          itemWidth: 250.w,
-                          layout: SwiperLayout.STACK,
+                              },
+                              itemHeight: 270.h,
+                              itemWidth: 250.w,
+                              layout: SwiperLayout.STACK,
+                            ),
+                          ],
                         );
                       }
                   )
@@ -130,9 +138,9 @@ class dispatchFileShowContainer extends StatelessWidget {
               ),
               Expanded(
                 child: Obx(
-                      ()=>controller.state.loaded.value==true? Center(
+                      ()=>controller.state.loaded.value==false? Center(
                     child: CircularProgressIndicator(
-                      color: AppColors.buttonColour,
+                      color: AppColors.tittleColour,
                     ),
                   ):SingleChildScrollView(
                     child: Column(
@@ -143,7 +151,7 @@ class dispatchFileShowContainer extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: AppColors.containerColor1,
+                            color: Colors.blueGrey.withOpacity(.8),
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
@@ -157,28 +165,28 @@ class dispatchFileShowContainer extends StatelessWidget {
                             children: [
                               GestureDetector(
                                 onTap:(){
-                                  controller.showserialNumDialogAlert(
-                                      context,
-                                      controller.state.serialNum.value
-                                          .toString(),
-                                      id);
+                                  controller.showserialNumDialogAlert(context,
+                                      controller.state.serialNum.value.toString(), id);
                                 },
                                 child: reusebaleTextFields(
-
                                   title: 'SerialNum',
                                   iconData: Icons.format_list_numbered,
-                                  value: serialNum
+                                  value:  controller.state.serialNum.value
+                                      .toString()
                                   // controller.state.serialNum.value
                                   //     .toString(),
                                 ),
                               ),
                               SizedBox(height: 15),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  controller.showletterNumDialogAlert(context, controller.state.letterNum.value.toString(), id);
+                                },
                                 child: reusebaleTextFields(
                                   title: 'Letter Number',
                                   iconData: Icons.person_outlined,
-                                  value:letterNum,
+                                  value: controller.state.letterNum.value
+                                      .toString(),
                                 ),
                               ),
                             ],
@@ -188,7 +196,7 @@ class dispatchFileShowContainer extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: AppColors.containerColor1,
+                            color: Colors.blueGrey.withOpacity(.8),
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
@@ -209,11 +217,14 @@ class dispatchFileShowContainer extends StatelessWidget {
                               ),
                               SizedBox(height: 15),
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  controller.showreceiverNamrDialogAlert(context, controller.state.receiverName.value.toString(), id);
+                                },
                                 child: reusebaleTextFields(
                                   title: 'Receiver Name',
                                   iconData: Icons.person_outlined,
-                                  value:recieverName,
+                                  value: controller.state.receiverName.value
+                                      .toString(),
                                 ),
                               ),
                             ],
@@ -223,7 +234,7 @@ class dispatchFileShowContainer extends StatelessWidget {
                           Container(
                             padding: EdgeInsets.all(16),
                             decoration: BoxDecoration(
-                              color: AppColors.containerColor1,
+                              color: Colors.blueGrey.withOpacity(.8),
                               borderRadius: BorderRadius.circular(12),
                               boxShadow: [
                                 BoxShadow(
@@ -236,11 +247,14 @@ class dispatchFileShowContainer extends StatelessWidget {
                             child: Column(
                               children: [
                                 GestureDetector(
-                                  onTap: () {},
+                                  onTap: () {
+                                    controller.receiverAddressDialogAlert(context, controller.state.receiverAddress.value.toString(), id);
+                                  },
                                   child: reusebaleTextFieldsforAddressandSubject(
                                       title: 'Receiver Address',
                                       iconData: Icons.house_outlined,
-                                      value: receiverAddress),
+                                      value:  controller.state.receiverAddress.value
+                                          .toString()),
                                 ),
                               ],
                             ),
@@ -251,7 +265,7 @@ class dispatchFileShowContainer extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(16),
                           decoration: BoxDecoration(
-                            color: AppColors.containerColor1,
+                            color: Colors.blueGrey.withOpacity(.8),
                             borderRadius: BorderRadius.circular(12),
                             boxShadow: [
                               BoxShadow(
@@ -264,11 +278,14 @@ class dispatchFileShowContainer extends StatelessWidget {
                           child: Column(
                             children: [
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  controller.fileSubjectDialogAlert(context, controller.state.fileSubject.value.toString(), id);
+                                },
                                 child: reusebaleTextFieldsforAddressandSubject(
                                   title: 'Subject of File',
                                   iconData: Icons.person_outlined,
-                                  value:subject,
+                                  value: controller.state.fileSubject.value
+                                      .toString(),
                                 ),
                               ),
                             ],
@@ -322,19 +339,28 @@ class reusebaleTextFields extends StatelessWidget {
             child: TextField(
               decoration: InputDecoration(
                 hintText: title,
+                hintStyle: GoogleFonts.poppins(
+                    textStyle:TextStyle(
+                        color: AppColors.iconButtonBgColour
+                    )
+                ),
                 border: InputBorder.none,
               ),
-              style: Theme.of(context).textTheme.subtitle2,
+              style: GoogleFonts.poppins(
+                textStyle:TextStyle(
+                    color: AppColors.iconButtonBgColour
+                )
+              )
             ),
           ),
         ),
         leading: Icon(
           iconData,
-          color: iconColor,
+            color: AppColors.iconButtonBgColour
         ),
         trailing: Container(
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.buttonBgColor),
+            border: Border.all(color: AppColors.iconButtonBgColour),
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: Padding(
@@ -342,7 +368,7 @@ class reusebaleTextFields extends StatelessWidget {
             child: Text(
               value,
               style: TextStyle(
-                color: valueColor,
+                  color: AppColors.iconButtonBgColour
               ),
             ),
           ),
@@ -383,6 +409,11 @@ class reusebaleTextFieldsforAddressandSubject extends StatelessWidget {
             child: TextField(
               decoration: InputDecoration(
                 hintText: title,
+                hintStyle: GoogleFonts.poppins(
+                    textStyle:TextStyle(
+                        color: AppColors.iconButtonBgColour
+                    )
+                ),
                 border: InputBorder.none,
               ),
               style: Theme.of(context).textTheme.subtitle2,
@@ -391,20 +422,23 @@ class reusebaleTextFieldsforAddressandSubject extends StatelessWidget {
         ),
         leading: Icon(
           iconData,
-          color: iconColor,
+            color: AppColors.iconButtonBgColour
         ),
         subtitle: Container(
           decoration: BoxDecoration(
-            border: Border.all(color: AppColors.buttonBgColor),
+            border: Border.all(                      color: AppColors.iconButtonBgColour
+            ),
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
               value,
-              style: TextStyle(
-                color: valueColor,
-              ),
+              style: GoogleFonts.poppins(
+                  textStyle:TextStyle(
+                      color: AppColors.iconButtonBgColour
+                  )
+              )
             ),
           ),
         ),

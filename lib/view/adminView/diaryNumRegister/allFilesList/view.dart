@@ -3,6 +3,7 @@
 import 'package:amc_management/view/adminView/diaryNumRegister/allFilesList/controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -18,13 +19,14 @@ class allFilesView extends GetView<allFilesController>{
 
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual);
     final con = Get.put(allFilesController());
     final con1 = Get.put(diaryFilesSearchController());
     return Scaffold(
       body: Stack(
         children: [
           Padding(
-            padding: EdgeInsets.only(bottom: 110,top: 0),
+            padding: EdgeInsets.only(bottom: 70,top: 0),
             child: Center(
               child:StreamBuilder<QuerySnapshot>(
                stream: controller.state.ref.snapshots(),
@@ -131,9 +133,9 @@ class allFilesView extends GetView<allFilesController>{
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 40,bottom: 40,left: 40,right: 40),
+            padding: const EdgeInsets.only(top: 0,bottom: 0,left: 40,right: 40),
             child: Align(
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.bottomLeft,
               child: GestureDetector(
                 onTap: (){
                   Get.toNamed(RouteNames.diarySearchView);

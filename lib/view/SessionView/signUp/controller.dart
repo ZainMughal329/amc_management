@@ -50,11 +50,11 @@ class SignupController extends GetxController
       }).onError((error, stackTrace) {
         setLoading(false);
 
-        Get.snackbar('msg', error.toString());
+        Get.snackbar('Error',error.toString(),backgroundColor: Colors.blueGrey.withOpacity(.8),colorText: Colors.white);
       });
     } on FirebaseAuthException catch (e) {
       setLoading(false);
-      Get.snackbar('msg', e.toString());
+      Get.snackbar('msg', e.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
     } catch (_) {
       setLoading(false);
     }
@@ -74,10 +74,10 @@ class SignupController extends GetxController
         .doc(auth.currentUser!.uid)
         .set(user.toJson())
         .whenComplete(() {
-      Get.snackbar('Message', 'Registered Successfully');
+      Get.snackbar('Message', 'Registered Successfully',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
       Get.offAllNamed(RouteNames.userView);
     }).catchError((error, stackTrace) {
-      Get.snackbar('Message', "Error occurred");
+      Get.snackbar('Message', "Error occurred",backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
     });
   }
 

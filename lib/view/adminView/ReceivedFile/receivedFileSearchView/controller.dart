@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'index.dart';
@@ -20,7 +21,7 @@ class SearchBarController extends GetxController {
 
   void fetchAllFiles() async {
     final querySnapshot = await FirebaseFirestore.instance.collection(
-        'addFiles').get();
+        'ReceivedFiles').get();
     print('length : ' + querySnapshot.docs.length.toString());
     allFiles.assignAll(querySnapshot.docs);
   }
@@ -50,10 +51,10 @@ class SearchBarController extends GetxController {
       await state.ref.doc(id).delete().then((value){
         print('File Deleted');
       }).onError((error, stackTrace){
-        Get.snackbar('Error', error.toString());
+        Get.snackbar('Error', error.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
       });
     }catch(e){
-      Get.snackbar('error', e.toString());
+      Get.snackbar('error', e.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
     }
 
   }

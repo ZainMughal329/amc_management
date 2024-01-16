@@ -1,5 +1,6 @@
 // // import 'package:mobile_scanner/mobile_scanner.dart';
 import 'dart:io';
+import 'package:amc_management/res/components/textWidget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,12 +22,11 @@ class ProfileView extends GetView<profileController> {
       backgroundColor: AppColors.filesBgColour,
       appBar: AppBar(
         backgroundColor: AppColors.appBarBgColour,
-        title: const Text(
-          'Profile',
+        title:  TextWidget(
           style: TextStyle(
             color: AppColors.profileImageBorder,
             fontSize: 20,
-          ),
+          ), title: 'Profile',
         ),
       ),
       resizeToAvoidBottomInset: false,

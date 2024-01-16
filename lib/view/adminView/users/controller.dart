@@ -24,28 +24,31 @@ class userController extends GetxController with GetSingleTickerProviderStateMix
     await ref.doc(id).update({
       'status': 'true',
     }).then((value) {
-      Get.snackbar('St', 'Congrats');
+      Get.snackbar('St', 'Congrats',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
     }).onError((error, stackTrace) {
-      Get.snackbar('Error', 'Something went wrong');
+      Get.snackbar('Error', 'Something went wrong',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
     });
   }
   deleteUserData(String id) async {
     await ref.doc(id).delete().then((value) {
-      Get.snackbar('Delete', 'Successfully Deleted');
+      Get.snackbar('Delete', 'Successfully Deleted',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
     }).onError((error, stackTrace) {
-      Get.snackbar('Error', 'Something went wrong');
+      Get.snackbar('Error', 'Something went wrong',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
     });
   }
   Future<void> deleteUsers(String id)async{
     try{
      await state.ref.collection('users').doc(id).delete().then((value) {
+       Get.snackbar('Delete', 'Successfully Deleted',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
         print('user deleted');
       }).onError((error, stackTrace) {
-        print('error is : ' + error.toString());
+       Get.snackbar('Error', error.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
+
+        // print('error is : ' + error.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
       });
       // state.dbref.doc('id').delete();
     }catch(e){
-      Get.snackbar('Error', e.toString());
+      Get.snackbar('Error', e.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
     }
   }
 }

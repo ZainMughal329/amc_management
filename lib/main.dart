@@ -44,7 +44,7 @@ class _MyAppState extends State<MyApp> {
             useMaterial3: true,
           ),
           // home: MultiSelectDropdown(),
-          initialRoute: RouteNames.homeview,
+          initialRoute: RouteNames.splashview,
           getPages:AppPages.routes,
         );
       },

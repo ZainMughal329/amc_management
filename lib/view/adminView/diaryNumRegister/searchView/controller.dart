@@ -2,6 +2,7 @@
 
 import 'package:amc_management/view/adminView/diaryNumRegister/searchView/index.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class diaryFilesSearchController extends GetxController{
@@ -48,16 +49,13 @@ fetchFilteredFiles(String query) async {
 Future<void> deleteFile(String id)async{
   try{
     await state.ref.doc(id).delete().then((value){
+      Get.snackbar('Delete', 'Successfully Deleted',backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
       print('File Deleted');
     }).onError((error, stackTrace){
-      Get.snackbar('Error', error.toString());
+      Get.snackbar('Error', error.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
     });
   }catch(e){
-    Get.snackbar('error', e.toString());
+    Get.snackbar('error', e.toString(),backgroundColor:Colors.white ,colorText: Colors.blueGrey.withOpacity(.8));
   }
-
 }
-
-
-
 }

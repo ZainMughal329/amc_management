@@ -1,17 +1,11 @@
 import 'package:amc_management/res/colors.dart';
-import 'package:amc_management/utils/routes/routes.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
-import '../../../model/services/session_Controller.dart';
-import '../../../res/components/adminViewComponents/custom_container.dart';
 import '../../../res/components/adminViewComponents/homeViewComponents/sectionCard.dart';
 import '../../../utils/routes/routes_name.dart';
-import '../../scanimages/view.dart';
 import 'controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -90,14 +84,10 @@ class HomeView extends GetView<HomeController> {
                     lottie: 'assets/animations/userList.json',
                     // icon: Icons.supervised_user_circle,
                   ),
-                  SectionCard(
-                    onpress: () {
-                      Get.toNamed(RouteNames.receivedfileview);
-                    },
-                    title: "Received File",
-                    lottie: 'assets/animations/Recievd.json',
-                    // icon: Icons.add,
-                  ),
+                  SectionCard(title:'Diary Num Register', onpress: (){
+                    Get.toNamed(RouteNames.diaryNumView);
+                  }, lottie: 'assets/animations/addFile.json'),
+
                   SectionCard(
                     onpress: () {
                       Get.toNamed(RouteNames.dispatchview);
@@ -106,15 +96,23 @@ class HomeView extends GetView<HomeController> {
                     lottie: 'assets/animations/dispatchFile.json',
                     // icon: Icons.call_split,
                   ),
-                  // SizedBox(height: 5.h),
                   SectionCard(
-                    title: 'Diary Num Register',
                     onpress: () {
-                      Get.toNamed(RouteNames.diaryNumView);
+                      Get.toNamed(RouteNames.receivedfileview);
                     },
-                    lottie: 'assets/animations/addFile.json',
-                    // icon: Icons.book_online_outlined,
+                    title: "Received File",
+                    lottie: 'assets/animations/Recievd.json',
+                    // icon: Icons.add,
                   ),
+                  // // SizedBox(height: 5.h),
+                  // SectionCard(
+                  //   title: 'Diary Num Register',
+                  //   onpress: () {
+                  //     Get.toNamed(RouteNames.diaryNumView);
+                  //   },
+                  //   lottie: 'assets/animations/addFile.json',
+                  //   // icon: Icons.book_online_outlined,
+                  // ),
                 ],
               ),
             ),

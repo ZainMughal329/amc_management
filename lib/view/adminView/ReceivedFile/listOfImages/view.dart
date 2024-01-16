@@ -1,6 +1,5 @@
 import 'package:amc_management/res/components/textWidget.dart';
 import 'package:amc_management/view/adminView/ReceivedFile/receivedFileUploadForm/controller.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multi_image_picker_view/multi_image_picker_view.dart';
@@ -12,12 +11,14 @@ import 'controller.dart';
 class ListOfFileView extends GetView<listOfImagesController> {
   String
   // deptName,
-  details, recieverName, fileNo;
+  details, recieverName, fileNo,receiveraddress,receivedfrom;
   final String id;
   final DateTime date;
   ListOfFileView( {
     Key? key,
     // required this.FileName,
+    required this.receivedfrom,
+    required this.receiveraddress,
     required this.id,
     required this.fileNo,
     required this.details,
@@ -87,6 +88,7 @@ class ListOfFileView extends GetView<listOfImagesController> {
                       controller.state.imageNo.value++;
                     }
                     controller.state.imageNo.value = 0;
+                    // uploadFormCon.clearDateFromScreen();
                   },
                   child:  Padding(
                     padding: const EdgeInsets.only(bottom: 10),
