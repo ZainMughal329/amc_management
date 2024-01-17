@@ -185,12 +185,12 @@ class receivedFileDetailController extends GetxController {
             id: id,
             receivereName: documentSnapshot!['receiverName'],
             receivedAddress: documentSnapshot!['receivedAddress'],
-            receivedFrom: documentSnapshot!['From'],
+            receivedFrom: documentSnapshot!['receivedFrom'],
             SerialNum: documentSnapshot!['serialNum'],
             images: images);
         state.serialNum.value = documentSnapshot!['serialNum'];
         state.receiverName.value = documentSnapshot!['receiverName'];
-        state.receiverFrom.value = documentSnapshot!['From'];
+        state.receiverFrom.value = documentSnapshot!['receivedFrom'];
         state.receiverAddress.value = documentSnapshot!['receivedAddress'];
         uplaodFormState.loaded.value = true;
 
@@ -383,7 +383,7 @@ class receivedFileDetailController extends GetxController {
                   onPressed: () {
                     //this  code will update the name in database
                     state.ref.doc(id).update({
-                      'From':
+                      'receivedFrom':
                       uplaodFormState.receivedfromController.text.toString()
                     }).then((value) {
                       fetchDataOfFiles(id);

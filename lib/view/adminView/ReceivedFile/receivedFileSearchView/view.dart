@@ -99,13 +99,13 @@ class SearchView extends GetView<SearchBarController> {
                         crossAxisAlignment:
                         CrossAxisAlignment.start,
                         children: [
-                          _buildListTile(icon: Icons.numbers_outlined, title: 'Serial Number', content: data
-                          ['serialNum']),
-                          _buildListTile(icon: Icons.date_range_outlined, title: 'Date', content:formattedDate),
-                          _buildListTile(icon:Icons.cabin , title: 'Department', content:data
-                          ['dept'], ),
-                          _buildListTile(icon: Icons.person_outlined, title: 'Received From', content: data
-                          ['receivedFrom']),
+                          // _buildListTile(icon: Icons.numbers_outlined, title: 'Serial Number', content: data
+                          // ['serialNum']),
+                          // _buildListTile(icon: Icons.date_range_outlined, title: 'Date', content:formattedDate),
+                          // _buildListTile(icon:Icons.cabin , title: 'Department', content:data
+                          // ['receiverName'], ),
+                          // _buildListTile(icon: Icons.person_outlined, title: 'Received From', content: data
+                          // ['receivedFrom']),
 
                           Center(
                             child: Row(
@@ -125,8 +125,8 @@ class SearchView extends GetView<SearchBarController> {
                                           // dept: item
                                           // ['dept'],
                                           serialNum: data
-                                          ['FileNum'],
-                                          receivedFrom: data['From']));
+                                          ['serialNum'],
+                                          receivedFrom: data['receivedFrom']));
                                 } ),
                                 ReuseButton(
                                     icon: Icons.delete_forever,
@@ -154,6 +154,7 @@ class SearchView extends GetView<SearchBarController> {
                           // ),
                         ],
                       ),
+                    // child: Text('dsts te'),
                     ),
                   ),
                 );

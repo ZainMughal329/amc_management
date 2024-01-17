@@ -30,10 +30,10 @@ class dispatchSearchController extends GetxController{
         results =[];
       }else{
         results = allFiles.where((data) =>
-        data['FileNum'].toString().toLowerCase().contains(lowerCaseQuery) ||
-            data['NotificationTo'].toString().toLowerCase().contains(lowerCaseQuery) ||
-            data['Name'].toString().toLowerCase().contains(lowerCaseQuery) ||
-            data['Dept'].toString().toLowerCase().contains(lowerCaseQuery)
+        data['serialNum'].toString().toLowerCase().contains(lowerCaseQuery) ||
+            data['letterNum'].toString().toLowerCase().contains(lowerCaseQuery) ||
+            data['recieverName'].toString().toLowerCase().contains(lowerCaseQuery) ||
+            data['subject'].toString().toLowerCase().contains(lowerCaseQuery)
         ).toList();
       }
       filteredFiles.value = results;

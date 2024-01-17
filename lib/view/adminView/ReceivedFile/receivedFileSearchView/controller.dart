@@ -34,10 +34,10 @@ class SearchBarController extends GetxController {
         results = [];
       } else {
         results = allFiles.where((data) =>
-        data['FileNum'].toString().toLowerCase().contains(lowerCaseQuery) ||
-            data['From'].toString().toLowerCase().contains(lowerCaseQuery) ||
-            data['Name'].toString().toLowerCase().contains(lowerCaseQuery) ||
-            data['dept'].toString().toLowerCase().contains(lowerCaseQuery)
+        data['serialNum'].toString().toLowerCase().contains(lowerCaseQuery) ||
+            data['receivedFrom'].toString().toLowerCase().contains(lowerCaseQuery) ||
+            data['receiverName'].toString().toLowerCase().contains(lowerCaseQuery) ||
+            data['receivedAddress'].toString().toLowerCase().contains(lowerCaseQuery)
         ).toList();
       }
       filteredFiles.value = results;

@@ -12,7 +12,6 @@ void main()async {
   await Firebase.initializeApp(
     // options: DefaultFirebaseOptions.currentPlatform
   );
-  // Get.put(ListOfFileController());
   runApp(const MyApp());
 }
 class MyApp extends StatefulWidget {
@@ -38,12 +37,11 @@ class _MyAppState extends State<MyApp> {
         return
           GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'DOC SYSTEM',
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          // home: MultiSelectDropdown(),
           initialRoute: RouteNames.splashview,
           getPages:AppPages.routes,
         );
@@ -51,5 +49,4 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-// Dev Tech hamza wahab zain
 

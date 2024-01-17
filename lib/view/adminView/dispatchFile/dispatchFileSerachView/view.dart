@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../res/colors.dart';
+import '../../../../res/components/adminViewComponents/custom_button.dart';
 import '../dispatchFileDetails/dispatchfileshow.dart';
 import 'controller.dart';
 
@@ -82,116 +83,67 @@ class dispatchSearchView extends GetView<dispatchSearchController> {
                   final formattedDate = DateFormat('dd-MM-yy').format(now);
                   print('date:' + formattedDate.toString());
                   return Card(
-                    // elevation: 4,
-                    color: AppColors
-                        .buttonColour, // Add shadow to the card
+                    color: AppColors.filesCardBgColour.withOpacity(0.8),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                          16.0), // Round the corners
+                      borderRadius:
+                      BorderRadius.circular(16.0),
                     ),
-                    margin:
-                    EdgeInsets.all(10.0), // Margin around the card
-
+                    elevation: 5,
+                    shadowColor:  Color(0xFFE3CBB3),
+                    margin: EdgeInsets.all(10.0),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.all(16.0),
-                            child: Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Row(
-                                  children: [
-                                    Text(
-                                      item
-                                      ['Name'],
-                                      style: TextStyle(
-                                          fontSize: 20.0,
-                                          color: Colors.white),
-                                    ),
-                                    Spacer(),
-                                    // Text(
-                                    //
-                                    //   item
-                                    //   ['Dept'],
-                                    //   style: TextStyle(
-                                    //       fontSize: 16.0,
-                                    //       color: Colors.white),
-                                    // ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      item
-                                      ['RecievedBy'],
-                                      style: TextStyle(
-                                          fontSize: 16.0,
-                                          color: Colors.white),
-                                    ),
-                                    Spacer(),
-                                    Text(
-                                      item
-                                      ['NotificationTo'],
-                                      style: TextStyle(
-                                          fontSize: 16.0,
-                                          color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      formattedDate,
-                                      style: TextStyle(
-                                          fontSize: 16.0,
-                                          color: Colors.white),
-                                    ),
-                                    Spacer(),
-                                    Container(
-                                      color: Color(0xffBEC3C7),
-                                      width: 80,
-                                      height: 40,
-                                      child: TextButton(
-                                          onPressed: () {
-                                            Get.to(() =>
-                                                dispatchFileShowContainer(
-                                                  date: formattedDate,
-                                                  serialNum: item['serialNum'],
-                                                  letterNum: item['letterNum'],
-                                                  // Dept: item['Dept'],
-                                                  id: item['Id'],
-                                                  recieverName: item
-                                                  ['RecievedBy'],
-                                                  // date: formattedDate,
-                                                  receiverAddress: item
-                                                  ['Name'],
-                                                  subject: item[
-                                                  'NotificationTo'],
-                                                ));
-                                          },
-                                          child: Text(
-                                            'Details',
-                                            style: TextStyle(
-                                                color: AppColors
-                                                    .buttonColour),
-                                          )),
-                                    ),
-                                  ],
-                                ),
+                          _buildListTile(icon: Icons.numbers_outlined, title: 'Serial Number', content:  item
+                          ['serialNum']),
+                          _buildListTile(icon: Icons.date_range_outlined, title: 'Date', content:formattedDate),
+                          _buildListTile(icon: Icons.person_outlined, title: 'Received Name', content: item
+                          ['recieverName']),
+                          _buildListTile(icon:Icons.cabin , title: 'Letter Num', content:item
+                          ['letterNum'], ),
+
+
+
+
+                          Center(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+
+                                ReuseButton(
+                                    icon: Icons.details_outlined,
+                                    tittle: 'Details', onpress:(){
+                                  Get.to(() =>
+                                      dispatchFileShowContainer(
+                                        date: formattedDate,
+                                        recieverName: item['recieverName'],
+                                        receiverAddress: item['receiverAddress'],
+                                        id: item
+                                        ['Id'],
+                                        letterNum: item['letterNum'],
+                                        // Dept: snapshot
+                                        //     .data!
+                                        //     .docs[index]
+                                        // ['dept'],
+                                        subject: item['subject'],
+                                        serialNum:item                                        ['serialNum'],
+
+
+                                      ));
+                                } ),
+                                ReuseButton(
+                                    icon: Icons.delete_forever,
+                                    tittle: 'Delete', onpress: (){
+                                  final id = item['Id'];
+                                  // controller.deleteFile(id);
+                                })
                               ],
                             ),
                           ),
+
                         ],
                       ),
                     ),
@@ -214,3 +166,31 @@ class dispatchSearchView extends GetView<dispatchSearchController> {
     );
   }
 }
+
+
+Widget _buildListTile({
+  required IconData icon,
+  required String title,
+  required String content,
+}) {
+  return Column(
+    children: [
+      ListTile(
+        dense: true, // Reduces the height of the ListTile
+        contentPadding: EdgeInsets.symmetric(horizontal: 16),
+        leading: Icon(icon, color: AppColors.filesCardTextColour.withOpacity(0.8), size: 22),
+        title: Text(
+          title,
+          style: TextStyle(fontSize: 16, color: AppColors.filesCardTextColour.withOpacity(0.8)),
+        ),
+        trailing: Text(
+          content,
+          style: TextStyle(fontSize: 14, color: AppColors.filesCardTextColour.withOpacity(0.8)),
+        ),
+      ),
+      SizedBox(height: 4),
+    ],
+  );
+}
+
+
